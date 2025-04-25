@@ -1,0 +1,95 @@
+P0100 – P0104: Mã lỗi cảm biến MAF (Mass Air Flow)
+P0100: Lỗi cảm biến MAF mạch điện.
+P0101: Cảm biến MAF hiệu suất thấp.
+P0102: Cảm biến MAF tín hiệu thấp.
+P0103: Cảm biến MAF tín hiệu cao.
+P0104: Cảm biến MAF tín hiệu không ổn định.
+Phương án sửa chữa
+
+Kiểm tra và làm sạch cảm biến MAF.
+Kiểm tra dây điện và kết nối cảm biến.
+Thay thế cảm biến MAF nếu cần thiết.
+P0200 – P0204: Lỗi mạch phun nhiên liệu
+P0200: Lỗi mạch phun nhiên liệu chung.
+P0201: Lỗi mạch phun nhiên liệu tại ống phun 1.
+P0202: Lỗi mạch phun nhiên liệu tại ống phun 2.
+P0203: Lỗi mạch phun nhiên liệu tại ống phun 3.
+P0204: Lỗi mạch phun nhiên liệu tại ống phun 4.
+Phương án sửa chữa
+
+Kiểm tra các bộ lọc nhiên liệu, bơm nhiên liệu.
+Kiểm tra hệ thống điện và dây dẫn tới các kim phun.
+Thay thế các kim phun hư hỏng.
+P0300 – P0304: Lỗi đánh lửa (Misfire)
+P0300: Lỗi đánh lửa ngẫu nhiên/multiple.
+P0301: Lỗi đánh lửa ở xy lanh 1.
+P0302: Lỗi đánh lửa ở xy lanh 2.
+P0303: Lỗi đánh lửa ở xy lanh 3.
+P0304: Lỗi đánh lửa ở xy lanh 4.
+Phương án sửa chữa
+
+Kiểm tra bugi, dây điện và cuộn dây đánh lửa.
+Kiểm tra bộ phận phun nhiên liệu.
+Kiểm tra áp suất nén của động cơ và thay thế các chi tiết bị hỏng.
+P0325 – P0335: Lỗi cảm biến cúm động cơ
+P0325: Lỗi cảm biến cúm động cơ tín hiệu thấp.
+P0335: Lỗi cảm biến cúm động cơ mạch tín hiệu.
+Phương án sửa chữa
+
+Kiểm tra và thay thế cảm biến cúm động cơ nếu cần thiết.
+Kiểm tra dây điện và kết nối của cảm biến.
+P0400 – P0409: Lỗi hệ thống tái chế khí xả (EGR)
+P0400: Lỗi lưu lượng EGR thấp.
+P0401: Lỗi EGR hiệu suất thấp.
+P0402: Lỗi EGR lưu lượng cao.
+P0403: Lỗi mạch điện EGR.
+P0404: Lỗi mạch điện EGR bất thường.
+P0405: Lỗi cảm biến EGR tín hiệu thấp.
+P0406: Lỗi cảm biến EGR tín hiệu cao.
+P0407: Lỗi mạch cảm biến EGR.
+Phương án sửa chữa
+
+Kiểm tra và làm sạch van EGR.
+Kiểm tra và thay thế cảm biến EGR.
+Kiểm tra các đường ống và van EGR.
+P0420 – P0430: Lỗi cảm biến oxy và bộ lọc khí xả (Catalytic Converter)
+P0420: Hiệu suất bộ lọc khí xả thấp (bộ xúc tác 1).
+P0430: Hiệu suất bộ lọc khí xả thấp (bộ xúc tác 2).
+Phương án sửa chữa
+
+Kiểm tra và thay thế cảm biến oxy.
+Kiểm tra bộ lọc khí xả, nếu hư hỏng, thay thế bộ xúc tác.
+P0500 – P0505: Lỗi hệ thống điều khiển tốc độ động cơ (Idle Control)
+P0500: Lỗi cảm biến tốc độ xe.
+P0501: Lỗi cảm biến tốc độ xe tín hiệu thấp.
+P0502: Lỗi cảm biến tốc độ xe tín hiệu cao.
+P0503: Lỗi cảm biến tốc độ xe không ổn định.
+P0504: Lỗi mạch điện cảm biến tốc độ.
+P0505: Lỗi điều khiển tốc độ động cơ.
+Phương án sửa chữa
+
+Kiểm tra và thay thế cảm biến tốc độ xe.
+Kiểm tra van điều khiển tốc độ động cơ.
+Kiểm tra mạch điện điều khiển tốc độ.
+P0700 – P0720: Lỗi hộp số tự động
+P0700: Lỗi hệ thống điện hộp số tự động.
+P0720: Lỗi cảm biến tốc độ trục ra hộp số.
+Phương án sửa chữa
+
+Kiểm tra các bộ phận và dây dẫn của hộp số.
+Kiểm tra cảm biến tốc độ hộp số và thay thế nếu cần.
+P1100 – P1105: Lỗi cảm biến áp suất không khí (MAP)
+P1100: Lỗi cảm biến áp suất không khí (MAP) mạch tín hiệu.
+P1101: Lỗi cảm biến áp suất không khí (MAP) hiệu suất thấp.
+P1102: Lỗi cảm biến áp suất không khí (MAP) tín hiệu thấp.
+P1103: Lỗi cảm biến áp suất không khí (MAP) tín hiệu cao.
+P1104: Lỗi cảm biến áp suất không khí (MAP) tín hiệu không ổn định.
+P1105: Lỗi cảm biến áp suất không khí (MAP) tín hiệu bị ngắt kết nối.
+Phương án sửa chữa
+
+Kiểm tra và thay thế cảm biến MAP.
+Kiểm tra mạch điện và kết nối cảm biến.
+P1340 – P1399: Lỗi hệ thống đồng bộ cam (Camshaft Position Sensor)
+P1340: Lỗi cảm biến vị trí cam mạch tín hiệu.
+P1341: Lỗi cảm biến vị trí cam tín hiệu thấp.
+P1342: Lỗi cảm biến vị trí cam tín hiệu cao.

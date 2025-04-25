@@ -1,0 +1,42 @@
+Mã Lỗi B0070	Driver seatbelt tension sensor	cảm biến độ căng dây đai an toàn bên tài xế
+Mã Lỗi B0071	Passenger seatbelt tension sensor	cảm biến độ căng dây đai an toàn bên hành khách
+Mã Lỗi B0072	Driver seatbelt pretension deployment Control	bộ điều khiển căng dây đai an toàn bên tài xế
+Mã Lỗi B0073	First row center seatbelt pretensioner deployment control	cảm biến độ căng dây đai an toàn ghế giữa hàng thứ nhất
+Mã Lỗi B0074	Passenger seatbelt pretension deployment Control	bộ điều khiển căng dây đai an toàn bên hành khách
+Mã Lỗi B0075	Second row left seatbelt pretensioner deployment control	bộ điều khiển căng dây đai an toàn ghế trái hàng thứ 2
+Mã Lỗi B0076	Second row center seatbelt pretensioner deployment control	bộ điều khiển căng dây đai an toàn ghế giữa hàng thứ 2
+Mã Lỗi B0077	Second row right center seatbelt pretensioner deployment control	bộ điều khiển căng dây đai an toàn ghế phải hàng thứ 2
+Mã Lỗi B0078	Third row left seatbelt pretensioner deployment control	bộ điều khiển căng dây đai an toàn ghế trái hàng thứ 3
+Mã Lỗi B0080	Third row center seatbelt pretensioner deployment control	bộ điều khiển căng dây đai an toàn ghế giữa hàng thứ 3
+Mã Lỗi B0081	Third row right seatbelt pretensioner deployment control	bộ điều khiển căng dây đai an toàn ghế phải hàng thứ 3
+Mã Lỗi B0082	Driver seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế tài xế
+Mã Lỗi B0083	First row center seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế giữa hàng thứ nhất
+Mã Lỗi B0084	Passenger seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế hành khách
+Mã Lỗi B0085	Second row left seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế bên trái hàng thứ hai
+Mã Lỗi B0086	Second row center seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế giữa hàng thứ hai
+Mã Lỗi B0087	Second row right seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế bên phải hàng thứ hai
+Mã Lỗi B0088	Third row left seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế bên trái hàng thứ ba
+Mã Lỗi B0090	Third row center seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế giữa hàng thứ ba
+Mã Lỗi B0091	Third row right seatbelt load limiter deployment control	bộ điều khiển giới hạn mức độ siết đai an toàn ghế bên phải hàng thứ ba
+Mã Lỗi B0092	Left frontal restraints sensor	cảm biến giảm chấn trước trái
+Mã Lỗi B0093	Left side restraints sensor 1	cảm biến giảm chấn số 1 bên trái
+Mã Lỗi B0094	Left side restraints sensor 2	cảm biến giảm chấn số 2 bên trái
+Mã Lỗi B0095	Left side restraints sensor 3	cảm biến giảm chấn số 3 bên trái
+Mã Lỗi B0096	Center frontal restraints sensor	cảm biến giảm chấn giữa phía trước
+Mã Lỗi B0097	Right frontal restraints sensor	cảm biến giảm chấn trước phải
+Mã Lỗi B0098	Side restraints sensor 1	cảm biến giảm chấn số 1 bên trái
+Mã Lỗi B0099	Left side restraints sensor 2	cảm biến giảm chấn số 2 bên trái
+Mã Lỗi B00A0	Right frontal restraints sensor 3	cảm biến giảm chấn số 3 trước bên phải
+Mã Lỗi B00A1	Roll over sensor	cảm biến góc quay vòng ngoài
+Mã Lỗi B00B0	Occupant classification system	hệ thống nhận biết người ngồi trong xe
+Mã Lỗi B00B1	Occupant position system	hệ thống cảm nhận vị trí người ngồi trong xe
+Mã Lỗi B00B2	Driver seat occupant classification sensor “A”	cảm biến nhận biết người ngồi ghế tài xế – cảm biến A
+Mã Lỗi B00B3	Driver seat occupant classification sensor “B”	cảm biến nhận biết người ngồi ghế tài xế – cảm biến B
+Mã Lỗi B00B4	Driver seat occupant classification sensor “C”	cảm biến nhận biết người ngồi ghế tài xế – cảm biến C
+Mã Lỗi B00B5	Driver seat occupant classification sensor “D”	cảm biến nhận biết người ngồi ghế tài xế – cảm biến D
+Mã Lỗi B00B6	Driver seat occupant classification sensor “E”	cảm biến nhận biết người ngồi ghế tài xế – cảm biến E
+Mã Lỗi B00B7	Driver seat track position restraints sensor	cảm biến giảm chấn vị trí ghế tài xế
+Mã Lỗi B00B8	Driver seat recline position restraints sensor	cảm biến giảm chấn vị trí ghế ngã tài xế
+Mã Lỗi B00B9	Driver seat occupant position sensor “A”	cảm biến A vị trí người ngồi ghế tài xế
+Mã Lỗi B00BA	Driver seat occupant position sensor “B”	cảm biến B vị trí người ngồi ghế tài xế
+Mã Lỗi B00BB	Driver seat occupant position sensor “C”	cảm biến C vị trí người ngồi ghế tài xế

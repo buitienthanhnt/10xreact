@@ -1,0 +1,35 @@
+C1101 Battery Voltage High # điện áp ắc quy cao.
+C1102 Battery Voltage Low # điện áp ắc quy thấp.
+C1112 Sensor source voltage # Cảm biến điện áp nguồn.
+C1200 Wheel Speed Sensor Front # LH Open/Short # cảm biến tốc độ bánh xe phía trước bên trái hở/ngắn mạch.
+C1201 Wheel Speed Sensor Front-LH Range / Performance / Intermittent # cảm biến tốc độ bánh xe phía trước bên trái báo sai.
+C1202 Wheel Speed Sensor Front-LH Invalid/no Signal # tín hiệu cảm biến tốc độ bánh xe phía trước bên trái không hợp lệ/không có tín hiệu.
+C1203 Wheel Speed Sensor Front-RH Open/Short # cảm biến tốc độ bánh xe phía trước bên phải hở/ngắn mạch.
+C1204 Wheel Speed Sensor Front-RH Range / Performance / Intermittent # cảm biến tốc độ bánh xe phía trước bên phải báo sai.
+C1205 Wheel Speed Sensor Front-RH Invalid/no Signal # tín hiệu cảm biến tốc độ bánh xe phía trước bên phải không hợp lệ/không có tín hiệu.
+C1206 Wheel Speed Sensor Rear-LH Open/Short # cảm biến tốc độ bánh xe phía sau bên trái hở/ngắn mạch.
+C1207 Wheel Speed Sensor Rear-LH Range / Performance / Intermittent # cảm biến tốc độ bánh xe phía sau bên trái báo sai.
+C1208 Wheel Speed Sensor Rear-LH Invalid/no Signal # tín hiệu cảm biến tốc độ bánh xe phía sau bên trái không hợp lệ/không có tín hiệu.
+C1209 Wheel Speed Sensor Rear-RH Open/Short # cảm biến tốc độ bánh xe phía sau bên phải hở/ngắn mạch.
+C1210 Wheel Speed Sensor Rear-RH Range / Performance / Intermittent # cảm biến tốc độ bánh xe phía sau bên phải báo sai.
+C1211 Wheel Speed Sensor Rear-RH Invalid/no Signal # tín hiệu cảm biến tốc độ bánh xe phía sau bên phải không hợp lệ/không có tín hiệu.
+C1235 Primary Pressure Sensor-Electrical # Lỗi điện áp cảm biến áp suất sơ cấp.
+C1237 Primary Pressure Sensor-Signal # tín hiệu cảm biến áp suất sơ cấp.
+C1260 Steering Angle Sensor Circuit-Signal # Mạch tín hiệu cảm biến góc lái.
+C1261 Steering Angle Sensor Not Calibrated # cảm biến góc lái không thay đổi.
+C1282 Yaw Rate & Lateral G Sensor-Electrical # điện áp cảm biến gia tốc ngang.
+C1283 Yaw Rate & Lateral G Sensor-Signal # tín hiệu cảm biến gia tốc ngang.
+C1503 TCS/ESC(ESP) Switch error # Lỗi công tắc TCS/ESC(ESP).
+C1513 Brake Switch Circuit Error # Lỗi mạch công tắc phanh.
+C1604 ECU Hardware Error # lỗi ECU.
+C1605 CAN Hardware error # Lỗi mạng CAN.
+C1611 CAN Time-out ECM # lỗi mạng CAN giao tiếp ECM (hơn 500ms).
+C1612 CAN Time-out TCM # lỗi mạng CAN giao tiếp TCM (hơn 500ms).
+C1613 CAN Wrong Message # Lỗi thông tin mạng CAN.
+C1616 CAN Bus off # lỗi mạng CAN.
+C1623 CAN Time-out Steering Angle Sensor # lỗi mạng CAN (không nhận được tín hiệu cảm biến góc lái).
+C1647 CAN Hardware Error # Sensor Channel # lỗi mạng CAN (gia tốc ngang- góc lắc).
+C2112 Valve Relay Error # lỗi Van định thời.
+C2227 Excessive Temperature Of Brake Disc # đĩa phanh quá nhiệt.
+C2380 ABS/TCS/ESC(ESP) valve error # lỗi van ABS/TCS/ESC(ESP).
+C2402 Motor Failure # Lỗi mô tơ.

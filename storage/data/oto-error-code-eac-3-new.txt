@@ -1,0 +1,49 @@
+Mã DTC	Hạng mục phát hiện	Mã DTC	Hạng mục phát hiện
+P0010	Mạch bộ chấp hành vị trí trục cam “A” (Thân máy 1)	C0200/31(*1)	Mạch cảm biến tốc độ trước phải
+P0011	Vị trí trục cam “A” – Thời điểm phối khí quá sớm hay tính năng của hệ thống (Thân máy 1)	C0205/32(*1)	Mạch cảm biến tốc độ trước trái
+P0012	Vị trí trục cam “A” – Thời điểm phối khí quá muộn (Thân máy 1)	C0210/33(*1)	Mạch cảm biến tốc độ sau phải
+P0016	Tương quan vị trí trục cam – trục khuỷu (Thân máy 1 Cảm biến A)	C0215/34(*1)	Mạch cảm biến tốc độ sau trái
+P0031	Mạch điều khiển bộ sấy của cảm biến ôxy (A/F) thấp ( Thân máy 1 Cảm biến 1)	C0226/21	Mạch van điện từ SFR
+P0032	Mạch điều khiển bộ sấy của cảm biến ôxy (A/F) cao ( Thân máy 1 Cảm biến 1)	C0236/22	Mạch van điện từ SFL
+P0037	Mạch điều khiển bộ sấy của cảm biến ôxy thấp (Thân máy 1, cảm biến 2)	C0246/23	Mạch van điện từ SRR
+P0038	Mạch điều khiển bộ sấy của cảm biến ôxy cao (Thân máy 1, cảm biến 2)	C0256/24	Mạch van điện từ SRL
+P0100	Mạch Lưu lượng hay Khối lượng Khí nạp	C0273/13(*1)	Hở Mạch Trong Mạch Rơle Môtơ ABS
+P0102	Tín hiệu đầu vào của mạch lưu lượng hay Khối lượng khí nạp thấp	C0274/14	Ngắn mạch B+ trong Mạch Rơle Môtơ ABS
+P0103	Tín hiệu đầu vào của mạch lưu lượng hay Khối lượng khí nạp cao	C0278/11	Hở Mạch Trong Mạch Rơle Điện Từ ABS
+P0110	Lỗi Mạch Cảm biến Nhiệt độ Khí nạp	C0279/12	Ngắn mạch B+ trong Mạch Rơle Van điện từ ABS
+P0112	Đầu vào của mạch cảm biến nhiệt độ khí nạp thấp	C1225/25	SM Solenoid Circuit
+P0113	Đầu vào của mạch cảm biến Nhiệt độ khí nạp cao	C1235/35	Có vật thể lạ dính vào đầu của cảm biến tốc độ trước phải
+P0115	Mạch nhiệt độ nước làm mát động cơ bị lỗi	C1236/36	Có vật thể lạ dính vào đầu của cảm biến tốc độ trước trái
+P0116	Lỗi mạch điện Nhiệt độ nước làm mát động cơ Phạm vi/ Tính năng	C1238/38	Có vật thể lạ dính vào đầu của cảm biến tốc độ sau phải
+P0117	Đầu vào của mạch cảm biến nhiệt độ nước làm mát động cơ thấp	C1239/39	Có vật thể lạ dính vào đầu của cảm biến tốc độ sau trái
+P0118	Đầu vào của mạch cảm biến nhiệt độ nước làm mát động cơ cao	C1241/41	Low Battery Positive Voltage
+P0120	Hỏng mạch Cảm biến vị trí bướm ga / Bàn đạp ga / Công tắc “A”	C1243/43(*1)	Lỗi kẹt của cảm biến gia tốc
+P0121	Cảm biến vị trí bướm ga / Bàn đạp ga / Công tắc “A” – Phạm vi / Tính năng	C1244/44	Hở hay ngắn mạch trong mạch cảm biến gia tốc
+P0122	Đầu vào của Cảm biến vị trí bướm ga / Bàn đạp ga / Công tắc “A” thấp	C1245/45(*1)	Lỗi tín hiệu đầu ra của cảm biến gia tốc
+P0123	Đầu vào của mạch Cảm biến vị trí bướm ga / Bàn đạp ga / Công tắc “A” cao	C1246/46(*2)	Lỗi cảm biến áp suất xylanh phanh chính
+P0220	Mạch Cảm biến vị trí bướm ga / Bàn đạp ga / Công tắc “B”	C1249/49	Hở mạch trong mạch công tắc đèn phanh
+P0222	Đầu vào của mạch Cảm biến vị trí bướm ga / Bàn đạp ga / Công tắc “B” thấp	C1251/51(*1)	Hở mạch trong mạch môtơ bơm.
+P0223	Đầu vào của mạch Cảm biến vị trí bướm ga / Bàn đạp ga / Công tắc “B” cao	C1361/91	Ngắn mạch trong mạch rơle dự phòng môtơ ABS
+P0327	Đầu vào của mạch cảm biến tiếng gõ 1 thấp (Thân máy 1 hay Cảm biến đơn)	C1381/97	Lỗi điện áp nguồn cấp của cảm biến gia tốc
+P0328	Đầu vào của mạch cảm biến tiếng gõ 1 cao (Thân máy 1 hay cảm biến đơn)	C1442/44	Dữ liệu nhận được từ cảm biến gia tốc bị sai
+P0335	Mạch cảm biến vị trí trục khuỷu “A”	U0073/94	Đường truyền liên lạc của mođun điều khiển tắt OFF
+P0339	Mạch cảm biến vị trí trục khuỷu “A” chập chờn	U0124/95	Mất liên lạc với môđun cảm biến gia tốc bên
+P0340	Mạch “A” của cảm biến vị trí trục cam (Thân máy 1 hay Cảm biến đơn)	P0705	Mạch cảm biến vị trí cần số bị lỗi (Đầu vào PRNDL)
+P0351	Mạch “A” của cuộn đánh lửa sơ cấp / Thứ cấp	P0710	Mạch cảm biến nhiệt độ dầu hộp số tự động “A”
+P0352	Mạch “B” của cuộn đánh lửa sơ cấp / Thứ cấp	P0712	Tín hiệu vào của Cảm biến nhiệt độ dầu hộp số tự động “A” thấp
+P0353	Mạch “C” của cuộn đánh lửa sơ cấp / Thứ cấp	P0713	Tín hiệu vào của Cảm biến nhiệt độ dầu hộp số tự động “A” cao
+P0354	Mạch “D” của cuộn đánh lửa sơ cấp / Thứ cấp	P0717	Không có tín hiệu mạch cảm biến tốc độ tua bin
+P0443	Mạch van điều khiển lọc của hệ thống kiểm soát bay hơi khí xả	P0724	Mạch công tắc phanh “B” cao
+P0500	Cảm biến tốc độ xe “A”	P0748	Van điện từ điều khiển áp suất “A” (Van điện từ chuyển số SL1)
+P0504	Tương quan công tắc phanh “A” / “B”	P0778	Van điện từ điều khiển áp suất “B” (Van điện từ chuyển số SL2)
+P0560	Điện áp của hệ thống	P0793	Cảm biến tốc độ trục trung gian “A”
+P0604	Lỗi bộ nhớ truy cập nhẫu nhiên (RAM)	P0798	Van điện từ điều khiển áp suất “B” (Van điện từ chuyển số SL3)
+P0606	Bộ vi xử lý ECM / PCM	P0982	Mạch điện điều khiển van điện từ chuyển số “D” thấp (Van điện từ chuyển số S4)
+P0607	Tính năng của mođun điều khiển	P0983	Mạch điện điều khiển van điện từ chuyển số “D” cao (Van điện từ chuyển số S4)
+P0617	Mạch rơle máy đề cao	P0985	Mạch điện điều khiển van điện từ chuyển số “E” thấp (Van điện từ chuyển số SR)
+P0657	Hở mạch điện áp nguồn của bộ chấp hành	P0986	Mạch điện điều khiển van điện từ chuyển số “E” cao (Van điện từ chuyển số SR)
+P0724	Mạch công tắc phanh “B” cao	P2716	Mạch điện điều khiển van điện từ chuyển số “D” (Van điện từ chuyển số SLT)
+P2102	Mạch môtơ điều khiển bộ chấp hành bướm ga thấp	P2769	Mạch van điện từ khớp biến mô thấp (Van điện từ chuyển số DSL)
+P2103	Mạch môtơ điều khiển bộ chấp hành bướm ga cao	P2770	Mạch van điện từ khớp biến mô cao (Van điện từ chuyển số DSL)
+P2111	Hệ thống điều khiển bộ chấp hành bướm ga – Kẹt mở
+P2112	Hệ thống điều khiển bộ chấp hành bướm ga – Kẹt đóng

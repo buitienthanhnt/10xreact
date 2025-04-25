@@ -1,0 +1,14 @@
+00 :Bình thường
+11 :Cảm biến nhiệt độ trong xe :Ngắn mạch hoặc hở mạch cảm biến
+12 :Cảm biến nhiệt độ môi trường :Ngắn mạch hoặc hở mạch cảm biến
+13 :Cảm biến nhiệt độ giàn lạnh :Ngắn mạch hoặc hở mạch cảm biến
+14 :Cảm biến nhiệt độ nước làm mát :Ngắn mạch hoặc hở mạch cảm biến
+21 :Cảm biến bức xạ mặt trời :Ngắn mạch hoặc hở mạch cảm biến
+22 :Tín hiệu khóa máy nén :Máy nén không đóng hoặc hở mạch cảm biến
+23 :Áp suất ga :Áp suất ga không bình thường.
+31 :Chiết áp vị trí Cool/Hot :Lỗi nối mát hoặc giá trị điện áp của chiết áp.
+32 :Chiết áp vị trí Fresh/ Rec :Lỗi nối mát hoặc giá trị điện áp của chiết áp.
+33 :Chiết áp vị trí Face/ Def :Lỗi nối mát hoặc giá trị điện áp của chiết áp.
+41 :Mô tơ điều khiển cánh gió Cool/Hot :Tín hiệu vị trí cánh điều khiển không đổi
+42 :Mô tơ điều khiển cánh gió Fresh/Def :Tín hiệu vị trí cánh điều khiển không đổi
+43 :Mô tơ điều khiển cánh gió Face/ Def :Tín hiệu vị trí cánh điều khiển không đổi

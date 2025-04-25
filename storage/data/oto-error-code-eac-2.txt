@@ -1,0 +1,14 @@
+P0705	Transmission Range Sensor Circuit Malfunction (PRNDL Input)	P0705	Hư hỏng mạch cảm biến vị trí cần số (Đầu vào PRNDL)
+P0710	Transmission Fluid Temperature Sensor “A” Circuit	P0710	Mạch cảm biến nhiệt độ dầu hộp số tự động “A”
+P0712	Transmission Fluid Temperature Sensor “A” Circuit Low Input	P0712	Tín hiệu vào của Cảm biến nhiệt độ dầu hộp số tự động “A” thấp
+P0713	Transmission Fluid Temperature Sensor “A” Circuit High Input	P0713	Tín hiệu vào của Cảm biến nhiệt độ dầu hộp số tự động “A” cao
+P0717	Turbine Speed Sensor Circuit No Signal	P0717	Không có tín hiệu mạch cảm biến tốc độ tua bin
+P0787	Shift / Timing Solenoid Low (Shift Solenoid Valve ST)	P0787	Thời điểm / Chuyển số van điện từ Thấp (Van điện từ chuyển số ST)
+P0788	Shift / Timing Solenoid High (Shift Solenoid Valve ST)	P0788	Thời điểm / Chuyển số van điện từ Cao (Van điện từ chuyển số ST)
+P0973	Shift Solenoid “A” Control Circuit Low (Shift Solenoid Valve S1)	P0973	Mạch điện điều khiển van điện từ “A” thấp (Van điện từ chuyển số S1)
+P0974	Shift Solenoid “A” Control Circuit High (Shift Solenoid Valve S1)	P0974	Mạch điện điều khiển van điện từ “A” cao (Van điện từ chuyển số S1)
+P0976	Shift Solenoid “B” Control Circuit Low (Shift Solenoid Valve S2)	P0976	Mạch điện điều khiển van điện từ “B” thấp (Van điện từ chuyển số S2)
+P0977	Shift Solenoid “B” Control Circuit High (Shift Solenoid Valve S2)	P0977	Mạch điện điều khiển van điện từ “B” cao (Van điện từ chuyển số S2)
+P2716	Pressure Control Solenoid “D” Electrical (Shift Solenoid Valve SLT)	P2716	Mạch điện van điện từ điều khiển áp suất “D” (Van điện từ chuyển số SLT)
+P2769	Short in Torque Converter Clutch Solenoid Circuit (Shift Solenoid Valve SL)	P2769	Ngắn mạch trong mạch van điện từ ly hợp khóa biến mô (van điện từ SL)
+P2770	Open in Torque Converter Clutch Solenoid Circuit (Shift Solenoid Valve SL)	P2770	Hở mạch trong mạch van điện từ ly hợp khóa biến mô (van điện từ SL)

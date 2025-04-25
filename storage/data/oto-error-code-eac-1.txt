@@ -1,0 +1,63 @@
+P0010	Camshaft Position “A” Actuator Circuit (Bank 1)	P0010	Mạch Bộ Chấp Hành Vị Trí Trục Cam “A” (Thân Máy 1)
+                P0011	Camshaft Position “A” – Timing Over-Advanced or System Performance (Bank 1)	P0011	Vị trí trục cam “A” – Thời điểm phối khí quá sớm hay tính năng của hệ thống (Thân máy 1)
+                P0012	Camshaft Position “A” – Timing Over-Retarded (Bank 1)	P0012	Vị Trí Trục Cam “A” – Thời Điểm Phối Khí Quá Muộn (Thân Máy 1)
+                P0016	Crankshaft Position – Camshaft Position Correlation (Bank 1 Sensor A)	P0016	Tương Quan Vị Trí Trục Cam Trục Khuỷu (Thân Máy 1 Cảm Biến A)
+                P0031	Oxygen Sensor Heater Control Circuit Low (Bank 1 Sensor 1)	P0031	Mạch điện điều khiển bộ sấy của cảm biến ôxy Thấp (Thân máy 1, cảm biến 1)
+                P0032	Oxygen Sensor Heater Control Circuit High (Bank 1 Sensor 1)	P0032	Mạch điện điều khiển bộ sấy của cảm biến ôxy Cao (Thân máy 1, cảm biến 1)
+                P0037	Oxygen Sensor Heater Control Circuit Low (Bank 1 Sensor 2)	P0037	Mạch Điện Điều Khiển Bộ Sấy Của Cảm Biến Oâxy Thấp (Thân Máy 1, Cảm Biến 2)
+                P0038	Oxygen Sensor Heater Control Circuit High (Bank 1 Sensor 2)	P0038	Mạch Điện Điều Khiển Bộ Sấy Của Cảm Biến Oâxy Cao (Thân Máy 1, Cảm Biến 2)
+                P0100	Mass or Volume Air Flow Circuit	P0100	Mạch Lưu lượng hay Khối lượng Khí nạp
+                P0102	Mass or Volume Air Flow Circuit Low Input	P0102	Mạch Lưu Lượng hay Khối lượng Khí nạp – Tín hiệu vào Thấp
+                P0103	Mass or Volume Air Flow Circuit High Input	P0103	Mạch Lưu Lượng hay Khối lượng Khí nạp – Tín hiệu vào Cao
+                P0110	Intake Air Temperature Circuit Malfunction	P0110	Hỏng Mạch Cảm Biến Nhiệt Độ Khí Nạp
+                P0112	Intake Air Temperature Circuit Low Input	P0112	Mạch Cảm Biến Nhiệt Độ Khí Nạp Tín Hiệu Vào Thấp
+                P0113	Intake Air Temperature Circuit High Input	P0113	Mạch Cảm Biến Nhiệt Độ Khí Nạp Tín Hiệu Vào Cao
+                P0115	Engine Coolant Temperature Circuit Malfunction	P0115	Hỏng Mạch Nhiệt Độ Nước Làm Mát Động Cơ
+                P0116	Engine Coolant Temperature Circuit Range / Performance Problem	P0116	Mạch Nhiệt Độ Nước Làm Mát Động Cơ Phạm Vi/ Hỏng Tính Năng
+                P0117	Engine Coolant Temperature Circuit Low Input	P0117	Mạch Nhiệt Độ Nước Làm Mát Động Cơ – Tín Hiệu Vào Thấp
+                P0118	Engine Coolant Temperature Circuit High Input	P0118	Mạch Nhiệt Độ Nước Làm Mát Động Cơ – Tín Hiệu Vào Cao
+                P0120	Throttle / Pedal Position Sensor / Switch “A” Circuit Malfunction	P0120	Hỏng Mạch Cảm Biến Vị Trí Bàn Đạp Ga / Công Tắc “A”
+                P0121	Throttle / Pedal Position Sensor / Switch “A” Circuit Range / Performance Problem	P0121	Hỏng Cảm Biến Vị Trí Bàn Đạp Ga / Công Tắc “A” Tính Năng / Phạm Vi
+                P0122	Throttle / Pedal Position Sensor / Switch “A” Circuit Low Input	P0122	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “A” – Tín Hiệu Thấp
+                P0123	Throttle / Pedal Position Sensor / Switch “A” Circuit High Input	P0123	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “A” – Tín Hiệu Cao
+                P0134	Oxygen Sensor Circuit No Activity Detected (Bank 1 Sensor 1)	P0134	Phát hiện thấy mạch cảm biến ôxy không hoạt động (Thân máy 1, cảm biến 1)
+                P0136	Oxygen Sensor Circuit Malfunction (Bank 1 Sensor 2)	P0136	Hỏng Mạch Cảm Biến Oâxy ( Thân Máy 1 Cảm Biến 2)
+                P0220	Throttle / Pedal Position Sensor / Switch “B” Circuit	P0220	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “B”
+                P0222	Throttle / Pedal Position Sensor / Switch “B” Circuit Low Input	P0222	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “B” – Tín Hiệu Thấp
+                P0223	Throttle / Pedal Position Sensor / Switch “B” Circuit High Input	P0223	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “B” – Tín Hiệu Cao
+                P0327	Knock Sensor 1 Circuit Low Input (Bank 1 or Single Sensor)	P0327	Mạch Cảm biến tiếng gõ 1 Đầu vào thấp (Thân máy 1 hay cảm biến đơn)
+                P0328	Knock Sensor 1 Circuit High Input (Bank 1 or Single Sensor)	P0328	Mạch Cảm biến tiếng gõ 1 Đầu vào cao (Thân máy 1 hay cảm biến đơn)
+                P0335	Crankshaft Position Sensor “A” Circuit	P0335	Mạch Cảm Biến Vị Trí Trục Khuỷu “A”
+                P0339	Crankshaft Position Sensor “A” Circuit Intermittent	P0339	Mạch Cảm Biến Vị Trí Trục Khuỷu “A” Chập Chờn
+                P0340	Camshaft Position Sensor “A” Circuit (Bank 1 or Single Sensor)	P0340	Mạch “A” cảm biến vị trí trục cam (Thân máy 1 hay Cảm biến đơn)
+                P0351	Ignition Coil “A” Primary / Secondary Circuit	P0351	Mạch Sơ Cấp / Thứ Cấp Của Cuộn Đánh Lửa “A”
+                P0352	Ignition Coil “B” Primary / Secondary Circuit	P0352	Mạch Sơ Cấp / Thứ Cấp Của Cuộn Đánh Lửa “B”
+                P0353	Ignition Coil “C” Primary / Secondary Circuit	P0353	Mạch Sơ Cấp / Thứ Cấp Của Cuộn Đánh Lửa “C”
+                P0354	Ignition Coil “D” Primary / Secondary Circuit	P0354	Mạch Sơ Cấp / Thứ Cấp Của Cuộn Đánh Lửa “D”
+                P0443	Evaporative Emission Control System Purge Control Valve Circuit	P0443	Mạch Van Điều Khiển Lọc Hệ Thống Kiểm Soát Bay Hơi Khí Xả
+                P0500	Vehicle Speed Sensor “A”	P0500	Cảm Biến Tốc Độ Xe “A”
+                P0504	Brake Switch “A” / “B” Correlation	P0504	Tương Quan Công Tắc Phanh “A” / “B”
+                P0560	System Voltage	P0560	Điện Áp Hệ Thống
+                P0604	Internal Control Module Random Access Memory (RAM) Error	P0604	Lỗi bộ nhớ Ram điều khiển bên trong
+                P0606	ECM / PCM Processor	P0606	Bộ vi xử lý ECM / PCM
+                P060A	Internal Control Module Monitoring Processor Performance	P060A	Tính Năng của Bộ Vi Xử Lý Môđun Điều Khiển Bên Trong
+                P060D	Internal Control Module Accelerator Pedal Position Performance	P060D	Tính Năng của Môđun Điều Khiển Bên Trong Vị Trí Bàn Đạp Ga
+                P060E	Internal Control Module Throttle Position Performance	P060E	Tính Năng của Môđun Điều Khiển Bên Trong Vị Trí Bướm Ga
+                P0617	Starter Relay Circuit High	P0617	Mạch Rơle Máy Đề Cao
+                P0657	Actuator Supply Voltage Circuit / Open	P0657	Mạch Điện Áp Nguồn Bộ Chấp Hành / Hở
+                P0724	Brake Switch “B” Circuit High	P0724	Mạch Công Tắc Phanh “B” Cao
+                P2102	Throttle Actuator Control Motor Circuit Low	P2102	Mạch Môtơ Điều Khiển Bộ Chấp Hành Bướm Ga – Tín Hiệu Thấp
+                P2103	Throttle Actuator Control Motor Circuit High	P2103	Mạch Môtơ Điều Khiển Bộ Chấp Hành Bướm Ga – Tín Hiệu Cao
+                P2111	Throttle Actuator Control System – Stuck Open	P2111	Hệ Thống Điều Khiển Bộ Chấp Hành Bướm Ga – Kẹt Mở
+                P2112	Throttle Actuator Control System – Stuck Closed	P2112	Hệ Thống Điều Khiển Bộ Chấp Hành Bướm Ga – Kẹt Đóng
+                P2118	Throttle Actuator Control Motor Current Range / Performance	P2118	Dòng Điện Môtơ Điều Khiển Bộ Chấp Hành Bướm Ga – Tính Năng / Phạm Vi
+                P2119	Throttle Actuator Control Throttle Body Range / Performance	P2119	Cổ Họng Gió Điều Khiển Bộ Chấp Hành Bướm Ga – Tính Năng / Phạm Vi
+                P2120	Throttle / Pedal Position Sensor / Switch “D” Circuit	P2120	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “D”
+                P2121	Throttle / Pedal Position Sensor / Switch “D” Circuit Range / Performance	P2121	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “D” – Tính Năng / Phạm Vi Đo
+                P2122	Throttle / Pedal Position Sensor / Switch “D” Circuit Low Input	P2122	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “D” – Tín Hiệu Thấp
+                P2123	Throttle / Pedal Position Sensor / Switch “D” Circuit High Input	P2123	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “D” – Tín Hiệu Cao
+                P2125	Throttle / Pedal Position Sensor / Switch “E” Circuit	P2125	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “E”
+                P2127	Throttle / Pedal Position Sensor / Switch “E” Circuit Low Input	P2127	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “E” – Tín Hiệu Thấp
+                P2128	Throttle / Pedal Position Sensor / Switch “E” Circuit High Input	P2128	Mạch Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “E” – Tín Hiệu Cao
+                P2135	Throttle / Pedal Position Sensor / Switch “A” / “B” Voltage Correlation	P2135	Mối Liên Hệ Điện Áp Của Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc A / B
+                P2138	Throttle / Pedal Position Sensor / Switch “D” / “E” Voltage Correlation	P2138	Sự Tương Quan Giữa Điện Áp Của Cảm Biến Vị Trí Bàn Đạp / Bướm Ga / Công Tắc “D” / “E”

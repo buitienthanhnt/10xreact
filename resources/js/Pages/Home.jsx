@@ -12,7 +12,7 @@ const Home = () => {
       <div className="p-1">
         <span className="text-lg text-green-400 font-bold">Chao mung den voi: {appName}</span>
         <p>day la phan noi dung chua cac khoi cua home content</p>
-        <Link href={route('detail')} className="text-xl font-semibold text-blue-gray-200 hover:text-green-600">go to detail</Link>
+        <Link href={route('detail')} className="text-xl font-semibold text-blue-gray-200 hover:text-green-600">go to detail page link</Link>
       </div>
     </SingleLayout>
   )

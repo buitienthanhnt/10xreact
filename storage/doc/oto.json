@@ -1,0 +1,343 @@
+[
+    {
+        "title": "Đạp phanh nhưng không chuyển được số",
+        "error": "Lỗi công tắc chân phanh",
+        "fix": "Kiểm tra đèn phanh có sáng không, sau đó kiểm tra công tắc chân phanh(nằm ở vị trí bàn đạp phanh)",
+        "type": "phanh"
+    },
+    {
+        "title": "Đèn xi nhan táp lô nháy nhanh",
+        "error": "Có thể do bóng đèn xi nhan bên đó bị hỏng",
+        "fix": "Kiểm tra bóng đèn xi nhan trước, sau rồi thay thế",
+        "type": "xi-nhan"
+    },
+    {
+        "title": "Đèn cảnh báo nhiệt độ nước làm mát",
+        "error": "nhiệt độ động cơ cao hơn mức an toàn cho phép, động cơ bị quá nhiệt, có thể do nước làm mát bị thiếu, két nước bị tắc, quạt két nước hay bơm nước bị trục trặc",
+        "fix": "ngay lập tức dừng xe vào nơi an toàn và kiểm tra xe",
+        "type": "nhiệt độ"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi phanh tay",
+        "error": "Đèn báo bật sáng thường do quên hạ phanh tay khi xe bắt đầu chạy",
+        "fix": "Nếu đã hạ phanh tay mà đèn vẫn sáng thì có thể công tắc phanh bị cài đặt sai, mức dầu phanh thấp, áp suất thuỷ lực bị mất…",
+        "type": "phanh"
+    },
+    {
+        "title": "Đèn cảnh báo áp suất dầu ở mức thấp",
+        "error": "có thể do bơm dầu bị lỗi, xe bị thiếu dầu, sử dụng không đúng loại dầu nhớt, van an toàn bị kẹt",
+        "fix": "Khi thấy đèn báo cần kiểm tra càng sớm càng tốt",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi trợ lực lái điện",
+        "error": "hệ thống trợ lực lái điện đang gặp trục trặc, cảm biến trợ lực bị lỗi",
+        "fix": "",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi túi khí",
+        "error": "túi khí bị hỏng, pin hết điện, cảm biến bị lỗi hoặc chốt an toàn bị lỗi",
+        "fix": "",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi ắc quy",
+        "error": "ắc quy hết bình. Nguyên nhân có thể do máy phát điện bị trục trặc",
+        "fix": "",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn báo khóa vô lăng",
+        "error": "thường do xoay vô lăng khi đã tắt máy hay tắt máy nhưng quên trả về N hoặc P",
+        "fix": "",
+        "type": "vô lăng"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi động cơ",
+        "error": "Có thể do trục trặc ở các bộ phận như bugi, bô bin đánh lửa, kim phun, van hằng nhiệt, cảm biến oxy, cảm biến lưu lượng khí nạp… ",
+        "fix": "",
+        "type": "động cơ"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi phanh ABS",
+        "error": "thường do cảm biến bị bẩn",
+        "fix": "Để xử lý chỉ cần vệ sinh cảm biến",
+        "type": "phanh"
+    },
+    {
+        "title": "Đèn cảnh báo tắt hệ thống cân bằng điện tử",
+        "error": "thường người ta sẽ tắt hệ thống cân bằng điện tử khi xe bị sa lầy hay khi muốn Drift xe",
+        "fix": "",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi má phanh",
+        "error": "thường là má phanh bị mòn",
+        "fix": "xử lý là kiểm tra và thay má phanh mới",
+        "type": "phanh"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi hộp số tự động",
+        "error": "thường do dầu hộp số có vấn đề",
+        "fix": "",
+        "type": "hộp số"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi hệ thống treo",
+        "error": "có thể do bộ phận đàn hồi, bộ phận dẫn hướng… gặp trục trặc",
+        "fix": "",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi chân côn",
+        "error": "người lái đạp chân côn không đúng cách hoặc chân côn bị lỗi như bị dính, chưa sát…",
+        "fix": "Thử nhả chân côn và đạp lại.",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo nước rửa kính ở mức thấp",
+        "error": "nước rửa kính xe ở mức thấp",
+        "fix": "kiểm tra và châm thêm.",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo chìa khoá sắp hết pin",
+        "error": "chìa khoá xe sắp hết pin",
+        "fix": "cần sớm thay pin",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo phanh đỗ",
+        "error": "Nếu đã hạ phanh tay mà đèn vẫn báo thì có thể công tắc phanh bị cài đặt sai, mức dầu phanh thấp, áp suất thuỷ lực bị mất…",
+        "fix": "",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo có nước vào bộ lọc nhiên liệu",
+        "error": "khi có nước lọt vào bộ lọc xăng hay lọc dầu,",
+        "fix": "cần kiểm tra càng sớm càng tốt",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo bộ lọc gió bị bẩn",
+        "error": "lọc gió động cơ bị bẩn",
+        "fix": " kiểm tra vệ sinh hoặc thay lọc gió mới.",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi bộ lọc nhiên liệu",
+        "error": "bộ lọc nhiên liệu bị lỗi như lọc nhiên liệu bị nghẹt tắc",
+        "fix": "kiểm tra càng sớm càng tốt",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Đèn cảnh báo lỗi động cơ sáng",
+        "error": "có thể do lỗi cảm biến ô-xi",
+        "fix": "tháo và làm sạch cảm biến ô-xi(ở phía đường khí xả)",
+        "type": "Đèn cảnh báo"
+    },
+    {
+        "title": "Xe đi tốn xăng và có hơi xăng",
+        "error": "Có thể lỗi van điện từ bình than hoạt tính(lắp giữa 2 cái kẹp, 2 đầu nối với 2 ống, 1 đầu nối với bình xăng, một dầu nối với động cơ, có dắc điện; bình thường nó sẽ không dẫn khí, nếu nó dẫn khí rồi thì động cơ sẽ liên tục lấy hơi xăng từ bình xăng)",
+        "fix": "Tháo ra và gõ để cho nó về trạng thái ban dầu là không thông khí nữa",
+        "type": "động cơ"
+    },
+    {
+        "title": "Xe đang đi mà mất phanh",
+        "error": "",
+        "fix": "Bật đèn cảnh báo, bấm và nhấp nhả phanh tay nhiều lần(ecu hiểu là đang trong tình trạng khẩn cấp) để xe dừng từ từ",
+        "type": "phanh"
+    },
+     {
+        "title": "Xe đi tốn xăng",
+        "error": "Có thể lỗi cảm biến vị trí trục khuỷu(nằm gắn ở vỏ động cơ phía bánh đà)",
+        "fix": "Lắc nhẹ cảm biến sang 2 bên rồi từ từ rút nó ra(có thể nó bị dính nhiều mạt sắt dẫn đến hao xăng, xe yếu) rồi về sinh",
+        "type": "động cơ"
+    },
+    {
+        "title": "Xe đi tốn xăng, xe yếu",
+        "error": "Có thể lỗi bơm cao áp(rút thăm dầu ra ngửi nếu thấy có hơi xăng)",
+        "fix": "Thay bơm cao áp",
+        "type": "động cơ"
+    },
+
+
+     {
+        "title": "Rút thăm dầu ra mà có lực hút mạnh",
+        "error": "Van khí thải bị hỏng, sẽ làm xe hao dầu",
+        "fix": "",
+        "type": "động cơ"
+    },
+     {
+        "title": "Xe rung",
+        "error": "Có thể do chưa cắm chặt thăm dầu",
+        "fix": "",
+        "type": "động cơ"
+    },
+    {
+        "title": "Nổ máy nghe tiếng gió rít như còi, mà rút thăm dầu ra thì hết",
+        "error": "Có thể do van thông gió trục khuỷu hỏng",
+        "fix": "",
+        "type": "động cơ"
+    },
+    {
+        "title": "Dầu có màu đục",
+        "error": "Có thể do két làm mát dầu hỏng dẫn tới nhiễm nước",
+        "fix": "",
+        "type": "động cơ"
+    },
+    {
+        "title": "Nổ máy rồi rút thăm dầu thấy dầu phun ngược ra",
+        "error": "Có thể do xi lanh đã bị mòn nặng, kéo xước",
+        "fix": "",
+        "type": "động cơ"
+    },
+
+
+    {
+        "title": "Đèn cảnh báo lỗi ABS vàng bật",
+        "error": "Có thể lỗi cảm biến vận tốc bánh xe bên trái bị lỗi(nằm sau vành mâm xe), cháy",
+        "fix": "Tháo dắc kết nối rồi kiểm tra điện trở cảm biến. nếu báo OL là bị cháy. Sau đó thay thế",
+        "type": "phanh"
+    },
+    {
+        "title": "Đạp phanh mà có tiếng kêu két két",
+        "error": "Có thể do má phanh mòn",
+        "fix": "Thay má phanh mới",
+        "type": "phanh"
+    },
+     {
+        "title": "Đèn cảnh báo lỗi túi khí",
+        "error": "Có thể do lỗi cũ trong hộp vẫn còn",
+        "fix": "Tháo cực âm của ác quy ra để 20 giây sau đó lắp lại rồi nổ máy kiểm tra",
+        "type": ""
+    },
+     {
+        "title": "Xoay vô lăng có tiếng kêu kẹt kẹt",
+        "error": "Có thể do hỏng vòng bi trên giảm xóc",
+        "fix": "Thay vòng bi ",
+        "type": "vô lăng"
+    },
+    {
+        "title": "Quay đầu xe nghe tiếng cục cục",
+        "error": "Có thể do hỏng thanh giằng ngoài",
+        "fix": "Thay thanh giằng ngoài",
+        "type": ""
+    },
+    {
+        "title": "Nổ máy xong vô lăng rung mạnh, tê tay",
+        "error": "",
+        "fix": "",
+        "type": "vô lăng"
+    },
+     {
+        "title": "Vô lăng lúc mạnh, lúc nhẹ khi xoay",
+        "error": "Có thể do khớp nối chữ thập bên dưới vô lăng",
+        "fix": "",
+        "type": "vô lăng"
+    },
+     {
+        "title": "Xoay hết vô lăng thấy tiếng ù ù",
+        "error": "Có thể do thiếu dầu trợ lực lái",
+        "fix": "Thêm dầu trợ lặc lái",
+        "type": "vô lăng"
+    },
+    {
+        "title": "Gồm 2 ống, 1 nhỏ(hơi ấm), 1 to(lạnh)",
+        "error": "",
+        "fix": "",
+        "type": "điều hòa"
+    },
+    {
+        "title": "Ống điều hòa to đóng tuyết, ống nhỏ nóng",
+        "error": "Có thể do cam biến nhiệt độ dàn lạnh hỏng",
+        "fix": "Thay cảm biến",
+        "type": "điều hòa"
+    },
+    {
+        "title": "Ống điều hòa nhỏ đóng tuyết",
+        "error": "Có thể do đường ống bị nhiễm nước, hoặc dàn nóng bị tắc",
+        "fix": "Xả nước hoặc thay dàn nóng",
+        "type": "điều hòa"
+    },
+     {
+        "title": "Cả 2 ống điều hòa đều nóng",
+        "error": "Có thể do lốc điều hòa bị xì hơi, hỏng",
+        "fix": "Thay lốc điều hòa",
+        "type": "điều hòa"
+    },
+     {
+        "title": "cả 2 ống điều hòa đều ở nhiệt độ bình thường",
+        "error": "Có thể do bị xì ga lạnh",
+        "fix": "Châm ga lại",
+        "type": "điều hòa"
+    },
+    {
+        "title": "Đèn cảnh báo động cơ và áp suất dầu sáng, máy xe phát ra tiếng tút tút, còn bị rò rỉ dầu",
+        "error": "Có thể do cảm biến áp suất dầu hỏng(nằm gần máy phát, nằm trên ống dẫn chính của động cơ biến áp suất dầu thành tín hiệu gửi tới ecu)",
+        "fix": "Rút phích cắm rồi dùng cờ lê vặn lỏng ốc, lấy ra rồi vệ sinh",
+        "type": "động cơ"
+    },
+    {
+        "title": "Máy nổ nhưng khi ga lên thì thấy máy có tiếng kêu xu xu",
+        "error": "Có thể do lỗi cảm biến lưu lượng khí nạp(phía đường ống dẫn nạp khí cho động cơ)",
+        "fix": "Vệ sinh hoặc thay cảm biến lưu lượng khí nạp(MAF) và đường ống",
+        "type": "động cơ"
+    },
+     {
+        "title": "Xe tự nhiên chết máy",
+        "error": "Có thể do lỗi van tuần hoàn khí xả(nối giũa ống nạp khí và ống xả, khi xe nguội thì nó đóng, khi xe nóng và đạp ga thì nó mở ra. nếu nó kẹt, lúc đề máy van sẽ đóng không kín gây rò khí, khi đánh lửa van không đóng chặt làm hỗn hợp nhiên liệu giàu dẫn tới chết máy) bị kẹt",
+        "fix": "Tháo van, lõi van ra rồi thay mới hoặc vệ sinh van(bình thường lõi bên trong phải có hành trình)",
+        "type": "động cơ"
+    },
+      {
+        "title": "Đèn xe 1 bên sáng, 1 bên không sáng",
+        "error": "Có thể do Bóng đèn bị cháy",
+        "fix": "Thay bóng bị cháy đó",
+        "type": "Đèn xe"
+    },
+     {
+        "title": "Ống xả phát ra tiếng kêu bụp bụp, động cơ rung lắc mạnh",
+        "error": "Có thể do hỏng cảm biến nhiệt độ khí nạp, dẫn đến việc phối hợp phun nhiên liệu và đánh lửa bị lệch",
+        "fix": "",
+        "type": "động cơ"
+    },
+     {
+        "title": "Vòng tua cao khi nổ không tải tầm 1000 vòng(khi bình thường chỉ độ 700) dẫn tới hao xăng",
+        "error": "Có thể do bướm ga bị kẹt, bẩn",
+        "fix": "Vệ sinh bướm ga và đường ống nạp",
+        "type": "động cơ"
+    },
+    {
+        "title": "Xe không nổ được máy",
+        "error": "Có thể do hỏng bugi, bị mòn nhiều, khe hở lớn",
+        "fix": "Thay bugi mới",
+        "type": "động cơ"
+    },
+     {
+        "title": "Xe nổ máy nhưng khi nhả chân ga là tắt máy",
+        "error": "Có thể do lỗi mô tơ ga-lăng-ti(bẩn, nhiều muội than, kẹt van) dẫn tới không có chế độ ga-lăng-ti",
+        "fix": "Thay hoặc về sinh mô tơ",
+        "type": "động cơ"
+    },
+     {
+        "title": "Ống xả nhiều muội than, động cơ rung",
+        "error": "Có thể do lỗi cảm biến ô xi (gây ra động cơ rung, giật)",
+        "fix": "Thay hoặc về sinh cảm biến ô xi",
+        "type": "động cơ"
+    },
+     {
+        "title": "Trong động cơ khi nổ có tiếng kêu như tiếng huýt sáo, khi mở nắp dầu động cơ ra thì hết",
+        "error": "Có thể do lỗi van thông hơi cưỡng bức trục khuỷu(là van 1 chiều, 1 đầu nối với động cơ, 1 đầu nối với bình dầu) bị tắc dầu vào",
+        "fix": "Thay hoặc về sinh van",
+        "type": "động cơ"
+    },
+     {
+        "title": "",
+        "error": "",
+        "fix": "",
+        "type": ""
+    },
+    {}
+]

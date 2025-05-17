@@ -3,7 +3,7 @@ import { Head, Link, router } from '@inertiajs/react';
 import { Button } from "@material-tailwind/react";
 import { useState } from "react";
 
-const Detail = ({ value }) => {
+const Detail = ({ value, once_link }) => {
   const [url, setUrl] = useState('');
   return (
     <SingleLayout>
@@ -20,6 +20,8 @@ const Detail = ({ value }) => {
         </Link>
 
         <p className="text-xl font-bold hover:text-blue-600 underline">{url}</p>
+
+        <Link href={once_link} className="hover:text-red-400 hover:underline text-xl my-2 inline-block">once time link</Link>
 
         <div className="space-x-1">
           <Button onClick={() => {

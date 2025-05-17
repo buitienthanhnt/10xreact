@@ -3,7 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 /*
@@ -27,11 +29,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('home', [HomeController::class, 'home']);
+Route::get('/detail/{id?}', [HomeController::class, 'detail'])->name('detail');
 
-Route::get('detail', [HomeController::class, 'detail'])->name('detail');
-
-Route::get('list/{id?}', [HomeController::class, 'list'])->name("list");
+Route::get('/list/{id?}', [HomeController::class, 'list'])->name("list"); //->middleware('link'); // middleware de su dung cho: Linkeys\UrlSigner\Facade\UrlSigner
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -43,4 +43,31 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::get('about', [HomeController::class, "about"])->name('about');
+
+Route::get('test', function () {
+    // test url voi chu ky(neu co nguoi sua id sang=3 thi se bao loi)
+    // $signutre = URL::signedRoute('detail', ['user' => 2]);
+    // echo $signutre;
+    // return;
+
+
+    // tao url co chu ky voi thoi gian song nhat dinh(2 phut).
+    // $urlOnceTime = URL::temporarySignedRoute( 'detail', now()->addMinutes(2), ['id' => 12] );
+    // echo($urlOnceTime);
+
+
+    // echo(action([HomeController::class, 'list'], ['id' => 1]));
+    // return redirect($signutre);
+    // return 123;
+});
+
+Route::get('testUrl', function (Request $request)  {
+    // $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate('https://www.example.com/invitation');
+    // echo $link->getFullUrl(); // https://www.example.com/invitation?uuid=UUID
+
+    $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate(action([HomeController::class, 'list']), ['id' => 1], '+1 hours', 1);
+    echo $link->getFullUrl();
+});
+
+require __DIR__ . '/auth.php';

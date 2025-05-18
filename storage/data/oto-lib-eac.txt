@@ -1,0 +1,192 @@
+1	Engine	Động cơ
+	Charging	Hệ thống nạp( máy phát, ắc quy)
+	Cooling fan	Quạt làm mát két nước
+	Engine control	Hệ thống điều khiển động cơ
+	Ignition	Hệ thống đánh lửa
+	Starting	Hệ thống khởi động
+2	Transmission	Hộp số
+	ECT& A/T Indicator	Điều khiển hộp số& Đèn hiển thị số trên táp lô
+	Shift lock	Điều khiển chọn cửa số( Hộp số tự động)
+3	Brake	Hệ thống Phanh
+	ABS( Anti-lock brake systems)	Hệ thống chống bó cứng phanh
+4	Steering	Hệ thống lái
+	EPS( Electrical power steering)	Trợ lực lái điện
+5	Heater& Air conditioner	Sưởi ấm và điều hòa
+6	Restraints	Hệ thống hỗ trợ giảm va đập
+	Seat belt Warning	Cảnh báo dây đai an toàn
+	SRS( Supplemental restraint Systems)	Hệ thống hỗ trợ giảm va đập bổ sung ( Túi khí)
+7	Securities	Hệ thống an ninh(chống trộm)
+	Theft Deterrent	Hệ thống chống trộm
+8	Body electrical	Điện nội thất( trong xe)
+	Audio System	Hệ thống âm thanh
+	Back-up light	Đèn lùi
+	Combination meter	Đồng hồ táp lô
+	DLC3	Giắc chẩn đoán
+	Door lock control	Điều khiển khóa cửa
+	Front fog light	Đèn sương mù trước
+	Front wiper& washer	Gạt mưa và rửa kính trước
+	Headlight	Đèn pha
+	Horn	Còi
+	Illumination	Đèn chiếu sáng bảng táp lô, công tắc điều hòa, ổ khóa
+	Interior light	Đèn trần, đèn cốp phụ
+	Key reminder	Chuông cảnh báo chìa khóa trong ổ khóa
+	Light reminder	Đèn báo lỗi trên đồng hồ táp lô( Đèn check…)
+	Power Outlet	Ổ cấp nguồn ( Cắm sạc điện thoại)
+	Power Source	Sơ đồ mạch nguồn cấp điện
+	Stop light	Đèn phanh
+	Taillight	Đèn kích thước( đèn nấc 1 của công tắc)
+	Turn signal and Hazard warning light	Đèn xinhan và đèn cảnh báo nguy hiểm
+	Wireless door lock control	Điều khiển khóa cửa từ xa
+9	Body	Điện thân xe
+	Power window	Cửa sổ điện
+	Rear window defogger	Sấy kính sau
+	Remote control mirror	Điều khiển gương chiếu hậu điện
+10	Communication System	Hệ thống thông tin liên lạc
+	Multiplex communication system( CAN)	Hệ thống liên lạc đa thông tin
+	Assembly	Cụm, tổ hợp
+	Switch	Công tắc
+	Starter Assembly	Cụm máy đề
+	Clutch start switch assembly	Công tắc chân côn
+	Park/ Neutrol Possition switch assembly	Công tắc khởi động số trung gian
+	Starting	Hệ thống khởi động
+	Ignition or Starter switch Assembly	Cụm khóa điện
+2	Charging
+	Fusible link block Assembly	Cụm, hộp cầu chì
+	Generator Assembly	Cụm máy phát
+	Combination meter Assembly	Cụm đồng hồ táp lô
+3	Ignition
+	Ignition Coil No 1	Cuộn đánh lửa số 1
+	Noise Filter	Tụ lọc nhiễu
+4	Engine Control
+	Fuel injector Assembly No 1	Cụm kim phun số 1
+	Fuel sender Gauge Assembly	Cụm bơm và phao xăng
+	Stop light switch assembly	Cụm công tắc chân phanh
+	ACC cut Relay	Rơ le cắt phụ tải( đài, ổ khóa điện)
+	Headlight dimmer switch	Công tắc đèn pha
+	FAN No 2 Relay	Rơ le quạt số 2
+	A/C Amplifier	Hộp khuyêch đại điều hòa
+	Oxygen Sensor	Cảm biến ô xy
+	Intake air flow meter Sub-assembly	Cảm biến lưu lượng khí nạp
+	Purge VSV	Van chân không đóng mở đường hơi xăng
+	Throttle with Motor body Assembly	Cụm mô tơ, cảm biến bớm ga
+	Accelerator Pedal Assembly	Cụm cảm biến bàn đạp ga
+	Transmission Revolution sensor	Cảm biến tốc độ đầu vào trục sơ cấp hộp số A/T
+	E.F.I Engine Coolant Temperature Sensor	Cảm biến nhiệt độ nước làm mát
+	Camshaft Timing oil control valve assembly	Van dầu điều khiển cụm VVT-i( Van OCV)
+	Cam position sensor	Cảm biến vị trí trục cam
+	Crank position sensor	Cảm biến vị trí trục khuỷu
+	Knock control sensor	Cảm biến tiếng gõ
+	Electronically controlled Transmission Solenoid	Cụm van điện từ của hộp số tự động
+	Shift lock control ECU Sub-assembly	ECU điều khiển việc chuyển số
+5	DLC, Power Oulet
+	Power steering ECU assembly	ECU trợ lực lái
+	Airbag sensor Assembly center	Cảm biến túi khí trung tâm( hộp túi khí)
+	Power oulet socket assembly	Ổ cắm lấy nguồn
+6	Multiplex communication system( CAN)	Hệ thống liên lạc đa thông tin
+	Main body ECU	ECU điều khiển điện thân xe
+	Brake actuator assembly	Cụm ECU, bộ chấp hành ABS
+	Combination meter Assembly	Cụm đồng hồ táp lô
+	Power steering ECU assembly	ECU trợ lực lái
+	Airbag sensor Assembly center	Cảm biến túi khí trung tâm( hộp túi khí)
+7	Headlight
+	Headlight assembly LH	Cụm đèn pha bên trái
+	Headlight dimmer switch assembly	Công tắc điều khiển đèn pha
+8	Turn signal and Hazard warning light
+
+	Flasher relay	Rơ le nháy
+	Front turn signal light RH	Đèn xinhan trước bên phải
+	Side turn signal light Assembly	Đèn xinhan bên
+	Rear combination light assembly	Cụm đèn hậu
+	Outer rear view mirror assembly RH	Đèn xinhan trên gương phải
+	Hazard warning signal switch assembly	Công tắc đèn báo khẩn cấp
+9	Interior light, Seat belt warning
+	Map light Assembly	Đèn đọc sách( Đèn ngay sau gương chiếu hậu)
+	No 1 Room light assembly	Đèn trần
+	No 2 Room light assembly
+	Luggage room light	Đèn cốp sau
+	Luggage compartment door lock assembly	Công tắc cốp sau
+	Front door courtesy light switch assembly LH	Công tắc cửa trước trái
+	Parking brake switch assembly	Công tắc phanh tay
+	Rear door courtesy light switch assembly LH	Công tắc cửa sau phải
+	Front seat inner belt assembly LH	Công tắc dây đai trước trái
+10	Tailight and Illumination
+	Front clearance light RH	Đèn khoảng cách( Lăng tét) trước phải
+	License Plate light assembly RH	Đèn soi biển số bên phải
+	Heater control Sub-assembly	Đèn núm chọn nhiệt độ điều hòa
+	Rear window defogger switch	Đèn công tắc sấy kính sau
+	A/C switch	Đèn công tắc A/C
+11	Back up light, stop light
+	Center stop light assembly	Đèn phanh trên cao
+12	Light reminder, Key reminder
+	Un-lock warning switch assembly	Công tắc cảnh báo chìa khóa trong ổ cắm
+	Theft warning ECU assembly	ECU chống trộm
+13	ABS
+	Brake actuator assembly	Cụm ECU, bộ chấp hành ABS
+	Front speed sensor LH	Cảm biến tốc độ trước trái
+	Rear speed sensor RH	Cảm biến tốc độ sau phải
+14	SRS
+	Front airbag sensor RH	Cảm biến túi khí va đập phía trước
+	Airbag sensor Assembly center	Cảm biến túi khí trung tâm( hộp túi khí)
+	Pretensioner	Cơ cấu căng dây đai
+	Front seat Outer Belt Assembly RH	Cơ cấu căng dây đai của ghế người lái
+	Instrument panel passenger airbag assembly	Ngòi nổ túi khí hành khách
+	Spiral cable Sub-assembly	Cuộn cáp túi khí
+	Driver side squib circuit	Ngòi nổ túi khí người lái
+15	EPS
+	Power steering ECU assembly	ECU trợ lực lái
+	Steering torque sensor	Cảm biến mô men
+16	Power window
+	Power window regulator master switch assembly	Công tắc tổng cửa sổ điện
+	Front power window regulator switch assembly LH	Công tắc điều khiển cửa sổ điện trước trái
+	Front power window regulator Motor assembly LH	Mô tơ cửa sổ điện trước phải
+17	Door lock control
+	Front door lock assembly LH	Cụm mô tơ khóa cửa trước trái
+	Un-lock detection	Công tắc phát hiện tình trạng khóa cửa
+	Key lock	Công tắc khóa bằng chìa
+	Key Un-lock	Công tắc mở bằng chìa
+	Power window regulator master switch assembly	Công tắc tổng cửa sổ điện
+	Door lock control receiver	Hộp nhận tín hiệu điều khiển khóa cửa từ xa
+
+	Hood lock assembly	Công tắc mở nắp capo
+	Security horn assembly	Còi an ninh
+	Theft indicator light assembly	Đèn báo an ninh
+18	Front wiper and washer
+	Windshield washer motor and pump assembly	Mô tơ bơm nước rửa kính
+	Windshield wiper switch assembly	Cụm công tắc phun nước, gạt nước
+	Windshield wiper motor assembly	Mô tơ gạt nước rửa kính
+19	Cooling fan
+	Cooling fan motor	Mô tơ quạt làm mát két nước
+	A/C pressure switch	Công tắc áp suất điều hòa
+	Cooling fan resistor	Điện trở quạt làm mát két nước
+20	Remote control mirror
+	Outer mirror switch assembly	Cụm gương chiếu hậu ngoài xe
+	Retract	Bung gương, mở gương
+	Retractor switch	Công tắc mở, cụp gương
+	Operation switch	Công tắc điều khiển mặt gương
+21	Rear window defogger, Horn
+	Rear window defogger	Bộ sấy kính sau
+	Rear window defogger switch	Công tắc bộ sấy kính sau
+	Spiral cable Sub-assembly	Cáp túi khí, cáp còi
+	Horn button assembly	Công tắc còi
+	Steering pad Switch LH	Công tắc còi( Cả mặt vô lăng là công tắc còi)
+	Low pitched horn assembly	Còi tần số thấp
+22	Audio system
+	Radio receiver assembly	Cụm đài radio
+	Amplifier antenna assembly	Bộ khuyếch đại tín hiệu ăng ten
+	Front No 2 speaker assembly LH	Loa téc bên phải
+	Front No 1 speaker assembly LH	Loa cửa xe
+	Rear speaker assembly LH	Loa sau bên trái
+23	Combination meter
+	Speedometer drive gear	Cảm biến tốc độ đuôi hộp số( Sâu tốc độ)
+	Fuel sender Gauge Assembly	Phao xăng
+	Hazard warning signal switch assembly	Công tắc cảnh báo tình trạng khẩn cấp
+	Brake fluid level warning switch	Công tắc mức dầu phanh
+	Engine oil pressure switch assembly	Công tắc áp suất dầu động cơ
+24	Air Conditioner
+	Blower with fan motor sub-assembly	Quạt gió hệ thống điều hòa
+	Blower resistor	Biến trở quạt gió
+	Heater control Sub-assembly	Núm điều chỉnh tốc độ quạt gió
+	A/C switch	Công tắc A/C
+	Cooler compressor assembly	Lốc nén hệ thống điều hòa
+	Cooler thermistor	Cảm biến nhiệt độ giàn lạnh
+	A/C pressure switch	Công tắc áp suât

@@ -133,6 +133,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/version" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/macroable" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/url" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/linkeys/signed-url" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

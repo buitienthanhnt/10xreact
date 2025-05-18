@@ -1,0 +1,750 @@
+[
+  {
+    "en": "Engine",
+    "vi": "Động cơ"
+  },
+  {
+    "en": "Charging",
+    "vi": "Hệ thống nạp( máy phát, ắc quy)"
+  },
+  {
+    "en": "Cooling fan",
+    "vi": "Quạt làm mát két nước"
+  },
+  {
+    "en": "Engine control",
+    "vi": "Hệ thống điều khiển động cơ"
+  },
+  {
+    "en": "Ignition",
+    "vi": "Hệ thống đánh lửa"
+  },
+  {
+    "en": "Starting",
+    "vi": "Hệ thống khởi động"
+  },
+  {
+    "en": "Transmission",
+    "vi": "Hộp số"
+  },
+  {
+    "en": "ECT& A/T Indicator",
+    "vi": "Điều khiển hộp số& Đèn hiển thị số trên táp lô"
+  },
+  {
+    "en": "Shift lock",
+    "vi": "Điều khiển chọn cửa số( Hộp số tự động)"
+  },
+  {
+    "en": "Brake",
+    "vi": "Hệ thống Phanh"
+  },
+  {
+    "en": "ABS( Anti-lock brake systems)",
+    "vi": "Hệ thống chống bó cứng phanh"
+  },
+  {
+    "en": "Steering",
+    "vi": "Hệ thống lái"
+  },
+  {
+    "en": "EPS( Electrical power steering)",
+    "vi": "Trợ lực lái điện"
+  },
+  {
+    "en": "Heater& Air conditioner",
+    "vi": "Sưởi ấm và điều hòa"
+  },
+  {
+    "en": "Restraints",
+    "vi": "Hệ thống hỗ trợ giảm va đập"
+  },
+  {
+    "en": "Seat belt Warning",
+    "vi": "Cảnh báo dây đai an toàn"
+  },
+  {
+    "en": "SRS( Supplemental restraint Systems)",
+    "vi": "Hệ thống hỗ trợ giảm va đập bổ sung ( Túi khí)"
+  },
+  {
+    "en": "Securities",
+    "vi": "Hệ thống an ninh(chống trộm)"
+  },
+  {
+    "en": "Theft Deterrent",
+    "vi": "Hệ thống chống trộm"
+  },
+  {
+    "en": "Body electrical",
+    "vi": "Điện nội thất( trong xe)"
+  },
+  {
+    "en": "Audio System",
+    "vi": "Hệ thống âm thanh"
+  },
+  {
+    "en": "Back-up light",
+    "vi": "Đèn lùi"
+  },
+  {
+    "en": "Combination meter",
+    "vi": "Đồng hồ táp lô"
+  },
+  {
+    "en": "DLC3",
+    "vi": "Giắc chẩn đoán"
+  },
+  {
+    "en": "Door lock control",
+    "vi": "Điều khiển khóa cửa"
+  },
+  {
+    "en": "Front fog light",
+    "vi": "Đèn sương mù trước"
+  },
+  {
+    "en": "Front wiper& washer",
+    "vi": "Gạt mưa và rửa kính trước"
+  },
+  {
+    "en": "Headlight",
+    "vi": "Đèn pha"
+  },
+  {
+    "en": "Horn",
+    "vi": "Còi"
+  },
+  {
+    "en": "Illumination",
+    "vi": "Đèn chiếu sáng bảng táp lô, công tắc điều hòa, ổ khóa"
+  },
+  {
+    "en": "Interior light",
+    "vi": "Đèn trần, đèn cốp phụ"
+  },
+  {
+    "en": "Key reminder",
+    "vi": "Chuông cảnh báo chìa khóa trong ổ khóa"
+  },
+  {
+    "en": "Light reminder",
+    "vi": "Đèn báo lỗi trên đồng hồ táp lô( Đèn check…)"
+  },
+  {
+    "en": "Power Outlet",
+    "vi": "Ổ cấp nguồn ( Cắm sạc điện thoại)"
+  },
+  {
+    "en": "Power Source",
+    "vi": "Sơ đồ mạch nguồn cấp điện"
+  },
+  {
+    "en": "Stop light",
+    "vi": "Đèn phanh"
+  },
+  {
+    "en": "Taillight",
+    "vi": "Đèn kích thước( đèn nấc 1 của công tắc)"
+  },
+  {
+    "en": "Turn signal and Hazard warning light",
+    "vi": "Đèn xinhan và đèn cảnh báo nguy hiểm"
+  },
+  {
+    "en": "Wireless door lock control",
+    "vi": "Điều khiển khóa cửa từ xa"
+  },
+  {
+    "en": "Body",
+    "vi": "Điện thân xe"
+  },
+  {
+    "en": "Power window",
+    "vi": "Cửa sổ điện"
+  },
+  {
+    "en": "Rear window defogger",
+    "vi": "Sấy kính sau"
+  },
+  {
+    "en": "Remote control mirror",
+    "vi": "Điều khiển gương chiếu hậu điện"
+  },
+  {
+    "en": "Communication System",
+    "vi": "Hệ thống thông tin liên lạc"
+  },
+  {
+    "en": "Multiplex communication system( CAN)",
+    "vi": "Hệ thống liên lạc đa thông tin"
+  },
+  {
+    "en": "Assembly",
+    "vi": "Cụm, tổ hợp"
+  },
+  {
+    "en": "Switch",
+    "vi": "Công tắc"
+  },
+  {
+    "en": "Starter Assembly",
+    "vi": "Cụm máy đề"
+  },
+  {
+    "en": "Clutch start switch assembly",
+    "vi": "Công tắc chân côn"
+  },
+  {
+    "en": "Park/ Neutrol Possition switch assembly",
+    "vi": "Công tắc khởi động số trung gian"
+  },
+  {
+    "en": "Starting",
+    "vi": "Hệ thống khởi động"
+  },
+  {
+    "en": "Ignition or Starter switch Assembly",
+    "vi": "Cụm khóa điện"
+  },
+  {
+    "en": "Charging",
+    "vi": "Sạc, nạp pin"
+  },
+  {
+    "en": "Fusible link block Assembly",
+    "vi": "Cụm, hộp cầu chì"
+  },
+  {
+    "en": "Generator Assembly",
+    "vi": "Cụm máy phát"
+  },
+  {
+    "en": "Combination meter Assembly",
+    "vi": "Cụm đồng hồ táp lô"
+  },
+  {
+    "en": "Ignition",
+    "vi": "Đánh lửa"
+  },
+  {
+    "en": "Ignition Coil No 1",
+    "vi": "Cuộn đánh lửa số 1"
+  },
+  {
+    "en": "Noise Filter",
+    "vi": "Tụ lọc nhiễu"
+  },
+  {
+    "en": "Engine Control",
+    "vi": "Điều khiển động cơ"
+  },
+  {
+    "en": "Fuel injector Assembly No 1",
+    "vi": "Cụm kim phun số 1"
+  },
+  {
+    "en": "Fuel sender Gauge Assembly",
+    "vi": "Cụm bơm và phao xăng"
+  },
+  {
+    "en": "Stop light switch assembly",
+    "vi": "Cụm công tắc chân phanh"
+  },
+  {
+    "en": "ACC cut Relay",
+    "vi": "Rơ le cắt phụ tải( đài, ổ khóa điện)"
+  },
+  {
+    "en": "Headlight dimmer switch",
+    "vi": "Công tắc đèn pha"
+  },
+  {
+    "en": "FAN No 2 Relay",
+    "vi": "Rơ le quạt số 2"
+  },
+  {
+    "en": "A/C Amplifier",
+    "vi": "Hộp khuyêch đại điều hòa"
+  },
+  {
+    "en": "Oxygen Sensor",
+    "vi": "Cảm biến ô xy"
+  },
+  {
+    "en": "Intake air flow meter Sub-assembly",
+    "vi": "Cảm biến lưu lượng khí nạp"
+  },
+  {
+    "en": "Purge VSV",
+    "vi": "Van chân không đóng mở đường hơi xăng"
+  },
+  {
+    "en": "Throttle with Motor body Assembly",
+    "vi": "Cụm mô tơ, cảm biến bớm ga"
+  },
+  {
+    "en": "Accelerator Pedal Assembly",
+    "vi": "Cụm cảm biến bàn đạp ga"
+  },
+  {
+    "en": "Transmission Revolution sensor",
+    "vi": "Cảm biến tốc độ đầu vào trục sơ cấp hộp số A/T"
+  },
+  {
+    "en": "E.F.I Engine Coolant Temperature Sensor",
+    "vi": "Cảm biến nhiệt độ nước làm mát"
+  },
+  {
+    "en": "Camshaft Timing oil control valve assembly",
+    "vi": "Van dầu điều khiển cụm VVT-i( Van OCV)"
+  },
+  {
+    "en": "Cam position sensor",
+    "vi": "Cảm biến vị trí trục cam"
+  },
+  {
+    "en": "Crank position sensor",
+    "vi": "Cảm biến vị trí trục khuỷu"
+  },
+  {
+    "en": "Knock control sensor",
+    "vi": "Cảm biến tiếng gõ"
+  },
+  {
+    "en": "Electronically controlled Transmission Solenoid",
+    "vi": "Cụm van điện từ của hộp số tự động"
+  },
+  {
+    "en": "Shift lock control ECU Sub-assembly",
+    "vi": "ECU điều khiển việc chuyển số"
+  },
+  {
+    "en": "DLC, Power Oulet",
+    "vi": "Kết Nối Liên Kết Dữ Liệu"
+  },
+  {
+    "en": "Power steering ECU assembly",
+    "vi": "ECU trợ lực lái"
+  },
+  {
+    "en": "Airbag sensor Assembly center",
+    "vi": "Cảm biến túi khí trung tâm( hộp túi khí)"
+  },
+  {
+    "en": "Power oulet socket assembly",
+    "vi": "Ổ cắm lấy nguồn"
+  },
+  {
+    "en": "Multiplex communication system( CAN)",
+    "vi": "Hệ thống liên lạc đa thông tin"
+  },
+  {
+    "en": "Main body ECU",
+    "vi": "ECU điều khiển điện thân xe"
+  },
+  {
+    "en": "Brake actuator assembly",
+    "vi": "Cụm ECU, bộ chấp hành ABS"
+  },
+  {
+    "en": "Combination meter Assembly",
+    "vi": "Cụm đồng hồ táp lô"
+  },
+  {
+    "en": "Power steering ECU assembly",
+    "vi": "ECU trợ lực lái"
+  },
+  {
+    "en": "Airbag sensor Assembly center",
+    "vi": "Cảm biến túi khí trung tâm( hộp túi khí)"
+  },
+  {
+    "en": "Headlight",
+    "vi": "đèn pha"
+  },
+  {
+    "en": "Headlight assembly LH",
+    "vi": "Cụm đèn pha bên trái"
+  },
+  {
+    "en": "Headlight dimmer switch assembly",
+    "vi": "Công tắc điều khiển đèn pha"
+  },
+  {
+    "en": "Turn signal and Hazard warning light",
+    "vi": "Đèn báo rẽ và đèn cảnh báo nguy hiểm"
+  },
+  {
+    "en": "Flasher relay",
+    "vi": "Rơ le nháy"
+  },
+  {
+    "en": "Front turn signal light RH",
+    "vi": "Đèn xinhan trước bên phải"
+  },
+  {
+    "en": "Side turn signal light Assembly",
+    "vi": "Đèn xinhan bên"
+  },
+  {
+    "en": "Rear combination light assembly",
+    "vi": "Cụm đèn hậu"
+  },
+  {
+    "en": "Outer rear view mirror assembly RH",
+    "vi": "Đèn xinhan trên gương phải"
+  },
+  {
+    "en": "Hazard warning signal switch assembly",
+    "vi": "Công tắc đèn báo khẩn cấp"
+  },
+  {
+    "en": "Interior light, Seat belt warning",
+    "vi": "Đèn nội thất, Cảnh báo thắt dây an toàn"
+  },
+  {
+    "en": "Map light Assembly",
+    "vi": "Đèn đọc sách( Đèn ngay sau gương chiếu hậu)"
+  },
+  {
+    "en": "No 1 Room light assembly",
+    "vi": "Đèn trần 1"
+  },
+  {
+    "en": "No 2 Room light assembly",
+    "vi": "Đèn trần 2"
+  },
+  {
+    "en": "Luggage room light",
+    "vi": "Đèn cốp sau"
+  },
+  {
+    "en": "Luggage compartment door lock assembly",
+    "vi": "Công tắc cốp sau"
+  },
+  {
+    "en": "Front door courtesy light switch assembly LH",
+    "vi": "Công tắc cửa trước trái"
+  },
+  {
+    "en": "Parking brake switch assembly",
+    "vi": "Công tắc phanh tay"
+  },
+  {
+    "en": "Rear door courtesy light switch assembly LH",
+    "vi": "Công tắc cửa sau phải"
+  },
+  {
+    "en": "Front seat inner belt assembly LH",
+    "vi": "Công tắc dây đai trước trái"
+  },
+  {
+    "en": "Tailight and Illumination",
+    "vi": "Đèn hậu và đèn chiếu sáng"
+  },
+  {
+    "en": "Front clearance light RH",
+    "vi": "Đèn khoảng cách( Lăng tét) trước phải"
+  },
+  {
+    "en": "License Plate light assembly RH",
+    "vi": "Đèn soi biển số bên phải"
+  },
+  {
+    "en": "Back up light, stop light",
+    "vi": "Đèn lùi, đèn dừng"
+  },
+  {
+    "en": "Center stop light assembly",
+    "vi": "Đèn phanh trên cao"
+  },
+  {
+    "en": "Light reminder, Key reminder",
+    "vi": "Đèn báo, nhắc nhở chìa khóa"
+  },
+  {
+    "en": "Un-lock warning switch assembly",
+    "vi": "Công tắc cảnh báo chìa khóa trong ổ cắm"
+  },
+  {
+    "en": "Theft warning ECU assembly",
+    "vi": "ECU chống trộm"
+  },
+  {
+    "en": "ABS",
+    "vi": "Hệ thống chống bó cứng phanh"
+  },
+  {
+    "en": "Brake actuator assembly",
+    "vi": "Cụm ECU, bộ chấp hành ABS"
+  },
+  {
+    "en": "Front speed sensor LH",
+    "vi": "Cảm biến tốc độ trước trái"
+  },
+  {
+    "en": "Rear speed sensor RH",
+    "vi": "Cảm biến tốc độ sau phải"
+  },
+  {
+    "en": "Supplemental Restraint System - SRS",
+    "vi": "Hệ thống túi khí ô tô"
+  },
+  {
+    "en": "Front airbag sensor RH",
+    "vi": "Cảm biến túi khí va đập phía trước"
+  },
+  {
+    "en": "Airbag sensor Assembly center",
+    "vi": "Cảm biến túi khí trung tâm( hộp túi khí)"
+  },
+  {
+    "en": "Pretensioner",
+    "vi": "Cơ cấu căng dây đai"
+  },
+  {
+    "en": "Front seat Outer Belt Assembly RH",
+    "vi": "Cơ cấu căng dây đai của ghế người lái"
+  },
+  {
+    "en": "Instrument panel passenger airbag assembly",
+    "vi": "Ngòi nổ túi khí hành khách"
+  },
+  {
+    "en": "Spiral cable Sub-assembly",
+    "vi": "Cuộn cáp túi khí"
+  },
+  {
+    "en": "Driver side squib circuit",
+    "vi": "Ngòi nổ túi khí người lái"
+  },
+  {
+    "en": "EPS",
+    "vi": "Trợ lực lái điện"
+  },
+  {
+    "en": "Power steering ECU assembly",
+    "vi": "ECU trợ lực lái"
+  },
+  {
+    "en": "Steering torque sensor",
+    "vi": "Cảm biến mô men"
+  },
+  {
+    "en": "Power window",
+    "vi": "Cửa sổ điện"
+  },
+  {
+    "en": "Power window regulator master switch assembly",
+    "vi": "Công tắc tổng cửa sổ điện"
+  },
+  {
+    "en": "Front power window regulator switch assembly LH",
+    "vi": "Công tắc điều khiển cửa sổ điện trước trái"
+  },
+  {
+    "en": "Front power window regulator Motor assembly LH",
+    "vi": "Mô tơ cửa sổ điện trước phải"
+  },
+  {
+    "en": "Door lock control",
+    "vi": "Điều khiển khóa cửa"
+  },
+  {
+    "en": "Front door lock assembly LH",
+    "vi": "Cụm mô tơ khóa cửa trước trái"
+  },
+  {
+    "en": "Un-lock detection",
+    "vi": "Công tắc phát hiện tình trạng khóa cửa"
+  },
+  {
+    "en": "Key lock",
+    "vi": "Công tắc khóa bằng chìa"
+  },
+  {
+    "en": "Key Un-lock",
+    "vi": "Công tắc mở bằng chìa"
+  },
+  {
+    "en": "Power window regulator master switch assembly",
+    "vi": "Công tắc tổng cửa sổ điện"
+  },
+  {
+    "en": "Door lock control receiver",
+    "vi": "Hộp nhận tín hiệu điều khiển khóa cửa từ xa"
+  },
+  {
+    "en": "Hood lock assembly",
+    "vi": "Công tắc mở nắp capo"
+  },
+  {
+    "en": "Security horn assembly",
+    "vi": "Còi an ninh"
+  },
+  {
+    "en": "Theft indicator light assembly",
+    "vi": "Đèn báo an ninh"
+  },
+  {
+    "en": "Front wiper and washer",
+    "vi": "Cần gạt nước và rủa kính"
+  },
+  {
+    "en": "Windshield washer motor and pump assembly",
+    "vi": "Mô tơ bơm nước rửa kính"
+  },
+  {
+    "en": "Windshield wiper switch assembly",
+    "vi": "Cụm công tắc phun nước, gạt nước"
+  },
+  {
+    "en": "Windshield wiper motor assembly",
+    "vi": "Mô tơ gạt nước rửa kính"
+  },
+  {
+    "en": "Cooling fan",
+    "vi": "Quạt làm mát"
+  },
+  {
+    "en": "Cooling fan motor",
+    "vi": "Mô tơ quạt làm mát két nước"
+  },
+  {
+    "en": "A/C pressure switch",
+    "vi": "Công tắc áp suất điều hòa"
+  },
+  {
+    "en": "Cooling fan resistor",
+    "vi": "Điện trở quạt làm mát két nước"
+  },
+  {
+    "en": "Remote control mirror",
+    "vi": "Điều khiển gương từ xa"
+  },
+  {
+    "en": "Outer mirror switch assembly",
+    "vi": "Cụm gương chiếu hậu ngoài xe"
+  },
+  {
+    "en": "Retract",
+    "vi": "Bung gương, mở gương"
+  },
+  {
+    "en": "Retractor switch",
+    "vi": "Công tắc mở, cụp gương"
+  },
+  {
+    "en": "Operation switch",
+    "vi": "Công tắc điều khiển mặt gương"
+  },
+  {
+    "en": "Rear window defogger, Horn",
+    "vi": "Hệ thống sấy kính sau, Còi"
+  },
+  {
+    "en": "Rear window defogger",
+    "vi": "Bộ sấy kính sau"
+  },
+  {
+    "en": "Rear window defogger switch",
+    "vi": "Công tắc bộ sấy kính sau"
+  },
+  {
+    "en": "Spiral cable Sub-assembly",
+    "vi": "Cáp túi khí, cáp còi"
+  },
+  {
+    "en": "Horn button assembly",
+    "vi": "Công tắc còi"
+  },
+  {
+    "en": "Steering pad Switch LH",
+    "vi": "Công tắc còi( Cả mặt vô lăng là công tắc còi)"
+  },
+  {
+    "en": "Low pitched horn assembly",
+    "vi": "Còi tần số thấp"
+  },
+  {
+    "en": "Audio system",
+    "vi": "Hệ thống âm thanh"
+  },
+  {
+    "en": "Radio receiver assembly",
+    "vi": "Cụm đài radio"
+  },
+  {
+    "en": "Amplifier antenna assembly",
+    "vi": "Bộ khuyếch đại tín hiệu ăng ten"
+  },
+  {
+    "en": "Front No 2 speaker assembly LH",
+    "vi": "Loa téc bên phải"
+  },
+  {
+    "en": "Front No 1 speaker assembly LH",
+    "vi": "Loa cửa xe"
+  },
+  {
+    "en": "Rear speaker assembly LH",
+    "vi": "Loa sau bên trái"
+  },
+  {
+    "en": "Combination meter",
+    "vi": ""
+  },
+  {
+    "en": "Speedometer drive gear",
+    "vi": "Cảm biến tốc độ đuôi hộp số( Sâu tốc độ)"
+  },
+  {
+    "en": "Fuel sender Gauge Assembly",
+    "vi": "Phao xăng"
+  },
+  {
+    "en": "Hazard warning signal switch assembly",
+    "vi": "Công tắc cảnh báo tình trạng khẩn cấp"
+  },
+  {
+    "en": "Brake fluid level warning switch",
+    "vi": "Công tắc mức dầu phanh"
+  },
+  {
+    "en": "Engine oil pressure switch assembly",
+    "vi": "Công tắc áp suất dầu động cơ"
+  },
+  {
+    "en": "Air Conditioner",
+    "vi": "Điều hòa không khí"
+  },
+  {
+    "en": "Blower with fan motor sub-assembly",
+    "vi": "Quạt gió hệ thống điều hòa"
+  },
+  {
+    "en": "Blower resistor",
+    "vi": "Biến trở quạt gió"
+  },
+  {
+    "en": "Heater control Sub-assembly",
+    "vi": "Núm điều chỉnh tốc độ quạt gió"
+  },
+  {
+    "en": "A/C switch",
+    "vi": "Công tắc A/C"
+  },
+  {
+    "en": "Cooler compressor assembly",
+    "vi": "Lốc nén hệ thống điều hòa"
+  },
+  {
+    "en": "Cooler thermistor",
+    "vi": "Cảm biến nhiệt độ giàn lạnh"
+  },
+  {
+    "en": "A/C pressure switch",
+    "vi": "Công tắc áp suât"
+  }
+]

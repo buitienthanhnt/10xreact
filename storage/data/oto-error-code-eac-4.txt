@@ -1,0 +1,28 @@
+C0200/31*1	Tín hiệu cảm biến tốc độ trước phải	C0200/31*1	Right Front Wheel Speed Sensor Signal
+C0205/32*1	Tín hiệu cảm biến tốc độ bánh xe trước trái	C0205/32*1	Left Front Wheel Speed Sensor Signal
+C0210/33*1	Tín hiệu cảm biến tốc độ sau phải	C0210/33*1	Right Rear Wheel Speed Sensor Signal
+C0215/34*1	Tín hiệu cảm biến tốc độ bánh xe sau trái	C0215/34*1	Left Rear Wheel Speed Sensor Signal
+C0226/21	Mạch van điện từ SFR	C0226/21	SFR Solenoid Circuit
+C0236/22	Mạch van điện từ SFL	C0236/22	SFL Solenoid Circuit
+C0246/23	Mạch van điện từ SRR	C0246/23	SRR Solenoid Circuit
+C0256/24	Mạch van điện từ SRL	C0256/24	SRL Solenoid Circuit
+C0273/13	Hở hoặc ngắn mạch trong mạch rơle môtơ ABS	C0273/13	Open or Short Circuit in ABS Motor Relay Circuit
+C0274/14	Ngắn mạch B+ trong Mạch Rơle Môtơ ABS	C0274/14	Short to B+ in ABS Motor Relay Circuit
+C0278/11	Hở hoặc ngắn mạch trong mạch rơle van điện từ ABS	C0278/11	Open or Short Circuit in ABS Solenoid Relay Circuit
+C0279/12	Ngắn mạch với B+ trong Mạch Rơle Van điện từ ABS	C0279/12	Short to B+ in ABS Solenoid Relay Circuit
+C1235/35	Có Vật Thể Lạ Dính vào Đỉnh của Cảm biến tốc độ trước phải	C1235/35	Foreign Object is Attached on Tip of Front Speed Sensor RH
+C1236/36	Có Vật Thể Lạ Dính vào Đỉnh của Cảm biến tốc độ trước trái	C1236/36	Foreign Object is Attached on Tip of Front Speed Sensor LH
+C1238/38	Có Vật Thể Lạ Dính vào Đỉnh của Cảm biến tốc độ sau phải	C1238/38	Foreign Object is Attached on Tip of Rear Speed Sensor RH
+C1239/39	Có Vật Thể Lạ Dính vào Đỉnh của Cảm biến tốc độ sau trái	C1239/39	Foreign Object is Attached on Tip of Rear Speed Sensor LH
+C1241/41	Điện Aùp Dương Ắcquy Thấp	C1241/41	Low Battery Positive Voltage
+C1249/49	Hở mạch trong mạch công tắc đèn phanh	C1249/49	Open in Stop Light Switch Circuit
+C1251/51*1	Hở mạch trong mạch môtơ bơm.	C1251/51*1	Open in Pump Motor Circuit
+U0073/94	Đường truyền liên lạc của mođun điều khiển tắt	U0073/94	Control Module Communication Bus OFF
+C1271/71	Tín hiệu ra của cảm biến tốc độ trước phải thấp (DTC chế độ kiểm tra)	C1271/71	Low Output Signal of Front Speed Sensor RH (Test Mode DTC)
+C1272/72	Tín hiệu ra của cảm biến tốc độ trước trái thấp (DTC chế độ kiểm tra)	C1272/72	Low Output Signal of Front Speed Sensor LH (Test Mode DTC)
+C1273/73	Tín hiệu ra của cảm biến tốc độ sau phải thấp (DTC chế độ kiểm tra)	C1273/73	Low Output Signal of Rear Speed Sensor RH (Test Mode DTC)
+C1274/74	Tín hiệu ra của cảm biến tốc độ sau trái thấp (DTC chế độ kiểm tra)	C1274/74	Low Output Signal of Rear Speed Sensor LH (Test Mode DTC)
+C1275/75	Thay đổi bất thường trong tín hiệu ra của cảm biến tốc độ trước phải (Chế độ thử mã DTC)	C1275/75	Abnormal Change in Output Signal of Front Speed Sensor RH (Test Mode DTC)
+C1276/76	Thay đổi bất thường trong tín hiệu ra của cảm biến tốc độ trước trái (Chế độ thử mã DTC)	C1276/76	Abnormal Change in Output Signal of Front Speed Sensor LH (Test Mode DTC)
+C1277/77	Thay đổi bất thường trong tín hiệu ra của cảm biến tốc độ sau phải (Chế độ thử DTC)	C1277/77	Abnormal Change in Output Signal of Rear Speed Sensor RH (Test Mode DTC)
+C1278/78	Thay đổi bất thường trong tín hiệu ra của cảm biến tốc độ sau trái (Chế độ thử DTC)	C1278/78	Abnormal Change in Output Signal of Rear Speed Sensor LH (Test Mode DTC

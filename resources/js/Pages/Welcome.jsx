@@ -1,7 +1,35 @@
 import SingleLayout from '@/Layouts/BuildLayout/SingleLayout';
 import { Link, Head, } from '@inertiajs/react';
+import { useEffect, useRef, } from 'react';
+import YouTube from 'react-youtube';
+import ReactPlayer from 'react-player';
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
+    const videoRef = useRef();
+
+    const opts = {
+        height: window.innerHeight,
+        width: window.innerWidth,
+        //   height: 350,
+        // width: 230,
+        playerVars: {
+            // https://developers.google.com/youtube/player_parameters
+            autoplay: 1,
+        },
+    };
+
+    const onPlayerReady = (event) => {
+        // access to player in all event handlers via event.target
+        console.log('????????????', event.target.getSize());
+
+        event.target.pauseVideo();
+    }
+
+    useEffect(() => {
+        console.log('.....', videoRef?.current);
+
+    }, [])
+
     return (
     <SingleLayout>
             <>
@@ -13,8 +41,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                 </script>
             </Head>
-            <div className="relative sm:flex sm:justify-center sm:items-center bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                {/* <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
+            <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+                <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-end">
                     {auth.user ? (
                         <Link
                             href={route('dashboard')}
@@ -48,7 +76,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                             <a className='m-2 bg-green-400 rounded-lg p-1 px-2 dark:text-white hover:text-blue-500' href={route('login')}>A to login</a>
                         </>
                     )}
-                </div> */}
+                </div>
 
                 <div className="max-w-7xl mx-auto p-6 lg:p-8">
                     <div className="flex justify-center">
@@ -67,7 +95,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 
                     <div className="mt-16">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                            {/* <a
+                            <a
                                 href="https://laravel.com/docs"
                                 className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500"
                             >
@@ -112,9 +140,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
                                     />
                                 </svg>
-                            </a> */}
+                            </a>
 
-                            {/* <a
+                            <a
                                 href="https://laracasts.com"
                                 className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500"
                             >
@@ -158,7 +186,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                         d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
                                     />
                                 </svg>
-                            </a> */}
+                            </a>
 
                             <a
                                 href="https://laravel-news.com"
@@ -188,8 +216,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                     <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
                                         Laravel News is a community driven portal and newsletter aggregating all of the
                                         latest and most important news in the Laravel ecosystem, including new package
-                                        releases and tutimport { route } from '../../../vendor/tightenco/ziggy/src/js/index.d';
-orials.
+                                        releases and tutimport {route} from '../../../vendor/tightenco/ziggy/src/js/index.d';
+                                        orials.
                                     </p>
                                 </div>
 
@@ -208,7 +236,7 @@ orials.
                                 </svg>
                             </a>
 
-                            {/* <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                            <div className="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                                 <div>
                                     <div className="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                                         <svg
@@ -305,7 +333,7 @@ orials.
                                         , and more.
                                     </p>
                                 </div>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
 
@@ -320,6 +348,9 @@ orials.
             </div>
 
             <style>{`
+            html {
+  scroll-behavior: smooth;
+}
                 .bg-dots-darker {
                     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
                 }
@@ -328,6 +359,16 @@ orials.
                         background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
                     }
                 }
+                    .player-wrapper {
+  position: relative;
+  padding-top: 177.76%; /* 1095 / 616 = 1.7776 */
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
             `}</style>
         </>
     </SingleLayout>

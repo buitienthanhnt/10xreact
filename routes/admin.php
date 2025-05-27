@@ -8,4 +8,8 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
         return ('xin chao admin');
     });
 
+    Route::get('/dashboard', function () {
+        return view('adminhtml.home');
+    })->withoutMiddleware(['adminVerify', 'adminPermission']);
+
 });

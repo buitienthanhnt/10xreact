@@ -1,0 +1,60 @@
+Để build một ứng dụng React và triển khai (deploy) nó trên Apache server, bạn có thể làm theo các bước sau:
+
+#.1
+🛠️ 1. Build Ứng Dụng React
+Trước tiên, bạn cần build ứng dụng React thành mã tĩnh.
+npm run build
+
+
+Sau khi chạy lệnh này, một thư mục mới tên là build sẽ được tạo trong thư mục gốc của project React. Thư mục này chứa tất cả các file tĩnh mà bạn có thể upload lên server.
+
+#.2
+🧳 2. Cấu Hình Apache
+Giả sử bạn đang dùng Apache2 trên Ubuntu, và thư mục gốc của website là /var/www/html.
+
+📁 Di chuyển file build
+Copy toàn bộ nội dung trong thư mục build vào thư mục gốc web:
+
+sudo cp -r build/* /var/www/html/
+Nếu muốn deploy vào một sub-folder (VD: /var/www/html/myapp), hãy copy vào đó và cấu hình thêm như bên dưới.
+
+
+#.3
+⚙️ 3. Thiết Lập .htaccess (SPA Routing)
+Nếu ứng dụng React sử dụng React Router, bạn cần thêm file .htaccess để cấu hình fallback route:
+
+Tạo hoặc chỉnh sửa file /var/www/html/.htaccess (nếu dùng trong subfolder thì là trong thư mục đó):
+
+apacheconf
+Copy
+Edit
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+
+#.4
+🚀 4. Kiểm Tra Apache
+Đảm bảo Apache đang chạy:
+
+sudo systemctl restart apache2
+Truy cập ứng dụng của bạn qua địa chỉ IP server hoặc domain name, ví dụ: http://your-server-ip/ hoặc http://yourdomain.com/.
+
+✅ Tổng Kết
+Bước	Mô tả
+1.	npm run build
+2.	Copy thư mục build vào /var/www/html/
+3.	Tạo .htaccess để hỗ trợ routing
+4.	Restart Apache
+
+
+# Lưu ý: Nếu dùng trên windown với xampp thì sau khi thiết lập xong domain, thư mục chứa các file build thì cần đổi file index.html sang index.php
+# vì xampp sẽ mặc định chạy cho file index.php và html cũng chạy bình thường trên file php
+
+
+Nếu bạn có cấu hình cụ thể (VD: deploy vào subdomain, subpath, hoặc dùng proxy),

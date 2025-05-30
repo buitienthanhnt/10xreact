@@ -86,10 +86,7 @@ const ListPaging = ({ pageSize, currentPage, link }) => {
                             page: index,
                         }}>
                             <span
-                                className="p-2 px-4 bg-green-500 rounded-[20px] justify-center content-center text-xl font-bold"
-                                style={{
-                                    color: currentPage === index ? 'white' : undefined
-                                }}
+                                className={`p-2 px-4 bg-green-500 rounded-[20px] ${currentPage === index ? 'text-white' : ''} justify-center content-center text-xl font-bold hover:text-red-700`}
                             >{index}</span></Link>)
                     }
                     return listPage;
@@ -118,7 +115,7 @@ const ListPaging = ({ pageSize, currentPage, link }) => {
                             page: index,
                         }}>
                             <div className="p-2 px-4 bg-green-500 rounded-[28px] justify-center content-center">
-                                <p className="text-xl" style={{
+                                <p className="text-xl hover:text-red-700" style={{
                                     color: index === currentPage ? 'white' : undefined
                                 }}>{index}</p>
                             </div>

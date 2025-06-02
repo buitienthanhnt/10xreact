@@ -24,6 +24,7 @@
     <title>
         @yield('title')
     </title>
+    @yield('meta')
 
     @include('adminhtml.layouts.components.headElements.css')
 
@@ -32,7 +33,7 @@
 
 <body>
     @include('adminhtml.layouts.components.bodyElements.css')
-
+    @include('sweetalert::alert')
     @yield('mainBody')
 
     @include('adminhtml.layouts.components.bodyElements.js')

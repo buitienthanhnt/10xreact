@@ -1,15 +1,15 @@
 <?php
 
+use App\Http\Controllers\Adminhtml\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->group(function () {
 
-    Route::get('/', function () {
-        return ('xin chao admin');
-    });
+    Route::get('/', [DashboardController::class, 'home'])->withoutMiddleware(['adminPermission'])->name('dashboard');
 
-    Route::get('/dashboard', function () {
-        return view('adminhtml.home');
-    })->withoutMiddleware(['adminVerify', 'adminPermission']);
+    Route::get('/login', [DashboardController::class, 'login'])->withoutMiddleware(['adminVerify', 'adminPermission']);
 
+    Route::get('/logout', [DashboardController::class, 'logout'])->withoutMiddleware(['adminPermission'])->name('admin-logout');
+
+    Route::post('admin-login', [DashboardController::class, 'loginPost'])->withoutMiddleware(['adminVerify', 'adminPermission'])->name('admin-login');
 });

@@ -2,8 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\Adminhtml\DashboardController;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminVerify
@@ -15,8 +17,11 @@ class AdminVerify
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->session()->get('adminUser')) {
-            abort(404);
+        // $adminUser = Session::get(DashboardController::ADMIN_USER);
+        // dd($adminUser);
+        if (!$request->session()->get(DashboardController::ADMIN_USER)) {
+            // abort(404);
+            return redirect('adminhtml/login')->with('message', 'please login before redirect dashboard!');
         }
         return $next($request);
     }

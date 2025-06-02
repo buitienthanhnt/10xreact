@@ -8,8 +8,9 @@ use Inertia\Inertia;
 
 class ContentController extends Controller
 {
-    //
-
+    /**
+     *
+     */
     public function listStatus(Request $request): \Inertia\Response {
         return Inertia::render('List', $request->all());
     }

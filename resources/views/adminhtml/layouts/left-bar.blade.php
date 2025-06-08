@@ -33,7 +33,7 @@
 </head>
 
 <body>
-     @include('sweetalert::alert')
+    <x-adminhtml.layouts.components.message />
     @include('adminhtml.layouts.components.bodyElements.css')
 
     @include('adminhtml.layouts.components.bodyElements.sideBar')

@@ -4,8 +4,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
+// use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 /*
@@ -28,22 +29,19 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/greeting/{locale}', function (string $locale) {
+    if (! in_array($locale, ['en', 'es', 'fr', 'vi'])) {
+        abort(400);
+    }
 
-Route::get('/detail/{id?}', [HomeController::class, 'detail'])->name('detail');
-
-Route::get('/list/{id?}', [HomeController::class, 'list'])->name("list"); //->middleware('link'); // middleware de su dung cho: Linkeys\UrlSigner\Facade\UrlSigner
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+    App::setLocale($locale);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('about', [HomeController::class, "about"])->name('about');
 
 Route::get('test', function () {
     // test url voi chu ky(neu co nguoi sua id sang=3 thi se bao loi)

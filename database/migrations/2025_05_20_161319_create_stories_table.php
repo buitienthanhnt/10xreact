@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('short_desc')->nullable();
             $table->boolean('active');
             $table->foreignUuid('st_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

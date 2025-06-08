@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('admin_users', function (Blueprint $table) {
             $table->id();
+            $table->text('name');
+            $table->char('email')->uniqid();
+            $table->text('password');
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -32,8 +32,9 @@
 </head>
 
 <body>
+    <x-adminhtml.layouts.components.message />
     @include('adminhtml.layouts.components.bodyElements.css')
-    @include('sweetalert::alert')
+
     @yield('mainBody')
 
     @include('adminhtml.layouts.components.bodyElements.js')

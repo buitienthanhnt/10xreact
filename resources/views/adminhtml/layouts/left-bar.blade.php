@@ -37,7 +37,11 @@
     @include('adminhtml.layouts.components.bodyElements.css')
 
     @include('adminhtml.layouts.components.bodyElements.sideBar')
-    @yield('mainBody')
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <div class="container-fluid">
+            @yield('mainBody')
+        </div>
+    </main>
     @include('adminhtml.layouts.components.bodyElements.setting')
 
     @include('adminhtml.layouts.components.bodyElements.js')

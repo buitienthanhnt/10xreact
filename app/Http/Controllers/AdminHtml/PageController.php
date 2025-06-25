@@ -15,4 +15,8 @@ class PageController extends Controller
     public function list() : \Illuminate\Contracts\View\View {
         return view('adminhtml.pages.pageView.list');
     }
+
+    function create() : \Illuminate\Contracts\View\View {
+        return view('adminhtml.pages.pageView.create');
+    }
 }

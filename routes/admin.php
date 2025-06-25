@@ -23,9 +23,14 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
     Route::post('admin-login', [DashboardController::class, 'loginPost'])->withoutMiddleware(['adminVerify', 'adminPermission'])->name('admin-login');
 
     Route::prefix('page')->group(function () {
-        Route::get('list', [PageController::class, 'list'])->setBindingFields([
+        Route::get('/', [PageController::class, 'list'])->setBindingFields([
             'route_name' => 'page list',
             'route_icon' => 'assignment'
+        ]);
+
+        Route::get('create', [PageController::class, 'create'])->setBindingFields([
+            'route_name' => 'new page',
+            'route_icon' => 'cloud'
         ]);
     });
 });

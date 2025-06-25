@@ -11,6 +11,7 @@
  <!-- Material Icons -->
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
  <!-- CSS Files -->
+ {{-- xem base style: https://bootstrapemail.com/docs/text-size --}}
  <link id="pagestyle" href="/source/adminhtml/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
 
 @include('adminhtml.layouts.components.headElements.afCss')

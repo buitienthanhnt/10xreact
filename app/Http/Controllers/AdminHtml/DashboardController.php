@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminhtml;
+namespace App\Http\Controllers\AdminHtml;
 
 use App\Api\Data\AdminUser;
 use App\Http\Controllers\Controller;

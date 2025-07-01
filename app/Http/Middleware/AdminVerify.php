@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Adminhtml\DashboardController;
+use App\Http\Controllers\AdminHtml\DashboardController;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;

@@ -25,12 +25,14 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
     Route::prefix('page')->group(function () {
         Route::get('/', [PageController::class, 'list'])->setBindingFields([
             'route_name' => 'page list',
-            'route_icon' => 'assignment'
+            'route_icon' => 'assignment',
+            'show' => true,
         ]);
 
         Route::get('create', [PageController::class, 'create'])->setBindingFields([
             'route_name' => 'new page',
-            'route_icon' => 'cloud'
+            'route_icon' => 'cloud',
+            'show' => true
         ]);
     });
 });

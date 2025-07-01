@@ -5,7 +5,6 @@ namespace App\View\Components\adminhtml;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Routing\RouteGroup;
 use Illuminate\View\Component;
 
 class SideBar extends Component
@@ -46,7 +45,11 @@ class SideBar extends Component
          */
         $listAdminRouters = [];
         foreach ($this->router->getRoutes()->getRoutesByMethod()['GET'] as $key => $value) {
-            if (strpos($key, self::ADMIN_PREFIX) === 0 && count($value->parameterNames()) === 0 && count($value->bindingFields())) {
+            if (
+                strpos($key, self::ADMIN_PREFIX) === 0 &&
+                count($value->parameterNames()) === 0 && count($value->bindingFields()) &&
+                isset($value->bindingFields()['show']) && $value->bindingFields()['show']
+            ) {
                 $listAdminRouters[] = $value;
             }
         }

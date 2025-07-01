@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    function __construct()
-    {
+    protected $request;
 
+    function __construct(
+        Request $request
+    )
+    {
+        $this->request = $request;
     }
 
     public function list() : \Illuminate\Contracts\View\View {
+        // dd($this->request->all());
         return view('adminhtml.pages.pageView.list');
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminHtml;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -22,6 +23,11 @@ class PageController extends Controller
     }
 
     function create() : \Illuminate\Contracts\View\View {
+        /**
+         * create new page row in database by factory.
+         */
+        Page::factory()->create();
+
         return view('adminhtml.pages.pageView.create');
     }
 }

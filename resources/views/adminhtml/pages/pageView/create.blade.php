@@ -1,5 +1,9 @@
 @extends('adminhtml.layouts.left-bar')
 
+@section('title')
+    create new paper
+@endsection
+
 @section('mainBody')
     <x-dashboard-chart />
     <p class="text-info font-weight-bold text-2xl">day la noi dung nam trong router pages create for new

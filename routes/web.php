@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\LanguageBoot;
+use App\Providers\LanguageProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 // use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
@@ -33,8 +36,7 @@ Route::get('/greeting/{locale}', function (string $locale) {
     if (! in_array($locale, ['en', 'es', 'fr', 'vi'])) {
         abort(400);
     }
-
-    App::setLocale($locale);
+    return LanguageProvider::applyLanguage($locale);
 });
 
 Route::middleware('auth')->group(function () {
@@ -44,6 +46,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('test', function () {
+    // App::setLocale('vi');
+    dd(__('auth.user.name'));
     // test url voi chu ky(neu co nguoi sua id sang=3 thi se bao loi)
     // $signutre = URL::signedRoute('detail', ['user' => 2]);
     // echo $signutre;

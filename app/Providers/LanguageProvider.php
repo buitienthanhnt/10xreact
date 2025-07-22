@@ -40,8 +40,27 @@ class LanguageProvider extends ServiceProvider
         return App::currentLocale();
     }
 
-    public static function resetLanguage() {
+    /**
+     * clear session language setup value
+     * so, app will run with default language
+     */
+    public static function resetLanguage(): void {
         Session::forget(self::LANGUAGE_SESSION);
         Session::save();
+    }
+
+    /**
+     * check session language and current language
+     * if value of them not equal, app will use value of session value.
+     */
+    public static function bootLanguage(): void {
+        $sessionLang = Session::get(self::LANGUAGE_SESSION);
+        if (!$sessionLang) {
+            return;
+        }
+
+        if ($sessionLang !== App::currentLocale()) {
+            App::setLocale($sessionLang);
+        }
     }
 }

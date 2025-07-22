@@ -19,15 +19,12 @@ class LanguageBoot
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $sessionLang = $request->session()->get(self::LANGUAGE_SESSION);
-        if (!$sessionLang) {
-            return $next($request);
-        }
-
-        if ($sessionLang !== App::currentLocale()) {
-            App::setLocale($sessionLang);
-        }
-
+        /**
+         * boot current language app by session.
+         * run in middleware because in serviceProvider not working with Session value
+         * Session value active after middleware: StartSession run.
+         */
+        LanguageProvider::bootLanguage();
         return $next($request);
     }
 }

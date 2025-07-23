@@ -6,7 +6,7 @@ final class AdminPermission
 {
 
     const ACTION_LIST = 0;
-    const ACTION_CREATE = 1;
+    const ACTION_CREATE = self::class.'_create';
     const ACTION_UPDATE = 2;
     const ACTION_DELETE = 3;
 

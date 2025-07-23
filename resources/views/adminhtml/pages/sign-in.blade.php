@@ -17,7 +17,7 @@
                         <div class="card z-index-0 fadeIn3 fadeInBottom">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in
+                                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">{{ __('auth.signin') }}
                                         {{-- {{ session('message') }} --}}
                                     </h4>
                                     <div class="row mt-3">
@@ -43,25 +43,24 @@
                                 <form role="form" class="text-start" method="POST" action="{{ route('admin-login') }}">
                                     @csrf
                                     <div class="input-group input-group-outline my-3">
-                                        <label class="form-label">Email</label>
+                                        <label class="form-label">{{ __('auth.email') }}</label>
                                         <input type="email" name="email" class="form-control">
                                     </div>
                                     <div class="input-group input-group-outline mb-3">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label">{{ __('auth.password') }}</label>
                                         <input type="password" name="password" class="form-control">
                                     </div>
                                     <div class="form-check form-switch d-flex align-items-center mb-3">
                                         <input class="form-check-input" type="checkbox" id="rememberMe">
-                                        <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
+                                        <label class="form-check-label mb-0 ms-2" for="rememberMe">{{ __('auth.remenber') }}</label>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign
-                                            in</button>
+                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">{{ __('auth.signin') }}</button>
                                     </div>
                                     <p class="mt-4 text-sm text-center">
-                                        Don't have an account?
+                                        {{ __('auth.no.account') }}?
                                         <a href="{{ url('adminhtml/sign-up') }}"
-                                            class="text-primary text-gradient font-weight-bold">Sign up</a>
+                                            class="text-primary text-gradient font-weight-bold">{{ __('auth.signup') }}</a>
                                     </p>
                                 </form>
                             </div>

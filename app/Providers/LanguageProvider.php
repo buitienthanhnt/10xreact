@@ -44,9 +44,10 @@ class LanguageProvider extends ServiceProvider
      * clear session language setup value
      * so, app will run with default language
      */
-    public static function resetLanguage(): void {
+    public static function resetLanguage(): string {
         Session::forget(self::LANGUAGE_SESSION);
         Session::save();
+        return config('app.locale');
     }
 
     /**

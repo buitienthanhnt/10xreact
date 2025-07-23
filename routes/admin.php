@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminHtml\DashboardController;
 use App\Http\Controllers\AdminHtml\PageController;
+use Database\Config\AdminPermission;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,8 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
         Route::get('create', [PageController::class, 'create'])->setBindingFields([
             'route_name' => 'new page',
             'route_icon' => 'cloud',
-            'show' => true
+            'show' => true,
+            'permission' => [AdminPermission::ACTION_CREATE]
         ]);
     });
 });

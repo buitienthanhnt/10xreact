@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Types\PageInterface;
 
 return new class extends Migration
 {
@@ -11,8 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create(PageInterface::TABLE_NAME, function (Blueprint $table) {
             $table->id();
+            $table->text(PageInterface::TITLE);
+            $table->char(PageInterface::ALIAS)->unique();
+            $table->boolean(PageInterface::ACTIVE)->default(false);
+            $table->char(PageInterface::DESCRIPTION)->nullable();
+            $table->string(PageInterface::IMAGE_PATH)->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists(PageInterface::TABLE_NAME);
     }
 };

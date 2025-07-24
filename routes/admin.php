@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminHtml\DashboardController;
 use App\Http\Controllers\AdminHtml\PageController;
-use Database\Config\AdminPermission;
+use Database\Configs\AdminPermission;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route;
 

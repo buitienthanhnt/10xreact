@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Config;
+namespace Database\Configs;
 
 final class AdminPermission
 {

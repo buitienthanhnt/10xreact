@@ -7,7 +7,8 @@
 @section('mainBody')
     <x-dashboard-chart />
     <div class='p-2'>
-        <span class="text-success font-weight-bold text-2xl">day la noi dung nam trong router pages list</span>
+        {{-- <span class="text-info font-weight-bold text-2xl">day la noi dung nam trong router pages list</span> --}}
+        <p class="text-info font-italic font-weight-bold text-2xl">Tieeu ddef page list</p>
         <table class="table">
             <thead>
                 <tr>

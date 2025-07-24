@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminHtml;
 use App\Http\Controllers\Controller;
 use App\Models\Api\PageApi;
 use App\Models\Page;
+use App\Models\Types\FormInterface;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -33,7 +34,14 @@ class PageController extends Controller
          * các tiêu đề đã được chuyển ngữ theo file ngôn ngữ: attr.php
          */
         return view('adminhtml.pages.pageView.list', [
-            'attributes' => [Page::TITLE, Page::DESCRIPTION, Page::IMAGE_PATH, Page::ALIAS, Page::ACTIVE],
+            'attributes' => [
+                Page::ID,
+                Page::TITLE, 
+                // Page::DESCRIPTION, 
+                Page::IMAGE_PATH, 
+                Page::ALIAS, 
+                Page::ACTIVE,
+            ],
             'pages' => $this->pageApi->listPage()
         ]);
     }
@@ -42,8 +50,17 @@ class PageController extends Controller
         /**
          * create new page row in database by factory.
          */
-        Page::factory()->create();
+        // Page::factory()->create();
+        $listAttributes = [
+            ['key' => Page::TITLE, 'type' =>  FormInterface::TYPE_TEXT, 'value' => null],
+            ['key' => Page::DESCRIPTION, 'type' =>  FormInterface::TYPE_TEXTAREA],
+            ['key' => Page::IMAGE_PATH, 'type' =>  FormInterface::TYPE_TEXT],
+            ['key' => Page::ALIAS, 'type' =>  FormInterface::TYPE_TEXT],
+            ['key' => Page::ACTIVE, 'type' =>  FormInterface::TYPE_CHECKBOX],
+        ];
 
-        return view('adminhtml.pages.pageView.create');
+        return view('adminhtml.pages.pageView.create', [
+            'listAttributes' => $listAttributes
+        ]);
     }
 }

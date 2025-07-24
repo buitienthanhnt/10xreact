@@ -1,0 +1,1 @@
+<label for="{{ $field['key'] }}" class="font-bold text-info text-2xl">{{ __('attr.' . $field['key']) }}:</label>

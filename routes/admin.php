@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminHtml\DashboardController;
 use App\Http\Controllers\AdminHtml\PageController;
+use App\Http\Controllers\AdminHtml\WriterController;
 use Database\Configs\AdminPermission;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route;
@@ -30,11 +31,24 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
             'show' => true,
         ]);
 
-        Route::get('create', [PageController::class, 'create'])->setBindingFields([
+        Route::any('create', [PageController::class, 'create'])->setBindingFields([
             'route_name' => 'new page',
             'route_icon' => 'cloud',
             'show' => true,
             'permission' => [AdminPermission::ACTION_CREATE]
         ]);
+    });
+
+    Route::prefix('writer')->group(function () : void {
+        Route::get('/', [WriterController::class, 'index'])->setBindingFields([
+            'route_name' => 'list writer',
+            'route_icon' => 'computer',
+            'show' => true,
+        ]);
+
+        Route::get('/create', [WriterController::class, 'create']);
+
+        Route::post('register', [WriterController::class, 'store'])->name('admin_writer_create');
+
     });
 });

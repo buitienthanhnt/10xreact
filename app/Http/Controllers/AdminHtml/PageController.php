@@ -17,13 +17,13 @@ class PageController extends Controller
     function __construct(
         Request $request,
         PageApi  $pageApi
-    )
-    {
+    ) {
         $this->request = $request;
         $this->pageApi = $pageApi;
     }
 
-    public function list() : \Illuminate\Contracts\View\View {
+    public function list(): \Illuminate\Contracts\View\View
+    {
         // dd($this->request->all());
         // dd($this->pageApi->listPage());
 
@@ -36,17 +36,27 @@ class PageController extends Controller
         return view('adminhtml.pages.pageView.list', [
             'attributes' => [
                 Page::ID,
-                Page::TITLE, 
+                Page::TITLE,
                 // Page::DESCRIPTION, 
-                Page::IMAGE_PATH, 
-                Page::ALIAS, 
+                Page::IMAGE_PATH,
+                Page::ALIAS,
                 Page::ACTIVE,
             ],
             'pages' => $this->pageApi->listPage()
         ]);
     }
 
-    function create() : \Illuminate\Contracts\View\View {
+    /**
+     * @return Illuminate\Http\RedirectResponse | \Illuminate\Contracts\View\View
+     */
+    function create(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            // dd($request->all());
+            $title = $request->get(Page::TITLE);
+            return redirect()->back()->with('message', "add success new page: " . $title)->withInput();
+        }
+
         /**
          * create new page row in database by factory.
          */

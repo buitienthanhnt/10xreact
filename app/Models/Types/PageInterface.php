@@ -13,4 +13,6 @@ interface PageInterface extends TimestampInterface{
 	const IMAGE_PATH = 'image_path';
 	const DESCRIPTION = 'desciption';
 
+	const WRITER = 'writer';
+
 }

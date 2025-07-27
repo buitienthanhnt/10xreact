@@ -6,4 +6,7 @@ return [
 	'alias' => 'đường dẫn',
 	'image_path' => 'hình ảnh',
 	'desciption' => 'mô tả',
+	'name' => 'tên',
+	'email' => 'email',
+	'phone' => 'telephone number'
 ];

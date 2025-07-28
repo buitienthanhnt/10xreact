@@ -46,7 +46,7 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
             'show' => true,
         ]);
 
-        Route::get('/create', [WriterController::class, 'create']);
+        Route::get('create', [WriterController::class, 'create']);
 
         Route::post('register', [WriterController::class, 'store'])->name('admin_writer_create');
 

@@ -29,12 +29,12 @@ class WriterController extends Controller
                 ['key' => WriterInterface::NAME, 'type' => FormInterface::TYPE_TEXT, 'label' => 'tên tác giả'],
                 ['key' => WriterInterface::EMAIL, 'type' => FormInterface::TYPE_EMAIL],
                 ['key' => WriterInterface::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX],
-                ['key' => WriterInterface::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'but danh'],
+                ['key' => WriterInterface::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'bút danh'],
                 ['key' => WriterInterface::PHONE, 'type' => FormInterface::TYPE_PHONE, 'label' => 'sdt'],
-                ['key' => WriterInterface::ADDRESS, 'type' => FormInterface::TYPE_TEXT,],
-                ['key' => WriterInterface::IMAGE_PATH, 'type' => FormInterface::TYPE_FILE],
-                ['key' => WriterInterface::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA],
-                ['key' => WriterInterface::DATE_OF_BIRTH, 'type' => FormInterface::TYPE_DATE, 'label' => 'ngay sinh']
+                ['key' => WriterInterface::ADDRESS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'địa chỉ'],
+                ['key' => WriterInterface::IMAGE_PATH, 'type' => FormInterface::TYPE_FILE, 'label' => 'ảnh đại diện'],
+                ['key' => WriterInterface::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'ghi chú'],
+                ['key' => WriterInterface::DATE_OF_BIRTH, 'type' => FormInterface::TYPE_DATE, 'label' => 'ngày sinh']
             ]
         ]);
     }
@@ -44,7 +44,7 @@ class WriterController extends Controller
      */
     public function store(StoreWriterRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

@@ -20,10 +20,11 @@ class WriterFactory extends Factory
         return [
             WriterInterface::NAME => $this->faker->text(12),
             WriterInterface::EMAIL => $this->faker->email(),
-            WriterInterface::ACTIVE => $this->faker->boolval(),
+            WriterInterface::ACTIVE => $this->faker->boolean(),
             WriterInterface::ALIAS => $this->faker->text(16),
             WriterInterface::ADDRESS => $this->faker->address(),
-            WriterInterface::DATE_OF_BIRTH => $this->faker->date()
+            WriterInterface::DATE_OF_BIRTH => $this->faker->date(),
+            WriterInterface::PHONE => $this->faker->phoneNumber()
         ];
     }
 }

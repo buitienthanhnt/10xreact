@@ -1,0 +1,19 @@
+error: composer detected issues in your platform: your composer dependencies require a php version ">= 8.2.0". you are running 8.1.25.
+fixed:
+    add this line in config object of composer.json file
+        "platform-check": false
+    example:
+        "config": {
+                "optimize-autoloader": true,
+                "preferred-install": "dist",
+                "sort-packages": true,
+                "allow-plugins": {
+                    "pestphp/pest-plugin": true,
+                    "php-http/discovery": true
+                },
+                "platform-check": false
+        },
+
+    run: php artisan config:cache
+    then run: composer dump-autoload
+====================================================================

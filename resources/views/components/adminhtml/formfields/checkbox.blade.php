@@ -3,6 +3,7 @@
         @if(old($field['key']))
             value="{{ old($field['key']) }}"
         @endif
+        @isset($field['value']) checked @endisset
     >
      <label class="form-check-label" for="{{ 'form-id-' . $field['key'] }}">{{ __('attr.' . $field['key']) }}</label>
  </div>

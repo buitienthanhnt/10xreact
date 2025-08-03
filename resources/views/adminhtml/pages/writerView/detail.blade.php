@@ -9,7 +9,12 @@
     <div class="px-4">
         <h3>Thông tin tác giả:</h3>
 
-        <div class="col-md-6" style="background-color: rgb(187, 158, 219); padding: 16px; border-radius: 16px; box-shadow: 8px 10px #888888">
+        <div class="col-md-6"
+            style="background-color: rgb(187, 158, 219); padding: 16px; border-radius: 16px; box-shadow: 8px 10px #888888">
+            <a href='{{ url("adminhtml/writer/edit/$writer->id") }}' class="position-absolute" style="top: 10px; right: 10px;">
+                <i class="material-icons"
+                    style="font-size: 36px; color: #da1cba">edit</i>
+            </a>
             <div class="d-flex gap-8">
                 <div>
                     <p class="text-primary text-2xl font-bold">
@@ -25,8 +30,10 @@
                         {{ $writer->{\App\Models\Types\WriterInterface::ACTIVE} }}</p>
                     <p></p>
                 </div>
-                <img src="{{ asset($writer->{\App\Models\Types\WriterInterface::IMAGE_PATH}) }}" alt="" width="200px"
-                    height="200px" class="rounded-circle">
+                @if ($writer->{\App\Models\Types\WriterInterface::IMAGE_PATH})
+                    <img src="{{ $writer->{\App\Models\Types\WriterInterface::IMAGE_PATH} }}" alt=""
+                        width="200px" height="200px" class="rounded-circle">
+                @endif
             </div>
 
             <div class="d-flex justify-content-between">

@@ -43,10 +43,10 @@ class WriterSavedListen
     /**
      * thực hiện tải ảnh lên và cập nhật lại đường dẫn vào trong database cho writer model.
      * @param \App\Models\Writer $writer
+     * @return mixed|void
      */
     function uploadWriterImage(\App\Models\Writer $writer)
     {
-        Log::info('1.===> start for upload writer image');
         $uploadFile = $this->request->file(WriterInterface::IMAGE_PATH);
         if (!$uploadFile) {
             return;
@@ -90,14 +90,20 @@ class WriterSavedListen
      */
     function updateWriterImagePath(\App\Models\Writer $writer, $uploadedData): void
     {
-        Log::info('++++++2 start for update writer image path');
         /**
          * update mà không kích hoạt sự kiện nào khác.
          */
         if (isset($uploadedData['public_path']) && !empty($uploadedData['public_path'])) {
-            $writer->updateQuietly(
-                [WriterInterface::IMAGE_PATH => $uploadedData['public_path']]
-            );
+            // $writer->updateQuietly(
+            //     [WriterInterface::IMAGE_PATH => $uploadedData['public_path']]
+            // );
+            /**
+             * chuyển từ sử dụng: updateQuietly -> saveQuietly
+             * do loại bỏ cơ chế gán hàng loạt cho IMAGE_PATH
+             * IMAGE_PATH sẽ được gán cụ thể  và lưu dạng yên tĩnh không kích hoạt sự kiện.
+             */
+            $writer->{WriterInterface::IMAGE_PATH} = $uploadedData['public_path'];
+            $writer->saveQuietly();
         }
     }
 }

@@ -51,5 +51,9 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
         Route::get('detail/{id}', [WriterController::class, 'show']);
 
         Route::delete('delete/{id}', [WriterController::class, 'destroy']);
+
+        Route::get('edit/{id}', [WriterController::class, 'edit']);
+
+        Route::post('update/{id}', [WriterController::class, 'update']);
     });
 });

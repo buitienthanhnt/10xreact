@@ -26,17 +26,22 @@ interface WriterInterface
 	const _PAGES = 'pages';
 
 	/**
+	 * khai báo danh sách các thuộc tính được gán hàng loạt.
+	 */
+	const FILLED_FILEDS = [self::NAME, self::EMAIL, self::ACTIVE, self::ALIAS, self::ADDRESS, self::PHONE, self::DESCRIPTION, self::DATE_OF_BIRTH];
+
+	/**
 	 * khai báo thuộc tính biểu mẫu để tạo 1 tác giả.
 	 */
 	const FROM_FIELDS = [
-		['key' => self::NAME, 'type' => FormInterface::TYPE_TEXT, 'label' => 'tên tác giả'],
-		['key' => self::EMAIL, 'type' => FormInterface::TYPE_EMAIL],
-		['key' => self::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX],
-		['key' => self::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'bút danh'],
-		['key' => self::PHONE, 'type' => FormInterface::TYPE_PHONE, 'label' => 'sdt'],
-		['key' => self::ADDRESS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'địa chỉ'],
-		['key' => self::IMAGE_PATH, 'type' => FormInterface::TYPE_FILE, 'label' => 'ảnh đại diện'],
-		['key' => self::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'ghi chú'],
-		['key' => self::DATE_OF_BIRTH, 'type' => FormInterface::TYPE_DATE, 'label' => 'ngày sinh']
+		self::NAME => ['key' => self::NAME, 'type' => FormInterface::TYPE_TEXT, 'label' => 'tên tác giả'],
+		self::EMAIL => ['key' => self::EMAIL, 'type' => FormInterface::TYPE_EMAIL],
+		self::ACTIVE => ['key' => self::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX],
+		self::ALIAS => ['key' => self::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'bút danh'],
+		self::PHONE => ['key' => self::PHONE, 'type' => FormInterface::TYPE_PHONE, 'label' => 'sdt'],
+		self::ADDRESS => ['key' => self::ADDRESS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'địa chỉ'],
+		self::IMAGE_PATH => ['key' => self::IMAGE_PATH, 'type' => FormInterface::TYPE_FILE, 'label' => 'ảnh đại diện'],
+		self::DESCRIPTION => ['key' => self::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'ghi chú'],
+		self::DATE_OF_BIRTH => ['key' => self::DATE_OF_BIRTH, 'type' => FormInterface::TYPE_DATE, 'label' => 'ngày sinh']
 	];
 }

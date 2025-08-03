@@ -3,22 +3,24 @@
 namespace App\Models;
 
 use App\Events\WriterSaved;
+use App\Listeners\WriterSavedListen;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
-class Writer extends Model
+class Writer extends Model implements WriterInterface
 {
     use HasFactory;
     use SoftDeletes;
-    
-    protected $fillable = [WriterInterface::IMAGE_PATH];
+
+    /**
+     * khai báo danh sách các thuộc tính được gán hàng loạt.
+     */
+    protected $guarded = self::FILLED_FILEDS;
 
     /**
      * khai báo lắng nghe cho các sự kiện thực hiện với Model:
@@ -26,7 +28,6 @@ class Writer extends Model
      */
     protected $dispatchesEvents = [
         'saved' => WriterSaved::class,
-        // 'deleted' => UserDeleted::class,
     ];
 
     /**
@@ -39,9 +40,17 @@ class Writer extends Model
         /**
          * register event listen for closure. 
          */
-        // static::saved(function (Writer $writer) : void {
-        //     Log::info('listen after saved writer of page: '.$writer->{WriterInterface::NAME});
-        // });
+        static::deleted(function (Writer $writer): void {
+            if (!$writer->{self::IMAGE_PATH}) {
+                return;
+            }
+            /**
+             * thực hiện xóa thư mục ảnh của tác giả sau khi đã xóa thông tin trong database.
+             * mặc dù trong database là xóa mềm nhưng ảnh vẫn xóa vật lý để không bị nặng lưu trữ.
+             */
+            $writerFolder = WriterSavedListen::SAVE_FOLDER . 'writers/' . $writer->id;
+            Storage::deleteDirectory($writerFolder);
+        });
     }
 
     /**
@@ -65,6 +74,21 @@ class Writer extends Model
                 return $value ? __('attrval.active') : __('attrval.inactive');
             },
             set: fn(mixed $value) => $value == 'on' ? true : false,
+        );
+    }
+
+    /**
+     * định dạng giá trị thuộc tính trước khi trả về.
+     * nó giống plugin trong m2.
+     * Lưu ý chuyển tên hàm sang dạng CamelKey 
+     * @return Attribute
+     */
+    function imagePath(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return asset($value);
+            },
         );
     }
 }

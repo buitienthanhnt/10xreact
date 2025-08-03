@@ -26,18 +26,19 @@ class WriterController extends Controller
     public function index()
     {
         /**
-         * danh sach thuoc tinh hien thi.
+         * danh sách hiển thị các thuộc tính của bảng.
          */
         $attributes = [
             WriterInterface::ID,
             WriterInterface::NAME,
+            WriterInterface::IMAGE_PATH,
             WriterInterface::ACTIVE,
             WriterInterface::ALIAS,
         ];
 
         /**
-         * danh sach tinh nang ap dung cho cac chi muc
-         * duoc ap dung cho toan bo cac thanh phan.
+         * danh sách hiển thị các nút tính năng phần tử bảng.
+         * áp dụng cho toàn bộ các phần tử.
          */
         $actionItems = [
             [
@@ -61,16 +62,16 @@ class WriterController extends Controller
         ];
 
         /**
-         * ap dung phan trang 
+         * áp dụng phân trang.
          * @var Illuminate\Pagination\LengthAwarePaginator $writerPagiante
          */
         $writerPagiante = Writer::paginate(8);
 
         /**
          * params about:
-         * 1. attributes: danh sach thuoc tinh can hien thi
-         * 2. pages: danh sach phan tu hien thi(co the dung truc tiep dang phan trang)
-         * 3. actions: danh sach cac nut ho tro tinh nang: them sua xoa.
+         * 1. attributes: danh sách các thuộc tính cần hiển thị,
+         * 2. pages: danh sách phần tử hiển thị(có thể dùng trực tiếp cho áp dụng phân trang)
+         * 3. actions: danh sách các nút hỗ trợ tính năng: xem, sửa, xóa.
          */
         return view('adminhtml.pages.writerView.list', [
             'attributes' => $attributes,
@@ -85,7 +86,7 @@ class WriterController extends Controller
     public function create()
     {
         return view('adminhtml.pages.writerView.create', [
-            'listAttributes' => WriterInterface::FROM_FIELDS
+            'listAttributes' => array_values(WriterInterface::FROM_FIELDS)
         ]);
     }
 
@@ -97,19 +98,12 @@ class WriterController extends Controller
         /**
          * @input data of writer create form submit.
          */
-        $writerInput = [
-            WriterInterface::NAME => $request->get(WriterInterface::NAME),
-            WriterInterface::EMAIL => $request->get(WriterInterface::EMAIL),
-            WriterInterface::ACTIVE => $request->get(WriterInterface::ACTIVE),
-            WriterInterface::ALIAS => $request->get(WriterInterface::ALIAS),
-            WriterInterface::PHONE => $request->get(WriterInterface::PHONE),
-            WriterInterface::ADDRESS => $request->get(WriterInterface::ADDRESS),
-            WriterInterface::DESCRIPTION => $request->get(WriterInterface::DESCRIPTION),
-            WriterInterface::DATE_OF_BIRTH => $request->get(WriterInterface::DATE_OF_BIRTH),
-        ];
+        $writerInput = [];
+        foreach (WriterInterface::FILLED_FILEDS as $key) {
+            $writerInput[] = $request->get($key);
+        }
 
         Writer::factory()->create($writerInput)->save();
-
         return redirect('adminhtml/writer')->with('message', 'add new writer success!');
     }
 
@@ -127,21 +121,36 @@ class WriterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Writer $writer)
+    public function edit(int $id, Writer $writer)
     {
-        //
+        $writer = $writer->find($id);
+        $formFields = [];
+        foreach (array_values(WriterInterface::FROM_FIELDS) as $value) {
+            $formFields[] = [...$value, 'value' => $writer->{$value['key']}];
+        }
+
+        return view('adminhtml.pages.writerView.edit', [
+            'writer' => $writer,
+            'listAttributes' => $formFields
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateWriterRequest $request, Writer $writer)
+    public function update(int $id, UpdateWriterRequest $request, Writer $writer)
     {
-        //
+        $writer = $writer->find($id);
+        $writerInput = [];
+        foreach (WriterInterface::FILLED_FILEDS as $key) {
+            $writerInput[] = $request->get($key);
+        }
+        $writer->fill($writerInput)->save();
+        return redirect()->to("adminhtml/writer/detail/$writer->id")->with('message', 'updated for the writer');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage.      
      */
     public function destroy(int $id, Writer $writer)
     {
@@ -150,6 +159,12 @@ class WriterController extends Controller
          */
         $writer = $writer->find($id);
         $writer->delete();
-        return redirect()->back()->with('message', 'delete success!');
+        /**
+         * trả về dạng json data.
+         */
+        return response()->json([
+            'message' => 'deleted for item',
+            'code' => 200
+        ]);
     }
 }

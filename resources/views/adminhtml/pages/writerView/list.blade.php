@@ -42,7 +42,7 @@
                                     @if (isset($item::FROM_FIELDS[$attributes[$i]]) &&
                                             $item::FROM_FIELDS[$attributes[$i]]['type'] === \App\Models\Types\FormInterface::TYPE_FILE)
                                         <td>
-                                            <img src="{{ $item->{$attributes[$i]} }}" class="rounded-circle"
+                                            <img src="{{ $item->{$attributes[$i]} }}" class="rounded-circle" style="object-fit: cover"
                                                 alt="none image" width='90px' height="90px" />
                                         </td>
                                     @else

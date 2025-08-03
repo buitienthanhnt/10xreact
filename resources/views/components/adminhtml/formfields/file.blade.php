@@ -8,7 +8,7 @@
     @endisset onchange="readURL(this);"
         aria-describedby="{{ $field['key'] . '_Help' }}" name="{{ $field['key'] }}" value="{{ old($field['key']) }}"
         placeholder="{{ __('attr.' . $field['key']) }}" />
-    <img id="blah" src="#" alt="your image" style="display: none"/>
+    <img id="blah" src="#" alt="your image"  class='p-2' style="display: none"/>
 </div>
 
 <script>

@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'id' => 'id',
 	'title' => "tiêu đề",
 	'active' => "trạng thái hoạt động",
 	'alias' => 'đường dẫn',

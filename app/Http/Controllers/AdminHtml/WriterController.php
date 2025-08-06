@@ -150,7 +150,7 @@ class WriterController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.      
+     * Remove the specified resource from storage.
      */
     public function destroy(int $id, Writer $writer)
     {

@@ -6,11 +6,11 @@
 
 @section('mainBody')
     <x-dashboard-chart />
-    <div class="px-4">
+    <div class="p-4">
         <h3>Thông tin tác giả:</h3>
 
         <div class="col-md-6"
-            style="background-color: rgb(187, 158, 219); padding: 16px; border-radius: 16px; box-shadow: 8px 10px #888888">
+            style="background-color: rgb(187, 158, 219); padding: 16px; border-radius: 16px; box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.5);">
             <a href='{{ url("adminhtml/writer/edit/$writer->id") }}' class="position-absolute" style="top: 10px; right: 10px;">
                 <i class="material-icons"
                     style="font-size: 36px; color: #da1cba">edit</i>

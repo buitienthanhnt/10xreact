@@ -9,33 +9,11 @@
     <div class="px-4">
         <div class="row">
             <div class="p-1 col-md-6">
-                <form method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @foreach ($listAttributes as $field)
-                        @switch($field['type'])
-                            @case(\App\Models\Types\FormInterface::TYPE_CHECKBOX)
-                                @include('components.adminhtml.formfields.checkbox', [
-                                    'field' => $field,
-                                ])
-                            @break
-
-                            @case(\App\Models\Types\FormInterface::TYPE_TEXTAREA)
-                                @include('components.adminhtml.formfields.textarea', [
-                                    'field' => $field,
-                                ])
-                            @break
-
-                            @case(\App\Models\Types\FormInterface::TYPE_TEXT)
-                                @include('components.adminhtml.formfields.textField', [
-                                    'field' => $field,
-                                ])
-                            @break
-
-                            @default
-                        @endswitch
-                    @endforeach
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                {!! view('components.adminhtml.formfields.formBase', [
+                    'method' => 'POST',
+                    'action' => url('adminhtml/page/create'),
+                    'listAttributes' => $listAttributes,
+                ]) !!}
             </div>
         </div>
     </div>

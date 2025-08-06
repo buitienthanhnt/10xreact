@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\AdminHtml;
 
+use App\Helper\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Api\PageApi;
 use App\Models\Page;
 use App\Models\Types\FormInterface;
+use App\Models\Types\PageInterface;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    protected $request;
+    use ImageHelper;
 
+    protected $request;
     protected $pageApi;
 
     function __construct(
@@ -52,25 +55,18 @@ class PageController extends Controller
     function create(Request $request)
     {
         if ($request->isMethod('POST')) {
-            // dd($request->all());
-            $title = $request->get(Page::TITLE);
-            return redirect()->back()->with('message', "add success new page: " . $title)->withInput();
+            $dataUploaded = $this->uploadImage($request->file(PageInterface::IMAGE_PATH), dirPath: 'pages');
+            dd($dataUploaded);
+            return redirect()->back()->with('message', "add success new page: ")->withInput();
         }
 
         /**
          * create new page row in database by factory.
          */
         // Page::factory()->create();
-        $listAttributes = [
-            ['key' => Page::TITLE, 'type' =>  FormInterface::TYPE_TEXT, 'value' => null],
-            ['key' => Page::DESCRIPTION, 'type' =>  FormInterface::TYPE_TEXTAREA],
-            ['key' => Page::IMAGE_PATH, 'type' =>  FormInterface::TYPE_TEXT],
-            ['key' => Page::ALIAS, 'type' =>  FormInterface::TYPE_TEXT],
-            ['key' => Page::ACTIVE, 'type' =>  FormInterface::TYPE_CHECKBOX],
-        ];
 
         return view('adminhtml.pages.pageView.create', [
-            'listAttributes' => $listAttributes
+            'listAttributes' => PageInterface::FROM_FIELDS
         ]);
     }
 }

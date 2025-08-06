@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Helper\ImageHelper;
 use App\Models\Types\WriterInterface;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ use Illuminate\Support\Str;
 
 class WriterSavedListen
 {
+    use ImageHelper;
+
     protected $request;
 
     const SAVE_FOLDER = 'public/images/';
@@ -47,41 +50,11 @@ class WriterSavedListen
      */
     function uploadWriterImage(\App\Models\Writer $writer)
     {
-        $uploadFile = $this->request->file(WriterInterface::IMAGE_PATH);
-        if (!$uploadFile) {
-            return;
-        }
-
-        $ext = $uploadFile->extension();
-        if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
-            return;
-        }
-
-        /**
-         * đây là đường dẫn tính theo thư mục và tên ảnh: public/images/writers/24/btaqwe.jpg
-         */
-        $path = $uploadFile->storeAs(
-            self::SAVE_FOLDER . 'writers/' . $writer->{WriterInterface::ID}, // đường dẫn thư mục lưu ảnh theo storage/app->.
-            Str::snake($writer->{WriterInterface::NAME}, '-') . '.' . $ext   // tên hình ảnh.
+        return $this->uploadImage(
+            $this->request->file(WriterInterface::IMAGE_PATH),
+            self::SAVE_FOLDER . 'writers/' . $writer->{WriterInterface::ID},
+            Str::snake($writer->{WriterInterface::NAME}, '-')
         );
-
-        /**
-         * định dạng lại đường dẫn theo thư mục: public bên ngoài: 
-         * Loại bỏ public thư mục ở đầu và 
-         * thay vào đó dùng: storage do tính tương đương trong public.
-         * --> storage/images/writers/24/btaqwe.jpg
-         */
-        $usePath = 'storage/' . explode('public/', $path, 2)[1];
-        /**
-         * lấy đường dẫn tuyệt đối theo url:
-         * http://adoc.dev/storage/images/writers/24/btaqwe.jpg
-         */
-        $imageUrl = asset($usePath);
-        return [
-            'storage_path' => $path,
-            'public_path' => $usePath,
-            'image_url' => $imageUrl
-        ];
     }
 
     /**

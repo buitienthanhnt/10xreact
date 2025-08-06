@@ -6,6 +6,9 @@
 
 @section('mainBody')
     <x-dashboard-chart />
+    <div>
+        <a class="btn btn-sm btn-info" href="{{ url('adminhtml/page/create') }}">create new page</a>
+    </div>
     <div class='p-2'>
         {{-- <span class="text-info font-weight-bold text-2xl">day la noi dung nam trong router pages list</span> --}}
         <p class="text-info font-italic font-weight-bold text-2xl">Tieeu ddef page list</p>

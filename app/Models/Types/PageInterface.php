@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Models\Types;
 
 use App\Models\Types\Base\TimestampInterface;
 
-interface PageInterface extends TimestampInterface{
+interface PageInterface extends TimestampInterface
+{
 	const TABLE_NAME = 'pages';
 
 	const ID = 'id';
@@ -15,4 +17,11 @@ interface PageInterface extends TimestampInterface{
 
 	const WRITER = 'writer';
 
+	const FROM_FIELDS = [
+		self::TITLE => ['key' => self::TITLE, 'type' => FormInterface::TYPE_TEXT, 'label' => 'tiêu đề '],
+		self::ACTIVE => ['key' => self::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX],
+		self::ALIAS => ['key' => self::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'đường dẫn'],
+		self::IMAGE_PATH => ['key' => self::IMAGE_PATH, 'type' => FormInterface::TYPE_FILE, 'label' => 'ảnh đại diện'],
+		self::DESCRIPTION => ['key' => self::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'mô tả']
+	];
 }

@@ -100,7 +100,7 @@ class WriterController extends Controller
          */
         $writerInput = [];
         foreach (WriterInterface::FILLED_FILEDS as $key) {
-            $writerInput[] = $request->get($key);
+            $writerInput[$key] = $request->get($key);
         }
 
         Writer::factory()->create($writerInput)->save();
@@ -143,7 +143,7 @@ class WriterController extends Controller
         $writer = $writer->find($id);
         $writerInput = [];
         foreach (WriterInterface::FILLED_FILEDS as $key) {
-            $writerInput[] = $request->get($key);
+            $writerInput[$key] = $request->get($key);
         }
         $writer->fill($writerInput)->save();
         return redirect()->to("adminhtml/writer/detail/$writer->id")->with('message', 'updated for the writer');

@@ -15,9 +15,9 @@
                     <form action="" method="get">
                         <div class="form-group d-flex" style="column-gap: 8px">
                             <button type="submit" class="btn btn-link">
-                                <i class="material-icons" style="font-size: 36px">search</i>
+                                <i class="material-icons" style="font-size: 36px; transform: rotateZ(90deg)">search</i>
                             </button>
-                            <input type="text" name="fast-search" class="form-control" placeholder="fast search"
+                            <input type="text" name="search" class="form-control" placeholder="search"
                                 id="fast-search">
                         </div>
                     </form>
@@ -39,8 +39,8 @@
                         @foreach ($pages instanceof \Illuminate\Pagination\LengthAwarePaginator ? $pages->items() : $pages as $item)
                             <tr>
                                 @for ($i = 0; $i < count($attributes); $i++)
-                                    @if (isset($item::FROM_FIELDS[$attributes[$i]]) &&
-                                            $item::FROM_FIELDS[$attributes[$i]]['type'] === \App\Models\Types\FormInterface::TYPE_FILE)
+                                    @if (isset($item::FORM_FIELDS[$attributes[$i]]) &&
+                                            $item::FORM_FIELDS[$attributes[$i]]['type'] === \App\Models\Types\FormInterface::TYPE_FILE)
                                         <td>
                                             <img src="{{ $item->{$attributes[$i]} }}" class="rounded-circle" style="object-fit: cover"
                                                 alt="none image" width='90px' height="90px" />

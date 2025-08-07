@@ -86,7 +86,7 @@ class WriterController extends Controller
     public function create()
     {
         return view('adminhtml.pages.writerView.create', [
-            'listAttributes' => array_values(WriterInterface::FROM_FIELDS)
+            'listAttributes' => array_values(WriterInterface::FORM_FIELDS)
         ]);
     }
 
@@ -125,7 +125,7 @@ class WriterController extends Controller
     {
         $writer = $writer->find($id);
         $formFields = [];
-        foreach (array_values(WriterInterface::FROM_FIELDS) as $value) {
+        foreach (array_values(WriterInterface::FORM_FIELDS) as $value) {
             $formFields[] = [...$value, 'value' => $writer->{$value['key']}];
         }
 

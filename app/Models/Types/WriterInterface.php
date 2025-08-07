@@ -33,7 +33,7 @@ interface WriterInterface
 	/**
 	 * khai báo thuộc tính biểu mẫu để tạo 1 tác giả.
 	 */
-	const FROM_FIELDS = [
+	const FORM_FIELDS = [
 		self::NAME => ['key' => self::NAME, 'type' => FormInterface::TYPE_TEXT, 'label' => 'tên tác giả'],
 		self::EMAIL => ['key' => self::EMAIL, 'type' => FormInterface::TYPE_EMAIL],
 		self::ACTIVE => ['key' => self::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX],

@@ -45,6 +45,10 @@
                  ])
              @break
 
+             @case(\App\Models\Types\FormInterface::TYPE_TEXTEDITOR)
+                 {!! view('components.adminhtml.formfields.textCkeditor', $field) !!}
+             @break
+
              @default
          @endswitch
      @endforeach

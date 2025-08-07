@@ -66,7 +66,7 @@ class PageController extends Controller
         // Page::factory()->create();
 
         return view('adminhtml.pages.pageView.create', [
-            'listAttributes' => PageInterface::FROM_FIELDS
+            'listAttributes' => array_values(PageInterface::FORM_FIELDS)
         ]);
     }
 }

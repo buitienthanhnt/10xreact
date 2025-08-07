@@ -6,6 +6,7 @@ interface FormInterface{
 
 	const TYPE_TEXT = 'text';
 	const TYPE_TEXTAREA = 'textarea';
+	const TYPE_TEXTEDITOR = 'textEditor';
 	const TYPE_EMAIL = 'email';
 	const TYPE_PASSWORD = 'password';
 	const TYPE_NUMBER = 'number';

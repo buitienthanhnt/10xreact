@@ -1,7 +1,7 @@
 @extends('adminhtml.layouts.left-bar')
 
 @section('title')
-    create new paper
+    register writer
 @endsection
 
 @section('mainBody')
@@ -11,7 +11,7 @@
             <div class="p-1 col-md-6">
                 {!! view('components.adminhtml.formfields.formBase', [
                     'method' => 'POST',
-                    'action' => url('adminhtml/page/create'),
+                    'action' => route('admin_writer_create'),
                     'listAttributes' => $listAttributes,
                 ]) !!}
             </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminHtml\DashboardController;
 use App\Http\Controllers\AdminHtml\PageController;
+use App\Http\Controllers\AdminHtml\WriterController;
 use Database\Configs\AdminPermission;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route;
@@ -25,16 +26,34 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
 
     Route::prefix('page')->group(function () {
         Route::get('/', [PageController::class, 'list'])->setBindingFields([
-            'route_name' => 'page list',
+            'route_name' => 'page manage',
             'route_icon' => 'assignment',
             'show' => true,
         ]);
 
-        Route::get('create', [PageController::class, 'create'])->setBindingFields([
-            'route_name' => 'new page',
-            'route_icon' => 'cloud',
-            'show' => true,
+        Route::any('create', [PageController::class, 'create'])->setBindingFields([
             'permission' => [AdminPermission::ACTION_CREATE]
         ]);
+    });
+
+    Route::prefix('writer')->group(function (): void {
+        Route::get('/', [WriterController::class, 'index'])->setBindingFields([
+            'route_name' => 'writer manage',
+            'route_icon' => 'groups', // https://fonts.google.com/icons
+            'show' => true,
+            'permission' => AdminPermission::ACTION_LIST
+        ]);
+
+        Route::get('create', [WriterController::class, 'create']);
+
+        Route::post('register', [WriterController::class, 'store'])->name('admin_writer_create');
+
+        Route::get('detail/{id}', [WriterController::class, 'show']);
+
+        Route::delete('delete/{id}', [WriterController::class, 'destroy']);
+
+        Route::get('edit/{id}', [WriterController::class, 'edit']);
+
+        Route::post('update/{id}', [WriterController::class, 'update']);
     });
 });

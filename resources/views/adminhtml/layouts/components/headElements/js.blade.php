@@ -9,9 +9,9 @@
 {{-- insert bootstrap support --}}
 <script src="/source/adminhtml/js/popper.min.js"></script>
 <script src="/source/adminhtml/js/bootstrap.min.js"></script>
-
 <script src="/source/adminhtml/js/tinymce/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
-
+{{-- insert filemanager support --}}
+<script src="/vendor/laravel-filemanager/js/filemanager.min.js"></script>
 @include('adminhtml.layouts.components.headElements.afJs')
 
 {{-- jquery ajax setup: https://laravel.com/docs/12.x/csrf#csrf-x-csrf-token --}}

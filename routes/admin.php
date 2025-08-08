@@ -14,6 +14,10 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
         'route_icon' => 'dashboard'
     ]);
 
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
+
     Route::get('/login', [DashboardController::class, 'login'])->withoutMiddleware(['adminVerify', 'adminPermission']);
 
     Route::get('/sign-up', [DashboardController::class, 'signUp'])->withoutMiddleware(['adminVerify', 'adminPermission']);

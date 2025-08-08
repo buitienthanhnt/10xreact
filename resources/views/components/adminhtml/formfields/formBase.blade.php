@@ -1,11 +1,11 @@
  {!! view('components.adminhtml.formfields.formValidate') !!}
  <form
      @isset($method)
-		method="{{ $method }}" 
+		method="{{ $method }}"
 		@if ($method !== 'GET')
 			enctype="multipart/form-data"
 		@endif
-	@else 
+	@else
 		method="GET"
 	@endisset
      action="{{ $action }}">
@@ -49,6 +49,10 @@
                  {!! view('components.adminhtml.formfields.textEditor', [
                     'field' => $field,
                 ]) !!}
+             @break
+
+             @case(\App\Models\Types\FormInterface::TYPE_IMAGE_CHOOSE)
+                 {!! view('components.adminhtml.formfields.imageChoose', $field) !!}
              @break
 
              @default

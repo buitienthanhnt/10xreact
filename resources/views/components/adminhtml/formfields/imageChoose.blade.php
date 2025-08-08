@@ -9,7 +9,10 @@
 <div id="holder" style="margin-top:15px;max-height:100px;"></div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-		$('#lfm').filemanager('image');
-	});
+    var filemanager_url_base = "{{ url('adminhtml/laravel-filemanager?type=Images') }}";
+    $(document).ready(function() {
+        $('#lfm').filemanager('image', {
+            prefix: filemanager_url_base
+        });
+    });
 </script>

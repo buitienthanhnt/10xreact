@@ -21,4 +21,5 @@ interface FormInterface{
 	const TYPE_MULTIFILE = 'multifile';
 	const TYPE_PHONE = 'tel';
 	const TYPE_DATE = 'date';
+	const TYPE_IMAGE_CHOOSE = 'imageChoose';
 }

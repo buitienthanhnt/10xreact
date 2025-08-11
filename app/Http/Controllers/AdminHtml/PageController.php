@@ -6,7 +6,6 @@ use App\Helper\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Api\PageApi;
 use App\Models\Page;
-use App\Models\Types\FormInterface;
 use App\Models\Types\PageInterface;
 use Illuminate\Http\Request;
 
@@ -27,8 +26,26 @@ class PageController extends Controller
 
     public function list(): \Illuminate\Contracts\View\View
     {
-        // dd($this->request->all());
-        // dd($this->pageApi->listPage());
+        $actions = [
+            [
+                'type' => 'view',
+                'url' => PageInterface::ROUTE_PREFIX . '/detail/',
+                'label' => '',
+                'icon' => 'preview',
+            ],
+            [
+                'type' => 'edit',
+                'url' => PageInterface::ROUTE_PREFIX . '/edit/',
+                'label' => '',
+                'icon' => 'edit',
+            ],
+            [
+                'type' => 'delete',
+                'url' => PageInterface::ROUTE_PREFIX . '/delete/',
+                'label' => '',
+                'icon' => 'delete',
+            ],
+        ];
 
         /**
          * nguyên tắc là truyền 2 giá trị gồm:
@@ -39,13 +56,13 @@ class PageController extends Controller
         return view('adminhtml.pages.pageView.list', [
             'attributes' => [
                 Page::ID,
-                Page::TITLE,
-                // Page::DESCRIPTION, 
                 Page::IMAGE_PATH,
+                Page::TITLE,
                 Page::ALIAS,
                 Page::ACTIVE,
             ],
-            'pages' => $this->pageApi->listPage()
+            'pages' => $this->pageApi->pagePaginate(),
+            'actions' => $actions
         ]);
     }
 
@@ -68,5 +85,13 @@ class PageController extends Controller
         return view('adminhtml.pages.pageView.create', [
             'listAttributes' => array_values(PageInterface::FORM_FIELDS)
         ]);
+    }
+
+    /**
+     * @return Illuminate\Http\RedirectResponse | \Illuminate\Contracts\View\View
+     */
+    function detail($id, Request $request)
+    {
+        return view('adminhtml.pages.pageView.detail', []);
     }
 }

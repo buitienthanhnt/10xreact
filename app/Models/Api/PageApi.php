@@ -15,10 +15,20 @@ class PageApi
 	}
 
 	/**
+	 * get all items of paper
 	 * @return \Illuminate\Database\Eloquent\Collection
 	 */
-	function listPage()
+	public function listPage()
 	{
 		return $this->page->all();
+	}
+
+	/**
+	 * @var int $limit
+	 * @return Illuminate\Pagination\LengthAwarePaginator
+	 */
+	function pagePaginate($limit = 12)
+	{
+		return $this->page->paginate($limit);
 	}
 }

@@ -44,4 +44,17 @@ interface WriterInterface
 		self::DESCRIPTION => ['key' => self::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'ghi chú'],
 		self::DATE_OF_BIRTH => ['key' => self::DATE_OF_BIRTH, 'type' => FormInterface::TYPE_DATE, 'label' => 'ngày sinh']
 	];
+
+	const PREFIX = 'writer';
+	const ROUTE_PREFIX = ADMIN_PREFIX.'/'.self::PREFIX;
+
+	const ROUTE_ACTION = [
+		'list' => '',
+		'create' => 'create',
+		'register' => 'register',
+		'detail' => 'detail/{id}',
+		'delete' => 'delete/{id}',
+		'edit' => 'edit/{id}',
+		'update' => 'update/{id}',
+	];
 }

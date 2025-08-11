@@ -37,7 +37,6 @@
 
              @case(\App\Models\Types\FormInterface::TYPE_EMAIL)
              @case(\App\Models\Types\FormInterface::TYPE_DATE)
-
              @case(\App\Models\Types\FormInterface::TYPE_PHONE)
              @case(\App\Models\Types\FormInterface::TYPE_TEXT)
                  @include('components.adminhtml.formfields.textField', [
@@ -52,7 +51,9 @@
              @break
 
              @case(\App\Models\Types\FormInterface::TYPE_IMAGE_CHOOSE)
-                 {!! view('components.adminhtml.formfields.imageChoose', $field) !!}
+                 {!! view('components.adminhtml.formfields.imageChoose', [
+                    'field' => $field,
+                ]) !!}
              @break
 
              @default

@@ -3,11 +3,14 @@
 use App\Http\Controllers\AdminHtml\DashboardController;
 use App\Http\Controllers\AdminHtml\PageController;
 use App\Http\Controllers\AdminHtml\WriterController;
+use App\Models\Types\PageInterface;
+use App\Models\Types\WriterInterface;
 use Database\Configs\AdminPermission;
-use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->group(function () {
+const ADMIN_PREFIX = 'adminhtml';
+
+Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->group(function () {
 
     Route::get('/', [DashboardController::class, 'home'])->withoutMiddleware(['adminPermission'])->name('dashboard')->setBindingFields([
         'route_name' => 'dashboard',
@@ -28,7 +31,7 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
 
     Route::post('admin-login', [DashboardController::class, 'loginPost'])->withoutMiddleware(['adminVerify', 'adminPermission'])->name('admin-login');
 
-    Route::prefix('page')->group(function () {
+    Route::prefix(PageInterface::PREFIX)->group(function () {
         Route::get('/', [PageController::class, 'list'])->setBindingFields([
             'route_name' => 'page manage',
             'route_icon' => 'assignment',
@@ -38,10 +41,12 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
         Route::any('create', [PageController::class, 'create'])->setBindingFields([
             'permission' => [AdminPermission::ACTION_CREATE]
         ]);
+
+        Route::get(PageInterface::ROUTE_ACTION['detail'], [PageController::class, 'detail']);
     });
 
-    Route::prefix('writer')->group(function (): void {
-        Route::get('/', [WriterController::class, 'index'])->setBindingFields([
+    Route::prefix(WriterInterface::PREFIX)->group(function (): void {
+        Route::get(WriterInterface::ROUTE_ACTION['list'], [WriterController::class, 'index'])->setBindingFields([
             'route_name' => 'writer manage',
             'route_icon' => 'groups', // https://fonts.google.com/icons
             'show' => true,
@@ -52,12 +57,12 @@ Route::prefix('adminhtml')->middleware(['adminVerify', 'adminPermission'])->grou
 
         Route::post('register', [WriterController::class, 'store'])->name('admin_writer_create');
 
-        Route::get('detail/{id}', [WriterController::class, 'show']);
+        Route::get(WriterInterface::ROUTE_ACTION['detail'], [WriterController::class, 'show']);
 
-        Route::delete('delete/{id}', [WriterController::class, 'destroy']);
+        Route::delete(WriterInterface::ROUTE_ACTION['delete'], [WriterController::class, 'destroy']);
 
-        Route::get('edit/{id}', [WriterController::class, 'edit']);
+        Route::get(WriterInterface::ROUTE_ACTION['edit'], [WriterController::class, 'edit']);
 
-        Route::post('update/{id}', [WriterController::class, 'update']);
+        Route::post(WriterInterface::ROUTE_ACTION['update'], [WriterController::class, 'update']);
     });
 });

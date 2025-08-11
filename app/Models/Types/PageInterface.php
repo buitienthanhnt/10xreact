@@ -26,4 +26,17 @@ interface PageInterface extends TimestampInterface
 		self::DESCRIPTION => ['key' => self::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'mô tả'],
 		self::CONTENT => ['key' => self::CONTENT, 'type' => FormInterface::TYPE_TEXTEDITOR, 'label' => 'noi dung']
 	];
+
+	const PREFIX = 'page';
+	const ROUTE_PREFIX = ADMIN_PREFIX.'/'.self::PREFIX;
+
+	const ROUTE_ACTION = [
+		'list' => '',
+		'create' => 'create',
+		'register' => 'register',
+		'detail' => 'detail/{id}',
+		'delete' => 'delete/{id}',
+		'edit' => 'edit/{id}',
+		'update' => 'update/{id}',
+	];
 }

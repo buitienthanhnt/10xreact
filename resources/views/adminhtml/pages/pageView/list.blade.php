@@ -10,30 +10,9 @@
         <a class="btn btn-sm btn-info" href="{{ url('adminhtml/page/create') }}">create new page</a>
     </div>
     <div class='p-2'>
-        {{-- <span class="text-info font-weight-bold text-2xl">day la noi dung nam trong router pages list</span> --}}
         <p class="text-info font-italic font-weight-bold text-2xl">Tieeu ddef page list</p>
-        <table class="table">
-            <thead>
-                <tr>
-                    @foreach ($attributes as $attr)
-                        <th scope="col">{{ __("attr.".$attr) }}</th>
-                    @endforeach
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($pages as $item)
-                    <tr>
-                        @for ($i = 0; $i < count($attributes); $i++)
-                            @if ($i === 0)
-                                <th scope="row">{{ $item->{$attributes[$i]} }}</th>
-                            @else
-                                <td>{{ $item->{$attributes[$i]} }}</td>
-                            @endif
-                        @endfor
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        {{-- $__data : dung de lay tat ca cac bien duoc truyen vao 1 blade template --}}
+        {!! view('components.adminhtml.pages.blocks.tableListItem', $__data) !!}
     </div>
 @endsection
 

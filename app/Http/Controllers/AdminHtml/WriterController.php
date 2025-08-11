@@ -43,19 +43,19 @@ class WriterController extends Controller
         $actionItems = [
             [
                 'type' => 'view',
-                'url' => 'adminhtml/writer/detail/',
+                'url' => WriterInterface::ROUTE_PREFIX.'/detail/',
                 'label' => '',
                 'icon' => 'preview',
             ],
             [
                 'type' => 'edit',
-                'url' => 'adminhtml/writer/edit/',
+                'url' => WriterInterface::ROUTE_PREFIX.'/edit/',
                 'label' => '',
                 'icon' => 'edit',
             ],
             [
                 'type' => 'delete',
-                'url' => 'adminhtml/writer/delete/',
+                'url' => WriterInterface::ROUTE_PREFIX.'/delete/',
                 'label' => '',
                 'icon' => 'delete',
             ],

@@ -56,6 +56,12 @@
                 ]) !!}
              @break
 
+             @case(\App\Models\Types\FormInterface::TYPE_SELECT)
+                 {!! view('components.adminhtml.formfields.select', [
+                    'field' => $field,
+                ]) !!}
+             @break
+
              @default
          @endswitch
      @endforeach

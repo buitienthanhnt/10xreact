@@ -4,6 +4,8 @@ namespace App\Http\Controllers\AdminHtml;
 
 use App\Helper\ImageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ShareAction\DeleteAction;
+use App\Http\Controllers\ShareAction\UpdateAction;
 use App\Models\Api\PageApi;
 use App\Models\Page;
 use App\Models\Types\PageInterface;
@@ -11,28 +13,30 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    /**
+     * custom trait
+     */
     use ImageHelper;
+    use DeleteAction;
+    use UpdateAction;
 
     protected $request;
     protected $pageApi;
+    protected $defaultModel;
 
     function __construct(
         Request $request,
-        PageApi  $pageApi
+        PageApi  $pageApi,
+        Page $page,
     ) {
         $this->request = $request;
         $this->pageApi = $pageApi;
+        $this->defaultModel = $page;
     }
 
     public function list(): \Illuminate\Contracts\View\View
     {
         $actions = [
-            [
-                'type' => 'view',
-                'url' => PageInterface::ROUTE_PREFIX . '/detail/',
-                'label' => '',
-                'icon' => 'preview',
-            ],
             [
                 'type' => 'edit',
                 'url' => PageInterface::ROUTE_PREFIX . '/edit/',
@@ -71,20 +75,22 @@ class PageController extends Controller
      */
     function create(Request $request)
     {
-        if ($request->isMethod('POST')) {
-            $dataUploaded = $this->uploadImage($request->file(PageInterface::IMAGE_PATH), dirPath: 'pages');
-            dd($dataUploaded);
-            return redirect()->back()->with('message', "add success new page: ")->withInput();
-        }
-
         /**
          * create new page row in database by factory.
          */
-        // Page::factory()->create();
-
         return view('adminhtml.pages.pageView.create', [
-            'listAttributes' => array_values(PageInterface::FORM_FIELDS)
+            'listAttributes' => $this->defaultModel->formField()
         ]);
+    }
+
+    /**
+     * register new page
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        Page::factory()->create($request->toArray())->save();
+        return redirect()->to(PageInterface::ROUTE_PREFIX)->with('message', 'add success new page: "');
     }
 
     /**
@@ -93,5 +99,15 @@ class PageController extends Controller
     function detail($id, Request $request)
     {
         return view('adminhtml.pages.pageView.detail', []);
+    }
+
+    public function edit(int $id, Request $request)
+    {
+        $page = $this->defaultModel->find($id);
+        return view('adminhtml.pages.pageView.edit', [
+            'method' => 'POST',
+            'action' => url("adminhtml/page/update/" . $page->{PageInterface::ID}),
+            'listAttributes' => $page->formField(),
+        ]);
     }
 }

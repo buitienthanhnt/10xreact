@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Events\WriterSaved;
 use App\Listeners\WriterSavedListen;
+use App\Models\ShareAction\ActiveAttrModel;
+use App\Models\ShareAction\FormField;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -14,13 +16,35 @@ use Illuminate\Support\Facades\Storage;
 
 class Writer extends Model implements WriterInterface
 {
+    /**
+     * default trait
+     */
     use HasFactory;
     use SoftDeletes;
 
     /**
-     * khai báo danh sách các thuộc tính được gán hàng loạt.
+     * custom trait
      */
-    protected $guarded = self::FILLED_FILEDS;
+    use FormField;
+    use ActiveAttrModel;
+
+    /**
+     * khai báo danh sách các thuộc tính không được gán hàng loạt.
+     */
+    protected $guarded = [self::IMAGE_PATH];
+
+    /**
+     * The attributes that are mass assignable.
+     * các thuộc tính cho phép gán hàng loạt.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = self::FILLED_FILEDS;
+
+    /**
+     * thuộc tính cần cho: FormField trait để lấy form update field.
+     */
+    protected $formFields = self::FORM_FIELDS;
 
     /**
      * khai báo lắng nghe cho các sự kiện thực hiện với Model:
@@ -60,21 +84,6 @@ class Writer extends Model implements WriterInterface
     public function pages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PageInterface::TABLE_NAME, PageInterface::WRITER);
-    }
-
-    /**
-     * format data of model after get or set action
-     * https://laravel.com/docs/12.x/eloquent-mutators#defining-an-accessor
-     * https://laravel.com/docs/12.x/eloquent-mutators#defining-a-mutator
-     */
-    function active(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value) {
-                return $value ? __('attrval.active') : __('attrval.inactive');
-            },
-            set: fn(mixed $value) => $value == 'on' ? true : false,
-        );
     }
 
     /**

@@ -11,7 +11,7 @@
             <div class="p-1 col-md-6">
                 {!! view('components.adminhtml.formfields.formBase', [
                     'method' => 'POST',
-                    'action' => url('adminhtml/page/create'),
+                    'action' => url('adminhtml/page/register'),
                     'listAttributes' => $listAttributes,
                 ]) !!}
             </div>

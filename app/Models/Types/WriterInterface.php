@@ -2,7 +2,9 @@
 
 namespace App\Models\Types;
 
-interface WriterInterface
+use App\Models\Types\Base\RouteInterface;
+
+interface WriterInterface extends RouteInterface
 {
 	/**
 	 * khai báo tên bảng trong database.
@@ -26,11 +28,6 @@ interface WriterInterface
 	const _PAGES = 'pages';
 
 	/**
-	 * khai báo danh sách các thuộc tính được gán hàng loạt.
-	 */
-	const FILLED_FILEDS = [self::NAME, self::EMAIL, self::ACTIVE, self::ALIAS, self::ADDRESS, self::PHONE, self::DESCRIPTION, self::DATE_OF_BIRTH];
-
-	/**
 	 * khai báo thuộc tính biểu mẫu để tạo 1 tác giả.
 	 */
 	const FORM_FIELDS = [
@@ -45,16 +42,11 @@ interface WriterInterface
 		self::DATE_OF_BIRTH => ['key' => self::DATE_OF_BIRTH, 'type' => FormInterface::TYPE_DATE, 'label' => 'ngày sinh']
 	];
 
-	const PREFIX = 'writer';
-	const ROUTE_PREFIX = ADMIN_PREFIX.'/'.self::PREFIX;
+	/**
+	 * khai báo danh sách các thuộc tính được gán hàng loạt.
+	 */
+	const FILLED_FILEDS = [self::NAME, self::EMAIL, self::ACTIVE, self::ALIAS, self::ADDRESS, self::PHONE, self::DESCRIPTION, self::DATE_OF_BIRTH];
 
-	const ROUTE_ACTION = [
-		'list' => '',
-		'create' => 'create',
-		'register' => 'register',
-		'detail' => 'detail/{id}',
-		'delete' => 'delete/{id}',
-		'edit' => 'edit/{id}',
-		'update' => 'update/{id}',
-	];
+	const PREFIX = 'writer';
+	const ROUTE_PREFIX = ADMIN_PREFIX . '/' . self::PREFIX;
 }

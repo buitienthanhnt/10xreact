@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminHtml;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ShareAction\DeleteAction;
 use App\Http\Requests\StoreWriterRequest;
 use App\Http\Requests\UpdateWriterRequest;
 use App\Models\Types\WriterInterface;
@@ -11,13 +12,20 @@ use Illuminate\Http\Request;
 
 class WriterController extends Controller
 {
+    /**
+     * custom trait.
+     */
+    use DeleteAction;
 
     protected $request;
+    protected $defaultModel;
 
     function __construct(
-        Request $request
+        Request $request,
+        Writer $writer,
     ) {
         $this->request = $request;
+        $this->defaultModel = $writer;
     }
 
     /**
@@ -43,19 +51,19 @@ class WriterController extends Controller
         $actionItems = [
             [
                 'type' => 'view',
-                'url' => WriterInterface::ROUTE_PREFIX.'/detail/',
+                'url' => WriterInterface::ROUTE_PREFIX . '/detail/',
                 'label' => '',
                 'icon' => 'preview',
             ],
             [
                 'type' => 'edit',
-                'url' => WriterInterface::ROUTE_PREFIX.'/edit/',
+                'url' => WriterInterface::ROUTE_PREFIX . '/edit/',
                 'label' => '',
                 'icon' => 'edit',
             ],
             [
                 'type' => 'delete',
-                'url' => WriterInterface::ROUTE_PREFIX.'/delete/',
+                'url' => WriterInterface::ROUTE_PREFIX . '/delete/',
                 'label' => '',
                 'icon' => 'delete',
             ],
@@ -86,7 +94,7 @@ class WriterController extends Controller
     public function create()
     {
         return view('adminhtml.pages.writerView.create', [
-            'listAttributes' => array_values(WriterInterface::FORM_FIELDS)
+            'listAttributes' => $this->defaultModel->formField()
         ]);
     }
 
@@ -98,12 +106,7 @@ class WriterController extends Controller
         /**
          * @input data of writer create form submit.
          */
-        $writerInput = [];
-        foreach (WriterInterface::FILLED_FILEDS as $key) {
-            $writerInput[$key] = $request->get($key);
-        }
-
-        Writer::factory()->create($writerInput)->save();
+        Writer::factory()->create($request->toArray())->save();
         return redirect('adminhtml/writer')->with('message', 'add new writer success!');
     }
 
@@ -124,14 +127,9 @@ class WriterController extends Controller
     public function edit(int $id, Writer $writer)
     {
         $writer = $writer->find($id);
-        $formFields = [];
-        foreach (array_values(WriterInterface::FORM_FIELDS) as $value) {
-            $formFields[] = [...$value, 'value' => $writer->{$value['key']}];
-        }
-
         return view('adminhtml.pages.writerView.edit', [
             'writer' => $writer,
-            'listAttributes' => $formFields
+            'listAttributes' => $writer->formField()
         ]);
     }
 
@@ -141,11 +139,12 @@ class WriterController extends Controller
     public function update(int $id, UpdateWriterRequest $request, Writer $writer)
     {
         $writer = $writer->find($id);
-        $writerInput = [];
-        foreach (WriterInterface::FILLED_FILEDS as $key) {
-            $writerInput[$key] = $request->get($key);
-        }
-        $writer->fill($writerInput)->save();
+        /**
+         * luwu y can phai khai bao bien: protected $fillable = self::FILLED_FILEDS;
+         * thif moi gan tu dong duoc.
+         */
+        $writer->fill($request->toArray())->save();
+
         return redirect()->to("adminhtml/writer/detail/$writer->id")->with('message', 'updated for the writer');
     }
 

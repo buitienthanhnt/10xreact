@@ -38,11 +38,19 @@ Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->gro
             'show' => true,
         ]);
 
-        Route::any('create', [PageController::class, 'create'])->setBindingFields([
+        Route::get('create', [PageController::class, 'create'])->setBindingFields([
             'permission' => [AdminPermission::ACTION_CREATE]
         ]);
 
+        Route::post('register', [PageController::class, 'store']);
+
         Route::get(PageInterface::ROUTE_ACTION['detail'], [PageController::class, 'detail']);
+
+        Route::delete(PageInterface::ROUTE_ACTION['delete'], [PageController::class, 'deleteAction']);
+        
+        Route::get(PageInterface::ROUTE_ACTION['edit'], [PageController::class, 'edit']);
+
+        Route::post(PageInterface::ROUTE_ACTION['update'], [PageController::class, 'updateAction']);
     });
 
     Route::prefix(WriterInterface::PREFIX)->group(function (): void {
@@ -59,7 +67,7 @@ Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->gro
 
         Route::get(WriterInterface::ROUTE_ACTION['detail'], [WriterController::class, 'show']);
 
-        Route::delete(WriterInterface::ROUTE_ACTION['delete'], [WriterController::class, 'destroy']);
+        Route::delete(WriterInterface::ROUTE_ACTION['delete'], [WriterController::class, 'deleteAction']);
 
         Route::get(WriterInterface::ROUTE_ACTION['edit'], [WriterController::class, 'edit']);
 

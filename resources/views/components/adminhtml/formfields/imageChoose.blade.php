@@ -1,5 +1,5 @@
 <style>
-    #holder > img{
+    #holder>img {
         width: 120px;
         height: 120px !important;
         border-radius: 100%;
@@ -12,9 +12,15 @@
             <i class="fa fa-picture-o"></i> Choose
         </a>
     </span>
-    <input id="id-{{ $field['key'] }}" class="form-control" type="text" name="{{ $field['key'] }}">
+    <input id="id-{{ $field['key'] }}" class="form-control" type="text" name="{{ $field['key'] }}"
+        @isset($field['value']) value="{{ $field['value'] }}"@endisset
+    >
 </div>
-<div id="holder" style="margin-top:15px;max-height:120px;"></div>
+<div id="holder" style="margin-top:15px;max-height:120px;">
+    @isset($field['value'])
+        <img src="{{ $field['value'] }}" alt="">
+    @endisset
+</div>
 
 <script type="text/javascript">
     var filemanager_url_base = "{{ url('adminhtml/laravel-filemanager?type=Images') }}";

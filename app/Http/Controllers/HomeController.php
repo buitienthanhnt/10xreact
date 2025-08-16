@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Api\PageApi;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-    //
+    protected $request;
+    protected $pageApi;
+
+    public function __construct(
+        Request $request,
+        PageApi $pageApi,
+    )
+    {
+        $this->request = $request;
+        $this->pageApi = $pageApi;
+    }
+
     function home()
     {
         return Inertia::render('Home');
@@ -28,10 +40,8 @@ class HomeController extends Controller
 
     function list(Request $request)
     {
-        return Inertia::render('List', [
-            "currentPage" => (int) $request->get('page') ?: 1,
-            "pageSize" => 14
-        ]);
+        $page = $this->pageApi->pagePaginate(4);
+        return Inertia::render('List', $page);
     }
 
     function about()

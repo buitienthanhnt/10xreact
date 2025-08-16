@@ -106,7 +106,7 @@ class WriterController extends Controller
         /**
          * @input data of writer create form submit.
          */
-        Writer::factory()->create($request->toArray())->save();
+        Writer::factory()->create($this->defaultModel->fillData($request->toArray()))->save();
         return redirect('adminhtml/writer')->with('message', 'add new writer success!');
     }
 

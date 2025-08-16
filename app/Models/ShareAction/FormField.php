@@ -23,6 +23,8 @@ trait FormField
 	 * format data before fill to object
 	 * thjs function not use now because laravel has mass-assignment(cho phép gán hàng loạt tự động)
 	 * https://laravel.com/docs/12.x/eloquent#allowing-mass-assignment
+	 * dùng trong trường hợp tạo mới đối tượng thông qua factory do nó không sử dụng được: mass-assignment trong khi nhiều trường không có giá trị mặc định
+	 * Page::factory()->create($this->defaultModel->fillData($request->toArray()))->save();
 	 * @param array $formInput
 	 * @return array
 	 */

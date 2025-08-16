@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Page extends Model implements PageInterface
 {
@@ -92,5 +93,12 @@ class Page extends Model implements PageInterface
                 return $value ? parse_url($value)['path'] : null;
             },
         );
+    }
+
+    public function alias(): Attribute
+    {
+        return Attribute::make(set: function ($input) {
+            return Str::snake($input);
+        });
     }
 }

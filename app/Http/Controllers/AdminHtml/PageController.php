@@ -89,7 +89,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        Page::factory()->create($request->toArray())->save();
+        Page::factory()->create($this->defaultModel->fillData($request->toArray()))->save();
         return redirect()->to(PageInterface::ROUTE_PREFIX)->with('message', 'add success new page: "');
     }
 

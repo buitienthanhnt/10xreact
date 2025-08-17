@@ -14,7 +14,7 @@ const Paginate = ({ pageSize, currentPage, url = window.location.href }) => {
 							page: index,
 						}}>
 							<span
-								className={`p-2 px-4 bg-green-500 rounded-[20px] ${currentPage === index ? 'text-white' : ''} justify-center content-center text-xl font-bold hover:text-red-700`}
+								className={`p-2 px-4 bg-green-500 rounded-[20px] ${currentPage === index ? 'text-white' : ''} justify-center content-center text-xl font-bold hover:text-orange-500`}
 							>{index}</span>
 						</Link>)
 					}
@@ -43,7 +43,7 @@ const Paginate = ({ pageSize, currentPage, url = window.location.href }) => {
 							page: index,
 						}}>
 							<div className="p-2 px-4 bg-green-500 rounded-[28px] justify-center content-center">
-								<p className="text-xl hover:text-red-700" style={{
+								<p className="text-xl hover:text-orange-500" style={{
 									color: index === currentPage ? 'white' : undefined
 								}}>{index}</p>
 							</div>

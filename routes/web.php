@@ -30,7 +30,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::get('/greeting/{locale}', function (string $locale) {
     if (! in_array($locale, ['en', 'es', 'fr', 'vi'])) {

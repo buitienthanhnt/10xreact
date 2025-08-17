@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helper\StringHelper;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\FormField;
 use App\Models\Types\PageInterface;
@@ -97,8 +98,8 @@ class Page extends Model implements PageInterface
 
     public function alias(): Attribute
     {
-        return Attribute::make(set: function ($input) {
-            return Str::snake($input);
+        return Attribute::make(set: function (string $input) {
+            return Str::snake(StringHelper::vn_to_str($input, true), '-');
         });
     }
 }

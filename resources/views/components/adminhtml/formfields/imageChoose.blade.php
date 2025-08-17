@@ -23,9 +23,9 @@
 </div>
 
 <script type="text/javascript">
-    var filemanager_url_base = "{{ url('adminhtml/laravel-filemanager?type=Images') }}";
+    var filemanager_url_base = "{{ url('adminhtml/laravel-filemanager') }}";
     $(document).ready(function() {
-        $("#lfm-{{ $field['key'] }}").filemanager('image', {
+        $("#lfm-{{ $field['key'] }}").filemanager('Images', {
             prefix: filemanager_url_base
         });
     });

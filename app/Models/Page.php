@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Helper\StringHelper;
+use App\Models\Scopes\ActiveScope;
+use App\Models\Scopes\SortScope;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\FormField;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
+#[ScopedBy([ActiveScope::class])]
+#[ScopedBy([SortScope::class])]
 class Page extends Model implements PageInterface
 {
     /**

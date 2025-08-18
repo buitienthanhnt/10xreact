@@ -17,7 +17,6 @@ interface WriterInterface extends RouteInterface
 	const ID = 'id';
 	const NAME = 'name';
 	const EMAIL = 'email';
-	const ACTIVE = 'active';
 	const ALIAS = 'alias';
 	const PHONE = 'phone';
 	const ADDRESS = 'address';

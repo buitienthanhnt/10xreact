@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Events\WriterSaved;
 use App\Listeners\WriterSavedListen;
+use App\Models\Scopes\ActiveScope;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\FormField;
 use App\Models\Types\PageInterface;
@@ -75,6 +76,11 @@ class Writer extends Model implements WriterInterface
             $writerFolder = WriterSavedListen::SAVE_FOLDER . 'writers/' . $writer->id;
             Storage::deleteDirectory($writerFolder);
         });
+
+        /**
+         * define global scope for model.
+         */
+        static::addGlobalScope(new ActiveScope);
     }
 
     /**

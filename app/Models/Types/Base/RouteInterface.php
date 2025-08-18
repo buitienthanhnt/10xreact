@@ -2,7 +2,7 @@
 
 namespace App\Models\Types\Base;
 
-interface RouteInterface
+interface RouteInterface extends ShareInterface
 {
 	const ROUTE_ACTION = [
 		'list' => '',

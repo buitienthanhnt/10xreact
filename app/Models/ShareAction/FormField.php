@@ -2,6 +2,10 @@
 
 namespace App\Models\ShareAction;
 
+/**
+ * all of model use the trait must be defined variable: $formFields = self::FORM_FIELDS;
+ * for function: formField can be work auto fill fields.
+ */
 trait FormField
 {
 	/**

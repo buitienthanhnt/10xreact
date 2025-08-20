@@ -17,6 +17,7 @@ class WriterSeeder extends Seeder
         //
         $this->createWriter();
     }
+    
     /**
      * create new writer 
      */

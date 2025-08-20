@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminHtml\CategoryController;
 use App\Http\Controllers\AdminHtml\DashboardController;
 use App\Http\Controllers\AdminHtml\PageController;
 use App\Http\Controllers\AdminHtml\WriterController;
+use App\Models\Types\CategoryInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
 use Database\Configs\AdminPermission;
@@ -47,7 +49,7 @@ Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->gro
         Route::get(PageInterface::ROUTE_ACTION['detail'], [PageController::class, 'detail']);
 
         Route::delete(PageInterface::ROUTE_ACTION['delete'], [PageController::class, 'deleteAction']);
-        
+
         Route::get(PageInterface::ROUTE_ACTION['edit'], [PageController::class, 'edit']);
 
         Route::post(PageInterface::ROUTE_ACTION['update'], [PageController::class, 'updateAction']);
@@ -72,5 +74,24 @@ Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->gro
         Route::get(WriterInterface::ROUTE_ACTION['edit'], [WriterController::class, 'edit']);
 
         Route::post(WriterInterface::ROUTE_ACTION['update'], [WriterController::class, 'update']);
+    });
+
+    Route::prefix(CategoryInterface::PREFIX)->group(function (): void {
+        Route::get(CategoryInterface::ROUTE_ACTION['list'], [CategoryController::class, 'index'])->setBindingFields([
+            'route_name' => 'category manage',
+            'route_icon' => 'groups', // https://fonts.google.com/icons
+            'show' => true,
+            // 'permission' => AdminPermission::ACTION_LIST
+        ]);
+
+        Route::get(CategoryInterface::ROUTE_ACTION['create'], [CategoryController::class, 'create']);
+
+        Route::post(CategoryInterface::ROUTE_ACTION['register'], [CategoryController::class, 'registerAction']);
+
+        Route::get(CategoryInterface::ROUTE_ACTION['edit'], [CategoryController::class, 'edit']);
+
+        Route::post(CategoryInterface::ROUTE_ACTION['update'], [CategoryController::class, 'UpdateAction']);
+
+        Route::delete(CategoryInterface::ROUTE_ACTION['delete'], [CategoryController::class, 'deleteAction']);
     });
 });

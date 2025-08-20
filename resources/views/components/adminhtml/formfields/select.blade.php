@@ -3,7 +3,7 @@
         'field' => $field,
     ])
     <select class="custom-select" name="{{ $field['key'] }}">
-        <option>Open this select menu</option>
+        <option value="">Open this select menu</option>
         @foreach ($field['model']::{ $field['key'] . 'Options' }() as $item)
             <option value="{{ $item['value'] }}"
                 @isset($field['value'])

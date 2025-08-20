@@ -7,9 +7,9 @@ use App\Listeners\WriterSavedListen;
 use App\Models\Scopes\ActiveScope;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\FormField;
+use App\Models\ShareAction\ImageManualAttr;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -28,6 +28,7 @@ class Writer extends Model implements WriterInterface
      */
     use FormField;
     use ActiveAttrModel;
+    use ImageManualAttr;
 
     /**
      * khai báo danh sách các thuộc tính không được gán hàng loạt.
@@ -90,20 +91,5 @@ class Writer extends Model implements WriterInterface
     public function pages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(PageInterface::TABLE_NAME, PageInterface::WRITER);
-    }
-
-    /**
-     * định dạng giá trị thuộc tính trước khi trả về.
-     * nó giống plugin trong m2.
-     * Lưu ý chuyển tên hàm sang dạng CamelKey 
-     * @return Attribute
-     */
-    function imagePath(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value) {
-                return asset($value);
-            },
-        );
     }
 }

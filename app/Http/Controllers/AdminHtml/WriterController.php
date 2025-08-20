@@ -83,8 +83,8 @@ class WriterController extends Controller
          */
         return view('adminhtml.pages.writerView.list', [
             'attributes' => $attributes,
-            'pages' => $writerPagiante,
-            'actions' => $actionItems
+            'lists' => $writerPagiante,
+            'actions' => $actionItems,
         ]);
     }
 

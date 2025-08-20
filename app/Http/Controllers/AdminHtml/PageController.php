@@ -64,7 +64,7 @@ class PageController extends Controller
                 Page::TITLE,
                 Page::ACTIVE,
             ],
-            'pages' => $this->pageApi->pagePaginate(),
+            'lists' => $this->pageApi->pagePaginate(),
             'actions' => $actions
         ]);
     }

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\CategorySaved;
 use App\Events\WriterSaved;
+use App\Listeners\CategorySavedListen;
 use App\Listeners\WriterSavedListen;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -21,8 +23,11 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         WriterSaved::class => [ // register for listener writer event after saved
-            WriterSavedListen::class
-        ]
+            WriterSavedListen::class,
+        ],
+        CategorySaved::class =>[
+            CategorySavedListen::class, // define for listener category after saved.
+        ],
     ];
 
     /**

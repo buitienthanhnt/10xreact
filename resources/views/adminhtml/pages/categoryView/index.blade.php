@@ -1,13 +1,13 @@
 @extends('adminhtml.layouts.left-bar')
 
 @section('title')
-    page list
+    category manage
 @endsection
 
 @section('mainBody')
     <x-dashboard-chart />
     <div>
-        <a class="btn btn-sm btn-info" href="{{ url('adminhtml/page/create') }}">create new page</a>
+        <a class="btn btn-sm btn-info" href="{{ url(App\Models\Types\CategoryInterface::ROUTE_PREFIX.'/create') }}">create new page</a>
     </div>
     <div class='p-2'>
         {!! view('components.adminhtml.pages.blocks.tableSearchField', ['title' => 'Danh sách bài viết:']) !!}

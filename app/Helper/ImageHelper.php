@@ -10,7 +10,7 @@ trait ImageHelper
 	/**
 	 * upload singe file.
 	 * @param \Illuminate\Http\UploadedFile $uploadFile
-	 * @return mixed|null
+	 * @return [storage_path => string,public_path => string,image_url => string]|null
 	 */
 	public function uploadImage($uploadFile, $dirPath = '', $fileName = '')
 	{

@@ -1,4 +1,4 @@
-@if (count($pages instanceof \Illuminate\Pagination\LengthAwarePaginator ? $pages->items() : $pages))
+@if (count($lists instanceof \Illuminate\Pagination\LengthAwarePaginator ? $lists->items() : $lists))
     <table class="table">
         <thead>
             <tr>
@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($pages instanceof \Illuminate\Pagination\LengthAwarePaginator ? $pages->items() : $pages as $item)
+            @foreach ($lists instanceof \Illuminate\Pagination\LengthAwarePaginator ? $lists->items() : $lists as $item)
                 <tr>
                     @for ($i = 0; $i < count($attributes); $i++)
                         @if (isset($item::FORM_FIELDS[$attributes[$i]]) &&
@@ -51,8 +51,8 @@
     <p class="text-2xl font-bold text-danger">khong co thong tin hien thi!</p>
 @endif
 
-@if ($pages instanceof \Illuminate\Pagination\LengthAwarePaginator)
-    {{ $pages->links('components.adminhtml.pages.links') }}
+@if ($lists instanceof \Illuminate\Pagination\LengthAwarePaginator)
+    {{ $lists->links('components.adminhtml.pages.links') }}
 @endif
 
 @section('body-afjs')

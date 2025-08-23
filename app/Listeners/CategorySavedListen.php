@@ -36,7 +36,10 @@ class CategorySavedListen
         /**
          * upload file for category
          */
-        $imageUploaded = $this->uploadImage($this->request->file(CategoryInterface::IMAGE_PATH), 'categories/' . $model->id);
+        if (!$imageUploaded = $this->uploadImage($this->request->file(CategoryInterface::IMAGE_PATH), 'categories/' . $model->id)) {
+            return;
+        }
+
         /**
          * update category model with image path after upload file
          */

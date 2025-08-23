@@ -11,6 +11,7 @@ use App\Models\Types\CategoryInterface;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -24,6 +25,9 @@ class Category extends Model implements CategoryInterface
     use FormField;
     use ImageManualAttr;
 
+    /**
+     * define for event of model
+     */
     protected $dispatchesEvents = [
         'saved' => CategorySaved::class
     ];
@@ -34,7 +38,14 @@ class Category extends Model implements CategoryInterface
     protected $formFields = self::FORM_FIELDS;
 
     /**
-     * 
+     * define list attribute for mass assignable.
+     * must be fibe for use: UpdateAction shareAction in controller
+     */
+    protected $fillable = self::FILLED_FILEDS;
+
+    /**
+     * function: booted
+     * define for events, listen of models 
      */
     protected static function booted()
     {
@@ -64,12 +75,33 @@ class Category extends Model implements CategoryInterface
      */
     public static function parentOptions(): array
     {
-        return [
-            ['label' => 'phim', 'value' => 1],
-            ['label' => 'audio', 'value' => 3]
-        ];
+        return (self::getCategoryTree());
     }
 
+    /**
+     * get flash category tree.
+     * @param int $parentId
+     * @param string $prefix
+     * @param  array $allCategories
+     * @return array
+     */
+    public static function getCategoryTree(int $parentId = 0, string $prefix = '', array &$allCategories = []): array
+    {
+        foreach (Category::where(self::PARENT, '=', $parentId)->get() as $value) {
+            $data['label'] = $prefix . $value->{CategoryInterface::NAME};
+            $data['value'] = $value->{CategoryInterface::ID};
+            $data['parent'] = $value->{CategoryInterface::PARENT};
+            $allCategories[] = $data;
+            if (Category::where(self::PARENT, '=', $value->{CategoryInterface::ID})->count()) {
+                self::getCategoryTree($value->{CategoryInterface::ID}, allCategories: $allCategories, prefix: $prefix . '___');
+            }
+        }
+        return $allCategories;
+    }
+
+    /**
+     * format for attribute: alias.
+     */
     public function alias(): Attribute
     {
         return Attribute::make(set: function (string $input) {
@@ -77,11 +109,24 @@ class Category extends Model implements CategoryInterface
         });
     }
 
+    /**
+     * format for input, output attribute: parent
+     */
     public function parent(): Attribute
     {
         return Attribute::make(set: function (int|null $input) {
             return is_numeric($input) ? $input : 0;
         });
+    }
+
+    /**
+     * liên kết tới danh sách bài viết:
+     * 1:khai báo model liên kết cuối
+     * 2: khai báo bảng trung gian.
+     */
+    public function pages(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, 'page_categories');
     }
 }
 

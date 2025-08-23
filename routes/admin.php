@@ -79,7 +79,7 @@ Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->gro
     Route::prefix(CategoryInterface::PREFIX)->group(function (): void {
         Route::get(CategoryInterface::ROUTE_ACTION['list'], [CategoryController::class, 'index'])->setBindingFields([
             'route_name' => 'category manage',
-            'route_icon' => 'groups', // https://fonts.google.com/icons
+            'route_icon' => 'token', // https://fonts.google.com/icons
             'show' => true,
             // 'permission' => AdminPermission::ACTION_LIST
         ]);

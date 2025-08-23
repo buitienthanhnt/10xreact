@@ -47,12 +47,6 @@ class CategoryController extends Controller
          */
         $actionItems = [
             [
-                'type' => 'view',
-                'url' => CategoryInterface::ROUTE_PREFIX . '/detail/',
-                'label' => '',
-                'icon' => 'preview',
-            ],
-            [
                 'type' => 'edit',
                 'url' => CategoryInterface::ROUTE_PREFIX . '/edit/',
                 'label' => '',
@@ -80,6 +74,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $data = Category::parentOptions();
         return view('adminhtml.pages.categoryView.create', [
             'listAttributes' => CategoryInterface::FORM_FIELDS
         ]);

@@ -107,4 +107,15 @@ class Page extends Model implements PageInterface
             return Str::snake(StringHelper::vn_to_str($input, true), '-');
         });
     }
+
+    /**
+     * get categories for page(many to many)
+     * https://laravel.com/docs/12.x/eloquent-relationships#many-to-many
+     * khong cần tạo Model trung gian mà chỉ cần bảng trung gian(tạo migration) thôi 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Category::class, 'page_categories',);
+    }
 }

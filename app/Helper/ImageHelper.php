@@ -25,7 +25,7 @@ trait ImageHelper
 		 */
 		$ext = $uploadFile->extension();
 		if (!in_array($ext, ['jpg', 'jpeg', 'png'])) {
-			return;
+			return null;
 		}
 
 		/**
@@ -52,9 +52,9 @@ trait ImageHelper
 
 		/**
 		 * trả về 3 định dạng kết quả đường dẫn
-		 * 1. đường dẫn tương đối trong thư mục storage
-		 * 2. đường dẫn tương đối trong thư mục public thông qua số 1
-		 * 3. đường dẫn tuyệt đối bằng url thông qua số 2.
+		 * 1. đường dẫn tương đối trong thư mục storage(có thể dùng để xóa ảnh qua Storage)
+		 * 2. đường dẫn tương đối trong thư mục public thông qua số 1(để lưu trong database và dùng qua asset($path))
+		 * 3. đường dẫn tuyệt đối bằng url thông qua số 2(dùng trực tiếp không cần xử lý thêm).
 		 */
 		return [
 			'storage_path' => $path,

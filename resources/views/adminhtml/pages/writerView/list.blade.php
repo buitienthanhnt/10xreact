@@ -13,11 +13,7 @@
         <div class='p-2'>
             {!! view('components.adminhtml.pages.blocks.tableSearchField', ['title' => 'Danh sách tác giả:']) !!}
 
-            {!! view('components.adminhtml.pages.blocks.tableListItem', [
-                'attributes' => $attributes,
-                'pages' => $pages,
-                'actions' => $actions,
-            ]) !!}
+            {!! view('components.adminhtml.pages.blocks.tableListItem', $__data) !!}
         </div>
     </div>
 @endsection

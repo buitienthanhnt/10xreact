@@ -61,6 +61,11 @@
                     'field' => $field,
                 ]) !!}
              @break
+             @case(\App\Models\Types\FormInterface::TYPE_MULTISELECT)
+                 {!! view('components.adminhtml.formfields.multiSelect', [
+                    'field' => $field,
+                ]) !!}
+             @break
 
              @default
          @endswitch

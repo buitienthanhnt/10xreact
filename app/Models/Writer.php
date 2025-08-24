@@ -64,7 +64,7 @@ class Writer extends Model implements WriterInterface
     protected static function booted()
     {
         /**
-         * register event listen for closure. 
+         * register event listen for closure.
          */
         static::deleted(function (Writer $writer): void {
             if (!$writer->{self::IMAGE_PATH}) {
@@ -85,11 +85,18 @@ class Writer extends Model implements WriterInterface
     }
 
     /**
+     * one-to-many: https://laravel.com/docs/12.x/eloquent-relationships#one-to-many
+     * khi goji: $this->page se tra ve 1 collection. Khac voi goi ham: $this->pages()
      * return page collection of writer
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function pages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(PageInterface::TABLE_NAME, PageInterface::WRITER);
+        /**
+         * 1: Class Model
+         * 2: $foreignKey of Model Class var 1.
+         * 3: $localKey: primary key of this Model
+         */
+        return $this->hasMany(Page::class, PageInterface::WRITER);
     }
 }

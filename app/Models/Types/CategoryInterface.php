@@ -25,12 +25,12 @@ interface CategoryInterface extends RouteInterface
 		self::PARENT,
 	];
 	const FORM_FIELDS = [
-		self::NAME => ['key' => self::NAME, 'type' => FormInterface::TYPE_TEXT, 'label' => 'teen', 'required' => true],
-		self::ALIAS => ['key' => self::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'duong dan'],
-		self::ACTIVE => ['key' => self::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX, 'label' => 'trang thai'],
-		self::IMAGE_PATH => ['key' => self::IMAGE_PATH, 'type' => FormInterface::TYPE_FILE, 'label' => 'anh dai dien'],
-		self::DESCIPTION => ['key' => self::DESCIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'mo ta'],
-		self::PARENT => ['key' => self::PARENT, 'type' => FormInterface::TYPE_SELECT, 'label' => 'danh muc cha', 'model' => \App\Models\Category::class],
+		self::NAME => ['key' => self::NAME, 'type' => FormInterface::TYPE_TEXT, 'label' => 'tên danh mục', 'required' => true],
+		self::ALIAS => ['key' => self::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'đường dẫn'],
+		self::ACTIVE => ['key' => self::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX, 'label' => 'trạng thái'],
+		self::IMAGE_PATH => ['key' => self::IMAGE_PATH, 'type' => FormInterface::TYPE_FILE, 'label' => 'ảnh đại diện'],
+		self::DESCIPTION => ['key' => self::DESCIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'mô tả'],
+		self::PARENT => ['key' => self::PARENT, 'type' => FormInterface::TYPE_SELECT, 'label' => 'danh mục cha', 'model' => \App\Models\Category::class],
 	];
 
 	const PREFIX = 'category';

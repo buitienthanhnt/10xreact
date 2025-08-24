@@ -19,3 +19,7 @@ Route::get('/detail/{alias}.html', [HomeController::class, 'detail'])->name('det
 Route::get('/list/{id?}', [HomeController::class, 'list'])->name("list"); //->middleware('link'); // middleware de su dung cho: Linkeys\UrlSigner\Facade\UrlSigner
 
 Route::get('about', [HomeController::class, "about"])->name('about');
+
+Route::get('account', [HomeController::class, 'account'])->name('account');
+
+Route::get('writer/{id}', [HomeController::class, 'writerDetail'])->name('writerDetail');

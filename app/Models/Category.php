@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Events\CategorySaved;
 use App\Helper\StringHelper;
 use App\Models\ShareAction\ActiveAttrModel;
+use App\Models\ShareAction\AliasAttrModel;
 use App\Models\ShareAction\FormField;
 use App\Models\ShareAction\ImageManualAttr;
 use App\Models\Types\CategoryInterface;
@@ -24,6 +25,7 @@ class Category extends Model implements CategoryInterface
     use ActiveAttrModel;
     use FormField;
     use ImageManualAttr;
+    use AliasAttrModel;
 
     /**
      * define for event of model
@@ -45,7 +47,7 @@ class Category extends Model implements CategoryInterface
 
     /**
      * function: booted
-     * define for events, listen of models 
+     * define for events, listen of models
      */
     protected static function booted()
     {
@@ -100,16 +102,6 @@ class Category extends Model implements CategoryInterface
     }
 
     /**
-     * format for attribute: alias.
-     */
-    public function alias(): Attribute
-    {
-        return Attribute::make(set: function (string $input) {
-            return Str::snake(StringHelper::vn_to_str($input, true), '-');
-        });
-    }
-
-    /**
      * format for input, output attribute: parent
      */
     public function parent(): Attribute
@@ -132,18 +124,11 @@ class Category extends Model implements CategoryInterface
 
 // php artisan make:model category.
 
-// INFO  Model [app/Models/Category.php] created successfully.  
-
-// INFO  Factory [database/factories/CategoryFactory.php] created successfully.  
-
-// INFO  Migration [database/migrations/2025_08_19_150247_create_categories_table.php] created successfully.  
-
-// INFO  Seeder [database/seeders/CategorySeeder.php] created successfully.  
-
-// INFO  Request [app/Http/Requests/StoreCategoryRequest.php] created successfully.  
-
-// INFO  Request [app/Http/Requests/UpdateCategoryRequest.php] created successfully.  
-
-// INFO  Controller [app/Http/Controllers/CategoryController.php] created successfully.  
-
+// INFO  Model [app/Models/Category.php] created successfully.
+// INFO  Factory [database/factories/CategoryFactory.php] created successfully.
+// INFO  Migration [database/migrations/2025_08_19_150247_create_categories_table.php] created successfully.
+// INFO  Seeder [database/seeders/CategorySeeder.php] created successfully.
+// INFO  Request [app/Http/Requests/StoreCategoryRequest.php] created successfully.
+// INFO  Request [app/Http/Requests/UpdateCategoryRequest.php] created successfully.
+// INFO  Controller [app/Http/Controllers/CategoryController.php] created successfully.
 // INFO  Policy [app/Policies/CategoryPolicy.php] created successfully.

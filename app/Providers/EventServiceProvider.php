@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Events\CategorySaved;
+use App\Events\PageSaved;
 use App\Events\WriterSaved;
 use App\Listeners\CategorySavedListen;
+use App\Listeners\PageSavedListen;
 use App\Listeners\WriterSavedListen;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -25,9 +27,12 @@ class EventServiceProvider extends ServiceProvider
         WriterSaved::class => [ // register for listener writer event after saved
             WriterSavedListen::class,
         ],
-        CategorySaved::class =>[
+        CategorySaved::class => [
             CategorySavedListen::class, // define for listener category after saved.
         ],
+        PageSaved::class => [
+            PageSavedListen::class, // define for listener page after saved.
+        ]
     ];
 
     /**

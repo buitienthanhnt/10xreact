@@ -6,6 +6,8 @@
 <script src="/source/adminhtml/js/sweetalert2@11.js"></script>
 {{-- import jquery library --}}
 <script src="/source/adminhtml/js/jquery-3.7.1.min.js"></script>
+{{-- import select2 library https://select2.org/ --}}
+<script src="/source/adminhtml/js/select2.min.js"></script>
 {{-- insert bootstrap support --}}
 <script src="/source/adminhtml/js/popper.min.js"></script>
 <script src="/source/adminhtml/js/bootstrap.min.js"></script>

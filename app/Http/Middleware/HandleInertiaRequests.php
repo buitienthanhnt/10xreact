@@ -29,13 +29,19 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        /**
+         * define for list element of top menu
+         */
         $topMenu = [
             ['name' => 'page', 'icon' => '', 'url' => '/list'],
             ['name' => 'account', 'icon' => '', 'url' => '/account'],
-            ['name' => 'Docs', 'icon' => '', 'url' => '/detail'],
+            ['name' => 'Docs', 'icon' => '', 'url' => '/docs'],
             ['name' => 'About Us', 'icon' => '', 'url' => '/about'],
         ];
 
+        /**
+         * return value for share parameter all view with InertiaRequests.
+         */
         return [
             ...parent::share($request),
             'auth' => [

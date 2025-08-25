@@ -17,7 +17,7 @@ trait AliasAttrModel
          * $this is the model current(has origin attributes).
          */
         return Attribute::make(set: function (string|null $input) {
-            return Str::snake(StringHelper::vn_to_str($input ?: $this->{self::TITLE}, true), '-');
+            return Str::snake(StringHelper::vn_to_str($input ?: $this->{self::TITLE ?? self::NAME}, true), '-');
         });
     }
 }

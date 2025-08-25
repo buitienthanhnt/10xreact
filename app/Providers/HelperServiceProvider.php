@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * service provider for define custom global function same as helper function.
+ * service provider support for define custom global function same as helper function.
  */
 class HelperServiceProvider extends ServiceProvider
 {

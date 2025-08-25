@@ -2,7 +2,7 @@ import { Paginate } from "@/Components/Custom";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 import { Link } from "@inertiajs/react";
 
-export default function Writers({ current_page, last_page, data, links }) {
+export default function WriterList({ current_page, last_page, data, links }) {
 
     if (!data) {
         return null;

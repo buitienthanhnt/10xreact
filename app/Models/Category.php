@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Events\CategorySaved;
-use App\Helper\StringHelper;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\AliasAttrModel;
 use App\Models\ShareAction\FormField;
@@ -15,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class Category extends Model implements CategoryInterface
 {
@@ -44,6 +42,11 @@ class Category extends Model implements CategoryInterface
      * must be fibe for use: UpdateAction shareAction in controller
      */
     protected $fillable = self::FILLED_FILEDS;
+
+    /**
+     * for alias share attribute(default define in ShareAction = TITLE)
+     */
+    const TITLE = self::NAME;
 
     /**
      * function: booted
@@ -87,15 +90,15 @@ class Category extends Model implements CategoryInterface
      * @param  array $allCategories
      * @return array
      */
-    public static function getCategoryTree(int $parentId = 0, string $prefix = '', array &$allCategories = []): array
+    public static function getCategoryTree(int $parentId = 0, string $prefix = '__', array &$allCategories = []): array
     {
         foreach (Category::where(self::PARENT, '=', $parentId)->get() as $value) {
-            $data['label'] = $prefix . $value->{CategoryInterface::NAME};
+            $data['label'] = ($prefix === '__' ? '' : $prefix) . $value->{CategoryInterface::NAME};
             $data['value'] = $value->{CategoryInterface::ID};
             $data['parent'] = $value->{CategoryInterface::PARENT};
             $allCategories[] = $data;
             if (Category::where(self::PARENT, '=', $value->{CategoryInterface::ID})->count()) {
-                self::getCategoryTree($value->{CategoryInterface::ID}, allCategories: $allCategories, prefix: $prefix . '___');
+                self::getCategoryTree($value->{CategoryInterface::ID}, allCategories: $allCategories, prefix: $prefix . $prefix);
             }
         }
         return $allCategories;
@@ -118,7 +121,7 @@ class Category extends Model implements CategoryInterface
      */
     public function pages(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'page_categories');
+        return $this->belongsToMany(Page::class, 'page_categories');
     }
 }
 

@@ -1,7 +1,9 @@
-import { ListItem } from "@/Components/Custom";
+import { ListItem, Paginate } from "@/Components/Custom";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 
 function WriterDetail({ writer, pages }) {
+    const { last_page, current_page, links, data } = pages;
+
     if (!writer) {
         return;
     }
@@ -21,11 +23,14 @@ function WriterDetail({ writer, pages }) {
                         <h4>address: {writer.address}</h4>
                     </div>
                 </div>
-                {pages && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4">
-                    {pages.map((item, index) => {
+                {data && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4">
+                    {data.map((item, index) => {
                         return <ListItem key={index} item={item}></ListItem>
                     })}
                 </div>}
+                {last_page &&
+                    <Paginate pageSize={last_page} currentPage={current_page} links={links} url={window.location.href}></Paginate>
+                }
             </div>
         </SingleLayout>
     )

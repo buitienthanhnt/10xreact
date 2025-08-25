@@ -10,7 +10,7 @@ Route::get('/dashboard', function () {
 	return Inertia::render('Dashboard');
 });
 
-Route::get('{category?}.htm', [HomeController::class, 'category'])->name('cate');
+Route::get('{category}.htm', [HomeController::class, 'category'])->name('category');
 
 Route::get('status', [\App\Http\Controllers\Frontend\ContentController::class, 'listStatus']);
 
@@ -21,5 +21,7 @@ Route::get('/list/{id?}', [HomeController::class, 'list'])->name("list"); //->mi
 Route::get('about', [HomeController::class, "about"])->name('about');
 
 Route::get('account', [HomeController::class, 'account'])->name('account');
+
+Route::get('docs', [HomeController::class, 'docs']);
 
 Route::get('writer/{id}', [HomeController::class, 'writerDetail'])->name('writerDetail');

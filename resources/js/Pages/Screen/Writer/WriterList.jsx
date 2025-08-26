@@ -1,6 +1,6 @@
 import { Paginate } from "@/Components/Custom";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
-import { Link } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 
 export default function WriterList({ current_page, last_page, data, links }) {
 
@@ -10,6 +10,9 @@ export default function WriterList({ current_page, last_page, data, links }) {
 
     return (
         <SingleLayout>
+            <Head>
+                <title>tác giả</title>
+            </Head>
             <div className="flex flex-wrap bg-white rounded-xl p-4 gap-4">
                 {data.map((item, index) => {
                     return <WriterItem writer={item} key={index}></WriterItem>

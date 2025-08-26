@@ -1,5 +1,6 @@
 import { ListItem, Paginate } from "@/Components/Custom";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
+import { Head } from "@inertiajs/react";
 
 function WriterDetail({ writer, pages }) {
     const { last_page, current_page, links, data } = pages;
@@ -10,6 +11,9 @@ function WriterDetail({ writer, pages }) {
 
     return (
         <SingleLayout>
+            <Head>
+                <title>{writer.name}</title>
+            </Head>
             <div className="space-y-2">
                 <div className="p-4 bg-white rounded-md flex gap-4">
                     <img src={writer.image_path} className="w-[100px] h-[100px] rounded-full" alt="" />

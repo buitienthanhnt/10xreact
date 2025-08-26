@@ -47,16 +47,6 @@ class HomeController extends Controller
         return Inertia::render('Screen/PageScreen/Detail', [
             'page' => $page
         ]);
-
-        // if (!$request->hasValidSignature()) {
-        //     abort('403');
-        // };
-        //  $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate(action([HomeController::class, 'list']), ['id' => 1], '+1 hours', 1);
-        // echo $link->getFullUrl();
-        // return Inertia::render('Detail', [
-        //     "value" => 123,
-        //     "once_link" =>  '/' // $link->getFullUrl()
-        // ]);
     }
 
     /**
@@ -94,6 +84,9 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * list of categories
+     */
     public function docs(): Response
     {
         $allCategory = Category::all();
@@ -102,16 +95,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function about()
-    {
-        return Inertia::render('Screen/Category', [
-            "items" => []
-        ]);
-        return Inertia::render('About', [
-            "value" => 123
-        ]);
-    }
-
+    /**
+     * detail for category and list page of category
+     */
     public function category(string $category = '')
     {
         $categoryByAlias = Category::where(CategoryInterface::ALIAS, $category)->first();
@@ -120,5 +106,33 @@ class HomeController extends Controller
             "category" => $categoryByAlias,
             'pages' => $categoryByAlias->pages()->paginate(6)
         ]);
+    }
+
+    /**
+     * demo for video player.
+     */
+    public function about()
+    {
+        return Inertia::render('Detail');
+    }
+
+    function Signature(Request $request): void
+    {
+        /**
+         * check authenticate for request.
+         */
+        if (!$request->hasValidSignature()) {
+            abort('403');
+        };
+
+        /**
+         * create link with authenticate and live time.
+         */
+        $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate(action([HomeController::class, 'list']), ['id' => 1], '+1 hours', 1);
+        echo $link->getFullUrl();
+        // return Inertia::render('Detail', [
+        //     "value" => 123,
+        //     "once_link" =>  '/' // $link->getFullUrl()
+        // ]);
     }
 }

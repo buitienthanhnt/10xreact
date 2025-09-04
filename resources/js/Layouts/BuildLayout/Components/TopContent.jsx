@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
     Navbar as MTNavbar,
     Collapse,
@@ -8,30 +8,11 @@ import {
 } from "@material-tailwind/react";
 
 import {
-    RectangleStackIcon,
-    UserCircleIcon,
-    CommandLineIcon,
     XMarkIcon,
     Bars3Icon,
 } from "@heroicons/react/24/solid";
 import { Link, usePage } from "@inertiajs/react";
 import MenuIcon from "./MenuIcon";
-
-const NAV_MENU = [
-    {
-        name: "Page",
-        icon: RectangleStackIcon,
-    },
-    {
-        name: "Account",
-        icon: UserCircleIcon,
-    },
-    {
-        name: "Docs",
-        icon: CommandLineIcon,
-        href: "https://www.material-tailwind.com/docs/react/installation",
-    },
-];
 
 function NavItem({ children, href }) {
     return (
@@ -72,14 +53,11 @@ export function TopContent({ }) {
             <div className="container mx-auto flex items-center justify-between">
                 <Link href={'/'}>
                     <Typography color="black" className="text-lg font-bold">
-                        Material Tailwind
+                        Adoc.dev global
                     </Typography></Link>
                 <ul className="ml-10 hidden items-center gap-8 lg:flex">
-                    {topMenu.map(({ name, icon, url: href }) => (
-                        <NavItem key={name} href={href}>
-                            <MenuIcon name={name} color={'/' + route().current() === href ? 'red' : undefined}></MenuIcon>
-                            <span style={{ color: '/' + route().current() === href ? 'red' : undefined }}>{name}</span>
-                        </NavItem>
+                    {topMenu.map(({ name, url: href }, index) => (
+                       <MenuElement name={name} href={href} key={index}></MenuElement>
                     ))}
                 </ul>
                 <div className="hidden items-center gap-2 lg:flex">
@@ -105,11 +83,8 @@ export function TopContent({ }) {
             <Collapse open={open}>
                 <div className="container mx-auto mt-3 border-t border-gray-200 px-2 pt-4">
                     <ul className="flex flex-col gap-4">
-                        {topMenu.map(({ name, icon: Icon, href }) => (
-                            <NavItem key={name} href={href}>
-                                <MenuIcon name={name} color={'/' + route().current() === href ? 'red' : undefined}></MenuIcon>
-                                <span style={{ color: '/' + route().current() === href ? 'bg-red-600' : undefined }}>{name}</span>
-                            </NavItem>
+                        {topMenu.map(({ name, href }, index) => (
+                            <MenuElement name={name} href={href} key={index}></MenuElement>
                         ))}
                     </ul>
                     <div className="mt-6 mb-4 flex items-center gap-2">
@@ -122,6 +97,19 @@ export function TopContent({ }) {
             </Collapse>
         </MTNavbar>
     );
+}
+
+const MenuElement = ({name, href})=>{
+    const isCurrentRoute = useMemo(()=>{
+        return '/' + route().current() === href?.toLowerCase();
+    }, [])
+
+    return (
+        <NavItem key={name} href={href}>
+            <MenuIcon name={name} color={isCurrentRoute ? 'red' : undefined}></MenuIcon>
+            <span style={{ color: isCurrentRoute ? 'red' : undefined }}>{name}</span>
+        </NavItem>
+    )
 }
 
 export default TopContent;

@@ -6,19 +6,33 @@
 <script src="/source/adminhtml/js/sweetalert2@11.js"></script>
 {{-- import jquery library --}}
 <script src="/source/adminhtml/js/jquery-3.7.1.min.js"></script>
+{{-- <script src="/source/adminhtml/js/jquery-ui/jquery-ui.min.js"></script> --}}
 {{-- import select2 library https://select2.org/ --}}
 <script src="/source/adminhtml/js/select2.min.js"></script>
 {{-- insert bootstrap support --}}
 <script src="/source/adminhtml/js/popper.min.js"></script>
 <script src="/source/adminhtml/js/bootstrap.min.js"></script>
 <script src="/source/adminhtml/js/tinymce/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+{{-- source library for charts --}}
+{{-- <script src="/source/adminhtml/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="/source/adminhtml/js/plugins/smooth-scrollbar.min.js"></script>
+<script src="/source/adminhtml/js/plugins/chartjs.min.js"></script> --}}
+
 {{-- insert filemanager support --}}
 <script src="/vendor/laravel-filemanager/js/filemanager.min.js"></script>
 <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+{{-- insert knockoutJs library --}}
+<script src="/source/adminhtml/js/knockout.js"></script>
+{{-- insert underScore library --}}
+<script src="/source/adminhtml/js/underscore.js"></script>
+{{-- insert require library chay khi dat o head tag --}}
+<script src="/source/adminhtml/js/require.js" data-main="/source/adminhtml/js/requireMain"></script>
+
 @include('adminhtml.layouts.components.headElements.afJs')
 
 {{-- jquery ajax setup: https://laravel.com/docs/12.x/csrf#csrf-x-csrf-token --}}
 <script type="text/javascript">
+    var filemanager_url_base = "{{ url('adminhtml/laravel-filemanager') }}";
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
@@ -26,4 +40,6 @@
             }
         });
     })
+
+    require(['plugins/perfect-scrollbar.min', 'plugins/smooth-scrollbar.min',], function(){})
 </script>

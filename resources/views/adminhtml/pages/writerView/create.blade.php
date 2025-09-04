@@ -8,13 +8,11 @@
     <x-dashboard-chart />
     <div class="px-4">
         <div class="row">
-            <div class="p-1 col-md-6">
-                {!! view('components.adminhtml.formfields.formBase', [
-                    'method' => 'POST',
-                    'action' => route('admin_writer_create'),
-                    'listAttributes' => $listAttributes,
-                ]) !!}
-            </div>
+            {!! view('components.adminhtml.formfields.formBase', [
+                'method' => 'POST',
+                'action' => route('admin_writer_create'),
+                'listAttributes' => $listAttributes,
+            ]) !!}
         </div>
     </div>
 @endsection

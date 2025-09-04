@@ -78,7 +78,16 @@ class PageController extends Controller
          * create new page row in database by factory.
          */
         return view('adminhtml.pages.pageView.create', [
-            'listAttributes' => $this->defaultModel->formField()
+            'listAttributes' => $this->defaultModel->formField(),
+            'pageContent' => json_encode([
+                // ['key' => 'a', 'type' => 'text', 'value' => 'demo for textInput', 'label' => 'name', 'placeholder' => 'name for a'],
+                // ['key' => 'b', 'type' => 'number', 'value' => null],
+                // ['key' => 'c', 'type' => 'checkbox', 'value' => true, 'name' => 'c'],
+                // ['key' => 'e', 'type' => 'textarea', 'value' => '123 demo hello'],
+                ['key' => 'g', 'type' => 'textEditor', 'value' => '<h3>123 demo hello</h3>'],
+                // ['key' => 'f', 'type' => 'select', 'value' => '320000000', 'options' => \App\Models\Page::writerOptions()],
+                // ['key' => 'd', 'type' => 'file', 'value' => 'http://adoc.dev/storage/files/uploads/261479696_1820281014826477_6400419339212881138_n_084353.jpg', 'label' => 'iamge file'],
+            ])
         ]);
     }
 
@@ -88,6 +97,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->toArray());
         Page::factory()->create($this->defaultModel->fillData($request->toArray()))->save();
         return redirect()->to(PageInterface::ROUTE_PREFIX)->with('message', 'add success new page: "');
     }

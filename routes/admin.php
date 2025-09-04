@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminHtml\CategoryController;
 use App\Http\Controllers\AdminHtml\DashboardController;
 use App\Http\Controllers\AdminHtml\PageController;
 use App\Http\Controllers\AdminHtml\WriterController;
+use App\Livewire\Counter;
 use App\Models\Types\CategoryInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
@@ -94,4 +95,13 @@ Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->gro
 
         Route::delete(CategoryInterface::ROUTE_ACTION['delete'], [CategoryController::class, 'deleteAction']);
     });
+
+    Route::prefix('test')->group(function () : void {
+        Route::get('/counter', Counter::class);
+
+        Route::get('knock', function () {
+            return view('adminhtml.test.knock');
+        });
+    });
+  
 });

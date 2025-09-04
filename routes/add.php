@@ -22,6 +22,6 @@ Route::get('about', [HomeController::class, "about"])->name('about');
 
 Route::get('account', [HomeController::class, 'account'])->name('account');
 
-Route::get('docs', [HomeController::class, 'docs']);
+Route::get('docs', [HomeController::class, 'docs'])->name('docs');
 
 Route::get('writer/{id}', [HomeController::class, 'writerDetail'])->name('writerDetail');

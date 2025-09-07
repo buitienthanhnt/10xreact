@@ -17,6 +17,7 @@ interface PageInterface extends TimestampInterface
     // const CONTENT = 'content';
 
     const WRITER = 'writer';
+    const TAGS = 'tags';
 
     /**
      * khai báo thuộc tính biểu mẫu để tạo form.
@@ -31,6 +32,7 @@ interface PageInterface extends TimestampInterface
         self::CATEGORY => ['key' => self::CATEGORY, 'type' => FormInterface::TYPE_MULTISELECT, 'label' => 'danh mục', 'model' => \App\Models\Page::class],
         // self::CONTENT => ['key' => self::CONTENT, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'noi dung'],
         self::WRITER => ['key' => self::WRITER, 'type' => FormInterface::TYPE_SELECT, 'label' => 'tác giả', 'model' => \App\Models\Page::class, 'required' => true],
+        self::TAGS => ['key' => self::TAGS, 'type' => FormInterface::TYPE_MULTISELECT, 'label' => 'liên kết', 'required' => false],
     ];
 
     /**

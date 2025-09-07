@@ -10,11 +10,13 @@ use App\Models\ShareAction\AliasAttrModel;
 use App\Models\ShareAction\FormField;
 use App\Models\Types\PageContentInterface;
 use App\Models\Types\PageInterface;
+use App\Models\Types\TagInterface;
 use App\Models\Types\WriterInterface;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 // use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -79,6 +81,10 @@ class Page extends Model implements PageInterface
              * xóa liên kết nội dung bài viết trong liên kết (1 - nhiều)
              */
             $page->pageContents()->delete();
+            /**
+             * delete links of tags
+             */
+            $page->tags()->delete();
         });
     }
 
@@ -140,13 +146,29 @@ class Page extends Model implements PageInterface
         return $this->belongsToMany(Category::class, 'page_categories',);
     }
 
+    public function category() : Attribute {
+        return Attribute::make(
+            get: function(){
+                return array_column($this->hasMany(PageCategory::class, 'page_id',)->get()->toArray(), 'category_id');
+            }
+        );
+    }
+
     /**
      * liên kết 1 - nhiều tới page_contents.
      * get contents ò the page.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    function pageContents() : \Illuminate\Database\Eloquent\Relations\HasMany {
+    public function pageContents() : \Illuminate\Database\Eloquent\Relations\HasMany {
         return $this->hasMany(PageContent::class, PageContentInterface::PAGE_ID);
+    }
+
+    /**
+     * return list tag of the page(1-to many).
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tags() : HasMany {
+       return $this->hasMany(Tag::class, TagInterface::TARGET_ID); 
     }
 
     /**

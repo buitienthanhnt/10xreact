@@ -8,6 +8,7 @@ use App\Events\WriterSaved;
 use App\Listeners\CategorySavedListen;
 use App\Listeners\PageContentListen;
 use App\Listeners\PageSavedListen;
+use App\Listeners\PageTagListen;
 use App\Listeners\WriterSavedListen;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -34,6 +35,7 @@ class EventServiceProvider extends ServiceProvider
         PageSaved::class => [
             PageSavedListen::class, // define for listener page after saved.
             PageContentListen::class,
+            PageTagListen::class,
         ]
     ];
 

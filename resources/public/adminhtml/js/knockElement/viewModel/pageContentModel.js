@@ -10,9 +10,7 @@ define([
 		self.fields = ko.observableArray(params.inputFields);
 
 
-		self.types = [
-			'text', 'textarea', 'textEditor', 'checkbox', 'number', 'file', 'selectImage',  // 'select'
-		];
+		self.types = params.defaultSupportFields;
 
 		self.fieldKeys = ko.computed(function () {
 			return self.fields().map(function (item) {
@@ -26,7 +24,6 @@ define([
 		}
 
 		self.onRemove = function (field) {
-			console.log(field);
 			/**
 			 * filter for list fields without of the field
 			 */

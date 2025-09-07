@@ -14,7 +14,8 @@ define([
 	// console.log('===>', pageContentFields);
 	ko.components.register('pageContentId', {
 		viewModel: pageContentModel.bind(pageContentModel, { // pass init values for the function define
-			inputFields: pageContentFields
+			defaultSupportFields: defaultSupportFields,
+			inputFields: pageContentFields,
 		}),
 		template: pageContentTemplate});
 

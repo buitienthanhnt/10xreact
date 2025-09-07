@@ -34,3 +34,17 @@ if (!function_exists('isApiEnv')) {
 		return false;
 	}
 }
+
+if (!function_exists('urlToStoragePath')) {
+	function urlToStoragePath($url): string
+	{
+		return $url ? parse_url($url)['path'] : '';
+	}
+}
+
+if (!function_exists('storagePathToUrl')) {
+	function storagePathToUrl($path): string
+	{
+		return asset($path);
+	}
+}

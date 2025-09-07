@@ -6,6 +6,7 @@ use App\Events\CategorySaved;
 use App\Events\PageSaved;
 use App\Events\WriterSaved;
 use App\Listeners\CategorySavedListen;
+use App\Listeners\PageContentListen;
 use App\Listeners\PageSavedListen;
 use App\Listeners\WriterSavedListen;
 use Illuminate\Auth\Events\Registered;
@@ -32,6 +33,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         PageSaved::class => [
             PageSavedListen::class, // define for listener page after saved.
+            PageContentListen::class,
         ]
     ];
 

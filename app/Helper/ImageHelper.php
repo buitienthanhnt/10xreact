@@ -36,7 +36,7 @@ trait ImageHelper
 		 */
 		$path = $uploadFile->storeAs(
 			$defaultDir . $dirPath, // đường dẫn thư mục lưu ảnh theo storage/app->.
-			($fileName ?: Str::random(12)) . ".$ext"   // tên hình ảnh.
+			($fileName ?: (Str::random(12)) . ".$ext")   // tên hình ảnh.
 		);
 
 		/**

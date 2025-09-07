@@ -8,6 +8,7 @@ use App\Models\Scopes\SortScope;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\AliasAttrModel;
 use App\Models\ShareAction\FormField;
+use App\Models\Types\PageContentInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
@@ -16,8 +17,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 // use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
 
+// khai báo các global scope áp dụng cho Model.
 #[ScopedBy([ActiveScope::class])]
 #[ScopedBy([SortScope::class])]
 class Page extends Model implements PageInterface
@@ -70,18 +71,25 @@ class Page extends Model implements PageInterface
          * define event for action after delete
          */
         static::deleted(function (Page $page) {
+            /**
+             * xóa liên kết danh mục tại bảng trung gian trong liên kết: (nhiều - nhiều)
+             */
             $page->categories()->detach();
+            /**
+             * xóa liên kết nội dung bài viết trong liên kết (1 - nhiều)
+             */
+            $page->pageContents()->delete();
         });
     }
 
     /**
-     * return writer model of page.
+     * return writer model of page(liên kết 1 - 1 nghịch đảo truyền vào class tới và khóa phụ).
      * function name same as const of interface.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function writer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(WriterInterface::TABLE_NAME, self::WRITER);
+        return $this->belongsTo(Writer::class, self::WRITER);
     }
 
     /**
@@ -122,14 +130,23 @@ class Page extends Model implements PageInterface
     }
 
     /**
-     * get categories for page(many to many)
+     * get categories for page(many to many(liên kết nhiều - nhiều qua bảng trung gian))
      * https://laravel.com/docs/12.x/eloquent-relationships#many-to-many
-     * khong cần tạo Model trung gian mà chỉ cần bảng trung gian(tạo migration) thôi
+     * không cần tạo Model trung gian mà chỉ cần bảng trung gian(tạo migration) thôi
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Category::class, 'page_categories',);
+    }
+
+    /**
+     * liên kết 1 - nhiều tới page_contents.
+     * get contents ò the page.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    function pageContents() : \Illuminate\Database\Eloquent\Relations\HasMany {
+        return $this->hasMany(PageContent::class, PageContentInterface::PAGE_ID);
     }
 
     /**

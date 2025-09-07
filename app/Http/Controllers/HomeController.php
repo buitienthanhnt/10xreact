@@ -41,9 +41,12 @@ class HomeController extends Controller
     {
         /**
          * get page by alias(first of paper by alias)
+         * inject with writer model, page content list value
          * done!
+         * @var Page $page
          */
-        $page = Page::where(PageInterface::ALIAS, '=', $alias)->get()->first();
+        $page = Page::where(PageInterface::ALIAS, '=', $alias)->with('pageContents')->with('writer')->get()->first();
+        // dd($page->toArray());
         return Inertia::render('Screen/PageScreen/Detail', [
             'page' => $page
         ]);

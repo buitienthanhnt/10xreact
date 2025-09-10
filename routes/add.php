@@ -14,7 +14,7 @@ Route::get('{category}.htm', [HomeController::class, 'category'])->name('categor
 
 Route::get('status', [\App\Http\Controllers\Frontend\ContentController::class, 'listStatus']);
 
-Route::get('/detail/{alias}.html', [HomeController::class, 'detail'])->name('detail');
+Route::get('{alias}.html', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('/list/{id?}', [HomeController::class, 'list'])->name("list"); //->middleware('link'); // middleware de su dung cho: Linkeys\UrlSigner\Facade\UrlSigner
 

@@ -46,7 +46,6 @@ class HomeController extends Controller
          * @var Page $page
          */
         $page = Page::where(PageInterface::ALIAS, '=', $alias)->with('pageContents')->with('tags')->with('categories')->with('writer')->get()->first();
-        // dd($page->toArray());
         return Inertia::render('Screen/PageScreen/Detail', [
             'page' => $page
         ]);

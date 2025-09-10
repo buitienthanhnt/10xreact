@@ -7,7 +7,7 @@ const CategoryTop = ({ categories }) => {
 
     return (
         <div>
-            <p className='text-xl underline'>Danh sach chu de chinh:</p>
+            <p className='text-xl underline'>Danh sách chủ đề chính:</p>
             <div
                 className='gap-2 overflow-x-scroll flex-row py-2'
                 style={{
@@ -21,7 +21,6 @@ const CategoryTop = ({ categories }) => {
                             href={route('list', { category: item.id })}
                             className='hover:text-red-400 hover:underline text-lg text-white'>{item.name}</Link>
                     </p>
-
                 })}
             </div>
         </div>

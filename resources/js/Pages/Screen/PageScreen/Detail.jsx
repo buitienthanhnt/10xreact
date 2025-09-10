@@ -1,10 +1,10 @@
 
-import { ImageType, InpageCategory, Tags, TextEditorType, TextType, VideoType } from "@/Components/PageContent";
+import { ImageType, Info, InpageCategory, Tags, TextEditorType, TextType, VideoType } from "@/Components/PageContent";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 import { Head } from "@inertiajs/react";
 import { useEffect } from "react";
 
-export default function Detail({ page: { title, desciption, page_contents, tags, categories } }) {
+export default function Detail({ page: { title, desciption, page_contents, tags, categories, id } }) {
     useEffect(() => {
     }, [])
 
@@ -12,10 +12,13 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
         <SingleLayout>
             <Head title="chi tiết">
             </Head>
-            <PageInfo title={title} desciption={desciption}></PageInfo>
-            <PageContent pageContents={page_contents}></PageContent>
-            <Tags tags={tags}></Tags>
-            <InpageCategory categories={categories}></InpageCategory>
+            <div className="grid gap-y-1">
+                <PageInfo title={title} desciption={desciption}></PageInfo>
+                <PageContent pageContents={page_contents}></PageContent>
+                <Info info={{}} pageId={id}></Info>
+                <Tags tags={tags}></Tags>
+                <InpageCategory categories={categories}></InpageCategory>
+            </div>
         </SingleLayout>
     )
 }
@@ -31,8 +34,10 @@ const PageInfo = ({ title, desciption }) => {
 }
 
 const PageContent = ({ pageContents }) => {
-    if (!pageContents) {
-        return null;
+    if (!pageContents.length) {
+        return (<div className="flex bg-white p-2 justify-center items-center">
+            <h3 className="text-orange-500 underline font-italic font-semibold">Not content here!</h3>
+        </div>);
     }
 
     return (

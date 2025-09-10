@@ -28,7 +28,7 @@
                 allowClear: true,
                 width: 'resolve',
                 multiple: true,
-                ...JSON.parse(`{!! isset($field['model']) ? '{}' : json_encode(['tags' => true, 'tokenSeparators' => [',', ' ']]) !!}`)
+                ...JSON.parse(`{!! isset($field['model']) ? '{}' : json_encode(['tags' => true, 'tokenSeparators' => [',',]]) !!}`)
             });
         });
     </script>

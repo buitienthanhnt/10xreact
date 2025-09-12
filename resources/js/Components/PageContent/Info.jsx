@@ -1,5 +1,8 @@
 import { HandThumbUpIcon, HeartIcon, LinkIcon } from "@heroicons/react/24/solid";
 import { useCallback, useMemo, useState } from "react";
+// import { router } from '@inertiajs/react'
+// import axios from "axios";
+// import rApi from "@/network/rApi";
 
 const typeInfo = ['like', 'heart', 'link'];
 
@@ -40,6 +43,36 @@ export default function Info({ pageId }) {
 		localStorage.setItem(key, newListChecked.join('|'));
 		setAction(newListChecked.join('|'));
 	}, [pageId]);
+
+	// const onSelectType = useCallback( async ()=>{
+		// sẽ không dùng được các phương thức của inertia để gọi yêu cầu tĩnh vì nó luôn luôn cần trả về 1 Inertia thành phần
+			// router.get('/test/json', {}, {
+			// 	preserveState: true,
+			// 	onSuccess: (params)=>{
+			// 		console.log('===>', params);
+			// 	}
+			// })
+		// cho nên khi cần gọi yêu cầu tĩnh thì ta phải dùng fetch hoặc axios.
+		// 1. fetch:
+			// const data = await fetch('/test/json');
+			// const val = await data.json();
+		// 2. axios:
+			// const data = await axios.get('/test/json');
+			// console.log('====================================');
+			// console.log(data.data);
+		// 3. use custom axios network api:
+			// let data;
+			// try {
+			// 	data = await rApi.callRequest({
+			// 		url: '/test/json',
+			// 		method: 'GET',
+			// 	}); // json response data by server. 
+			// } catch (error) {
+			// 	data = error.data.message; // string
+			// }
+			// console.log('====================================');
+			// console.log(data);
+	// }, [])
 
 	return (<div className="bg-white rounded-md p-4 justify-end flex gap-2">
 		{typeInfo.map(function (type, index) {

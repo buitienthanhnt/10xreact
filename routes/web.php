@@ -49,31 +49,46 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('test', function () {
-    // App::setLocale('vi');
-    dd(__('auth.user.name'));
-    // test url voi chu ky(neu co nguoi sua id sang=3 thi se bao loi)
-    // $signutre = URL::signedRoute('detail', ['user' => 2]);
-    // echo $signutre;
-    // return;
+Route::prefix('test')->group(function (): void {
+    Route::get('translate', function () {
+        // App::setLocale('vi');
+        dd(__('auth.user.name'));
+        // test url voi chu ky(neu co nguoi sua id sang=3 thi se bao loi)
+        // $signutre = URL::signedRoute('detail', ['user' => 2]);
+        // echo $signutre;
+        // return;
 
 
-    // tao url co chu ky voi thoi gian song nhat dinh(2 phut).
-    // $urlOnceTime = URL::temporarySignedRoute( 'detail', now()->addMinutes(2), ['id' => 12] );
-    // echo($urlOnceTime);
+        // tao url co chu ky voi thoi gian song nhat dinh(2 phut).
+        // $urlOnceTime = URL::temporarySignedRoute( 'detail', now()->addMinutes(2), ['id' => 12] );
+        // echo($urlOnceTime);
 
 
-    // echo(action([HomeController::class, 'list'], ['id' => 1]));
-    // return redirect($signutre);
-    // return 123;
+        // echo(action([HomeController::class, 'list'], ['id' => 1]));
+        // return redirect($signutre);
+        // return 123;
+    });
+
+    Route::get('knock', function () {
+        return view('adminhtml.test.knock');
+    });
+
+    Route::get('testUrl', function (Request $request) {
+        // $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate('https://www.example.com/invitation');
+        // echo $link->getFullUrl(); // https://www.example.com/invitation?uuid=UUID
+
+        $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate(action([HomeController::class, 'list']), ['id' => 1], '+1 hours', 1);
+        echo $link->getFullUrl();
+    });
+
+    Route::get('json', function (): array {
+        abort(500, 'error by demo');
+        return [
+            'name' => 'demo for test json',
+            'value' => 123,
+        ];
+    });
 });
 
-Route::get('testUrl', function (Request $request)  {
-    // $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate('https://www.example.com/invitation');
-    // echo $link->getFullUrl(); // https://www.example.com/invitation?uuid=UUID
-
-    $link = \Linkeys\UrlSigner\Facade\UrlSigner::generate(action([HomeController::class, 'list']), ['id' => 1], '+1 hours', 1);
-    echo $link->getFullUrl();
-});
 
 require __DIR__ . '/auth.php';

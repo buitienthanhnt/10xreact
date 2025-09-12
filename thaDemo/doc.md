@@ -1,0 +1,1 @@
+# innertia doc: https://viblo.asia/p/inertiajs-trong-laravel-L4x5xEXBKBM

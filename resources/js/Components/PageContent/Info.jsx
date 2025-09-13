@@ -36,7 +36,7 @@ export default function Info({ pageId }) {
 		const listChecked = checked ? checked.split('|') : [];
 		let newListChecked = listChecked.includes(pageId.toString()) ? listChecked.filter(function (i) {
 			return i !== pageId.toString();
-		}) : [...listChecked, pageId];
+		}) : [pageId, ...listChecked];
 		/**
 		 * gán giá trị vào bộ nhớ cục bộ trình duyệt.
 		 */
@@ -77,7 +77,7 @@ export default function Info({ pageId }) {
 	return (<div className="bg-white rounded-md p-4 justify-end flex gap-2">
 		{typeInfo.map(function (type, index) {
 			return (
-				<div className="bg-orange-200 p-1 rounded-full" onClick={() => { onPressItem(type) }} key={`info-${index}`} style={{ backgroundColor: checkSelected(type) ? 'violet' : '' }}>
+				<div className="bg-orange-200 p-1 rounded-full" onClick={() => { onPressItem(type) }} key={`info-${index}`} style={{ backgroundColor: checkSelected(type) ? 'rgb(149, 210, 250)' : '' }}>
 					{(() => {
 						switch (type) {
 							case 'like':

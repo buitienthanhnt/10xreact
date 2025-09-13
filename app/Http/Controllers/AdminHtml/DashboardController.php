@@ -69,6 +69,6 @@ class DashboardController extends Controller
             "email" => $this->request->get('email')
         ]));
         Session::save();
-        return redirect()->route('dashboard')->with('message', 'login success!');
+        return redirect()->route('admin.dashboard')->with('message', 'login success!');
     }
 }

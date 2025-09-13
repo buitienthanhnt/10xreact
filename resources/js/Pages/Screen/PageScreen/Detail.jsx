@@ -1,5 +1,6 @@
 
-import { ImageType, Info, InpageCategory, Tags, TextEditorType, TextType, VideoType } from "@/Components/PageContent";
+import RelatedPage from "@/Components/Custom/RelatedPage";
+import { ImageType, Info, InpageCategory, Propose, Tags, TextEditorType, TextType, VideoType, TextAreaType } from "@/Components/PageContent";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 import { Head } from "@inertiajs/react";
 import { useEffect } from "react";
@@ -18,6 +19,8 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
                 <Info info={{}} pageId={id}></Info>
                 <Tags tags={tags}></Tags>
                 <InpageCategory categories={categories}></InpageCategory>
+                <RelatedPage></RelatedPage>
+                <Propose></Propose>
             </div>
         </SingleLayout>
     )
@@ -46,8 +49,10 @@ const PageContent = ({ pageContents }) => {
                 let render;
                 switch (content.type) {
                     case 'text':
-                    case 'textarea':
                         render = <TextType content={content}></TextType>
+                        break;
+                    case 'textarea':
+                        render = <TextAreaType content={content}></TextAreaType>
                         break;
                     case 'textEditor':
                         render = <TextEditorType content={content}></TextEditorType>

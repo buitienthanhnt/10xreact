@@ -16,6 +16,8 @@ Route::get('status', [\App\Http\Controllers\Frontend\ContentController::class, '
 
 Route::get('{alias}.html', [HomeController::class, 'detail'])->name('detail');
 
+Route::get('tag/{value}', [HomeController::class, 'tag'])->name('tag');
+
 Route::get('/list/{id?}', [HomeController::class, 'list'])->name("list"); //->middleware('link'); // middleware de su dung cho: Linkeys\UrlSigner\Facade\UrlSigner
 
 Route::get('about', [HomeController::class, "about"])->name('about');

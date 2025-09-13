@@ -57,7 +57,28 @@ class HomeController extends Controller
     public function list(Request $request)
     {
         $page = $this->pageApi->pagePaginate(6);
-        return Inertia::render('Screen/PageScreen/List', $page);
+        $pageFilterType = [
+            'label' => 'type list',
+            'type' => 'type',
+            'data' => $this->pageApi->pageFilters(),
+        ];
+
+        $catPage = [
+            'label' => 'categories',
+            'type' => 'cat',
+            'data' => [
+                ['value' => '1', 'label' => 'trong nước',],
+                ['value' => '2', 'label' => 'truyện tranh', 'selected' => true],
+                ['value' => '3', 'label' => 'truyện ngắn'],
+                ['value' => '4', 'label' => 'tiểu thuyết'],
+            ],
+        ];
+        return Inertia::render('Screen/PageScreen/List', [
+            ...$page->toArray(),
+            'filters' =>[
+                $pageFilterType, $catPage
+            ],
+        ]);
     }
 
     /**
@@ -136,5 +157,13 @@ class HomeController extends Controller
         //     "value" => 123,
         //     "once_link" =>  '/' // $link->getFullUrl()
         // ]);
+    }
+
+    public function tag($value, Request $request)
+    {
+        return Inertia::render('Screen/PageScreen/PageByTag', [
+            'tag' => $value,
+            'pages' => $this->pageApi->pageByTag($value)
+        ]);
     }
 }

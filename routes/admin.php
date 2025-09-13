@@ -15,7 +15,7 @@ const ADMIN_PREFIX = 'adminhtml';
 
 Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->group(function () {
 
-    Route::get('/', [DashboardController::class, 'home'])->withoutMiddleware(['adminPermission'])->name('dashboard')->setBindingFields([
+    Route::get('/', [DashboardController::class, 'home'])->withoutMiddleware(['adminPermission'])->name('admin.dashboard')->setBindingFields([
         'route_name' => 'dashboard',
         'route_icon' => 'dashboard'
     ]);

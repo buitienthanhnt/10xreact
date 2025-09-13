@@ -9,5 +9,11 @@ return [
 	'desciption' => 'mô tả',
 	'name' => 'tên',
 	'email' => 'email',
-	'phone' => 'telephone number'
+	'phone' => 'telephone number',
+	'type.textEditor' => 'văn bản',
+	'type.file' => 'tệp tin',
+	'type.imageChoose' => 'hình ảnh',
+	'type.text' => 'nổi bật',
+	'type.textarea' => 'đoạn văn',
+	'type.video' => 'video',
 ];

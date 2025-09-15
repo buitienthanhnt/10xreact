@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const usePageRandom = ()=>{
 	const { isError, data, error, isFetching} = useQuery({
-		queryKey: ['page-random'],
+		queryKey: ['page-random', undefined],
 		queryFn: randomPages,
 	  })
 

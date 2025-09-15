@@ -30,7 +30,7 @@ final class PageApiController extends Controller
 	 * get random pages.
 	 */
 	function pageRandom() {
-		// sleep(3);
+		// sleep(4);
 		return $this->pageApi->getRandom();
 	}
 }

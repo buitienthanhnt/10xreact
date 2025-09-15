@@ -1,6 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-// dung qua:  @material-tailwind/react [https://www.material-tailwind.com/docs/react/installation]
+// dùng qua:  @material-tailwind/react [https://www.material-tailwind.com/docs/react/installation]
 const withMT = require("@material-tailwind/react/utils/withMT");
 
 /** @type {import('tailwindcss').Config} */
@@ -24,7 +24,7 @@ export default withMT({
 });
 
 
-
+// https://www.material-tailwind.com/docs/react/screens
 // Breakpoint prefix	Minimum width	CSS
 // sm	40rem (640px)	@media (width >= 40rem) { ... }
 // md	48rem (768px)	@media (width >= 48rem) { ... }

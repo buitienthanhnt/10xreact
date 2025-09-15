@@ -1,5 +1,6 @@
 import { HandThumbUpIcon, HeartIcon, LinkIcon } from "@heroicons/react/24/solid";
 import { useCallback, useMemo, useState } from "react";
+import { Rating } from "@material-tailwind/react";
 // import { router } from '@inertiajs/react'
 // import axios from "axios";
 // import rApi from "@/network/rApi";
@@ -45,54 +46,56 @@ export default function Info({ pageId }) {
 	}, [pageId]);
 
 	// const onSelectType = useCallback( async ()=>{
-		// sẽ không dùng được các phương thức của inertia để gọi yêu cầu tĩnh vì nó luôn luôn cần trả về 1 Inertia thành phần
-			// router.get('/test/json', {}, {
-			// 	preserveState: true,
-			// 	onSuccess: (params)=>{
-			// 		console.log('===>', params);
-			// 	}
-			// })
-		// cho nên khi cần gọi yêu cầu tĩnh thì ta phải dùng fetch hoặc axios.
-		// 1. fetch:
-			// const data = await fetch('/test/json');
-			// const val = await data.json();
-		// 2. axios:
-			// const data = await axios.get('/test/json');
-			// console.log('====================================');
-			// console.log(data.data);
-		// 3. use custom axios network api:
-			// let data;
-			// try {
-			// 	data = await rApi.callRequest({
-			// 		url: '/test/json',
-			// 		method: 'GET',
-			// 	}); // json response data by server. 
-			// } catch (error) {
-			// 	data = error.data.message; // string
-			// }
-			// console.log('====================================');
-			// console.log(data);
+	// sẽ không dùng được các phương thức của inertia để gọi yêu cầu tĩnh vì nó luôn luôn cần trả về 1 Inertia thành phần
+	// router.get('/test/json', {}, {
+	// 	preserveState: true,
+	// 	onSuccess: (params)=>{
+	// 		console.log('===>', params);
+	// 	}
+	// })
+	// cho nên khi cần gọi yêu cầu tĩnh thì ta phải dùng fetch hoặc axios.
+	// 1. fetch:
+	// const data = await fetch('/test/json');
+	// const val = await data.json();
+	// 2. axios:
+	// const data = await axios.get('/test/json');
+	// console.log('====================================');
+	// console.log(data.data);
+	// 3. use custom axios network api:
+	// let data;
+	// try {
+	// 	data = await rApi.callRequest({
+	// 		url: '/test/json',
+	// 		method: 'GET',
+	// 	}); // json response data by server. 
+	// } catch (error) {
+	// 	data = error.data.message; // string
+	// }
+	// console.log('====================================');
+	// console.log(data);
 	// }, [])
 
-	return (<div className="bg-white rounded-md p-4 justify-end flex gap-2">
-		{typeInfo.map(function (type, index) {
-			return (
-				<div className="bg-orange-200 p-1 rounded-full" onClick={() => { onPressItem(type) }} key={`info-${index}`} style={{ backgroundColor: checkSelected(type) ? 'rgb(149, 210, 250)' : '' }}>
-					{(() => {
-						switch (type) {
-							case 'like':
-								return <HandThumbUpIcon className="h-6 w-6" color="red"></HandThumbUpIcon>
-								break;
-							case 'heart':
-								return <HeartIcon className="h-6 w-6" color="red"></HeartIcon>;
-							case 'link':
-								return <LinkIcon className="h-6 w-6" color="red"></LinkIcon>;
-							default:
-								return null;
-						}
-					})()}
-				</div>
-			);
-		})}
+	return (<div className="bg-white rounded-md p-4 justify-between flex items-center">
+		<Rating value={4} readonly/>
+		<div className="justify-end flex gap-2">
+			{typeInfo.map(function (type, index) {
+				return (
+					<div className="bg-orange-200 p-1 rounded-full" onClick={() => { onPressItem(type) }} key={`info-${index}`} style={{ backgroundColor: checkSelected(type) ? 'rgb(149, 210, 250)' : '' }}>
+						{(() => {
+							switch (type) {
+								case 'like':
+									return <HandThumbUpIcon className="h-6 w-6" color="red"></HandThumbUpIcon>
+									break;
+								case 'heart':
+									return <HeartIcon className="h-6 w-6" color="red"></HeartIcon>;
+								case 'link':
+									return <LinkIcon className="h-6 w-6" color="red"></LinkIcon>;
+								default:
+									return null;
+							}
+						})()}
+					</div>
+				);
+			})}</div>
 	</div>)
 }

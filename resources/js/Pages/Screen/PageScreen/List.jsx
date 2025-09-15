@@ -3,6 +3,7 @@ import { Head, router } from "@inertiajs/react";
 import { Paginate, ListItem } from "@/Components/Custom";
 import { DropdownMenu } from "@/Components/Custom/DropdownMenu";
 import { useCallback } from "react";
+import Banner from "@/Components/Custom/Banner";
 
 const List = ({ current_page, last_page, data, links, filters }) => {
     if (!data) { return null; }
@@ -16,6 +17,7 @@ const List = ({ current_page, last_page, data, links, filters }) => {
                 </style>
             </Head>
             <div className="space-y-2">
+                <Banner layout={''}></Banner>
                 <PageFilter filters={filters}></PageFilter>
                 {data && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4">
                     {data.map((item, index) => {
@@ -46,7 +48,7 @@ const PageFilter = ({ filters = [] }) => {
                 </style>
             </Head>
             <div className="grid lg:flex w-full space-y-1 lg:space-y-0 lg:space-x-1">
-                {filters.map(item => <DropdownMenu {...item} onChange={onChange}></DropdownMenu>)}
+                {filters.map((item, index) => <DropdownMenu {...item} onChange={onChange} key={`item.${index}`}></DropdownMenu>)}
             </div>
         </div>
     )

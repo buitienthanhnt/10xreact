@@ -13,7 +13,7 @@ const InpageCategory = ({ categories = [] }) => {
         }}>
             <p className='text-xl underline'>Danh sách chủ đề:</p>
             <div
-                className='gap-2 overflow-x-scroll flex-row py-2 w-full 
+                className='gap-2 overflow-x-scroll flex-row py-2 w-full
                 [&::-webkit-scrollbar]:w-2
                 [&::-webkit-scrollbar]:h-2
                 [&::-webkit-scrollbar-track]:rounded-full
@@ -28,7 +28,7 @@ const InpageCategory = ({ categories = [] }) => {
                 {categories.map((item, index) => {
                     return <p
                         key={index.toString()}
-                        className='bg-green-400 p-1 px-2 justify-center items-center rounded-md' >
+                        className='bg-green-400 p-1 px-2 justify-center items-center rounded-md shadow-md shadow-blue-gray-500 inset-shadow-md inset-shadow-indigo-500' >
                         <Link
                             href={route('list', { category: item.id })}
                             className='hover:text-red-400 hover:underline text-lg text-white'>{item.name}</Link>

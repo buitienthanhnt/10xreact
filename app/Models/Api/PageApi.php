@@ -50,11 +50,18 @@ class PageApi
 	 */
 	function pagePaginate($limit = 12)
 	{
-		$cache_key = "page-list.$limit.".$this->request->get('page', 1);
-		if (Cache::has($cache_key)) {
-			return Cache::get($cache_key);
-		}
-		return Cache::remember($cache_key, 1000, function () use($limit) {
+		/**
+		 * "page-list.{limit}.{page}.{order}.{sort}"
+		 * "page-list.12.1.id.asc"
+		 */
+		$cache_key = "page-list.$limit.".$this->request->get('page', 1).".".$this->request->get('order', 'id').".".$this->request->get('sort', 'asc');
+		
+		/**
+		 * cache_key
+		 * cache_time: second(đơn vị tính bằng giây)
+		 * cache_callback
+		 */
+		return Cache::remember($cache_key, 1*60*60, function () use($limit) {
 			return $this->page->paginate($limit);
 		});
 	}
@@ -103,10 +110,7 @@ class PageApi
 	 */
 	public function pageByTag(string $tag) {
 		$cache_key = "tag.$tag.".$this->request->get('page', 1);
-		if (Cache::has($cache_key)) {
-			return Cache::get($cache_key);
-		}
-		return Cache::remember($cache_key, 1000, function () use($tag) {
+		return Cache::remember($cache_key, 1*60*60, function () use($tag) {
 			$listTags = $this->tag->where(TagInterface::KEY, '=', $tag)->get(TagInterface::TARGET_ID);
 			return $this->page->whereIn(PageInterface::ID, $listTags)->paginate(12);
 		});

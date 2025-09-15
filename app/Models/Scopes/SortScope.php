@@ -22,6 +22,7 @@ class SortScope implements Scope
         $modelAttributes = Schema::getColumnListing($model->getTable());
         /**
          * get orderBy attribute: in_array: $modelAttributes
+         * exp: [id, name, title, created_at, updated_at, ...]
          */
         $orderBy = request()->query('order'); // attribute
         /**

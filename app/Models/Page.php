@@ -66,6 +66,18 @@ class Page extends Model implements PageInterface
      */
     protected $formFields = self::FORM_FIELDS;
 
+    /**
+     * The database connection that should be used by the model(chỉ định loại csdl).
+     *
+     * @var string
+     */
+    protected $connection = 'mysql';
+
+    /**
+     * gán các thuộc tính sẽ được ẩn khi truy vấn(không trả về trong collection).
+     */
+    protected $hidden = [self::CREATED_AT, self::DELETED_AT, ];
+
 
     protected static function booted(): void
     {

@@ -1,13 +1,10 @@
-
-import RelatedPage from "@/Components/Custom/RelatedPage";
-import { ImageType, Info, InpageCategory, Propose, Tags, TextEditorType, TextType, VideoType, TextAreaType } from "@/Components/PageContent";
-import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 import { Head } from "@inertiajs/react";
-import { useEffect } from "react";
+import RelatedPage from "@/Components/Custom/RelatedPage";
+import { ImageType , TextEditorType, TextType, VideoType, TextAreaType } from "@/Components/PageContent";
+import { InpageCategory, Tags, Info, Propose, CommentForm, CommentList} from "@/Components/PageComponent";
+import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 
 export default function Detail({ page: { title, desciption, page_contents, tags, categories, id } }) {
-    useEffect(() => {
-    }, [])
 
     return (
         <SingleLayout>
@@ -19,6 +16,8 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
                 <Info info={{}} pageId={id}></Info>
                 <Tags tags={tags}></Tags>
                 <InpageCategory categories={categories}></InpageCategory>
+                <CommentList></CommentList>
+                <CommentForm pageId={id}></CommentForm>
                 <RelatedPage></RelatedPage>
                 <Propose></Propose>
             </div>
@@ -31,7 +30,6 @@ const PageInfo = ({ title, desciption }) => {
         <div className="bg-white dark:bg-gray-500 rounded-md p-1">
             <p className="text-xl font-bold text-blue-500">{title}</p>
             <p className="text-md text-gray-800 dark:text-white" dangerouslySetInnerHTML={{ __html: desciption }}></p>
-            {/* <span className="text-sm font-bold text-green-700">trajng thai: {active}</span> */}
         </div>
     )
 }

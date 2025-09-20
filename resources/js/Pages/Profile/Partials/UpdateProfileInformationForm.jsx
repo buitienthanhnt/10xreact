@@ -8,7 +8,7 @@ import { Transition } from '@headlessui/react';
 export default function UpdateProfileInformation({ mustVerifyEmail, status, className = '' }) {
     const user = usePage().props.auth.user;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, patch, errors, processing, recentlySuccessful, wasSuccessful } = useForm({
         name: user.name,
         email: user.email,
     });

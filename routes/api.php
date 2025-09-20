@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PageApiController;
+use App\Http\Controllers\Frontend\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,5 @@ Route::get('related', [PageApiController::class, 'related']);
 Route::get('page-by-ids', [PageApiController::class, 'pageByIds']);
 
 Route::get('page-random', [PageApiController::class, 'pageRandom']);
+
+Route::get('comments', [CommentController::class, 'index']);

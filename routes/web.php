@@ -81,8 +81,13 @@ Route::prefix('test')->group(function (): void {
         echo $link->getFullUrl();
     });
 
-    Route::get('json', function (): array {
-        abort(500, 'error by demo');
+    Route::get('json', function () {
+        // abort(500, 'error by demo');
+        return response()->json([
+            'a' => 123,
+            'b' => 'pppp',
+        ], 500);
+
         return [
             'name' => 'demo for test json',
             'value' => 123,

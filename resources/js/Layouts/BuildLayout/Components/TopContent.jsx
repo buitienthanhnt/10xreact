@@ -32,11 +32,8 @@ function NavItem({ children, href }) {
 }
 
 export function TopContent({ }) {
-
+    const { props: { topMenu, auth: { user } }, } = usePage();
     const [open, setOpen] = React.useState(false);
-    const { topMenu } = usePage().props;
-
-
     function handleOpen() {
         setOpen((cur) => !cur);
     }
@@ -57,15 +54,23 @@ export function TopContent({ }) {
                     </Typography></Link>
                 <ul className="ml-10 hidden items-center gap-8 lg:flex">
                     {topMenu.map(({ name, url: href }, index) => (
-                       <MenuElement name={name} href={href} key={index}></MenuElement>
+                        <MenuElement name={name} href={href} key={index}></MenuElement>
                     ))}
                 </ul>
                 <div className="hidden items-center gap-2 lg:flex">
-                    <Link href={route('login')}>
-                        <Button variant="text">Log in</Button></Link>
-                    <Link href={route('register')} target="_blank">
-                        <Button color="gray">Register</Button>
-                    </Link>
+                    {user ? // https://inertiajs.com/links
+                        <Link href={route('logout')} method="POST" as="button">
+                            <Button variant="text">Log out</Button>
+                        </Link> :
+                        <>
+                            <Link href={route('login')}>
+                                <Button variant="text">Log in</Button>
+                            </Link>
+                            <Link href={route('register')} target="_blank">
+                                <Button color="gray">Register</Button>
+                            </Link>
+                        </>
+                    }
                 </div>
                 <IconButton
                     variant="text"
@@ -88,10 +93,16 @@ export function TopContent({ }) {
                         ))}
                     </ul>
                     <div className="mt-6 mb-4 flex items-center gap-2">
-                        <Button variant="text">Log in</Button>
-                        <a href="https://www.material-tailwind.com/blocks" target="_blank">
-                            <Button color="gray">blocks</Button>
-                        </a>
+                        {user ?
+                            <Link href={route('logout')} method="post">
+                                <Button variant="text">Log out</Button>
+                            </Link> :
+                            <>
+                                <Button variant="text">Log in</Button>
+                                <a href="https://www.material-tailwind.com/blocks" target="_blank">
+                                    <Button color="gray">blocks</Button>
+                                </a>
+                            </>}
                     </div>
                 </div>
             </Collapse>
@@ -99,8 +110,8 @@ export function TopContent({ }) {
     );
 }
 
-const MenuElement = ({name, href})=>{
-    const isCurrentRoute = useMemo(()=>{
+const MenuElement = ({ name, href }) => {
+    const isCurrentRoute = useMemo(() => {
         return '/' + route().current() === href?.toLowerCase();
     }, [])
 

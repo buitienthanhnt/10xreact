@@ -1,26 +1,21 @@
 import { Listbox } from "@headlessui/react"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useMemo } from "react"
 import { ChevronUpDownIcon } from '@heroicons/react/16/solid'
 import { CheckIcon } from '@heroicons/react/20/solid'
 
 const DropdownMenu = (props) => {
-	const {type, label, data, onChange} = props;
-	const [selected, setSelected] = useState(null);
+	const { type, label, data, onChange } = props;
 
-	useEffect(()=>{
-		/**
-		 * update for default selected.
-		 */
-		setSelected(data.find((item) => item.selected));
+	const selected = useMemo(() => {
+		return data.find((item) => item.selected);
 	}, [])
 
 	/**
 	 * onselect setSelected value and call into onchange function.
 	 */
-	const onSelect = useCallback((value)=>{
-		setSelected(value);
+	const onSelect = useCallback((value) => {
 		onChange?.(type, value);
-	}, [])
+	}, [onChange])
 
 	return (
 		<div className="flex-1 bg-gray-400 rounded-md p-1">
@@ -53,7 +48,7 @@ const DropdownMenu = (props) => {
 									<span className="ml-3 block truncate font-normal group-data-selected:font-semibold">{item.label}</span>
 								</div>
 
-								{selected?.value === item.value && <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-data-selected:hidden group-data-focus:text-white">
+								{(selected?.value === item.value) && <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-data-selected:hidden group-data-focus:text-white">
 									<CheckIcon aria-hidden="true" className="size-5" />
 								</span>}
 							</Listbox.Option>

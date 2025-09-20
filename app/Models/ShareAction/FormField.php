@@ -5,11 +5,12 @@ namespace App\Models\ShareAction;
 /**
  * all of model use the trait must be defined variable: $formFields = self::FORM_FIELDS;
  * for function: formField can be work auto fill fields.
+ * use for model to get form data.
  */
 trait FormField
 {
 	/**
-	 * get form data for model
+	 * get form data for model(filled form value)
 	 * support for create and edit form auto.
 	 */
 	public function formField(): array
@@ -32,7 +33,7 @@ trait FormField
 	 * @param array $formInput
 	 * @return array
 	 */
-	function fillData(array $formInput = []): array
+	public function fillData(array $formInput = []): array
 	{
 		/**
 		 * format data for model factory by : FILLED_FILEDS và $data input:

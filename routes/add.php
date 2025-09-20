@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -8,7 +9,7 @@ Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
 	return Inertia::render('Dashboard');
-});
+})->name('dashboard');
 
 Route::get('{category}.htm', [HomeController::class, 'category'])->name('category');
 
@@ -27,3 +28,9 @@ Route::get('account', [HomeController::class, 'account'])->name('account');
 Route::get('docs', [HomeController::class, 'docs'])->name('docs');
 
 Route::get('writer/{id}', [HomeController::class, 'writerDetail'])->name('writerDetail');
+
+Route::prefix('comment')->group(function () : void {
+
+	Route::post('add', [CommentController::class, 'store']);
+
+});

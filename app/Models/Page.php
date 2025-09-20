@@ -78,7 +78,6 @@ class Page extends Model implements PageInterface
      */
     protected $hidden = [self::CREATED_AT, self::DELETED_AT, ];
 
-
     protected static function booted(): void
     {
         /**

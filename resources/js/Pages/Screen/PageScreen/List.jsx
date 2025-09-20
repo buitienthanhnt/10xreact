@@ -17,7 +17,6 @@ const List = ({ current_page, last_page, data, links, filters }) => {
                 </style>
             </Head>
             <div className="space-y-2">
-                <Banner layout={''}></Banner>
                 <PageFilter filters={filters}></PageFilter>
                 {data && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4">
                     {data.map((item, index) => {
@@ -25,6 +24,7 @@ const List = ({ current_page, last_page, data, links, filters }) => {
                     })}
                 </div>}
                 <Paginate pageSize={last_page} currentPage={current_page} links={links} url={window.location.href}></Paginate>
+                <Banner layout={''}></Banner>
             </div>
         </>
     )

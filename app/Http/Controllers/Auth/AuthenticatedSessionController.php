@@ -19,17 +19,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-       // dung voi react web app.
-       return Inertia::render('Auth/Login', [
-        'canResetPassword' => Route::has('password.request'),
-        'status' => session('status'),
-    ]);
+        // dung voi react web app.
+        return Inertia::render('Auth/Login', [
+            'canResetPassword' => Route::has('password.request'),
+            'status' => session('status'),
+        ]);
 
-    // dung voi blade template.
-    // return view('Auth/Login', [
-    //     'canResetPassword' => Route::has('password.request'),
-    //     'status' => session('status'),
-    // ]);
+        // dung voi blade template.
+        // return view('Auth/Login', [
+        //     'canResetPassword' => Route::has('password.request'),
+        //     'status' => session('status'),
+        // ]);
     }
 
     /**
@@ -37,9 +37,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // return redirect(url()->previous())
+        //     // ->withErrors(['email' => 'email not found']) // include error data form fields
+        //     ->with('responseData', ['res' => 'login success!']);
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        if ($request->get('redirect') === 'back') {
+            return redirect()->back();
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

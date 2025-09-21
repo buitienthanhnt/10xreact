@@ -2,12 +2,15 @@ import { useForm, usePage } from "@inertiajs/react";
 import PrimaryButton from "../PrimaryButton";
 import InputError from "../InputError";
 import { Transition } from "@headlessui/react";
-import { Textarea } from "@material-tailwind/react";
+import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Textarea } from "@material-tailwind/react";
 import { useCallback, useEffect, useState } from "react";
 import Urls from "@/network/Urls";
+import LoginForm from "../Custom/LoginForm";
 
 const CommentForm = (params) => {
 	const [addSuccess, setAddSuccess] = useState(false);
+	const [open, setOpen] = useState(false);
+	const handleOpen = () => setOpen(!open);
 	const { component, props: { auth: { user } }, scrollRegions, rememberedState, url
 	} = usePage();
 
@@ -43,6 +46,7 @@ const CommentForm = (params) => {
 	if (user) {
 		return (
 			<div className="bg-white rounded-md p-2">
+				<p className="font-bold text-xl underline my-1">Bình luận của bạn:</p>
 				<CommentUser></CommentUser>
 				{addSuccess && <span className="font-semibold text-lg text-red-500">add success new comment</span>}
 				<form action="" onSubmit={submit} className="mt-2 space-y-2">
@@ -76,7 +80,27 @@ const CommentForm = (params) => {
 		)
 	}
 
-	return null;
+	return (
+		<div className="bg-white rounded-md p-2">
+			<p className="font-bold text-xl underline my-1" onClick={handleOpen}>Thêm bình luận:</p>
+			<Dialog open={open} handler={handleOpen}>
+				<DialogHeader>Please login for comment!</DialogHeader>
+				<DialogBody>
+					<LoginForm onSuccess={handleOpen}></LoginForm>
+				</DialogBody>
+				<DialogFooter>
+					<Button
+						variant="text"
+						color="red"
+						onClick={handleOpen}
+						className="mr-1"
+					>
+						<span>Cancel</span>
+					</Button>
+				</DialogFooter>
+			</Dialog>
+		</div>
+	);
 }
 
 const CommentUser = () => {

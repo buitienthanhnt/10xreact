@@ -9,9 +9,9 @@ const RelatedPage = (props) => {
 	}
 
 	return (
-		<div className="bg-white rounded-md p-1 py-2">
-			<h3 className="text-lg text-orange-500 underline">Danh sách đã xem: </h3>
-			<div className={`grid md:flex columns-${pages.length} md:columns-2 space-x-1 space-y-1`}>
+		<div className="bg-white rounded-md p-1">
+			<p className="font-bold text-xl underline my-1">Danh sách đã xem: </p>
+			<div className={`grid md:flex columns-${pages.length} md:columns-2 space-x-1 space-y-1 md:space-y-0`}>
 				{pages.map((item, index) => {
 					return <RelatedItem page={item} key={index}></RelatedItem>
 				})}

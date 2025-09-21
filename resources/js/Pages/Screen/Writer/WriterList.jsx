@@ -35,7 +35,7 @@ function WriterItem({ writer }) {
 
             <img src={writer.image_path} alt="" className="rounded-md hover:resize-2" />
             <div>
-                <p className="text-gray-200 float-end">{writer.created_at.substring(0, 10)}</p>
+                <p className="text-gray-200 float-end">{writer.date_of_birth.substring(0, 10)}</p>
                 <p className=" underline font-semibold">{writer.phone}</p>
                 <p className=" text-gray-200">{writer.description}</p>
 

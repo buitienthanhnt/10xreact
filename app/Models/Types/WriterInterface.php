@@ -46,6 +46,8 @@ interface WriterInterface extends RouteInterface
 	 */
 	const FILLED_FILEDS = [self::NAME, self::EMAIL, self::ACTIVE, self::ALIAS, self::ADDRESS, self::PHONE, self::DESCRIPTION, self::DATE_OF_BIRTH];
 
+	const HIDDEN_FIELDS = [self::ACTIVE, 'deleted_at', 'created_at', 'updated_at'];
+
 	const PREFIX = 'writer';
 	const ROUTE_PREFIX = ADMIN_PREFIX . '/' . self::PREFIX;
 }

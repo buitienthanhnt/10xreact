@@ -6,13 +6,13 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
-import SingleLayout from '@/Layouts/BuildLayout/SingleLayout';
 
-const Login = ({ topMenu, status, canResetPassword }) => {
+const LoginForm = ({ status, canResetPassword, onSuccess }) => {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: '',
     password: '',
     remember: false,
+	redirect: 'back',
   });
 
   useEffect(() => {
@@ -25,18 +25,15 @@ const Login = ({ topMenu, status, canResetPassword }) => {
     e.preventDefault();
 
     post(route('login'), {
-      onSuccess: (response)=>{ // trigger when errors not data
-        console.log(response, 'success');
-      },
-      onError: (error)=>{  // trigger when errors has data
-        console.log(error, 'on errors');
-      }
-    });
+		onSuccess: ()=>{
+			onSuccess();
+		}
+	});
   };
 
   return (
-    <div className='w-full flex justify-center items-center p-1 py-4 md:pt-10'>
-      <div className='flex w-full lg:w-1/2 xl:w-1/3'>
+    <div className='w-full flex justify-center items-center p-1 py-4'>
+      <div className='flex w-full lg:w-1/2'>
         <Head title="Log in">
             <style type='text/css'>
                 {/* {`#app{color: red}`} */}
@@ -112,5 +109,4 @@ const Login = ({ topMenu, status, canResetPassword }) => {
   );
 }
 
-Login.layout = page => <SingleLayout children={page}></SingleLayout>
-export default Login;
+export default LoginForm;

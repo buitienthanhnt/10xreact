@@ -49,6 +49,11 @@ class Writer extends Model implements WriterInterface
     protected $formFields = self::FORM_FIELDS;
 
     /**
+     * define for hidden attributes of this model
+     */
+    protected $hidden = self::HIDDEN_FIELDS;
+
+    /**
      * khai báo lắng nghe cho các sự kiện thực hiện với Model:
      * saved, updated, deleting, and deleted
      */

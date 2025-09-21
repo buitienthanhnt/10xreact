@@ -20,6 +20,11 @@ class PageContent extends Model implements PageContentInterface
     protected $fillable = self::FILLED_FILEDS;
 
     /**
+     * define for hidden attributes of this model
+     */
+    protected $hidden = self::HIDDEN_FIELDS;
+
+    /**
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
     function value(): Attribute

@@ -50,7 +50,7 @@ export function TopContent({ }) {
             <div className="container mx-auto flex items-center justify-between">
                 <Link href={'/'}>
                     <Typography color="black" className="text-lg font-bold">
-                        Adoc.dev global
+                        Adoc Global
                     </Typography></Link>
                 <ul className="ml-10 hidden items-center gap-8 lg:flex">
                     {topMenu.map(({ name, url: href }, index) => (
@@ -88,17 +88,19 @@ export function TopContent({ }) {
             <Collapse open={open}>
                 <div className="container mx-auto mt-3 border-t border-gray-200 px-2 pt-4">
                     <ul className="flex flex-col gap-4">
-                        {topMenu.map(({ name, href }, index) => (
+                        {topMenu.map(({ name, url: href }, index) => (
                             <MenuElement name={name} href={href} key={index}></MenuElement>
                         ))}
                     </ul>
                     <div className="mt-6 mb-4 flex items-center gap-2">
                         {user ?
-                            <Link href={route('logout')} method="post">
+                            <Link href={route('logout')} method="post" as="button">
                                 <Button variant="text">Log out</Button>
                             </Link> :
                             <>
-                                <Button variant="text">Log in</Button>
+                                <Link href={route('login')} as="button">
+                                    <Button variant="text">Log in</Button>
+                                </Link>
                                 <a href="https://www.material-tailwind.com/blocks" target="_blank">
                                     <Button color="gray">blocks</Button>
                                 </a>

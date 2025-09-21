@@ -43,6 +43,11 @@ class Category extends Model implements CategoryInterface
      */
     protected $fillable = self::FILLED_FILEDS;
 
+     /**
+     * define for hidden attributes of this model
+     */
+    protected $hidden = self::HIDDEN_FIELDS;
+
     /**
      * for alias share attribute(default define in ShareAction = TITLE)
      */

@@ -16,6 +16,11 @@ class Tag extends Model implements TagInterface
     protected $fillable = self::FILLED_FILEDS;
 
     /**
+     * define for hidden attributes of this model
+     */
+    protected $hidden = self::HIDDEN_FIELDS;
+
+    /**
      * link from tag to page.
      * One to Many (Inverse) / Belongs To
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

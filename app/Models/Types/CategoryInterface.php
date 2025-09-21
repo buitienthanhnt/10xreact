@@ -33,6 +33,8 @@ interface CategoryInterface extends RouteInterface
 		self::PARENT => ['key' => self::PARENT, 'type' => FormInterface::TYPE_SELECT, 'label' => 'danh mục cha', 'model' => \App\Models\Category::class],
 	];
 
+	const HIDDEN_FIELDS = ['deleted_at', 'created_at', 'updated_at'];
+
 	const PREFIX = 'category';
 	const ROUTE_PREFIX = ADMIN_PREFIX . '/' . self::PREFIX;
 }

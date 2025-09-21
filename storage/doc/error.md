@@ -17,3 +17,5 @@ fixed:
     run: php artisan config:cache
     then run: composer dump-autoload
 ====================================================================
+
+# hander exception error:  vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php

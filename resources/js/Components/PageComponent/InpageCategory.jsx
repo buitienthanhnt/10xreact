@@ -11,7 +11,7 @@ const InpageCategory = ({ categories = [] }) => {
         <div className="bg-white p-1 px-2 table" style={{
             display: 'inherit',
         }}>
-            <p className='text-xl underline'>Danh sách chủ đề:</p>
+            <p className="font-bold text-xl underline my-1">Danh sách chủ đề:</p>
             <div
                 className='gap-2 overflow-x-scroll flex-row py-2 w-full
                 [&::-webkit-scrollbar]:w-2
@@ -31,7 +31,7 @@ const InpageCategory = ({ categories = [] }) => {
                         className='bg-green-400 p-1 px-2 justify-center items-center rounded-md shadow-md shadow-blue-gray-500 inset-shadow-md inset-shadow-indigo-500' >
                         <Link
                             href={route('list', { category: item.id })}
-                            className='hover:text-red-400 hover:underline text-lg text-white'>{item.name}</Link>
+                            className='hover:underline text-lg text-white hover:text-black hover:font-bold'>{item.name}</Link>
                     </p>
                 })}
             </div>

@@ -32,5 +32,7 @@ interface PageContentInterface
 		self::TYPE,
 	];
 
+	const HIDDEN_FIELDS = ['deleted_at', 'created_at', 'updated_at'];
+
 	const SAVED_IMAGE_FOLDER = 'pageContent';
 }

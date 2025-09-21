@@ -47,7 +47,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'topMenu' => $topMenu
+            'topMenu' => $topMenu,
+            'responseData' => $request->session()->get('responseData'), // include for response data form.
         ];
     }
 }

@@ -6,7 +6,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 
 export function FootContent() {
   return (
-    <footer className="mt-10 px-4 pt-20">
+    <footer className="mt-10 px-4 pt-20 bg-white">
       <div className="container mx-auto">
         <div className="flex flex-wrap items-end justify-center gap-8 md:justify-between">
           <div className="text-center md:text-left">
@@ -17,7 +17,7 @@ export function FootContent() {
               variant="h4"
               className="mb-6"
             >
-              Material Tailwind
+              adoc.dev global
             </Typography>
             <ul className="flex flex-wrap items-center justify-center md:justify-start">
               {LINKS.map((link, idx) => (

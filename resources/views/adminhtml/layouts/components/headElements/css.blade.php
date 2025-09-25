@@ -13,4 +13,6 @@
 {{-- insert select2 css source --}}
 <link href="/source/adminhtml/css/select2.min.css" rel="stylesheet" />
 
+<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
 @include('adminhtml.layouts.components.headElements.afCss')

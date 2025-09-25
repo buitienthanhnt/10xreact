@@ -98,7 +98,7 @@ export function TopContent({ }) {
                                 <Button variant="text">Log out</Button>
                             </Link> :
                             <>
-                                <Link href={route('login')} as="button">
+                                <Link href={route('login')}>
                                     <Button variant="text">Log in</Button>
                                 </Link>
                                 <a href="https://www.material-tailwind.com/blocks" target="_blank">

@@ -43,11 +43,9 @@ class HomeController extends Controller
          * get page by alias(first of paper by alias)
          * inject with writer model, page content, tags data, category value in list value
          * done!
-         * @var Page $page
          */
-        $page = Page::where(PageInterface::ALIAS, '=', $alias)->with('pageContents')->with('tags')->with('categories')->with('writer')->get()->first();
         return Inertia::render('Screen/PageScreen/Detail', [
-            'page' => $page
+            'page' => $this->pageApi->detailByAttr(PageInterface::ALIAS, $alias)
         ]);
     }
 
@@ -56,7 +54,7 @@ class HomeController extends Controller
      */
     public function list(Request $request)
     {
-        $page = $this->pageApi->pagePaginate(6);
+        $page = $this->pageApi->pageFilterPaginate(6);
         $pageFilterType = [
             'label' => 'type list',
             'type' => 'type',
@@ -67,14 +65,14 @@ class HomeController extends Controller
             'label' => 'categories',
             'type' => 'cat',
             'data' => [
-                ['value' => '1', 'label' => 'trong nước',],
-                ['value' => '2', 'label' => 'truyện tranh', 'selected' => true],
-                ['value' => '3', 'label' => 'truyện ngắn'],
-                ['value' => '4', 'label' => 'tiểu thuyết'],
+                ['value' => 6, 'label' => 'trong nước', 'selected' => (int) $request->get('cat') === 6],
+                ['value' => 7, 'label' => 'truyện tranh', 'selected' => (int) $request->get('cat') === 7],
+                ['value' => 8, 'label' => 'truyện ngắn', 'selected' => (int) $request->get('cat') === 8],
+                ['value' => 4, 'label' => 'tiểu thuyết', 'selected' => (int) $request->get('cat') === 4],
             ],
         ];
         return Inertia::render('Screen/PageScreen/List', [
-            ...$page->toArray(),
+            ...(!is_array($page) ? $page->toArray() : []),
             'filters' =>[
                 $pageFilterType, $catPage
             ],

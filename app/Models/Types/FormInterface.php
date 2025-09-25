@@ -22,4 +22,6 @@ interface FormInterface{
 	const TYPE_PHONE = 'tel';
 	const TYPE_DATE = 'date';
 	const TYPE_IMAGE_CHOOSE = 'imageChoose';
+	const TYPE_TIMELINE = 'timeline';
+	const CAROUSEL = 'carousel';
 }

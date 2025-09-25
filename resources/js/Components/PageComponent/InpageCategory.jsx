@@ -30,7 +30,7 @@ const InpageCategory = ({ categories = [] }) => {
                         key={index.toString()}
                         className='bg-green-400 p-1 px-2 justify-center items-center rounded-md shadow-md shadow-blue-gray-500 inset-shadow-md inset-shadow-indigo-500' >
                         <Link
-                            href={route('list', { category: item.id })}
+                            href={route('list', { cat: item.id })}
                             className='hover:underline text-lg text-white hover:text-black hover:font-bold'>{item.name}</Link>
                     </p>
                 })}

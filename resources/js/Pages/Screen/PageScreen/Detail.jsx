@@ -1,10 +1,10 @@
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import RelatedPage from "@/Components/Custom/RelatedPage";
-import { ImageType , TextEditorType, TextType, VideoType, TextAreaType } from "@/Components/PageContent";
-import { InpageCategory, Tags, Info, Propose, CommentForm, CommentList} from "@/Components/PageComponent";
+import { ImageType, TextEditorType, TextType, VideoType, TextAreaType, Timeline, CarouselImage } from "@/Components/PageContent";
+import { InpageCategory, Tags, Info, Propose, CommentForm, CommentList } from "@/Components/PageComponent";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 
-export default function Detail({ page: { title, desciption, page_contents, tags, categories, id } }) {
+export default function Detail({ page: { title, desciption, page_contents, tags, categories, id, writer } }) {
 
     return (
         <SingleLayout>
@@ -12,6 +12,7 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
             </Head>
             <div className="grid gap-y-1">
                 <PageInfo title={title} desciption={desciption}></PageInfo>
+                <PageWriter writer={writer}></PageWriter>
                 <PageContent pageContents={page_contents}></PageContent>
                 <Info info={{}} pageId={id}></Info>
                 <Tags tags={tags}></Tags>
@@ -62,6 +63,12 @@ const PageContent = ({ pageContents }) => {
                     case 'video':
                         render = <VideoType content={content}></VideoType>
                         break;
+                    case 'timeline':
+                        render = <Timeline content={content}></Timeline>
+                        break;
+                    case 'carousel':
+                        render = <CarouselImage content={content}></CarouselImage>
+                        break;
                     default:
                         render = (
                             <div>
@@ -77,4 +84,18 @@ const PageContent = ({ pageContents }) => {
             })}
         </div>
     );
+}
+
+export const PageWriter = ({ writer }) => {
+    return (
+        <div className="bg-white rounded-md p-2 flex space-x-4">
+            <img src={writer.image_path} alt={writer.name} className="w-[60px] h-[60px] rounded-full object-center" />
+            <Link className="items-center flex" href={route('writerDetail', { id: writer.id })}>
+                <div>
+                    <p className="font-semibold text-md">{writer.name}</p>
+                    <p className="font-semibold text-md text-blue-gray-700">{writer.email}</p>
+                </div>
+            </Link>
+        </div>
+    )
 }

@@ -28,6 +28,8 @@
 {{-- insert require library chay khi dat o head tag --}}
 <script src="/source/adminhtml/js/require.js" data-main="/source/adminhtml/js/requireMain"></script>
 
+<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+
 @include('adminhtml.layouts.components.headElements.afJs')
 
 {{-- jquery ajax setup: https://laravel.com/docs/12.x/csrf#csrf-x-csrf-token --}}

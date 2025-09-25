@@ -23,6 +23,7 @@ interface PageContentInterface
 		FormInterface::TYPE_IMAGE_CHOOSE,
 		FormInterface::TYPE_NUMBER,
 		'video',
+		'carousel',
 	];
 	const FILLED_FILEDS = [
 		self::KEY,

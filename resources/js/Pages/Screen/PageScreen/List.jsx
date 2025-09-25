@@ -40,17 +40,19 @@ const PageFilter = ({ filters = [] }) => {
     if (!filters.length) { return null; }
 
     return (
-        <div className="bg-white rounded-sm">
+        <>
             <Head>
                 {/* add css inline component  */}
                 <style>
                     {`.test-css{background-color: green;}`}
                 </style>
             </Head>
-            <div className="grid lg:flex w-full space-y-1 lg:space-y-0 lg:space-x-1">
-                {filters.map((item, index) => <DropdownMenu {...item} onChange={onChange} key={`item.${index}`}></DropdownMenu>)}
+            <div className="bg-white rounded-sm">
+                <div className="grid lg:flex w-full space-y-1 lg:space-y-0 lg:space-x-1">
+                    {filters.map((item, index) => <DropdownMenu {...item} onChange={onChange} key={`item.${index}`}></DropdownMenu>)}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

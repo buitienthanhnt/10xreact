@@ -54,14 +54,24 @@ class PageContentListen
             $value = $this->request->get($key);
             switch ($type) {
                 case FormInterface::TYPE_FILE:
-                    if (!$imageUploaded = $this->uploadImage($this->request->file($key), PageContentInterface::SAVED_IMAGE_FOLDER .'/'. $page_id)) {
+                    if (!$imageUploaded = $this->uploadImage($this->request->file($key), PageContentInterface::SAVED_IMAGE_FOLDER . '/' . $page_id)) {
                         break;
                     }
                     $value = $imageUploaded['public_path'];
                     break;
-                    case FormInterface::TYPE_IMAGE_CHOOSE:
-                        $value = urlToStoragePath($value) ?: null;
-                        break;
+                case FormInterface::TYPE_IMAGE_CHOOSE:
+                    $value = urlToStoragePath($value) ?: null;
+                    break;
+                case FormInterface::CAROUSEL:
+                    $arrayData = json_decode($this->request->get($key), true);
+                    $formatVal = array_map(function ($item) {
+                        return [
+                            'title' => $item['title'],
+                            'imagePath' => urlToStoragePath($item['imagePath']),
+                        ];
+                    }, $arrayData);
+                    $value = json_encode($formatVal);
+                    break;
                 default:
                     break;
             }

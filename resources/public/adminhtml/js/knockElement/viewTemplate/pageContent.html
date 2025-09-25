@@ -1,11 +1,26 @@
 <div class='bg-blue-gray-700'>
-	<div class="dropdown">
-		<button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-			aria-haspopup="true" aria-expanded="false">
-			add new fields
-		</button>
-		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bind="foreach: types">
-			<a class="dropdown-item" href="#" data-bind="text: $data, click: $parent.addField"></a>
+	<div class="d-flex justify-content-between">
+		<div class="dropdown">
+			<button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">
+				add new fields
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bind="foreach: types">
+				<a class="dropdown-item" href="#" data-bind="text: $data, click: $parent.addField"></a>
+			</div>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bind="foreach: customFields">
+				<a class="dropdown-item" href="#" data-bind="text: $data.label, click: $parent.addField"></a>
+			</div>
+		</div>
+	
+		<div class="dropdown">
+			<button class="btn btn-secondary" type="button" id="dropdownMenuButton2" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">
+				add new custom fields
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-bind="foreach: customFields">
+				<a class="dropdown-item" href="#" data-bind="text: $data.label, click: $parent.addCustomField"></a>
+			</div>
 		</div>
 	</div>
 	<input type="hidden" name="key-sort" data-bind="{value: fieldKeys}">
@@ -14,8 +29,8 @@
 		<div style="background-color: #8e99d7; padding: 8px; border-radius: 8px; position: relative;">
 			<p data-bind="text: $data.label"></p>
 			<div style="position: absolute; top: 8px; right: 1%; border-radius: 4px; padding: 2px;">
-				<span  style="background-color: rgb(173, 189, 28); margin-left: 4px; padding: 4px; border-radius: 4px;"  data-bind="click: $parent.onUp">len</span>
-				<span style="background-color: blueviolet; margin-left: 4px; padding: 4px; border-radius: 4px;" data-bind="click: $parent.onDown">xuong</span>
+				<span  style="background-color: rgb(173, 189, 28); margin-left: 4px; padding: 4px; border-radius: 4px;"  data-bind="click: $parent.onUp">Up</span>
+				<span style="background-color: blueviolet; margin-left: 4px; padding: 4px; border-radius: 4px;" data-bind="click: $parent.onDown">down</span>
 				<span style="background-color: rgb(168, 36, 43); padding: 4px; border-radius: 4px;" data-bind="click: $parent.onRemove">remove</span>
 			</div>
 
@@ -64,6 +79,20 @@
 			<div data-bind="if: $data.type === 'imageChoose'">
 				<div data-bind='component: {
 					name: "image-select-com",
+					params: { attr: $data }
+				}'></div>
+			</div>
+
+			<div data-bind="if: $data.type === 'timeline'">
+				<div data-bind='component: {
+					name: "timeline-com",
+					params: { attr: $data }
+				}'></div>
+			</div>
+
+			<div data-bind="if: $data.type === 'carousel'">
+				<div data-bind='component: {
+					name: "carousel-com",
 					params: { attr: $data }
 				}'></div>
 			</div>

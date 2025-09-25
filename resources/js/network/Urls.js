@@ -7,7 +7,8 @@ const Urls = {
 	auth: {
 		login: '/login',
 		logout: '/logout',
-	}
+	},
+	writerDetail: '/writer',
 };
 
 export default Urls;

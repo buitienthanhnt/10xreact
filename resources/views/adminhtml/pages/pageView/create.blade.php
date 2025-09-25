@@ -10,7 +10,9 @@
 @section('formBaseContentRight')
     <div data-bind='component: "pageContentId"'></div>
     <script type="text/javascript">
-     var defaultSupportFields = JSON.parse(`{!! $defaultSupportFields !!}`);
+        var defaultSupportFields = JSON.parse(`{!! $defaultSupportFields !!}`);
+        var customFields = JSON.parse(`{!! $customFields !!}`);
+
         var pageContentString = `{!! $contentFields ?? json_encode([]) !!}`; // render json string object
         var pageContentFields = JSON.parse(pageContentString); // should pass param for Component PageContent 
 

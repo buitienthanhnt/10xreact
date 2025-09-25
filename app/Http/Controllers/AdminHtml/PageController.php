@@ -24,6 +24,9 @@ class PageController extends Controller
 
     protected $request;
     protected $pageApi;
+    /**
+     * @var \App\Models\Page $defaultModel
+     */
     protected $defaultModel;
 
     function __construct(
@@ -82,6 +85,43 @@ class PageController extends Controller
         return view('adminhtml.pages.pageView.create', [
             'listAttributes' => $this->defaultModel->formField(),
             'defaultSupportFields' => json_encode(PageContentInterface::DEFAULT_FIELD_TYPE),
+            //test form field type.
+            'customFields' => json_encode([
+                [
+                    'label' => 'danh sach category',
+                    'type' => 'timeline',
+                    'path' => 'category',
+                    'options' => [
+                        [
+                            "label" => 'thoi su',
+                            "value" => 'thoi-su',
+                        ],
+                        [
+                            "label" => 'quoc te',
+                            "value" => 'quoc-te',
+                        ],
+                        [
+                            "label" => 'giai tri',
+                            "value"=> 'giai-tri',
+                        ],
+                    ],
+                ],
+                [
+                    'label' => 'tac gia',
+                    'type' => 'select',
+                    'path' => 'writer',
+                    'options' => [
+                        [
+                            "label" => 'viet nam',
+                            "value" => 'viet-nam',
+                        ],
+                        [
+                            "label" => 'trung quoc',
+                            "value" => 'trung-quoc',
+                        ],
+                    ],
+                ],
+            ] ?: []),
             'contentFields' => json_encode([
                 // ['key' => 'a', 'type' => 'text', 'value' => 'demo for textInput', 'label' => 'name', 'placeholder' => 'name for a'],
                 // ['key' => 'b', 'type' => 'number', 'value' => null],
@@ -100,6 +140,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->toArray());
         $page = Page::factory()->create($this->defaultModel->fillData($request->toArray()));
         return redirect()->to(PageInterface::ROUTE_PREFIX)->with('message', "add success new page: ".$page->{PageInterface::TITLE});
     }

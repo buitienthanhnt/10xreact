@@ -28,7 +28,7 @@ interface PageInterface extends TimestampInterface
         self::ACTIVE => ['key' => self::ACTIVE, 'type' => FormInterface::TYPE_CHECKBOX],
         self::ALIAS => ['key' => self::ALIAS, 'type' => FormInterface::TYPE_TEXT, 'label' => 'đường dẫn'],
         self::IMAGE_PATH => ['key' => self::IMAGE_PATH, 'type' => FormInterface::TYPE_IMAGE_CHOOSE, 'label' => 'ảnh đại diện'],
-        self::DESCRIPTION => ['key' => self::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTEDITOR, 'label' => 'mô tả'],
+        self::DESCRIPTION => ['key' => self::DESCRIPTION, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'mô tả'],
         self::CATEGORY => ['key' => self::CATEGORY, 'type' => FormInterface::TYPE_MULTISELECT, 'label' => 'danh mục', 'model' => \App\Models\Page::class],
         // self::CONTENT => ['key' => self::CONTENT, 'type' => FormInterface::TYPE_TEXTAREA, 'label' => 'noi dung'],
         self::WRITER => ['key' => self::WRITER, 'type' => FormInterface::TYPE_SELECT, 'label' => 'tác giả', 'model' => \App\Models\Page::class, 'required' => true],

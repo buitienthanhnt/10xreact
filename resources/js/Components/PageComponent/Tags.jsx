@@ -6,7 +6,7 @@ const Tags = ({ tags }) => {
     }
 
     return (
-        <div className="p-1 py-2 bg-white rounded-md">
+        <div className="p-2 bg-white rounded-md">
             <p className="font-bold text-xl underline my-1">Liên kết:</p>
             <div className="space-x-1 md:space-x-2 flex">
                 {tags.map(function (tag, index) {

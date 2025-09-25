@@ -8,8 +8,7 @@ define([
 	function PageContent(params) {
 		var self = this;
 		self.fields = ko.observableArray(params.inputFields);
-
-
+		self.customFields = params.customFields;
 		self.types = params.defaultSupportFields;
 
 		self.fieldKeys = ko.computed(function () {
@@ -21,6 +20,12 @@ define([
 		self.addField = function (field) {
 			let key = field + '-' + self.fields().length;
 			self.fields.push({ name: key, value: null, type: field })
+		}
+
+		self.addCustomField = function (field) {
+			// console.log(field);
+			let key = field.type + '-' + self.fields().length;
+			self.fields.push({ name: key, value: null, ...field })
 		}
 
 		self.onRemove = function (field) {

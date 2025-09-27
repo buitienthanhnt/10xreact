@@ -12,7 +12,15 @@ define([
 			self.attr.name = params.attr.key;
 		}
 		self.options = ko.observableArray(params.attr.options);
-		self.selectedOption = ko.observable(params.attr.value)
+		self.selectedOption = ko.observable(JSON.parse(params.attr.value).selectValue);
+
+		self.textData = ko.computed(function(){
+			console.log(self.selectedOption());
+			return JSON.stringify({
+				path: params.attr.path,
+				selectValue: self.selectedOption(),
+			})
+		});
 	}
 
 	ko.components.register('select-option-com', {

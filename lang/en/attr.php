@@ -16,4 +16,7 @@ return [
 	'type.text' => 'nổi bật',
 	'type.textarea' => 'đoạn văn',
 	'type.video' => 'video',
+	'type.timeline' => 'dòng thời gian',
+	'type.select' => 'lựa chọn',
+	'type.carousel' => 'chuyển động ảnh',
 ];

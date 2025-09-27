@@ -45,6 +45,11 @@ class PageContentListen
         $page->pageContents()->createMany($formValue);
     }
 
+    /**
+     * format page content form data
+     * @param int $page_id
+     * @return array
+     */
     protected function pageContentValue(int $page_id): array
     {
         $formValue = [];

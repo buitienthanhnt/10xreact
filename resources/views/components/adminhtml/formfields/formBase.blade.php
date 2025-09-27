@@ -16,7 +16,7 @@
          @endif
      @endisset
      <div class="row d-flex">
-         <div class="p-1 col-md-6">
+         <div class="p-1 col-md-5">
              @foreach ($listAttributes as $field)
                  @switch($field['type'])
                      @case(\App\Models\Types\FormInterface::TYPE_CHECKBOX)
@@ -78,7 +78,7 @@
                  <button type="submit" class="btn btn-primary col-md-4">Submit</button>
              </div>
          </div>
-         <div class="col-md-6">
+         <div class="col-md-7">
             @yield('formBaseContentRight')
          </div>
      </div>

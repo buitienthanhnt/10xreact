@@ -29,7 +29,44 @@ class PageController extends Controller
      */
     protected $defaultModel;
 
-    function __construct(
+    protected $customFields = [
+        [
+            'label' => 'danh sach category',
+            'type' => 'timeline',
+            'path' => 'category',
+            'options' => [
+                [
+                    "label" => 'thoi su',
+                    "value" => 'thoi-su',
+                ],
+                [
+                    "label" => 'quoc te',
+                    "value" => 'quoc-te',
+                ],
+                [
+                    "label" => 'giai tri',
+                    "value" => 'giai-tri',
+                ],
+            ],
+        ],
+        [
+            'label' => 'tac gia',
+            'type' => 'select',
+            'path' => 'writer',
+            'options' => [
+                [
+                    "label" => 'viet nam',
+                    "value" => 'viet-nam',
+                ],
+                [
+                    "label" => 'trung quoc',
+                    "value" => 'trung-quoc',
+                ],
+            ],
+        ],
+    ];
+
+    public function __construct(
         Request $request,
         PageApi  $pageApi,
         Page $page,
@@ -41,6 +78,10 @@ class PageController extends Controller
 
     public function list(): \Illuminate\Contracts\View\View
     {
+        $this->request->merge([
+            'sort' => 'desc',
+            'order' => 'id',
+        ]);
         $actions = [
             [
                 'type' => 'edit',
@@ -86,51 +127,7 @@ class PageController extends Controller
             'listAttributes' => $this->defaultModel->formField(),
             'defaultSupportFields' => json_encode(PageContentInterface::DEFAULT_FIELD_TYPE),
             //test form field type.
-            'customFields' => json_encode([
-                [
-                    'label' => 'danh sach category',
-                    'type' => 'timeline',
-                    'path' => 'category',
-                    'options' => [
-                        [
-                            "label" => 'thoi su',
-                            "value" => 'thoi-su',
-                        ],
-                        [
-                            "label" => 'quoc te',
-                            "value" => 'quoc-te',
-                        ],
-                        [
-                            "label" => 'giai tri',
-                            "value"=> 'giai-tri',
-                        ],
-                    ],
-                ],
-                [
-                    'label' => 'tac gia',
-                    'type' => 'select',
-                    'path' => 'writer',
-                    'options' => [
-                        [
-                            "label" => 'viet nam',
-                            "value" => 'viet-nam',
-                        ],
-                        [
-                            "label" => 'trung quoc',
-                            "value" => 'trung-quoc',
-                        ],
-                    ],
-                ],
-            ] ?: []),
-            'contentFields' => json_encode([
-                // ['key' => 'a', 'type' => 'text', 'value' => 'demo for textInput', 'label' => 'name', 'placeholder' => 'name for a'],
-                // ['key' => 'b', 'type' => 'number', 'value' => null],
-                // ['key' => 'c', 'type' => 'checkbox', 'value' => true, 'name' => 'c'],
-                // ['key' => 'e', 'type' => 'textarea', 'value' => '123 demo hello'],
-                // ['key' => 'g', 'type' => 'textEditor', 'value' => '<h3>123 demo hello</h3>'],
-                // ['key' => 'f', 'type' => 'select', 'value' => '320000000', 'options' => \App\Models\Page::writerOptions()],
-                // ['key' => 'd', 'type' => 'file', 'value' => 'http://adoc.dev/storage/files/uploads/261479696_1820281014826477_6400419339212881138_n_084353.jpg', 'label' => 'iamge file'],
-            ])
+            'customFields' => json_encode($this->customFields ?: []),
         ]);
     }
 
@@ -142,7 +139,7 @@ class PageController extends Controller
     {
         // dd($request->toArray());
         $page = Page::factory()->create($this->defaultModel->fillData($request->toArray()));
-        return redirect()->to(PageInterface::ROUTE_PREFIX)->with('message', "add success new page: ".$page->{PageInterface::TITLE});
+        return redirect()->to(PageInterface::ROUTE_PREFIX)->with('message', "add success new page: " . $page->{PageInterface::TITLE});
     }
 
     protected function pageContentValue(int $page_id): array
@@ -154,14 +151,14 @@ class PageController extends Controller
             $value = $this->request->get($key);
             switch ($type) {
                 case FormInterface::TYPE_FILE:
-                    if (!$imageUploaded = $this->uploadImage($this->request->file($key), PageContentInterface::SAVED_IMAGE_FOLDER .'/'. $page_id)) {
+                    if (!$imageUploaded = $this->uploadImage($this->request->file($key), PageContentInterface::SAVED_IMAGE_FOLDER . '/' . $page_id)) {
                         break;
                     }
                     $value = $imageUploaded['public_path'];
                     break;
-                    case FormInterface::TYPE_IMAGE_CHOOSE:
-                        $value = urlToStoragePath($value) ?: null;
-                        break;
+                case FormInterface::TYPE_IMAGE_CHOOSE:
+                    $value = urlToStoragePath($value) ?: null;
+                    break;
                 default:
                     break;
             }
@@ -191,6 +188,9 @@ class PageController extends Controller
             'method' => 'POST',
             'action' => url("adminhtml/page/update/" . $page->{PageInterface::ID}),
             'listAttributes' => $page->formField(),
+            'defaultSupportFields' => json_encode(PageContentInterface::DEFAULT_FIELD_TYPE),
+            'customFields' => json_encode($this->customFields) ?: [],
+            'contentFields' => $page->pageContents->values()->toJson(),
         ]);
     }
 }

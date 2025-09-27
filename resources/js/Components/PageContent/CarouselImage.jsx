@@ -9,11 +9,14 @@ const CarouselImage = ({ content }) => {
 				<Carousel className="rounded-xl">
 					{jsonData.map((img, index) => {
 						return (
-							<div className="relative h-full w-full" key={index.toString()}>
+							<div className="relative" key={index.toString()}>
 								<img
 									src={img.imagePath}
 									alt="image 1"
 									className="h-1/2 w-full object-cover"
+									style={{
+										// maxHeight: 340
+									}}
 								>
 								</img>
 								<div className="absolute inset-0 grid h-full w-full items-end bg-black/25">

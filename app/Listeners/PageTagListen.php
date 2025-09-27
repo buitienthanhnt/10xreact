@@ -35,6 +35,11 @@ class PageTagListen
         $page->tags()->createMany($this->tagFormsValue($page->id));
     }
 
+    /**
+     * format list tags value submited of page.
+     * @param int $page_id
+     * @return array
+     */
     protected function tagFormsValue(int $page_id) : array {
         $formSubmit = $this->request->get(PageInterface::TAGS);
         $tagFormValues = [];

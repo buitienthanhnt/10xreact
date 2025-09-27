@@ -51,6 +51,19 @@ define([
 			// console.log(input); //  input: is params bind in function define template.
 			self.items.splice(input.index, 1);
 		}
+
+		/**
+		 * this function will be call after render this template of Model.
+		 */
+		self.koDescendantsComplete = function () {
+			/**
+			 * init for set default data field load from server.
+			 */
+			if (params.attr.value) {
+				const data = JSON.parse(params.attr.value);
+				self.items(data);
+			}
+		}
 	}
 
 	ko.components.register('carousel-com', {

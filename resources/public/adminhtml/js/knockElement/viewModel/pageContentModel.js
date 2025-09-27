@@ -5,9 +5,33 @@ define([
 ], function (require, ko, _) {
 	'use strict';
 
+	/**
+	 * format for input form field type of timeline.
+	 * @param {*} params 
+	 * @returns array
+	 */
+	function formatFields(params) {
+		return params.inputFields.map((field) => {
+			switch (field.type) {
+				case 'timeline':
+				case 'select':
+					return {
+						...field,
+						path: JSON.parse(field.value).path,
+						options: params.customFields.find((customField) => {
+							return (customField.type === field.type) && (customField.path === JSON.parse(field.value).path)
+						}).options || [],
+					};
+				default:
+					return field;
+			}
+		})
+	}
+
 	function PageContent(params) {
+
 		var self = this;
-		self.fields = ko.observableArray(params.inputFields);
+		self.fields = ko.observableArray(formatFields(params));
 		self.customFields = params.customFields;
 		self.types = params.defaultSupportFields;
 

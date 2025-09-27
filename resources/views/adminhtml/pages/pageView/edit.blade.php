@@ -7,8 +7,12 @@
 @section('formBaseContentRight')
     <div data-bind='component: "pageContentId"'></div>
     <script type="text/javascript">
-        var pageContentString = `{!! $pageContent ?? json_encode([]) !!}`; // render json string object
-        var pageContentFields = JSON.parse(pageContentString); // should pass param for Component PageContent 
+        var defaultSupportFields = JSON.parse(`{!! $defaultSupportFields !!}`);
+        var customFields = JSON.parse({{ Js::from($customFields) }});
+
+        // lưu ý render json để tránh gặp phải lỗi cú pháp: Js::from (https://laravel.com/docs/12.x/blade#rendering-json)
+        // render json string object(input json string)
+        var pageContentFields = JSON.parse({{ Js::from($contentFields) }}); // should pass param for Component PageContent 
 
         // https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event == $(document).ready()
         // khoi tao knockoutJs component view model.

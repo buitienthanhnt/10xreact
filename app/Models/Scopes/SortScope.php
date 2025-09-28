@@ -24,7 +24,7 @@ class SortScope implements Scope
          * get orderBy attribute: in_array: $modelAttributes
          * exp: [id, name, title, created_at, updated_at, ...]
          */
-        $orderBy = request()->query('order'); // attribute
+        $orderBy = request()->query('order', 'id'); // attribute
         /**
          * get sortBy value: asc|desc
          */

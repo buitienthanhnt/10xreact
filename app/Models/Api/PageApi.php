@@ -58,6 +58,7 @@ class PageApi
 	}
 
 	/**
+	 * default paginate.
 	 * @var int $limit
 	 * @return Illuminate\Pagination\LengthAwarePaginator
 	 */
@@ -91,6 +92,7 @@ class PageApi
 		 */
 		$allPages = collect();
 		$hasFilter = false;
+		$cache_key = "page-list.$limit." . $this->request->get('page', 1) . "." . $this->request->get('order', 'id') . "." . $this->request->get('sort', 'asc');
 
 		/**
 		 * filter pages by categories.
@@ -99,6 +101,7 @@ class PageApi
 			$pageByCategory = $this->pageByCategoryId($cateId)->get();
 			$allPages = $allPages->merge($pageByCategory->pluck(PageInterface::ID));
 			$hasFilter = true;
+			$cache_key .= '.' . $cateId;
 		}
 
 		/**
@@ -108,6 +111,7 @@ class PageApi
 			$pageByWriters = Page::where(PageInterface::WRITER, '=', $writerFilter)->get()->pluck(PageInterface::ID);
 			$allPages = $allPages->count() ? $allPages->intersect($pageByWriters) : $allPages->merge($pageByWriters);
 			$hasFilter = true;
+			$cache_key .= '.' . $writerFilter;
 		}
 
 		/**
@@ -117,13 +121,19 @@ class PageApi
 			$pageByFilters = $this->pageByType(PageContentInterface::TYPE_FILTER_KEY, $typeFilter)->get()->pluck(PageInterface::ID);
 			$allPages = $allPages->count() ? $allPages->intersect($pageByFilters) : $allPages->merge($pageByFilters);
 			$hasFilter = true;
+			$cache_key .= '.' . $typeFilter;
 		}
 
 		if ($hasFilter) {
 			/**
 			 * get paginate pages by filter values.
+			 * cache_key
+			 * cache_time: second(đơn vị tính bằng giây)
+			 * cache_callback
 			 */
-			return Page::whereIn(PageInterface::ID, $allPages->toArray())->paginate($limit);
+			return Cache::remember($cache_key, 1 * 60 * 60, function () use ($allPages, $limit) {
+				return Page::whereIn(PageInterface::ID, $allPages->toArray())->paginate($limit);
+			});
 		}
 		return $this->pagePaginate($limit);
 	}
@@ -171,7 +181,42 @@ class PageApi
 		$pageFilters[] = $this->pageFilterType();
 		$pageFilters[] = $this->pageFilterCategories();
 		$pageFilters[] = $this->pageFilterWriters();
+		$pageFilters[] = $this->pageSortFilter();
+		$pageFilters[] = $this->pageOrderFilter();
 		return $pageFilters;
+	}
+
+	/**
+	 * list of sort filter value
+	 * @return array
+	 */
+	protected function pageSortFilter(): array
+	{
+		return [
+			'label' => 'sort',
+			'type' => 'sort',
+			'data' => [
+				['value' => 'asc', 'label' => 'asc', 'selected' => strtolower($this->request->get('sort')) === 'asc'],
+				['value' => 'desc', 'label' => 'desc', 'selected' => strtolower($this->request->get('sort')) === 'desc'],
+			],
+		];
+	}
+
+	/**
+	 * list of sort filter attribute value
+	 * @return array
+	 */
+	protected function pageOrderFilter(): array
+	{
+		return [
+			'label' => 'order by',
+			'type' => 'order',
+			'data' => [
+				['value' => 'id', 'label' => 'id', 'selected' => strtolower($this->request->get('order')) === 'id'],
+				['value' => 'title', 'label' => 'title', 'selected' => strtolower($this->request->get('order')) === 'title'],
+				['value' => 'created_at', 'label' => 'created_at', 'selected' => strtolower($this->request->get('order')) === 'created_at'],
+			],
+		];
 	}
 
 	/**

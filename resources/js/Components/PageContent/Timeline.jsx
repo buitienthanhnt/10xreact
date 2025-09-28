@@ -44,7 +44,7 @@ const DownTime = ({ timeValue }) => {
 	return (
 		<div>
 			{timeData && <p className="font-semibold text-2xl flex justify-center text-gray-800">
-				Còn: {timeData.days}:Ngày  {timeData.hours}:giờ {timeData.minutes}:phút {timeData.seconds}:giây
+				Còn: {timeData.days ? `${timeData.days} Ngày` : ''} {timeData.hours ? `${timeData.hours} giờ` : ''} {timeData.minutes ? `${timeData.minutes} phút` : ''} {timeData.seconds ? `${timeData.seconds} giây` : ''}
 			</p>}
 		</div>
 	)

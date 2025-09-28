@@ -2,8 +2,9 @@ import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 import { Head, router } from "@inertiajs/react";
 import { Paginate, ListItem } from "@/Components/Custom";
 import { DropdownMenu } from "@/Components/Custom/DropdownMenu";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import Banner from "@/Components/Custom/Banner";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
 const List = ({ current_page, last_page, data, links, filters }) => {
     if (!data) { return null; }
@@ -50,6 +51,16 @@ const PageFilter = ({ filters = [] }) => {
         });
     }, []);
 
+    const isSelectedFilter = useMemo(() => {
+        const selected = filters.filter(filter => filter.data.filter(i => i.selected).length);
+        return !!selected.length;
+    }, [])
+
+    const onReset = useCallback(() => {
+        router.get(window.location.pathname,);
+        return;
+    }, [])
+
     if (!filters.length) { return null; }
 
     return (
@@ -60,7 +71,11 @@ const PageFilter = ({ filters = [] }) => {
                     {`.test-css{background-color: green;}`}
                 </style>
             </Head>
-            <div className="bg-white rounded-sm">
+            <div className="bg-white rounded-sm space-y-1">
+                {isSelectedFilter && <div className="flex justify-end p-1 px-2">
+                    <ArrowPathIcon className="h-6 w-6" onClick={onReset}></ArrowPathIcon>
+                </div>
+                }
                 <div className="grid lg:flex w-full space-y-1 lg:space-y-0 lg:space-x-1">
                     {filters.map((item, index) => <DropdownMenu {...item} onChange={onChange} key={`item.${index}`}></DropdownMenu>)}
                 </div>

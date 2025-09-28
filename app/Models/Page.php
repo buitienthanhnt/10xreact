@@ -117,13 +117,7 @@ class Page extends Model implements PageInterface
      */
     public static function writerOptions(): array
     {
-        $listWriter = Writer::all();
-        return array_map(function (array $writer) {
-            return [
-                'value' => $writer[WriterInterface::ID],
-                'label' => $writer[WriterInterface::NAME],
-            ];
-        }, $listWriter->toArray());
+        return Writer::writerOptions()->toArray();
     }
 
     /**
@@ -133,7 +127,7 @@ class Page extends Model implements PageInterface
     {
         return Attribute::make(
             get: function (string|null $value) {
-                return $value ? asset($value) : '';
+                return $value ? (!isset(parse_url($value)['host']) ? asset($value) : $value) : '';
             },
             set: function (string|null $value) {
                 // array [
@@ -141,7 +135,8 @@ class Page extends Model implements PageInterface
                 //   "host" => "adoc.dev"
                 //   "path" => "/storage/files/uploads/261479696_1820281014826477_6400419339212881138_n_084353.jpg"
                 // ]
-                return $value ? parse_url($value)['path'] : null;
+                $parseUrl = parse_url($value);   // support third url source
+                return $value ? ($parseUrl['host'] === env('APP_HOST') ? parse_url($value)['path'] : $value) : null;
             },
         );
     }
@@ -187,9 +182,10 @@ class Page extends Model implements PageInterface
 
     /**
      * return flash category for select options.
+     * [array(["scheme" => "string", "host" => "string", "port" => "int", "user" => "string", "pass" => "string", "query" => "string", "path" => "string", "fragment" => "string"])]
      * @return array
      */
-    public static function categoryOptions(): array
+    public static function categoryOptions()
     {
         return Category::parentOptions();
     }

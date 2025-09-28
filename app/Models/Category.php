@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Events\CategorySaved;
+use App\Models\Scopes\ActiveScope;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\AliasAttrModel;
 use App\Models\ShareAction\FormField;
 use App\Models\ShareAction\ImageManualAttr;
 use App\Models\Types\CategoryInterface;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +17,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * define scope attribute.
+ */
+#[ScopedBy([ActiveScope::class])]
 class Category extends Model implements CategoryInterface
 {
     use HasFactory;
@@ -43,7 +49,7 @@ class Category extends Model implements CategoryInterface
      */
     protected $fillable = self::FILLED_FILEDS;
 
-     /**
+    /**
      * define for hidden attributes of this model
      */
     protected $hidden = self::HIDDEN_FIELDS;
@@ -89,7 +95,7 @@ class Category extends Model implements CategoryInterface
     }
 
     /**
-     * get flash category tree.
+     * get flat category tree.
      * @param int $parentId
      * @param string $prefix
      * @param  array $allCategories
@@ -97,7 +103,7 @@ class Category extends Model implements CategoryInterface
      */
     public static function getCategoryTree(int $parentId = 0, string $prefix = '__', array &$allCategories = []): array
     {
-        foreach (Category::where(self::PARENT, '=', $parentId)->get() as $value) {
+        foreach (Category::where(self::PARENT, '=', $parentId)->where(CategoryInterface::ACTIVE, '=', true)->get() as $value) {
             $data['label'] = ($prefix === '__' ? '' : $prefix) . $value->{CategoryInterface::NAME};
             $data['value'] = $value->{CategoryInterface::ID};
             $data['parent'] = $value->{CategoryInterface::PARENT};

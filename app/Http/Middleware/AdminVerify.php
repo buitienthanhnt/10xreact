@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use App\Http\Controllers\AdminHtml\DashboardController;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminVerify
@@ -17,11 +16,15 @@ class AdminVerify
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $adminUser = Session::get(DashboardController::ADMIN_USER);
-        // dd($adminUser);
+        // dd(Session::get(DashboardController::ADMIN_USER);
         if (!$request->session()->get(DashboardController::ADMIN_USER)) {
             // abort(404);
-            return redirect('adminhtml/login')->with('message', 'please login before redirect dashboard!');
+            /**
+             * ->setIntendedUrl($request->getPathInfo()) : gasn url hien taji cho  IntendedUrl cua redirect
+             * ->to('adminhtml/login'): gasn url se chuyen huowng qua
+             * ->with('message', 'please login before redirect dashboard!'): gan flash session cho dia chi ke tiep.
+             */
+            return redirect()->setIntendedUrl($request->getPathInfo())->to('adminhtml/login')->with('message', 'please login before redirect!');
         }
         return $next($request);
     }

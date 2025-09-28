@@ -22,6 +22,12 @@ Route::prefix(ADMIN_PREFIX)->middleware(['adminVerify', 'adminPermission'])->gro
 
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
+
+        Route::get('/?type=Images', 'UniSharp\LaravelFilemanager\Controllers\LfmController@show')->setBindingFields([
+            'route_name' => 'file manager',
+            'route_icon' => 'image',
+            'show' => true,
+        ]);
     });
 
     Route::get('/login', [DashboardController::class, 'login'])->withoutMiddleware(['adminVerify', 'adminPermission']);

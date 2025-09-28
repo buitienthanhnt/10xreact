@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Api\PageApi;
 use App\Models\Api\WriterApi;
 use App\Models\Category;
-use App\Models\Page;
 use App\Models\Types\CategoryInterface;
 use App\Models\Types\PageInterface;
 use Illuminate\Http\Request;
@@ -55,27 +54,9 @@ class HomeController extends Controller
     public function list(Request $request)
     {
         $page = $this->pageApi->pageFilterPaginate(6);
-        $pageFilterType = [
-            'label' => 'type list',
-            'type' => 'type',
-            'data' => $this->pageApi->pageFilters(),
-        ];
-
-        $catPage = [
-            'label' => 'categories',
-            'type' => 'cat',
-            'data' => [
-                ['value' => 6, 'label' => 'trong nước', 'selected' => (int) $request->get('cat') === 6],
-                ['value' => 7, 'label' => 'truyện tranh', 'selected' => (int) $request->get('cat') === 7],
-                ['value' => 8, 'label' => 'truyện ngắn', 'selected' => (int) $request->get('cat') === 8],
-                ['value' => 4, 'label' => 'tiểu thuyết', 'selected' => (int) $request->get('cat') === 4],
-            ],
-        ];
         return Inertia::render('Screen/PageScreen/List', [
             ...(!is_array($page) ? $page->toArray() : []),
-            'filters' =>[
-                $pageFilterType, $catPage
-            ],
+            'filters' => $this->pageApi->pageFilters(),
         ]);
     }
 
@@ -134,7 +115,7 @@ class HomeController extends Controller
      */
     public function about()
     {
-        return Inertia::render('Detail');
+        return Inertia::render('About');
     }
 
     function Signature(Request $request): void

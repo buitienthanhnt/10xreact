@@ -36,4 +36,8 @@ interface PageContentInterface
 	const HIDDEN_FIELDS = ['deleted_at', 'created_at', 'updated_at'];
 
 	const SAVED_IMAGE_FOLDER = 'pageContent';
+	/**
+	 * var key for filter page 
+	 */
+	const TYPE_FILTER_KEY = 'type';
 }

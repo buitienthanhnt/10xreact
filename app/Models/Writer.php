@@ -10,11 +10,17 @@ use App\Models\ShareAction\FormField;
 use App\Models\ShareAction\ImageManualAttr;
 use App\Models\Types\PageInterface;
 use App\Models\Types\WriterInterface;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * define scope attribute.
+ */
+#[ScopedBy([ActiveScope::class])]
 class Writer extends Model implements WriterInterface
 {
     /**
@@ -103,5 +109,21 @@ class Writer extends Model implements WriterInterface
          * 3: $localKey: primary key of this Model
          */
         return $this->hasMany(Page::class, PageInterface::WRITER);
+    }
+
+    /**
+     * return flat list collection of writer
+     * @return \Illuminate\Support\Collection<TKey, TValue>
+     * ['label' => string, 'value' => string][]
+     */
+    public static function writerOptions()
+    {
+        /**
+         * where(active) because in admin env global scope active not work.
+         */
+        return Writer::where(WriterInterface::ACTIVE, '=', true)->get()->map(fn($item) => [
+            'label' => $item->{self::NAME},
+            'value' => $item->{self::ID},
+        ]);
     }
 }

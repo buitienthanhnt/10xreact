@@ -50,4 +50,6 @@ interface WriterInterface extends RouteInterface
 
 	const PREFIX = 'writer';
 	const ROUTE_PREFIX = ADMIN_PREFIX . '/' . self::PREFIX;
+
+	const WRITER_FILTER_KEY = 'writer';
 }

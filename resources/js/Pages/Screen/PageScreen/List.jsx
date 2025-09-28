@@ -11,7 +11,7 @@ const List = ({ current_page, last_page, data, links, filters }) => {
     return (
         <>
             <Head title="list page">
-                {/* add css inline for page. */}
+                {/* add css inline for page.(<Head> tag must be in: <> tag; not in <div> tag) */}
                 <style>
                     {`.demo{background-color: red;}`}
                 </style>
@@ -31,9 +31,22 @@ const List = ({ current_page, last_page, data, links, filters }) => {
 }
 
 const PageFilter = ({ filters = [] }) => {
+    /**
+     * action for select filter item.
+     */
     const onChange = useCallback((type, item) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get(type) == item.value) {
+            // remove filter param.
+            router.get(window.location.href, {
+                [type]: undefined,
+                page: undefined, // reset page
+            });
+            return;
+        }
         router.get(window.location.href, {
-            [type]: item.value
+            [type]: item.value,
+            page: undefined, // reset page
         });
     }, []);
 

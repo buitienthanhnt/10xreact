@@ -2,6 +2,7 @@
 
 namespace App\Models\Api;
 
+use App\Helper\RedisHelper;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\PageContent;
@@ -392,5 +393,41 @@ class PageApi
 				'options' => Category::getCategoryTree(prefix: ''),
 			]
 		];
+	}
+
+	/**
+	 * @param int $pageId
+	 * @param string $type views|star|like|heart|fire
+	 * @param string $action inc|dic
+	 * @return array|null
+	 */
+	public static function pageInfoActionRedis(int $pageId, string $type = 'views', $action = 'inc')
+	{
+		$key = "page:$pageId";
+
+		/**
+		 * set value for key before.
+		 * $value = ['views' => int, 'liked' => int, 'heart' => int, 'star' => int,'fire' => int, ];
+		 */
+		$value = [];
+		if ($lastValue = RedisHelper::getValue($key)) {
+			$value = json_decode($lastValue, true);
+			if ($action === 'inc') {
+				$value[$type] = isset($value[$type]) ? $value[$type] + 1 : 1;
+			} else {
+				$value[$type] = isset($value[$type]) && $value[$type] > 1 ? $value[$type] - 1 : 0;
+			}
+		} else {
+			if ($action === 'inc') {
+				$value[$type] = 1;
+			}else {
+				return null;
+			}
+		}
+		/**
+		 * save page info to redis server.
+		 */
+		RedisHelper::setValue($key, json_encode($value));
+		return $value;
 	}
 }

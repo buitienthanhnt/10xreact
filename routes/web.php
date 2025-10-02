@@ -1,12 +1,16 @@
 <?php
 
+use App\Events\ViewCount;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\LanguageBoot;
+use App\Models\Api\PageApi;
+use App\Models\Page;
 use App\Providers\LanguageProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 // use Illuminate\Support\Facades\URL;
@@ -67,6 +71,34 @@ Route::prefix('test')->group(function (): void {
         // echo(action([HomeController::class, 'list'], ['id' => 1]));
         // return redirect($signutre);
         // return 123;
+    });
+
+    /**
+     * test redis cache.
+     */
+    Route::get('redis', function () {
+        Redis::set('test', 'true');
+        $data = Redis::get('test');
+        dd($data);
+    });
+
+    /**
+     * test page detail.
+     */
+    Route::get('page-detail/{id}', function (int $id) {
+        return (Page::find($id)->toArray());
+    });
+
+    Route::get('event', function () {
+        /**
+         * dispatch page view count action
+         */
+        ViewCount::dispatch(Page::find(40));
+        /**
+         * call add page info type.
+         */
+        PageApi::pageInfoActionRedis(40, 'heart', 'dic');
+        return true;
     });
 
     Route::get('knock', function () {

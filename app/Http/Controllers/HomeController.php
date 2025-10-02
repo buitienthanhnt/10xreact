@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ViewCount;
 use App\Models\Api\PageApi;
 use App\Models\Api\WriterApi;
 use App\Models\Category;
@@ -43,8 +44,16 @@ class HomeController extends Controller
          * inject with writer model, page content, tags data, category value in list value
          * done!
          */
+        $pageDetail = $this->pageApi->detailByAttr(PageInterface::ALIAS, $alias);
+        /**
+         * dispatch event for count of page view.
+         */
+        ViewCount::dispatch($pageDetail);
+        /**
+         * render page view.
+         */
         return Inertia::render('Screen/PageScreen/Detail', [
-            'page' => $this->pageApi->detailByAttr(PageInterface::ALIAS, $alias)
+            'page' => $pageDetail,
         ]);
     }
 

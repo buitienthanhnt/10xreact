@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Events\PageSaved;
+use App\Helper\RedisHelper;
 use App\Models\Scopes\ActiveScope;
 use App\Models\Scopes\SortScope;
 use App\Models\ShareAction\ActiveAttrModel;
@@ -77,6 +78,8 @@ class Page extends Model implements PageInterface
      * gán các thuộc tính sẽ được ẩn khi truy vấn(không trả về trong collection).
      */
     protected $hidden = [self::CREATED_AT, self::DELETED_AT,];
+
+    protected $appends = ['info']; // Add the custom attribute here
 
     protected static function booted(): void
     {
@@ -188,5 +191,15 @@ class Page extends Model implements PageInterface
     public static function categoryOptions()
     {
         return Category::parentOptions();
+    }
+
+    /**
+     * return page info.
+     * @return array|null
+     */
+    public function getInfoAttribute()
+    {
+        $key = 'page:' . $this->{self::ID};
+        return json_decode(RedisHelper::getValue($key) ?: '', true);
     }
 }

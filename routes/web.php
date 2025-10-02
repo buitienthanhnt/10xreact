@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\PageEnum;
+use App\Enums\ShareEnum;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\LanguageBoot;
@@ -67,6 +69,11 @@ Route::prefix('test')->group(function (): void {
         // echo(action([HomeController::class, 'list'], ['id' => 1]));
         // return redirect($signutre);
         // return 123;
+    });
+
+    Route::get('enum', function () {
+        dd(ShareEnum::processOrder(ShareEnum::Approved));
+        dd(PageEnum::Fire->value);
     });
 
     Route::get('knock', function () {

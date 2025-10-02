@@ -32,6 +32,13 @@ class PageTagListen
          * @var Page $page
          */
         $page = $event->page;
+        /**
+         * force delete old value
+         */
+        $page->tags()->forceDelete();
+        /**
+         * insert new data.
+         */
         $page->tags()->createMany($this->tagFormsValue($page->id));
     }
 
@@ -40,7 +47,8 @@ class PageTagListen
      * @param int $page_id
      * @return array
      */
-    protected function tagFormsValue(int $page_id) : array {
+    protected function tagFormsValue(int $page_id): array
+    {
         $formSubmit = $this->request->get(PageInterface::TAGS);
         $tagFormValues = [];
         foreach ($formSubmit as $value) {

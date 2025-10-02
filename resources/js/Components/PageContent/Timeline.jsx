@@ -13,7 +13,7 @@ const Timeline = ({ content }) => {
 
 const DownTime = ({ timeValue }) => {
 	const [timeData, setTimeData] = useState();
-
+	const [isFinish, setIsFinish] = useState(false);
 	const targetTime = useMemo(() => {
 		return (new Date(timeValue)).getTime();
 	}, [])
@@ -29,6 +29,7 @@ const DownTime = ({ timeValue }) => {
 			const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));         // chia 60m lấy dư phút(<60) lẻ chia 60s(làm tròn xuống)
 			const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);					 // chia 60s lấy dư số giây(<60) chia 1000ms(làm tròn xuống)
 			if (timeLeft < 0) {
+				setIsFinish(true);
 				clearInterval(timer);
 				return;
 			}
@@ -40,6 +41,14 @@ const DownTime = ({ timeValue }) => {
 			})
 		}, 1000)
 	}, [targetTime])
+
+	if (isFinish) {
+		return (
+			<p className="font-semibold text-2xl flex justify-center text-orange-800">
+				Finish of event!
+			</p>
+		)
+	}
 
 	return (
 		<div>

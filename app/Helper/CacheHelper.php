@@ -19,4 +19,8 @@ final class CacheHelper
 	public function saveAndReturn(string $key, \Closure|\DateTimeInterface|\DateInterval|int|null $ttl, \Closure $callback) {
 		return Cache::remember($key, $ttl, $callback);
 	}
+
+	public function clear(string $key) {
+		return Cache::forget($key);
+	}
 }

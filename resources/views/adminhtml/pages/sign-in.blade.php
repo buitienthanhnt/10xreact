@@ -50,7 +50,7 @@
                                         <label class="form-label">{{ __('auth.password') }}</label>
                                         <input type="password" name="password" class="form-control">
                                     </div>
-                                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                                    <div class="form-switch d-flex mb-3">
                                         <input class="form-check-input" type="checkbox" id="rememberMe">
                                         <label class="form-check-label mb-0 ms-2" for="rememberMe">{{ __('auth.remenber') }}</label>
                                     </div>

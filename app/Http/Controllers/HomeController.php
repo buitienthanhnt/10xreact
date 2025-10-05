@@ -66,6 +66,8 @@ class HomeController extends Controller
         return Inertia::render('Screen/PageScreen/List', [
             ...(!is_array($page) ? $page->toArray() : []),
             'filters' => $this->pageApi->pageFilters(),
+            'randoms' => $this->pageApi->pageRandom(),
+            'deXuat' => $this->pageApi->pageRandom(),
         ]);
     }
 

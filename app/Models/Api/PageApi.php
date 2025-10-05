@@ -12,6 +12,7 @@ use App\Models\Types\PageInterface;
 use App\Models\Types\TagInterface;
 use App\Models\Types\WriterInterface;
 use App\Models\Writer;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 
 class PageApi
@@ -137,6 +138,14 @@ class PageApi
 			});
 		}
 		return $this->pagePaginate($limit);
+	}
+
+	/**
+	 * @param int $limit
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function pageRandom(int $limit = 6) {
+		return $this->page->all()->random($limit);
 	}
 
 	/**

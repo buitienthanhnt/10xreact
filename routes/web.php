@@ -1,6 +1,8 @@
 <?php
 
 use App\Events\ViewCount;
+use App\Enums\PageEnum;
+use App\Enums\ShareEnum;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\LanguageBoot;
@@ -99,6 +101,11 @@ Route::prefix('test')->group(function (): void {
          */
         PageApi::pageInfoActionRedis(40, 'heart', 'dic');
         return true;
+    });
+
+    Route::get('enum', function () {
+        dd(ShareEnum::processOrder(ShareEnum::Approved));
+        dd(PageEnum::Fire->value);
     });
 
     Route::get('knock', function () {

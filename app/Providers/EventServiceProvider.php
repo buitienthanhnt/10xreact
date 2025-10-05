@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\Events\CategorySaved;
 use App\Events\PageSaved;
+use App\Events\ViewCount;
 use App\Events\WriterSaved;
 use App\Listeners\CategorySavedListen;
 use App\Listeners\PageContentListen;
 use App\Listeners\PageSavedListen;
 use App\Listeners\PageTagListen;
+use App\Listeners\ViewCountListen;
 use App\Listeners\WriterSavedListen;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -26,17 +28,20 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        WriterSaved::class => [ // register for listener writer event after saved
+        WriterSaved::class => [         // register for listener writer event after saved
             WriterSavedListen::class,
         ],
-        CategorySaved::class => [
-            CategorySavedListen::class, // define for listener category after saved.
+        CategorySaved::class => [       // define for listener category after saved.
+            CategorySavedListen::class,
         ],
-        PageSaved::class => [
-            PageSavedListen::class, // define for listener page after saved.
+        PageSaved::class => [           // define for listener page after saved.
+            PageSavedListen::class,     
             PageContentListen::class,
             PageTagListen::class,
-        ]
+        ],
+        ViewCount::class => [           // define for listener add view count.
+            ViewCountListen::class,
+        ],
     ];
 
     /**

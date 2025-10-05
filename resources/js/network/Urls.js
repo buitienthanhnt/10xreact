@@ -9,6 +9,9 @@ const Urls = {
 		logout: '/logout',
 	},
 	writerDetail: '/writer',
+	pages: {
+		pageSugget: '/api/page-sugget/%s'
+	}
 };
 
 export default Urls;

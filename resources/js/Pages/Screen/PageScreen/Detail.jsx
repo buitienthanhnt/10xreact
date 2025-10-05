@@ -3,6 +3,7 @@ import RelatedPage from "@/Components/Custom/RelatedPage";
 import { ImageType, TextEditorType, TextType, VideoType, TextAreaType, Timeline, CarouselImage } from "@/Components/PageContent";
 import { InpageCategory, Tags, Info, Propose, CommentForm, CommentList } from "@/Components/PageComponent";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
+import { SuggetVertical } from "@/Components/Custom";
 
 export default function Detail({ page: { title, desciption, page_contents, tags, categories, id, writer } }) {
 
@@ -19,6 +20,7 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
                 <InpageCategory categories={categories}></InpageCategory>
                 <CommentList></CommentList>
                 <CommentForm pageId={id}></CommentForm>
+                <SuggetVertical pageId={id} title={'Tin cùng chuyên mục:'}></SuggetVertical>
                 <RelatedPage></RelatedPage>
                 <Propose></Propose>
             </div>

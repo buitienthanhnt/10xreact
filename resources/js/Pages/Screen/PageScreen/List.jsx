@@ -1,13 +1,12 @@
-import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
+import TopPageLayout from "@/Layouts/BuildLayout/TopPageLayout";
 import { Head, router } from "@inertiajs/react";
-import { Paginate, ListItem, GalleryList, TimeList } from "@/Components/Custom";
+import { Paginate, ListItem, GalleryList, TimeList, RandomHorizon, } from "@/Components/Custom";
 import { DropdownMenu } from "@/Components/Custom/DropdownMenu";
 import { useCallback, useMemo } from "react";
 import Banner from "@/Components/Custom/Banner";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
-import {TopPage, HorizonList, PageSmList, DupList} from "@/Components/PageComponent";
 
-const List = ({ current_page, last_page, data, links, filters, randoms, deXuat }) => {
+const List = ({ paginate: { current_page, last_page, data, links, }, filters }) => {
     if (!data) { return null; }
 
     return (
@@ -19,7 +18,6 @@ const List = ({ current_page, last_page, data, links, filters, randoms, deXuat }
                 </style>
             </Head>
             <div className="space-y-2">
-                <TopPage></TopPage>
                 <PageFilter filters={filters}></PageFilter>
                 {data && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4">
                     {data.map((item, index) => {
@@ -27,10 +25,9 @@ const List = ({ current_page, last_page, data, links, filters, randoms, deXuat }
                     })}
                 </div>}
                 <Paginate pageSize={last_page} currentPage={current_page} links={links} url={window.location.href}></Paginate>
-                <Banner layout={''} page={randoms[2]}></Banner>
-                <PageSmList items={randoms}></PageSmList>
-                <HorizonList items={deXuat}></HorizonList>
-                <GalleryList items={deXuat.slice(3, 5)}></GalleryList>
+                {/* <Banner layout={''} page={randoms[2]}></Banner> */}
+                <RandomHorizon></RandomHorizon>
+                <GalleryList></GalleryList>
                 <TimeList></TimeList>
             </div>
         </>
@@ -91,7 +88,7 @@ const PageFilter = ({ filters = [] }) => {
 }
 
 List.layout = page => (
-    <SingleLayout children={page} />
+    <TopPageLayout children={page} />
 )
 
 export default List

@@ -16,7 +16,7 @@ final class CacheHelper
 	 * @param \Closure $callback
 	 * @return mixed
 	 */
-	public function saveAndReturn(string $key, \Closure|\DateTimeInterface|\DateInterval|int|null $ttl, \Closure $callback) {
+	public function saveAndReturn(string $key, \Closure|\DateTimeInterface|\DateInterval|int|null $ttl = 60*15, \Closure $callback) {
 		return Cache::remember($key, $ttl, $callback);
 	}
 

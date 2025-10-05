@@ -2,11 +2,15 @@ import { Typography } from "@material-tailwind/react"
 import { ImagePage } from "../Custom"
 import { Link } from "@inertiajs/react"
 
-const PageSmList = ({ items }) => {
+const PageSmList = ({ items, title }) => {
+	if (!items) {
+		return null;
+	}
+	
 	return (
 		<div className="flex lg:space-x-1">
 			<div className="space-y-1 bg-white p-1 rounded-md lg:w-3/4">
-				<h3 className="font-semibold text-2xl text-blue-700 lg:py-2">Ngẫu nhiên:</h3>
+				<h3 className="font-semibold text-2xl text-blue-700 lg:py-2">{title || 'Ngẫu nhiên:'}</h3>
 				{items.map((item, index) => <PageSmItem item={item} key={`sm-${index}`}></PageSmItem>)}
 			</div>
 			<div className="bg-white invisible lg:visible w-0 lg:w-1/4 p-0 lg:p-1 lg:py-2 rounded-md flex-row justify-center">

@@ -9,7 +9,7 @@ const usePageRandom = ()=>{
 
 	return {
 		pages: data,
-		isloadDing: isFetching,
+		isLoading: isFetching,
 		isError,
 		error,
 	}

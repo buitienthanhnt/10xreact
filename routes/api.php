@@ -26,4 +26,6 @@ Route::get('page-by-ids', [PageApiController::class, 'pageByIds']);
 
 Route::get('page-random', [PageApiController::class, 'pageRandom']);
 
+Route::get('page-sugget/{id}', [PageApiController::class, 'pageSugget']);
+
 Route::get('comments', [CommentController::class, 'index']);

@@ -3,6 +3,9 @@ import { Link } from '@inertiajs/react';
 import { ImagePage } from '../Custom';
 
 export function HorizonList(props) {
+	if (!props.items) {
+		return null;
+	}
 
 	return (
 		<div className="bg-white p-1 rounded-md">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CacheEnum;
 use App\Events\PageSaved;
 use App\Helper\RedisHelper;
 use App\Models\Scopes\ActiveScope;
@@ -18,8 +19,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-// use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Cache;
 
 // khai báo các global scope áp dụng cho Model.
 #[ScopedBy([ActiveScope::class])]
@@ -100,6 +101,16 @@ class Page extends Model implements PageInterface
              */
             $page->tags()->delete();
         });
+
+        /**
+         * define event after page created.
+         */
+        static::created((function () : void {
+            /**
+             * clear top_page cache
+             */
+            Cache::forget(CacheEnum::TopPage->value);
+        }));
     }
 
     /**
@@ -166,7 +177,7 @@ class Page extends Model implements PageInterface
 
     /**
      * liên kết 1 - nhiều tới page_contents.
-     * get contents ò the page.
+     * get contents of the page.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function pageContents(): \Illuminate\Database\Eloquent\Relations\HasMany

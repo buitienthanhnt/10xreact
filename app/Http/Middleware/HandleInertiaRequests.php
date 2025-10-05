@@ -14,6 +14,15 @@ class HandleInertiaRequests extends Middleware
      */
     protected $rootView = 'app';
 
+    protected $pageApi;
+
+    function __construct(
+        \App\Models\Api\PageApi $pageApi,
+    )
+    {
+        $this->pageApi = $pageApi;
+    }
+
     /**
      * Determine the current asset version.
      */
@@ -29,6 +38,13 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        /**
+         * pass if env is api or adminhtml.
+         */
+        if (isApiEnv() || isAdminEnv()) {
+            return [];
+        }
+
         /**
          * define for list element of top menu
          */
@@ -49,6 +65,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'topMenu' => $topMenu,
             'responseData' => $request->session()->get('responseData'), // include for response data form.
+            'topPage' => $this->pageApi->topPage()->toArray() ?: null,                     // get 3 newest page for TopPage Component.
         ];
     }
 }

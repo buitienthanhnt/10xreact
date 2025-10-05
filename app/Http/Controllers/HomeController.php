@@ -63,11 +63,10 @@ class HomeController extends Controller
     public function list(Request $request)
     {
         $page = $this->pageApi->pageFilterPaginate(6);
+        // $demoRandom = $this->pageApi->pageRandom();
         return Inertia::render('Screen/PageScreen/List', [
-            ...(!is_array($page) ? $page->toArray() : []),
+            'paginate' => (!is_array($page) ? $page->toArray() : []),
             'filters' => $this->pageApi->pageFilters(),
-            'randoms' => $this->pageApi->pageRandom(),
-            'deXuat' => $this->pageApi->pageRandom(),
         ]);
     }
 

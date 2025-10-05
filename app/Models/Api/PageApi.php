@@ -2,6 +2,7 @@
 
 namespace App\Models\Api;
 
+use App\Enums\CacheEnum;
 use App\Helper\RedisHelper;
 use App\Models\Category;
 use App\Models\Page;
@@ -144,7 +145,8 @@ class PageApi
 	 * @param int $limit
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
-	public function pageRandom(int $limit = 6) {
+	public function pageRandom(int $limit = 6)
+	{
 		return $this->page->all()->random($limit);
 	}
 
@@ -429,7 +431,7 @@ class PageApi
 		} else {
 			if ($action === 'inc') {
 				$value[$type] = 1;
-			}else {
+			} else {
 				return null;
 			}
 		}
@@ -438,5 +440,28 @@ class PageApi
 		 */
 		RedisHelper::setValue($key, json_encode($value));
 		return $value;
+	}
+
+	/**
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	function topPage()
+	{
+		/**
+		 * get 3 newest page 
+		 * ->latest(): sắp xếp mới nhất theo cột
+		 * ->limit(): lấy mấy giá trị
+		 * ->get(): trả về collection.
+		 * ->makeHidden: ẩn bớt 1 số thuộc tính.
+		 */
+		return $this->cacheHelper->saveAndReturn(
+			CacheEnum::TopPage->value,
+			60 * 30,
+			fn() => $this->page->newQuery()
+				->latest('created_at')
+				->limit(3)
+				->get()
+				->makeHidden([PageInterface::ACTIVE, PageInterface::WRITER, PageInterface::DESCRIPTION, 'info'])
+		);
 	}
 }

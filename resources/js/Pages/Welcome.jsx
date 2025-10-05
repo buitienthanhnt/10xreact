@@ -1,8 +1,9 @@
-import SingleLayout from '@/Layouts/BuildLayout/SingleLayout';
+import { DupVideos } from '@/Components/Custom';
+import TopPageLayout from '@/Layouts/BuildLayout/TopPageLayout';
 import { Link, Head, } from '@inertiajs/react';
 import { useMemo } from 'react';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ auth, laravelVersion, phpVersion, videos }) {
     /**
      * get time of today
      * format as: yyyy-mm-dd
@@ -13,7 +14,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
     }, [])
 
     return (
-        <SingleLayout>
+        <TopPageLayout>
             <>
                 <Head title="trang chủ">
                     <meta name="author" content="thanhnt for developer" />
@@ -58,7 +59,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         )}
                     </div>
 
-                    <div className="max-w-7xl mx-auto p-6 lg:p-8">
+                    <div className="max-w-7xl mx-auto p-6 lg:p-8 space-y-1">
                         <div className="flex justify-center bg-white p-10 rounded-md">
                             <div className='space-y-3'>
                                 <div className='flex justify-center'>
@@ -78,8 +79,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                             </div>
                         </div>
 
-                        <div className="mt-8
-                    ">
+                        <DupVideos items={videos}></DupVideos>
+
+                        <div className="mt-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                                 <a
                                     href="https://laravel.com/docs"
@@ -357,6 +359,6 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
 }
             `}</style>
             </>
-        </SingleLayout>
+        </TopPageLayout>
     );
 }

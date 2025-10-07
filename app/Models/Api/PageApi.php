@@ -15,6 +15,7 @@ use App\Models\Types\WriterInterface;
 use App\Models\Writer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class PageApi
 {
@@ -445,7 +446,7 @@ class PageApi
 	/**
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
-	function topPage()
+	public function topPage()
 	{
 		/**
 		 * get 3 newest page 
@@ -463,5 +464,51 @@ class PageApi
 				->get()
 				->makeHidden([PageInterface::ACTIVE, PageInterface::WRITER, PageInterface::DESCRIPTION, 'info'])
 		);
+	}
+
+	/**
+	 * return list page with only type of filter value.
+	 * @param string $type
+	 * @param int $limit
+	 * @return @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function pageFilterByType(string $type, int $limit = 6)
+	{
+		return $this->page::whereRelation('pageContents', PageContentInterface::TYPE, $type)
+			->latest('created_at')
+			->distinct('id')
+			->limit($limit)
+			->with(['pageContents' => function ($query) use ($type) {
+				$query->where(PageContentInterface::TYPE, $type);
+			}])
+			->get();
+	}
+
+	/**
+	 * filter timeValue of string json value.
+	 * @param string $type
+	 * @param int $limit
+	 */
+	public function pageFilterTimeline(string $type, int $limit = 6)
+	{
+		// filter by timevalue timeline.
+		// SELECT * FROM page_contents where `type` = 'timeline' AND DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d') > NOW() LIMIT 100
+		// // $contents = DB::table(PageContentInterface::TABLE_NAME)->raw("where `type` = 'timeline' AND DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d') > NOW() LIMIT 100")->select('*')->get();
+		return $this->page::whereRelation('pageContents', PageContentInterface::TYPE, $type) // Illuminate\Database\Eloquent\Builder
+			->has(
+				'pageContents',
+				callback: function ($query) use ($type) {
+					$query->where(PageContentInterface::TYPE, $type)
+						->whereRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()");
+				}
+			)
+			->latest('created_at')
+			->distinct('id')
+			->limit($limit)
+			->with(['pageContents' => function ($query) use ($type) {
+				$query->where(PageContentInterface::TYPE, $type)
+					->whereRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()");
+			}])
+			->get();
 	}
 }

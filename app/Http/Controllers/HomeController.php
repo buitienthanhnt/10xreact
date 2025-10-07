@@ -6,9 +6,12 @@ use App\Events\ViewCount;
 use App\Models\Api\PageApi;
 use App\Models\Api\WriterApi;
 use App\Models\Category;
+use App\Models\Page;
 use App\Models\Types\CategoryInterface;
 use App\Models\Types\PageInterface;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -31,7 +34,21 @@ class HomeController extends Controller
 
     public function home()
     {
-        return Inertia::render('Home');
+        $timeLine = $this->pageApi->pageFilterTimeline('timeline');
+        $videos = Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
+            $query->where('type', 'video');
+        }])->get();
+        $banner = Page::latest()->first();
+        return Inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+            'videos' => $videos,
+            'banner' => $banner,
+            'timeLine' => $timeLine,
+
+        ]);
     }
 
     /**

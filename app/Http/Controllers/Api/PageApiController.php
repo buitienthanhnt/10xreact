@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Api\PageApi;
 use App\Models\PageCategory;
+use App\Models\Types\CategoryInterface;
+use App\Models\Types\PageCategoriesInterface;
 use Illuminate\Http\Request;
 
 final class PageApiController extends Controller
@@ -22,7 +24,8 @@ final class PageApiController extends Controller
 	/**
 	 * 
 	 */
-	public function pageByIds(Request $request) {
+	public function pageByIds(Request $request)
+	{
 		$pageIds = $request->get('ids');
 		return $this->pageApi->pageByIds(explode(',', $pageIds));
 	}
@@ -30,7 +33,8 @@ final class PageApiController extends Controller
 	/**
 	 * get random pages.
 	 */
-	function pageRandom() {
+	function pageRandom()
+	{
 		// sleep(4);
 		return $this->pageApi->getRandom();
 	}
@@ -39,13 +43,19 @@ final class PageApiController extends Controller
 	 * get sugget page by id
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
-	public function pageSugget(int $id) {
+	public function pageSugget(int $id)
+	{
 		/**
 		 * @var \App\Models\Page $page
 		 */
 		$page = $this->pageApi->pageByIds([$id])->first();
-		$categories = $page->categories->pluck('id')->toArray();
-		$pageIds = PageCategory::whereIn('category_id', $categories)->whereNotIn('page_id', [$id])->latest('page_id')->limit(6)->get('page_id')->toArray();
+		$categories = $page->categories->pluck(CategoryInterface::ID)->toArray();
+		$pageIds = PageCategory::whereIn(PageCategoriesInterface::CATEGORY_ID, $categories)
+			->whereNotIn(PageCategoriesInterface::PAGE_ID, [$id])
+			->latest(PageCategoriesInterface::PAGE_ID)
+			->limit(6)
+			->get(PageCategoriesInterface::PAGE_ID)
+			->toArray();
 		return $this->pageApi->pageByIds($pageIds);
 	}
 }

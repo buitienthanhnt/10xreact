@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ImagePage from "./ImagePage";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
-import { Link } from "@inertiajs/react";
+import YouTube from "react-youtube";
 
 const DupVideos = ({ items }) => {
 	// http://img.youtube.com/vi/XSBQJ3bVJ0U/maxresdefault.jpg
@@ -15,15 +15,29 @@ const DupVideos = ({ items }) => {
 	)
 }
 
-const VideoBanner = ({ item: {id, page_contents, title, alias} }) => {
+const VideoBanner = ({ item: { id, page_contents, title, alias } }) => {
+	const [play, setPlay] = useState(false);
+
 	return (
-		<Link className="col-span-1 bg-white rounded-md flex relative justify-center items-center" href={route('detail', {alias})}>
-			<ImagePage source={`https://img.youtube.com/vi/${page_contents[0].value}/maxresdefault.jpg`} className='w-full aspect-[7/9] rounded-md'></ImagePage>
+		<div className="col-span-1 bg-white rounded-md flex relative justify-center items-center" href={route('detail', { alias })}>
+			{play ? (
+				<div className='w-full aspect-[7/9] rounded-md bg-black'>
+					<YouTube style={{height: '100%'}} videoId={page_contents[0].value} opts={{
+						width: '100%',
+						height: '100%',
+						playerVars: {
+							autoplay: 1,
+						},
+					}} />
+				</div>
+			) : (
+				<ImagePage source={`https://img.youtube.com/vi/${page_contents[0].value}/maxresdefault.jpg`} className='w-full aspect-[7/9] rounded-md'></ImagePage>
+			)}
 			<p className="absolute bottom-0 left-0 bg-[#925ccc3b] w-full p-1 font-semibold text-xl text-orange-800 rounded-t-md">{title}</p>
-			<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+			{!play && <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" onClick={() => { setPlay(!play) }}>
 				<PlayCircleIcon width={80} height={80} color="red"></PlayCircleIcon>
-			</div>
-		</Link>
+			</div>}
+		</div>
 	)
 }
 

@@ -5,21 +5,13 @@ use App\Enums\PageEnum;
 use App\Enums\ShareEnum;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Middleware\LanguageBoot;
 use App\Models\Api\PageApi;
 use App\Models\Page;
-use App\Models\PageContent;
-use App\Models\Types\PageContentInterface;
-use App\Models\Types\PageInterface;
 use App\Providers\LanguageProvider;
-use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 // use Illuminate\Support\Facades\URL;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,21 +23,6 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    // $videos = PageContent::where(PageContentInterface::TYPE, '=', 'video')->distinct('page_id')->latest('created_at')->limit(2)->get()->unique(PageContentInterface::PAGE_ID)->pluck(PageContentInterface::PAGE_ID)->toArray();
-    // $pages = Page::whereIn(PageInterface::ID, $videos)->with('pageContents')->get();
-    $videos = Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
-        $query->where('type', 'video');
-    }])->get();
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-        'videos' => $videos,
-    ]);
-})->name('home');
 
 Route::get('/greeting/{locale}', function (string $locale) {
     if (! in_array($locale, ['en', 'es', 'fr', 'vi'])) {

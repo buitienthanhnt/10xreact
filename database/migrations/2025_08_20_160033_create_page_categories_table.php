@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Types\PageCategoriesInterface;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_categories', function (Blueprint $table) {
-            $table->integer('page_id');
-            $table->integer('category_id');
+        Schema::create(PageCategoriesInterface::TABLE_NAME, function (Blueprint $table) {
+            $table->integer(PageCategoriesInterface::PAGE_ID);
+            $table->integer(PageCategoriesInterface::CATEGORY_ID);
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('page_categories');
+        Schema::dropIfExists(PageCategoriesInterface::TABLE_NAME);
     }
 };

@@ -7,7 +7,7 @@ export default function VideoType(params) {
 	const opts = useMemo(() => {
 		return {
 			width: '100%',
-			height: height || 350,
+			height: '100%',
 			playerVars: {
 				// https://developers.google.com/youtube/player_parameters
 				autoplay: 1,
@@ -31,8 +31,8 @@ export default function VideoType(params) {
 
 	return (
 		<div className="flex justify-center items-center p-1 lg:px-4 content-video">
-			<div className="w-full lg:w-2/3 xl:w-1/2 ">
-				<YouTube videoId={params.content.value} opts={opts} onReady={onPlayerReady} />
+			<div className="w-full lg:w-2/3 xl:w-1/2 aspect-[6/9] bg-green">
+				<YouTube videoId={params.content.value} opts={opts} style={{height: '100%'}}/>
 			</div>
 		</div>
 	)

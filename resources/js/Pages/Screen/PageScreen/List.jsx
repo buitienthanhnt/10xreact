@@ -28,7 +28,6 @@ const List = ({ paginate: { current_page, last_page, data, links, }, filters }) 
                 {/* <Banner layout={''} page={randoms[2]}></Banner> */}
                 <RandomHorizon></RandomHorizon>
                 <GalleryList></GalleryList>
-                <TimeList></TimeList>
             </div>
         </>
     )

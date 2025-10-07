@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
 Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {

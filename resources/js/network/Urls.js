@@ -11,7 +11,10 @@ const Urls = {
 	writerDetail: '/writer',
 	pages: {
 		pageSugget: '/api/page-sugget/%s'
-	}
+	},
+	category: {
+		centerCategory: '/api/center-categories',
+	},
 };
 
 export default Urls;

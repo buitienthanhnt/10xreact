@@ -24,4 +24,31 @@ final class CategoryApi
 	{
 		return $this->category->paginate($limit);
 	}
+
+	/**
+	 * 
+	 */
+	public function centerCategories()
+	{
+		/**
+		 * Illuminate\Database\Eloquent\Model -> on->
+		 * Illuminate\Database\Eloquent\Builder ->
+		 * Illuminate\Database\Eloquent\Concerns\QueriesRelationships -> whereHas
+		 */
+		// return $this->category::has('pages')->with('pages', fn($query) => $query->take(4))->get();
+		return $this->category::has('pages',) // has pages not null
+			->with('pages',)
+			->get()
+			->random(4)
+			->map(
+				function ($category) {
+					/**
+					 * set limit for category page item max 6
+					 * https://stackoverflow.com/questions/43097559/laravel-eloquent-limit-results-for-relationship
+					 */
+					$category->setRelation('pages', $category->pages->take(6));
+					return $category;
+				}
+			);
+	}
 }

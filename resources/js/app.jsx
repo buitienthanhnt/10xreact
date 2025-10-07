@@ -1,5 +1,13 @@
 import './bootstrap';
 import '../css/app.css';
+/**import swiper css library */
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+/**import slick css source library */
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import '../css/custom/swiper/pagination.css';
 
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';

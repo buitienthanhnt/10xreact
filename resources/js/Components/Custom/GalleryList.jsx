@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 import {
 	Tabs,
 	TabsHeader,
@@ -6,184 +7,33 @@ import {
 	TabPanel,
 } from "@material-tailwind/react";
 
-const GalleryList = ({ items }) => {
-	const data = [
-		{
-			label: "HTML",
-			value: "html",
-			images: [
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
-				},
-				{
-					imageLink:
-						"https://demos.creative-tim.com/material-kit-pro/assets/img/examples/blog5.jpg",
-				},
-				{
-					imageLink:
-						"https://material-taillwind-pro-ct-tailwind-team.vercel.app/img/content2.jpg",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1620064916958-605375619af8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1493&q=80",
-				},
-			],
-		},
-		{
-			label: "React",
-			value: "react",
-			images: [
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
-				},
-			],
-		},
-		{
-			label: "Vue",
-			value: "vue",
-			images: [
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
-				},
-				{
-					imageLink:
-						"https://demos.creative-tim.com/material-kit-pro/assets/img/examples/blog5.jpg",
-				},
-				{
-					imageLink:
-						"https://material-taillwind-pro-ct-tailwind-team.vercel.app/img/content2.jpg",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1620064916958-605375619af8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1493&q=80",
-				},
-			],
-		},
-		{
-			label: "Angular",
-			value: "angular",
-			images: [
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1432462770865-65b70566d673?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
-				},
-			],
-		},
-		{
-			label: "Svelte",
-			value: "svelte",
-			images: [
-				{
-					imageLink:
-						"https://demos.creative-tim.com/material-kit-pro/assets/img/examples/blog5.jpg",
-				},
-				{
-					imageLink:
-						"https://material-taillwind-pro-ct-tailwind-team.vercel.app/img/content2.jpg",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1620064916958-605375619af8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1493&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80",
-				},
-				{
-					imageLink:
-						"https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
-				},
-			],
-		},
-	];
+const GalleryList = ({ data }) => {
 
 	return (
-		<Tabs value="html" className={'bg-white p-1'}>
+		<Tabs value={data[0].alias} className={'bg-white p-1'}>
 			<TabsHeader>
-				{data.map(({ label, value }) => (
-					<Tab key={value} value={value}>
-						{label}
+				{data.map(({ name, alias }) => (
+					<Tab key={alias} value={alias}>
+						{name}
 					</Tab>
 				))}
 			</TabsHeader>
 			<TabsBody className="grid grid-cols-1 gap-4 ">
-				{data.map(({ value, images }) => (
+				{data.map(({ pages, alias }) => (
 					<TabPanel
 						className="grid grid-cols-2 gap-4 md:grid-cols-3"
-						key={value}
-						value={value}
+						key={alias}
+						value={alias}
 					>
-						{images?.map(({ imageLink }, index) => (
-							<div key={index}>
+						{pages?.map(({ image_path, title, alias}, index) => (
+							<Link key={index} href={route('detail', {alias: alias})}>
 								<img
 									className="h-40 w-full max-w-full rounded-lg object-cover object-center"
-									src={imageLink}
+									src={image_path}
 									alt="image-photo"
 								/>
-							</div>
+								<p className="line-clamp-2 font-semibold mt-1">{title}</p>
+							</Link>
 						))}
 					</TabPanel>
 				))}

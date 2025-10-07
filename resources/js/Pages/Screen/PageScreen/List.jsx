@@ -1,10 +1,11 @@
 import TopPageLayout from "@/Layouts/BuildLayout/TopPageLayout";
 import { Head, router } from "@inertiajs/react";
-import { Paginate, ListItem, GalleryList, TimeList, RandomHorizon, } from "@/Components/Custom";
+import { Paginate, ListItem, RandomHorizon, CenterCategory, } from "@/Components/Custom";
 import { DropdownMenu } from "@/Components/Custom/DropdownMenu";
 import { useCallback, useMemo } from "react";
 import Banner from "@/Components/Custom/Banner";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
+import SwiperImage from "@/Components/Custom/SwiperImage";
 
 const List = ({ paginate: { current_page, last_page, data, links, }, filters }) => {
     if (!data) { return null; }
@@ -27,7 +28,8 @@ const List = ({ paginate: { current_page, last_page, data, links, }, filters }) 
                 <Paginate pageSize={last_page} currentPage={current_page} links={links} url={window.location.href}></Paginate>
                 {/* <Banner layout={''} page={randoms[2]}></Banner> */}
                 <RandomHorizon></RandomHorizon>
-                <GalleryList></GalleryList>
+                <CenterCategory></CenterCategory>
+                <SwiperImage></SwiperImage>
             </div>
         </>
     )

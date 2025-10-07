@@ -15,7 +15,7 @@ export function HorizonList(props) {
 				[&::-webkit-scrollbar-track]:rounded-full
 				[&::-webkit-scrollbar-track]:bg-white
 				[&::-webkit-scrollbar-thumb]:rounded-full
-				[&::-webkit-scrollbar-thumb]:bg-blue-300
+				[&::-webkit-scrollbar-thumb]:bg-orange-300
 				dark:[&::-webkit-scrollbar-track]:bg-neutral-700
 				dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
 			>
@@ -32,7 +32,7 @@ export function HorizonItem(params) {
 		<Link href={route('detail', { alias: params.page.alias })}
 			className='bg-blue-gray-100 w-1/2 h-[240px] justify-center items-center flex rounded-md relative'>
 			<ImagePage source={params.page.image_path} className='w-full h-full rounded-md'></ImagePage>
-			<span className='absolute left-0 right-2 p-1 bottom-0 line-clamp-2 text-md font-semibold text-white bg-blue-gray-400 rounded-sm'>
+			<span className='absolute left-0 right-2 p-1 bottom-0 line-clamp-2 text-md font-semibold text-white bg-[#8d71e863] rounded-sm'>
 				{params.page.title}
 			</span>
 		</Link>

@@ -1,9 +1,11 @@
-import { DupVideos, GalleryList, HomeDemo, HomeTime, PageInfo, RandomHorizon, SuggetVertical, TimeList } from '@/Components/Custom';
+import { CenterCategory, DupVideos, GalleryList, HomeDemo, HomeTime, ImagePage, PageInfo, RandomHorizon, SuggetVertical, TimeList } from '@/Components/Custom';
 import Banner from '@/Components/Custom/Banner';
 import { TopPage } from '@/Components/PageComponent';
 import SingleLayout from '@/Layouts/BuildLayout/SingleLayout';
 import { Link, Head, } from '@inertiajs/react';
-
+import { Typography } from '@material-tailwind/react';
+import React, { Component } from "react";
+import Slider from "react-slick";
 export default function Welcome({ auth, laravelVersion, phpVersion, videos, banner, timeLine }) {
 
     return (
@@ -26,8 +28,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion, videos, bann
                         <PageInfo laravelVersion={laravelVersion} phpVersion={phpVersion}></PageInfo>
                         <RandomHorizon></RandomHorizon>
                         <SuggetVertical pageId={banner.id} title={'Giới thiệu'}></SuggetVertical>
-                        <GalleryList></GalleryList>
+                        <CenterCategory></CenterCategory>
                         <TimeList items={timeLine}></TimeList>
+                        <SwipeToSlide items={timeLine}></SwipeToSlide>
                     </div>
                 </div>
                 <HomeStyle></HomeStyle>
@@ -98,5 +101,55 @@ const HomeStyle = () => {
                 left: 0;
             }
         `}</style>
+    )
+}
+
+function SwipeToSlide({items}) {
+    // https://taynamsolution.vn/chuyen-muc/tin-tuc/page/2/
+    // padding between slider item
+    /* the slides */
+    // .slick-slide {margin: 0 27px;}
+    /* the parent */
+    // .slick-list {margin: 0 -27px;}
+    const settings = {
+        centerMode: window.innerWidth < 720 ? true: false,
+        centerPadding: "60px",
+        infinite: true,
+        dots: true,
+        slidesToShow: window.innerWidth < 720 ? 1 : 3,
+        swipeToSlide: true,
+        arrows: false,
+        afterChange: function (index) {
+            // console.log(
+            //     `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+            // );
+        }
+    };
+
+    return (
+        <div className="slider-container bg-white p-2 md:pb-8 rounded-lg space-y-2">
+            <style>
+                {".slick-slide > div { margin: 0 8px;}"}
+            </style>
+            <p className='text-blue-500 font-semibold text-xl md:text-xl'>
+                Danh sach thanh truot xem nhieu:
+            </p>
+            <Slider {...settings}>
+                {items.map((item, index) =><SliderItem key={`sli-${index}`} item={item}></SliderItem>)}
+            </Slider>
+        </div>
+    );
+}
+
+function SliderItem({item}) {
+    return (
+        <Link href={route('detail', {alias: item.alias})} className='bg-green-300 h-48 md:h-72 flex rounded-md justify-center items-center relative'>
+            <ImagePage source={item.image_path} className={'w-full h-full rounded-md'}></ImagePage>
+            <div className='absolute bg-[#c2dbeb99] left-0 bottom-0 px-2 pl-1 py-1 rounded-sm'>
+                <p className='font-semibold text-md md:text-xl line-clamp-2'>
+                    {item.title}
+                </p>
+            </div>
+        </Link>
     )
 }

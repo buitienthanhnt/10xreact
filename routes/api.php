@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\PageApiController;
 use App\Http\Controllers\Frontend\CommentController;
 use Illuminate\Http\Request;
@@ -29,3 +30,5 @@ Route::get('page-random', [PageApiController::class, 'pageRandom']);
 Route::get('page-sugget/{id}', [PageApiController::class, 'pageSugget']);
 
 Route::get('comments', [CommentController::class, 'index']);
+
+Route::get('center-categories', [CategoryApiController::class, 'centerCategories']);

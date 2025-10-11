@@ -65,7 +65,6 @@ class HandleInertiaRequests extends Middleware
             ],
             'topMenu' => $topMenu,
             'responseData' => $request->session()->get('responseData'), // include for response data form.
-            'topPage' => $this->pageApi->topPage()->toArray() ?: null,                     // get 3 newest page for TopPage Component.
         ];
     }
 }

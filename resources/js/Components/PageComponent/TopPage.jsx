@@ -1,21 +1,22 @@
-import { Link, usePage } from "@inertiajs/react"
+import { Link } from "@inertiajs/react"
 import { ImagePage } from "../Custom"
+import useTopPage from "@/hook/useTopPage";
 
 // http://adoc.dev/storage/photos/shares/global/Dao-le-15_090718_084835.jpg
 export function TopPage() {
-	const { props: { topPage }} = usePage();
+	const { data, isFetching, isLoading, error, isError } = useTopPage();
 
-	if (!topPage) {
+	if (isFetching || isLoading || isError) {
 		return null;
 	}
 
 	return (
 		<div className="bg-white p-1 rounded-md md:grid grid-cols-3 gap-1 space-y-1 md:space-y-0">
 			<div className="col-span-2">
-				<PrimaryPage page={topPage[0] || hit}></PrimaryPage>
+				<PrimaryPage page={data[0] || hit}></PrimaryPage>
 			</div>
 			<div className="col-span-1">
-				<SecondPages pages={topPage.slice(1, 3)}></SecondPages>
+				<SecondPages pages={data.slice(1, 3)}></SecondPages>
 			</div>
 		</div>
 	)

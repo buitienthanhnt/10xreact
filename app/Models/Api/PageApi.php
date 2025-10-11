@@ -456,6 +456,7 @@ class PageApi
 	{
 		/**
 		 * get 3 newest page 
+		 * is [ABOVE] pages
 		 * ->latest(): sắp xếp mới nhất theo cột
 		 * ->limit(): lấy mấy giá trị
 		 * ->get(): trả về collection.
@@ -465,6 +466,7 @@ class PageApi
 			CacheEnum::TopPage->value,
 			60 * 30,
 			fn() => $this->page->newQuery()
+				->where(PageInterface::ABOVE, '=', true)
 				->latest('created_at')
 				->limit(3)
 				->get()

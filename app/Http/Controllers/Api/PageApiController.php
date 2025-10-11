@@ -68,4 +68,11 @@ final class PageApiController extends Controller
 		$page = $this->pageApi->topComment();
 		return $page;
 	}
+
+	/**
+	 * get 3 newest page for TopPage Component.
+	 */
+	public function topPages() {
+		return $this->pageApi->topPage();
+	}
 }

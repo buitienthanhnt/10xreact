@@ -17,6 +17,9 @@ export default withMT({
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            boxShadow: { // custom add
+                "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+            },
         },
     },
 

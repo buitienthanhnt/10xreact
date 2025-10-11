@@ -3,6 +3,7 @@
 return [
 	'id' => 'id',
 	'title' => "tiêu đề",
+	'above' => "Nổi bật",
 	'active' => "trạng thái hoạt động",
 	'alias' => 'đường dẫn',
 	'image_path' => 'hình ảnh',

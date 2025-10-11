@@ -17,7 +17,7 @@ trait ActiveAttrModel
 			get: function ($value) {
 				return $value ? __('attrval.active') : __('attrval.inactive');
 			},
-			set: fn(mixed $value) => $value == 'on' ? true : false,
+			set: fn(mixed $value) => !!$value,
 		);
 	}
 }

@@ -33,4 +33,6 @@ Route::get('comments', [CommentController::class, 'index']);
 
 Route::get('top-comment', [PageApiController::class, 'topComment']);
 
+Route::get('top-page', [PageApiController::class, 'topPages']);
+
 Route::get('center-categories', [CategoryApiController::class, 'centerCategories']);

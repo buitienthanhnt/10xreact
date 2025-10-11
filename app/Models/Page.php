@@ -115,6 +115,15 @@ class Page extends Model implements PageInterface
     }
 
     /**
+     * format page attribute.
+     */
+    public function above(): Attribute{
+        return Attribute::make(
+            set: fn (mixed $input) => !!$input,
+        );
+    }
+
+    /**
      * return writer model of page(liên kết 1 - 1 nghịch đảo truyền vào class tới và khóa phụ).
      * function name same as const of interface.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

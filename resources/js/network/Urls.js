@@ -10,7 +10,8 @@ const Urls = {
 	},
 	writerDetail: '/writer',
 	pages: {
-		pageSugget: '/api/page-sugget/%s'
+		pageSugget: '/api/page-sugget/%s',
+		topPage: '/api/top-page',
 	},
 	category: {
 		centerCategory: '/api/center-categories',

@@ -11,7 +11,7 @@ const DupVideos = ({ items }) => {
 
 	return (
 		<div>
-			<Link className="font-semibold text-2xl text-blue-700 lg:p-2 flex bg-white" href="/list" data={{type: 'video'}}>Video de xuat:</Link>
+			<Link className="font-semibold text-2xl text-blue-700 lg:p-2 flex bg-white" href="/list" data={{type: 'video'}}>Video đề Xuất:</Link>
 			<div className="p-1 bg-white grid grid-cols-2 gap-4 rounded-md">
 				{items.map((item, index) => <VideoBanner item={item} key={`video-${index}`}></VideoBanner>)}
 			</div>

@@ -14,21 +14,24 @@ import { stringConvert } from "@/Helper/DateTime";
 
 const TimeList = ({ items }) => {
 	return (
-		<div className="bg-white p-4 grid grid-cols-3 gap-2">
-			<div className="col-span-3 md:col-span-2">
-				<Timeline>
-					{items.map((item, index) => <DupListItem item={item} key={index} isComplete={index === items.length - 1}></DupListItem>)}
-				</Timeline>
-			</div>
-			<div className="col-span-1 bg-blue-gray-100 invisible md:visible rounded-md flex justify-center p-1">
-				<span className="">Quảng cáo!</span>
+		<div className="bg-white p-4 space-y-4 shadow-lg">
+			<p className="font-semibold text-black text-2xl">Sắp diễn ra:</p>
+			<div className="grid grid-cols-3 gap-2">
+				<div className="col-span-3 md:col-span-2">
+					<Timeline>
+						{items.map((item, index) => <DupListItem item={item} key={index} isComplete={index === items.length - 1}></DupListItem>)}
+					</Timeline>
+				</div>
+				<div className="col-span-1 bg-blue-gray-100 invisible md:visible rounded-md flex justify-center p-1">
+					<span className="">Quảng cáo!</span>
+				</div>
 			</div>
 		</div>
 	);
 }
 
 const DupListItem = ({ item, isComplete }) => {
-	const {timeValue} = JSON.parse(item.page_contents[0].value);
+	const { timeValue } = JSON.parse(item.page_contents[0].value);
 	return (
 		<Link href={route('detail', { alias: item.alias })}>
 			<TimelineItem>

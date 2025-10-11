@@ -12,6 +12,7 @@ const typeInfo = ['like', 'heart', 'link'];
  */
 export default function Info({ pageId }) {
 	const [action, setAction] = useState('');
+	const [savelink, setSavelink] = useState(false);
 	const checkedInfo = useMemo(() => {
 		let saved = {};
 		typeInfo.map((t) => {
@@ -31,7 +32,12 @@ export default function Info({ pageId }) {
 		return checkedInfo[type].includes(pageId.toString());
 	}, [pageId, checkedInfo]);
 
-	const onPressItem = useCallback((type) => {
+	const onPressItem = useCallback(async (type) => {
+		if (type === 'link') {
+			await navigator.clipboard.writeText(pageId);
+			setSavelink(true);
+			return;
+		}
 		const key = `page-info-${type}`;
 		const checked = localStorage.getItem(key);
 		const listChecked = checked ? checked.split('|') : [];
@@ -75,27 +81,36 @@ export default function Info({ pageId }) {
 	// console.log(data);
 	// }, [])
 
-	return (<div className="bg-white rounded-md p-4 justify-between flex items-center">
-		<Rating value={4} readonly/>
-		<div className="justify-end flex gap-2">
-			{typeInfo.map(function (type, index) {
-				return (
-					<div className="bg-orange-200 p-1 rounded-full" onClick={() => { onPressItem(type) }} key={`info-${index}`} style={{ backgroundColor: checkSelected(type) ? 'rgb(149, 210, 250)' : '' }}>
-						{(() => {
-							switch (type) {
-								case 'like':
-									return <HandThumbUpIcon className="h-6 w-6" color="red"></HandThumbUpIcon>
-									break;
-								case 'heart':
-									return <HeartIcon className="h-6 w-6" color="red"></HeartIcon>;
-								case 'link':
-									return <LinkIcon className="h-6 w-6" color="red"></LinkIcon>;
-								default:
-									return null;
-							}
-						})()}
-					</div>
-				);
-			})}</div>
-	</div>)
+	return (
+		<div className="bg-white rounded-md p-4">
+			{savelink && <div role="alert" class="mb-4 relative flex w-full p-3 text-sm text-white bg-green-600 rounded-md">
+				saved for page link.
+				<button class="flex items-center justify-center transition-all w-8 h-8 rounded-md text-white hover:bg-white/10 active:bg-white/10 absolute top-1.5 right-1.5" type="button">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+				</button>
+			</div>}
+			<div className="justify-between flex items-center">
+				<Rating value={4} readonly />
+				<div className="justify-end flex gap-2">
+					{typeInfo.map(function (type, index) {
+						return (
+							<div className="bg-orange-200 p-1 rounded-full hover:scale-125 hover:bg-cyan-200"
+								onClick={() => { onPressItem(type) }} key={`info-${index}`}
+								style={{ backgroundColor: checkSelected(type) ? 'rgb(149, 210, 250)' : '' }}>
+								{(() => {
+									switch (type) {
+										case 'like':
+											return <HandThumbUpIcon className="h-6 w-6" color="red"></HandThumbUpIcon>
+										case 'heart':
+											return <HeartIcon className="h-6 w-6" color="red"></HeartIcon>;
+										case 'link':
+											return <LinkIcon className="h-6 w-6" color="red"></LinkIcon>;
+										default:
+											return null;
+									}
+								})()}
+							</div>
+						);
+					})}</div>
+			</div></div>)
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\PageApi;
+use App\Models\Page;
 use App\Models\PageCategory;
 use App\Models\Types\CategoryInterface;
 use App\Models\Types\PageCategoriesInterface;
@@ -33,10 +34,10 @@ final class PageApiController extends Controller
 	/**
 	 * get random pages.
 	 */
-	function pageRandom()
+	function pageRandom(Request $request)
 	{
 		// sleep(4);
-		return $this->pageApi->getRandom();
+		return $this->pageApi->getRandom($request->get('limit'));
 	}
 
 	/**
@@ -57,5 +58,14 @@ final class PageApiController extends Controller
 			->get(PageCategoriesInterface::PAGE_ID)
 			->toArray();
 		return $this->pageApi->pageByIds($pageIds);
+	}
+
+	/**
+	 * return page has most os comment
+	 * @return \App\Models\Page
+	 */
+	public function topComment() {
+		$page = $this->pageApi->topComment();
+		return $page;
 	}
 }

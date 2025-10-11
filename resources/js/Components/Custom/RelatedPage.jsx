@@ -26,7 +26,7 @@ const RelatedItem = ({ page }) => {
 	return (
 		<Link href={route('detail', { alias: page.alias })} className="flex-1 rounded p-2 space-y-1 text-md bg-blue-gray-50 block">
 			<h3 className="font-semibold text-gray-900  rounded-sm line-clamp-2 md:min-h-[3rem]" style={{minHeight: '2lh'}}>{page.title}</h3>
-			<img src={page.image_path} className="rounded-md"></img>
+			<img src={page.image_path} className="rounded-md object-cover max-h-96 w-full"></img>
 		</Link>
 	)
 }

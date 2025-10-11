@@ -14,9 +14,8 @@ export default function SwiperImage(params) {
 	};
 
 	return (
-		<div className="p-1 bg-white rounded-sm">
+		<div className={`${params?.className}`}>
 			<style>
-
 			</style>
 			<Swiper navigation={true} pagination={pagination} modules={[Pagination, Navigation]} className="mySwiper">
 				{listPage.map((item, index) => <SwiperSlide key={index}>

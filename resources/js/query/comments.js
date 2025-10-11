@@ -15,4 +15,11 @@ const getCommentList = async (targetId, parent_id, page = 1) => {
 
 	return response;
 }
-export { getCommentList }
+
+const getTopComment = async ()=>{
+	return await rApi.callRequest({
+		url: Urls.comment.topPage,
+		method: 'GET',
+	})
+}
+export { getCommentList, getTopComment }

@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Page;
 use App\Models\PageContent;
 use App\Models\Types\CategoryInterface;
+use App\Models\Types\CommentInterface;
 use App\Models\Types\PageContentInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\TagInterface;
@@ -381,9 +382,14 @@ class PageApi
 		});
 	}
 
-	public function getRandom(array $excludes = [])
+	/**
+	 * @param int $limit
+	 * @param array $excludes
+	 * @return  @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function getRandom(int $limit = 6, array $excludes = [])
 	{
-		return $this->page->all()->random(5);
+		return $this->page->all()->random($limit);
 	}
 
 	/**
@@ -393,13 +399,13 @@ class PageApi
 	{
 		return [
 			[
-				'label' => 'tác giả',
+				'label' => 'tác giả(select)',
 				'type' => 'select',
 				'path' => WriterInterface::WRITER_FILTER_KEY,
 				'options' => Writer::writerOptions()->toArray(),
 			],
 			[
-				'label' => 'danh muc',
+				'label' => 'danh mục(timeline)',
 				'type' => 'timeline',
 				'path' => CategoryInterface::CATEGORY_FILTER_KEY,
 				'options' => Category::getCategoryTree(prefix: ''),
@@ -510,5 +516,23 @@ class PageApi
 					->whereRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()");
 			}])
 			->get();
+	}
+
+	/**
+	 * return page has most of comment
+	 * @return \App\Models\Page
+	 */
+	public function topComment()
+	{
+		/**
+		 * get page has much 
+		 * comments relationship with condition max appear
+		 */
+		$page = $this->page::with('writer')->withCount([
+			'comments' => function ($query) {
+				$query->where('active', true);
+			}
+		])->latest('comments_count')->first();
+		return $page;
 	}
 }

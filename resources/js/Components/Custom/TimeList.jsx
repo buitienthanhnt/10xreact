@@ -15,7 +15,7 @@ import { stringConvert } from "@/Helper/DateTime";
 const TimeList = ({ items }) => {
 	return (
 		<div className="bg-white p-4 grid grid-cols-3 gap-2">
-			<div className="col-span-2">
+			<div className="col-span-3 md:col-span-2">
 				<Timeline>
 					{items.map((item, index) => <DupListItem item={item} key={index} isComplete={index === items.length - 1}></DupListItem>)}
 				</Timeline>

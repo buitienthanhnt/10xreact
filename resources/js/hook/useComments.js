@@ -1,5 +1,5 @@
-import { getCommentList } from "@/query/comments"
-import { useInfiniteQuery } from "@tanstack/react-query"
+import { getCommentList, getTopComment } from "@/query/comments"
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import { useCallback, useMemo, useState } from "react"
 
 // https://tanstack.com/query/v4/docs/framework/react/reference/useInfiniteQuery
@@ -71,4 +71,13 @@ const useCommentInfo = (comment)=>{
 	}
 }
 
-export { useListComment, useCommentInfo }
+const useTopComment = ()=>{
+	const query = useQuery({
+		queryKey: ['top-comment'],
+		queryFn: getTopComment,
+	});
+	
+	return {...query};
+}
+
+export { useListComment, useCommentInfo, useTopComment }

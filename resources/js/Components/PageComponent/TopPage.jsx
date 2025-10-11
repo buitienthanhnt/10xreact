@@ -26,7 +26,7 @@ const PrimaryPage = ({ page }) => {
 		<Link className="relative flex h-full" style={{ backgroundImage: page.image_path }} href={route('detail', { alias: page.alias })}>
 			<ImagePage source={page.image_path} className={'w-full h-auto rounded-md'}>
 			</ImagePage>
-			<p className="absolute bottom-10 left-2 md:left-8 line-clamp-2 font-semibold text-3xl text-orange-500">{page.title}</p>
+			<p className="absolute bottom-10 left-2 md:left-8 line-clamp-2 font-semibold text-3xl text-orange-500 hover:text-purple-600">{page.title}</p>
 		</Link>
 	)
 }
@@ -42,7 +42,7 @@ const SecondPages = ({ pages }) => {
 						key={`second-${index}`}
 						href={route('detail', { alias: page.alias })}
 					>
-						<p className="absolute bottom-4 left-2 md:left-4 line-clamp-2 font-semibold text-2xl text-green-600">{page.title}</p>
+						<p className="absolute bottom-4 left-2 md:left-4 line-clamp-2 font-semibold text-2xl text-green-600 hover:text-white">{page.title}</p>
 						<ImagePage source={page.image_path} className={'w-full h-auto rounded-md'}></ImagePage>
 					</Link>
 				)

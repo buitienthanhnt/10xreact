@@ -1,7 +1,7 @@
 @extends('adminhtml.layouts.left-bar')
 
 @section('title')
-    create new paper
+    create new page
 @endsection
 
 @section('afCss')

@@ -15,6 +15,9 @@ const Urls = {
 	category: {
 		centerCategory: '/api/center-categories',
 	},
+	comment: {
+		topPage: '/api/top-comment',
+	}
 };
 
 export default Urls;

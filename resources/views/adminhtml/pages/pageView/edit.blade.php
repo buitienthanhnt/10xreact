@@ -1,7 +1,7 @@
 @extends('adminhtml.layouts.left-bar')
 
 @section('title')
-    edit the paper
+    edit the page
 @endsection
 
 @section('formBaseContentRight')

@@ -8,6 +8,7 @@ const usePageSugget = (pageId) => {
 		queryFn: () => {
 			return suggetPage(pageId);
 		},
+		refetchOnWindowFocus: false,
 	})
 
 	return {

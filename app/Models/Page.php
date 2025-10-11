@@ -10,6 +10,7 @@ use App\Models\Scopes\SortScope;
 use App\Models\ShareAction\ActiveAttrModel;
 use App\Models\ShareAction\AliasAttrModel;
 use App\Models\ShareAction\FormField;
+use App\Models\Types\CommentInterface;
 use App\Models\Types\PageContentInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\TagInterface;
@@ -212,5 +213,13 @@ class Page extends Model implements PageInterface
     {
         $key = 'page:' . $this->{self::ID};
         return json_decode(RedisHelper::getValue($key) ?: '', true);
+    }
+
+    /**
+     * return list comments of the page.
+     *  @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments() {
+        return $this->hasMany(Comment::class, CommentInterface::TARGET_ID, PageInterface::ID);    
     }
 }

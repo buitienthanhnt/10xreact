@@ -22,7 +22,14 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
                 <CommentForm pageId={id}></CommentForm>
                 <SuggetVertical pageId={id} title={'Tin cùng chuyên mục:'}></SuggetVertical>
                 <RelatedPage></RelatedPage>
-                <Propose></Propose>
+                <div className="grid grid-cols-4 gap-1">
+                    <div className="col-span-4 md:col-span-2">
+                        <Propose></Propose>
+                    </div>
+                    <div className="col-span-4 md:col-span-2 bg-white rounded-md justify-center flex p-1">
+                       <span className="font-semibold text-black text-xl">Quảng cáo!</span>
+                    </div>
+                </div>
             </div>
         </SingleLayout>
     )

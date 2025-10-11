@@ -29,7 +29,14 @@ const List = ({ paginate: { current_page, last_page, data, links, }, filters }) 
                 {/* <Banner layout={''} page={randoms[2]}></Banner> */}
                 <RandomHorizon></RandomHorizon>
                 <CenterCategory></CenterCategory>
-                <SwiperImage></SwiperImage>
+                <div className="grid bg-white rounded-md grid-cols-6 gap-x-2 p-1">
+                    <div className="bg-blue-gray-400 col-span-6 md:col-span-4">
+                        <SwiperImage></SwiperImage>
+                    </div>
+                    <div className="bg-gray-300 md:col-span-2 flex justify-center p-1 rounded-md">
+                        <span className="font-bold text-xl text-blue-gray-700">Quảng cáo!</span>
+                    </div>
+                </div>
             </div>
         </>
     )

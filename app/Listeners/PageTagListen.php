@@ -49,7 +49,7 @@ class PageTagListen
      */
     protected function tagFormsValue(int $page_id): array
     {
-        $formSubmit = $this->request->get(PageInterface::TAGS);
+        $formSubmit = $this->request->get(PageInterface::TAGS, []);
         $tagFormValues = [];
         foreach ($formSubmit as $value) {
             $tagFormValues[] = [

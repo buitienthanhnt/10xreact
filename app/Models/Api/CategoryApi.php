@@ -46,7 +46,7 @@ final class CategoryApi
 					 * set limit for category page item max 6
 					 * https://stackoverflow.com/questions/43097559/laravel-eloquent-limit-results-for-relationship
 					 */
-					$category->setRelation('pages', $category->pages->take(6));
+					$category->setRelation('pages', $category->pages()->latest('id')->take(6)->get());
 					return $category;
 				}
 			);

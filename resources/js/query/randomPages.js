@@ -4,9 +4,9 @@ import Urls from "@/network/Urls";
 /**
  * get ramdom pages.
  */
-const randomPages = async () => {
+const randomPages = async (limit = 6) => {
 	return await rApi.callRequest({
-		url: Urls.pageRandom,
+		url: Urls.pageRandom+ `?limit=${limit}`,
 		method: 'GET',
 	})
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ImagePage from "./ImagePage";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
 import YouTube from "react-youtube";
+import { Link } from "@inertiajs/react";
 
 const DupVideos = ({ items }) => {
 	// http://img.youtube.com/vi/XSBQJ3bVJ0U/maxresdefault.jpg
@@ -9,8 +10,11 @@ const DupVideos = ({ items }) => {
 	// absolute center: absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
 
 	return (
-		<div className="p-1 bg-white grid grid-cols-2 gap-4 rounded-md">
-			{items.map((item, index) => <VideoBanner item={item} key={`video-${index}`}></VideoBanner>)}
+		<div>
+			<Link className="font-semibold text-2xl text-blue-700 lg:p-2 flex bg-white" href="/list" data={{type: 'video'}}>Video de xuat:</Link>
+			<div className="p-1 bg-white grid grid-cols-2 gap-4 rounded-md">
+				{items.map((item, index) => <VideoBanner item={item} key={`video-${index}`}></VideoBanner>)}
+			</div>
 		</div>
 	)
 }
@@ -22,7 +26,7 @@ const VideoBanner = ({ item: { id, page_contents, title, alias } }) => {
 		<div className="col-span-1 bg-white rounded-md flex relative justify-center items-center" href={route('detail', { alias })}>
 			{play ? (
 				<div className='w-full aspect-[7/9] rounded-md bg-black'>
-					<YouTube style={{height: '100%'}} videoId={page_contents[0].value} opts={{
+					<YouTube style={{ height: '100%' }} videoId={page_contents[0].value} opts={{
 						width: '100%',
 						height: '100%',
 						playerVars: {

@@ -1,10 +1,11 @@
-import { CenterCategory, DupVideos, GalleryList, HomeDemo, HomeTime, ImagePage, PageInfo, RandomHorizon, SuggetVertical, TimeList } from '@/Components/Custom';
+import GoldChart from '@/Components/ChartComponent/GoldChart';
+import VietLotChart from '@/Components/ChartComponent/VietLotChart';
+import { CenterCategory, DupVideos, HomeDemo, HomeTime, ImagePage, PageInfo, RandomHorizon, SuggetVertical, TimeList, TopComment } from '@/Components/Custom';
 import Banner from '@/Components/Custom/Banner';
 import { TopPage } from '@/Components/PageComponent';
 import SingleLayout from '@/Layouts/BuildLayout/SingleLayout';
 import { Link, Head, } from '@inertiajs/react';
-import { Typography } from '@material-tailwind/react';
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 export default function Welcome({ auth, laravelVersion, phpVersion, videos, banner, timeLine }) {
 
@@ -23,14 +24,17 @@ export default function Welcome({ auth, laravelVersion, phpVersion, videos, bann
                         <HomeTime></HomeTime>
                         <TopPage></TopPage>
                         <DupVideos items={videos}></DupVideos>
+                        <TopComment></TopComment>
                         <HomeDemo></HomeDemo>
                         <Banner page={banner}></Banner>
                         <PageInfo laravelVersion={laravelVersion} phpVersion={phpVersion}></PageInfo>
                         <RandomHorizon></RandomHorizon>
+                        <GoldChart></GoldChart>
                         <SuggetVertical pageId={banner.id} title={'Giới thiệu'}></SuggetVertical>
                         <CenterCategory></CenterCategory>
-                        <TimeList items={timeLine}></TimeList>
+                        <TimeList items={timeLine}></TimeList>                        
                         <SwipeToSlide items={timeLine}></SwipeToSlide>
+                         <VietLotChart></VietLotChart>
                     </div>
                 </div>
                 <HomeStyle></HomeStyle>
@@ -104,7 +108,7 @@ const HomeStyle = () => {
     )
 }
 
-function SwipeToSlide({items}) {
+function SwipeToSlide({ items }) {
     // https://taynamsolution.vn/chuyen-muc/tin-tuc/page/2/
     // padding between slider item
     /* the slides */
@@ -112,7 +116,7 @@ function SwipeToSlide({items}) {
     /* the parent */
     // .slick-list {margin: 0 -27px;}
     const settings = {
-        centerMode: window.innerWidth < 720 ? true: false,
+        centerMode: window.innerWidth < 720 ? true : false,
         centerPadding: "60px",
         infinite: true,
         dots: true,
@@ -127,23 +131,25 @@ function SwipeToSlide({items}) {
     };
 
     return (
-        <div className="slider-container bg-white p-2 md:pb-8 rounded-lg space-y-2">
+        <>
             <style>
                 {".slick-slide > div { margin: 0 8px;}"}
             </style>
-            <p className='text-blue-500 font-semibold text-xl md:text-xl'>
-                Danh sach thanh truot xem nhieu:
-            </p>
-            <Slider {...settings}>
-                {items.map((item, index) =><SliderItem key={`sli-${index}`} item={item}></SliderItem>)}
-            </Slider>
-        </div>
+            <div className="slider-container bg-white p-2 md:pb-8 rounded-lg space-y-2">
+                <p className='font-semibold text-2xl text-blue-700 flex bg-white'>
+                    Danh sach thanh truot xem nhieu:
+                </p>
+                <Slider {...settings}>
+                    {items.map((item, index) => <SliderItem key={`sli-${index}`} item={item}></SliderItem>)}
+                </Slider>
+            </div>
+        </>
     );
 }
 
-function SliderItem({item}) {
+function SliderItem({ item }) {
     return (
-        <Link href={route('detail', {alias: item.alias})} className='bg-green-300 h-48 md:h-72 flex rounded-md justify-center items-center relative'>
+        <Link href={route('detail', { alias: item.alias })} className='bg-green-300 h-48 md:h-72 flex rounded-md justify-center items-center relative'>
             <ImagePage source={item.image_path} className={'w-full h-full rounded-md'}></ImagePage>
             <div className='absolute bg-[#c2dbeb99] left-0 bottom-0 px-2 pl-1 py-1 rounded-sm'>
                 <p className='font-semibold text-md md:text-xl line-clamp-2'>

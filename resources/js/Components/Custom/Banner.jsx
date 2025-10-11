@@ -2,6 +2,7 @@ import { Link } from "@inertiajs/react";
 
 const Banner = (props)=>{
 
+	// https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
 	return(
 		<Link href={route('detail', {alias: props.page.alias})}
 			className={`bg-white rounded-md justify-center items-center min-h-[100px] flex relative ${props.layout}`} onClick={props?.onClick}>
@@ -9,7 +10,7 @@ const Banner = (props)=>{
 				<span className="text-lg text-red-700 font-bold ">{props.page.title}</span>
 			</div>
 			<img src={props.page.image_path} alt="banner" 
-				className="flex-1 rounded-lg object-cover h-1/2 lg:max-h-[720px]" style={{height: props.height}}
+				className="flex-1 rounded-lg object-cover h-1/2 lg:max-h-[720px] aspect-auto" style={{height: props.height}}
 			/>
 		</Link>
 	)

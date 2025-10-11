@@ -280,9 +280,10 @@ class PageApi
 		$filters = $this->request->all();
 		/**
 		 * @var array $realWriters
+		 * select unique(distinct: WRITER id)  
+		 * vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php
 		 */
-		$realWriters = Page::all(PageInterface::WRITER)->unique(PageInterface::WRITER)->pluck(PageInterface::WRITER)->toArray();
-		$types = Writer::whereIn(WriterInterface::ID, $realWriters)->get()->map(function ($item) use ($filters) {
+		$types = Writer::whereHas('pages', )->get()->map(function ($item) use ($filters) {
 			return [
 				'value' => $item->{PageContentInterface::ID},
 				'label' => $item->{WriterInterface::NAME},

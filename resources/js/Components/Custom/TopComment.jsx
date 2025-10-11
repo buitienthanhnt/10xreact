@@ -17,9 +17,9 @@ const TopComment = () => {
 		<div className="bg-white p-1 rounded-md grid gap-y-2">
 			<WriterInfo writer={data.writer}></WriterInfo>
 			<Link className="p-1 space-y-1" href={route('detail', {alias: data.alias})}>
-				<p className="font-semibold text-xl text-purple-400">{data.title}</p>
+				<p className="font-semibold text-xl text-black">{data.title}</p>
+				<p className="italic text-base font-semibold text-gray-800">{data.desciption}</p>
 				<ImagePage source={data.image_path} className={'w-full h-96 md:h-[450px] object-center rounded-lg'}></ImagePage>
-				<p className="">{data.desciption}</p>
 				<Info pageId={data.id}></Info>
 			</Link>
 		</div>
@@ -30,8 +30,10 @@ const WriterInfo = ({writer}) => {
 
 	return (
 		<Link href={`/writer/${writer.id}`} className="flex gap-x-4">
-			<img src={writer.image_path} className={'w-20 h-20 md:w-28 md:h-28 rounded-full object-center'}></img>
-			<div className="w-full px-2 items-end float-end self-end">
+			<div className="w-20 h-20 md:w-32 md:h-32 flex items-center justify-center rounded-full bg-blue-gray-700">
+				<img src={writer.image_path} className={'h-full w-full rounded-full object-cover'}></img>
+			</div>
+			<div className="px-2 self-end">
 				<span className="font-bold text-xl">
 					{writer.name}
 				</span>

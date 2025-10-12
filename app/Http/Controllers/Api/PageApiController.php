@@ -36,7 +36,7 @@ final class PageApiController extends Controller
 	 */
 	function pageRandom(Request $request)
 	{
-		// sleep(4);
+		sleep(4);
 		return $this->pageApi->getRandom($request->get('limit'));
 	}
 

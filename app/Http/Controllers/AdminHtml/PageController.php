@@ -74,6 +74,7 @@ class PageController extends Controller
                 Page::IMAGE_PATH,
                 Page::TITLE,
                 Page::ACTIVE,
+                Page::ABOVE,
             ],
             'lists' => $this->pageApi->pagePaginate(),
             'actions' => $actions

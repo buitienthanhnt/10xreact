@@ -1,17 +1,30 @@
 import randomPages from "@/query/randomPages";
-import { useQuery } from "@tanstack/react-query";
+import { useCallback, useEffect, useState } from "react";
 
-const usePageRandom = ()=>{
-	const { isError, data, error, isFetching} = useQuery({
-		queryKey: ['page-random', undefined],
-		queryFn: () => randomPages(6),
-	  })
+const usePageRandom = () => {
+	const [isFetching, setIsFetching] = useState(false);
+	const [isError, setIsError] = useState(false);
+	const [data, setData] = useState([]);
+
+	const fetchData = useCallback(async () => {
+		setIsFetching(true);
+		try {
+			const response = await randomPages(6);
+			setData([...response]);
+		} catch (error) {
+			setIsError(true);
+		}
+		setIsFetching(false)
+	}, [])
+
+	useEffect(() => {
+		fetchData();
+	}, [fetchData])
 
 	return {
 		pages: data,
 		isLoading: isFetching,
-		isError,
-		error,
+		isError: isError
 	}
 }
 

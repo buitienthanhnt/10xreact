@@ -10,3 +10,4 @@ export * from './HomeDemo';
 export * from './SuggetVertical';
 export * from './CenterCategory';
 export * from './TopComment';
+export * from './PageGridItem';

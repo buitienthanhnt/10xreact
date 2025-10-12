@@ -3,7 +3,6 @@ import { Head, router } from "@inertiajs/react";
 import { Paginate, ListItem, RandomHorizon, CenterCategory, } from "@/Components/Custom";
 import { DropdownMenu } from "@/Components/Custom/DropdownMenu";
 import { useCallback, useMemo } from "react";
-import Banner from "@/Components/Custom/Banner";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import SwiperImage from "@/Components/Custom/SwiperImage";
 

@@ -10,7 +10,7 @@ const Paginate = ({ pageSize, currentPage, url = window.location.href }) => {
 				{(() => {
 					const listPage = [];
 					for (let index = 1; index <= pageSize; index++) {
-						listPage.push(<Link href={url} key={index} data={{
+						listPage.push(<Link prefetch href={url} key={index} data={{
 							page: index,
 						}}>
 							<span
@@ -26,7 +26,7 @@ const Paginate = ({ pageSize, currentPage, url = window.location.href }) => {
 
 	return (
 		<div className="justify-center content-center flex p-4 gap-x-2">
-			{currentPage - 2 > 1 && <Link href={url}
+			{currentPage - 2 > 1 && <Link href={url} prefetch={['hover',]} cacheFor="1m"
 				data={{
 					page: currentPage - 5 > 1 ? currentPage - 5 : 1
 				}}>
@@ -39,7 +39,7 @@ const Paginate = ({ pageSize, currentPage, url = window.location.href }) => {
 				const listPage = [];
 				for (let index = (currentPage - 2 < 1 ? 1 : currentPage - 2); index <= (currentPage + 2 > pageSize ? pageSize : currentPage + 2); index++) {
 					listPage.push(
-						<Link href={url} key={index} data={{
+						<Link prefetch={['hover', 'mount']} cacheFor="1m" href={url} key={index} data={{
 							page: index,
 						}}>
 							<div className="p-2 px-4 bg-green-500 rounded-[28px] justify-center content-center">
@@ -53,7 +53,7 @@ const Paginate = ({ pageSize, currentPage, url = window.location.href }) => {
 				return listPage;
 			})()}
 
-			{pageSize > currentPage + 2 && <Link href={url}
+			{pageSize > currentPage + 2 && <Link prefetch={['hover',]} cacheFor="1m" href={url}
 				data={{
 					page: currentPage + 5 <= pageSize ? currentPage + 5 : pageSize
 				}}>

@@ -34,20 +34,25 @@ class HomeController extends Controller
 
     public function home()
     {
-        $timeLine = $this->pageApi->pageFilterTimeline('timeline');
-        $videos = Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
-            $query->where('type', 'video');
-        }])->get();
         $banner = Page::latest()->first();
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'videos' => $videos,
+            'videos' => inertia()->optional(function () { // load sau(async)
+                return Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
+                    $query->where('type', 'video');
+                }])->get();
+            }),
             'banner' => $banner,
-            'timeLine' => $timeLine,
-
+            'timeLine' => inertia()->optional(fn() => $this->pageApi->pageFilterTimeline('timeline')), // load sau(async)
+            'swipeList' => inertia()->defer(function () { // swipeList and testDef will be loaded in one api group
+                return $this->pageApi->pageRandom(6);
+            }),
+            'testDef' => inertia()->defer(function () {
+                return $this->pageApi->pageRandom(6);
+            }),
         ]);
     }
 
@@ -142,7 +147,9 @@ class HomeController extends Controller
      */
     public function about()
     {
-        return Inertia::render('About');
+        return Inertia::render('About', [
+            "pages" => Inertia::scroll(fn() => $this->pageApi->pageFilterPaginate(6)),
+        ]);
     }
 
     function Signature(Request $request): void

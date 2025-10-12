@@ -1,9 +1,11 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, WhenVisible } from "@inertiajs/react";
 import RelatedPage from "@/Components/Custom/RelatedPage";
 import { ImageType, TextEditorType, TextType, VideoType, TextAreaType, Timeline, CarouselImage } from "@/Components/PageContent";
 import { InpageCategory, Tags, Info, Propose, CommentForm, CommentList } from "@/Components/PageComponent";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
-import { BreadCategory, SuggetVertical } from "@/Components/Custom";
+import { BreadCategory, PageGrid, SuggetVertical } from "@/Components/Custom";
+import usePageRandom from "@/hook/usePageRandom";
+import { randomString } from "@/Helper/StringHelper";
 
 export default function Detail({ page: { title, desciption, page_contents, tags, categories, id, writer } }) {
 
@@ -21,6 +23,7 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
                 {/* <InpageCategory categories={categories}></InpageCategory> */}
                 <CommentList></CommentList>
                 <CommentForm pageId={id}></CommentForm>
+                <PageLinks></PageLinks>
                 <SuggetVertical pageId={id} title={'Tin cùng chuyên mục:'}></SuggetVertical>
                 <RelatedPage></RelatedPage>
                 <div className="grid grid-cols-4 gap-1">
@@ -28,7 +31,7 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
                         <Propose></Propose>
                     </div>
                     <div className="col-span-4 md:col-span-2 bg-white rounded-md justify-center flex p-1">
-                       <span className="font-semibold text-black text-xl">Quảng cáo!</span>
+                        <span className="font-semibold text-black text-xl">Quảng cáo!</span>
                     </div>
                 </div>
             </div>
@@ -107,5 +110,23 @@ export const PageWriter = ({ writer }) => {
                 </div>
             </Link>
         </div>
+    )
+}
+
+const PageLinks = () => {
+    const { pages, isLoading } = usePageRandom();
+
+    return (
+        <WhenVisible data={'pages'} fallback={() => <div>Loading...</div>}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-1 rounded-md">
+                <div className="col-span-1 lg:col-span-4 bg-white rounded-md">
+                    <p className="font-bold text-xl bg-white p-2 rounded-md">Danh sách gợi ý!</p>
+                    <PageGrid items={pages}></PageGrid>
+                </div>
+                <div className="invisible md:visible lg:col-span-1 rounded-md justify-center flex bg-white">
+                    <span className="font-extrabold">Marketing banner!</span>
+                </div>
+            </div>
+        </WhenVisible>
     )
 }

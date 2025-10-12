@@ -3,9 +3,9 @@ import VietLotChart from '@/Components/ChartComponent/VietLotChart';
 import { CenterCategory, DupVideos, HomeDemo, HomeTime, ImagePage, PageInfo, RandomHorizon, SuggetVertical, TimeList, TopComment } from '@/Components/Custom';
 import Banner from '@/Components/Custom/Banner';
 import { TopPage } from '@/Components/PageComponent';
-import usePageRandom from '@/hook/usePageRandom';
+import { ListSke } from '@/Components/Skeleton';
 import SingleLayout from '@/Layouts/BuildLayout/SingleLayout';
-import { Link, Head, } from '@inertiajs/react';
+import { Link, Head, WhenVisible, usePage, Deferred, } from '@inertiajs/react';
 import React from "react";
 import Slider from "react-slick";
 export default function Welcome({ auth, laravelVersion, phpVersion, videos, banner, timeLine }) {
@@ -24,7 +24,9 @@ export default function Welcome({ auth, laravelVersion, phpVersion, videos, bann
                     <div className="space-y-2 p-6 lg:p-8"> {/* max-w-7xl mx-auto  p-6 lg:p-8  */}
                         <HomeTime></HomeTime>
                         <TopPage></TopPage>
-                        <DupVideos items={videos}></DupVideos>
+                        <WhenVisible data="videos" fallback={() => <ListSke></ListSke>}>
+                            <DupVideos items={videos}></DupVideos>
+                        </WhenVisible>
                         <div className='grid grid-cols-3 gap-1'>
                             <div className='col-span-3 md:col-span-2'>
                                 <TopComment></TopComment>
@@ -40,8 +42,11 @@ export default function Welcome({ auth, laravelVersion, phpVersion, videos, bann
                         <GoldChart></GoldChart>
                         <SuggetVertical pageId={banner.id} title={'Giới thiệu'}></SuggetVertical>
                         <CenterCategory></CenterCategory>
-                        <TimeList items={timeLine}></TimeList>
-                        <SwipeToSlide items={timeLine}></SwipeToSlide>
+                        <WhenVisible data={['timeLine']} fallback={() => <div>Loading...</div>}>
+                            <TimeList items={timeLine}></TimeList>
+                        </WhenVisible>
+                        <TestDef></TestDef>
+                        <SwipeToSlide></SwipeToSlide>
                         <VietLotChart></VietLotChart>
                     </div>
                 </div>
@@ -116,8 +121,9 @@ const HomeStyle = () => {
     )
 }
 
-function SwipeToSlide({ items }) {
-    const {pages, isError, isLoading} = usePageRandom();
+function SwipeToSlide() {
+    const { props: { swipeList } } = usePage();
+
     // https://taynamsolution.vn/chuyen-muc/tin-tuc/page/2/
     // padding between slider item
     /* the slides */
@@ -139,36 +145,52 @@ function SwipeToSlide({ items }) {
         }
     };
 
-    if (isLoading || !pages) {
-        return null;
-    }
-
     return (
-        <>
+        <Deferred data="swipeList" fallback={() => <ListSke></ListSke>}>
             <style>
                 {".slick-slide > div { margin: 0 8px;}"}
             </style>
-            <div className="slider-container bg-white p-2 md:pb-8 rounded-lg space-y-2 shadow-xl">
+            {swipeList && <div className="slider-container bg-white p-2 md:pb-8 rounded-lg space-y-2 shadow-xl">
                 <p className='font-semibold text-2xl text-blue-700 flex bg-white'>
                     Danh sách ngẫu nhiên:
                 </p>
                 <Slider {...settings}>
-                    {pages.map((item, index) => <SliderItem key={`sli-${index}`} item={item}></SliderItem>)}
+                    {swipeList.map((item, index) => <SliderItem key={`sli-${index}`} item={item}></SliderItem>)}
                 </Slider>
-            </div>
-        </>
+            </div>}
+        </Deferred>
+
     );
 }
 
 function SliderItem({ item }) {
     return (
-        <Link href={route('detail', { alias: item.alias })} className='bg-green-300 h-48 md:h-72 flex rounded-md justify-center items-center relative'>
+        <Link href={route('detail', { alias: item.alias })} prefetch className='bg-green-300 h-48 md:h-72 flex rounded-md justify-center items-center relative'>
             <ImagePage source={item.image_path} className={'w-full h-full rounded-md'}></ImagePage>
             <div className='absolute bg-[#c2dbeb99] left-0 bottom-0 px-2 pl-1 py-1 rounded-sm min-h-[56px]'>
-                <p className='font-semibold text-md md:text-xl line-clamp-2'>
+                <p className='font-semibold text-md md:text-xl line-clamp-2 hover:text-white'>
                     {item.title}
                 </p>
             </div>
         </Link>
+    )
+}
+
+
+function TestDef() {
+    const { props: { testDef } } = usePage();
+
+    return (
+        <Deferred data="testDef" fallback={() => <ListSke></ListSke>}>
+            {testDef && <ul className="list-disc list-inside bg-white rounded-md p-1">
+                {testDef.map((page, index) =>
+                    <Link href={route('detail', { alias: page.alias })} key={`random-${index}`}>
+                        <li className="text-lg ml-2 hover:underline hover:text-light-blue-600">
+                            {page.title}
+                        </li>
+                    </Link>
+                )}
+            </ul>}
+        </Deferred>
     )
 }

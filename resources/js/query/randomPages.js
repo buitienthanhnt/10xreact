@@ -5,10 +5,11 @@ import Urls from "@/network/Urls";
  * get ramdom pages.
  */
 const randomPages = async (limit = 6) => {
-	return await rApi.callRequest({
+	const response = await rApi.callRequest({
 		url: Urls.pageRandom+ `?limit=${limit}`,
 		method: 'GET',
-	})
+	});
+	return response;
 }
 
 export default randomPages;

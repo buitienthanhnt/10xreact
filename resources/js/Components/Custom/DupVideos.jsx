@@ -8,7 +8,9 @@ const DupVideos = ({ items }) => {
 	// http://img.youtube.com/vi/XSBQJ3bVJ0U/maxresdefault.jpg
 	// aspect-[7/9]: tỷ lệ kích thước chiều cao và chiều ngang của thành phần.
 	// absolute center: absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-
+	if (!items) {
+		return null;
+	}
 	return (
 		<div>
 			<Link className="font-semibold text-2xl text-blue-700 lg:p-2 flex bg-white" href="/list" data={{type: 'video'}}>Video đề Xuất:</Link>

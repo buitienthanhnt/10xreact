@@ -13,6 +13,9 @@ import { stringConvert } from "@/Helper/DateTime";
 
 
 const TimeList = ({ items }) => {
+	if (!items) {
+		return null;
+	}
 	return (
 		<div className="bg-white p-4 space-y-4 shadow-lg">
 			<p className="font-semibold text-black text-2xl">Sắp diễn ra:</p>

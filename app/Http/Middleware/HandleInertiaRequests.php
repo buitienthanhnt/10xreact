@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -45,6 +46,8 @@ class HandleInertiaRequests extends Middleware
             return [];
         }
 
+        $this->globalShare();
+
         /**
          * define for list element of top menu
          */
@@ -66,5 +69,18 @@ class HandleInertiaRequests extends Middleware
             'topMenu' => $topMenu,
             'responseData' => $request->session()->get('responseData'), // include for response data form.
         ];
+    }
+
+    /**
+     * auto share for all pages.
+     */
+    protected function globalShare(): void {
+        Inertia::share('foot_page', Inertia::optional(function(){
+            return [
+                'app_name' => 'adoc.dev',
+                'dev' => 'thanh.nt',
+                'email' => 'adoc@gmail.com',
+            ];
+        }));
     }
 }

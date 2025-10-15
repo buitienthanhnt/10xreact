@@ -6,7 +6,7 @@ const useRelatedPage = () => {
 	const [data, setData] = useState([]);
 
 	const relatedPage = useMemo(() => {
-		return localStorage.getItem('page-info-like')?.split('|').slice(0,6) || [];
+		return localStorage.getItem('page-info-like')?.split('|').slice(0,5) || [];
 	}, [])
 
 	const fetchData = useCallback(async () => {

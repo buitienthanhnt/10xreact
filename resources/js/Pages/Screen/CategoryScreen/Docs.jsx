@@ -1,4 +1,4 @@
-import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
+import TopPageLayout from "@/Layouts/BuildLayout/TopPageLayout";
 import { Head, Link } from "@inertiajs/react";
 
 export default function Docs({ categories }) {
@@ -8,7 +8,7 @@ export default function Docs({ categories }) {
     }
 
     return (
-        <SingleLayout>
+        <TopPageLayout>
             <Head>
                 <title>danh mục</title>
             </Head>
@@ -19,6 +19,6 @@ export default function Docs({ categories }) {
                     </Link>
                 })}
             </div>
-        </SingleLayout>
+        </TopPageLayout>
     )
 }

@@ -228,6 +228,6 @@ class Page extends Model implements PageInterface
      *  @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments() {
-        return $this->hasMany(Comment::class, CommentInterface::TARGET_ID, PageInterface::ID);    
+        return $this->hasMany(Comment::class, CommentInterface::TARGET_ID, PageInterface::ID)->where(CommentInterface::TYPE, 'page');    
     }
 }

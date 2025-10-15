@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Api\PageApi;
-use App\Models\Page;
 use App\Models\PageCategory;
 use App\Models\Types\CategoryInterface;
 use App\Models\Types\PageCategoriesInterface;
@@ -36,7 +35,6 @@ final class PageApiController extends Controller
 	 */
 	function pageRandom(Request $request)
 	{
-		sleep(4);
 		return $this->pageApi->getRandom($request->get('limit'));
 	}
 

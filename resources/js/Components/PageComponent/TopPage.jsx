@@ -24,7 +24,7 @@ export function TopPage() {
 
 const PrimaryPage = ({ page }) => {
 	return (
-		<Link className="relative flex h-full" prefetch cacheFor="2m" style={{ backgroundImage: page.image_path }} href={route('detail', { alias: page.alias })}>
+		<Link className="relative flex h-full" prefetch cacheFor="4m" style={{ backgroundImage: page.image_path }} href={route('detail', { alias: page.alias })}>
 			<ImagePage source={page.image_path} className={'w-full h-auto rounded-md'}>
 			</ImagePage>
 			<p className="absolute bottom-10 left-2 md:left-8 line-clamp-2 font-semibold text-3xl text-orange-500 hover:text-purple-600">{page.title}</p>
@@ -38,7 +38,7 @@ const SecondPages = ({ pages }) => {
 		<div className="md:grid grid-cols-1 grid-rows-2 space-y-1 h-full">
 			{pages.map((page, index) => {
 				return (
-					<Link prefetch cacheFor="1m" // @inertiajs/react 2.0 or newest
+					<Link prefetch cacheFor="2m" // @inertiajs/react 2.0 or newest
 						className="bg-blue-gray-500 rounded-md relative grid-rows-1 flex justify-center items-center"
 						key={`second-${index}`}
 						href={route('detail', { alias: page.alias })}

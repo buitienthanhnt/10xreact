@@ -3,7 +3,7 @@ import PrimaryButton from "../PrimaryButton";
 import InputError from "../InputError";
 import { Transition } from "@headlessui/react";
 import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Textarea } from "@material-tailwind/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Urls from "@/network/Urls";
 import LoginForm from "../Custom/LoginForm";
 
@@ -14,18 +14,24 @@ const CommentForm = (params) => {
 	const { component, props: { auth: { user } }, scrollRegions, rememberedState, url
 	} = usePage();
 
-	const { data, setData, errors, reset, setError } = useForm({
+	const { data, setData, errors, reset, setError } = useForm({ // hook error when login then back.
 		name: user?.name,
 		email: user?.email,
+		user_id: user?.id,
 		target_id: params.pageId,
 		content: '',
-		user_id: user?.id,
 		parent_id: params?.parent_id,
 	});
 
 	const submit = useCallback((e) => {
 		e.preventDefault();
-		axios.post(Urls.addComment, data)
+		axios.post(Urls.addComment, {
+			...data, ...{
+				name: user?.name,
+				email: user?.email,
+				user_id: user?.id,
+			}
+		})
 			.then(function (response) {
 				setAddSuccess(true);
 				reset();
@@ -33,7 +39,7 @@ const CommentForm = (params) => {
 			.catch(function (error) {
 				console.log('?????', error.response.data.message);
 			});
-	}, [reset, data]);
+	}, [reset, data, user?.name, user?.id, user?.email]);
 
 	useEffect(() => {
 		if (addSuccess) {

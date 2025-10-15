@@ -9,11 +9,13 @@ use App\Models\ShareAction\AliasAttrModel;
 use App\Models\ShareAction\FormField;
 use App\Models\ShareAction\ImageManualAttr;
 use App\Models\Types\CategoryInterface;
+use App\Models\Types\CommentInterface;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
@@ -133,6 +135,16 @@ class Category extends Model implements CategoryInterface
     public function pages(): BelongsToMany
     {
         return $this->belongsToMany(Page::class, 'page_categories');
+    }
+
+    /**
+     * return comment of category
+     */
+    public function comments() : HasMany {
+        /**
+         * target-class, khóa phụ của target-class, khóa chính của class hiện tại.
+         */
+        return $this->hasMany(Comment::class, CommentInterface::TARGET_ID, self::ID)->where(CommentInterface::TYPE, 'category');
     }
 }
 

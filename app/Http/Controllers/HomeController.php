@@ -35,24 +35,42 @@ class HomeController extends Controller
     public function home()
     {
         $banner = Page::latest()->first();
+        /**
+         * hàm share sẽ lưu trữ các giá trị vào các tham số cho hàm render.
+         * các tính năng như bất đồng bộ(optional), gom nhóm(defer).
+         * optional: tải sau(bất đồng bộ dùng với: <WhenVisible> (phải dùng để thành phần mới gọi dữ liệu api bất đồng bộ)) 
+         *           sẽ gọi khi phần tử được hiển thị trong khung nhìn(async)
+         */
+        Inertia::share('timeLine', inertia()->optional(fn() => $this->pageApi->pageFilterTimeline('timeline')));
+
+        /**
+         * defer: gom nhóm để tải dữ liệu sau(không tải cùng với hàm: render chính)
+         * dùng với: <Deferred>(nên dùng(không bắt buộc) để thành phần sử dữ liệu api bất đồng bộ và kiểm soát trạng thái).
+         * có thể nhóm các dữ liệu với dùng WhenVisible thì khá hữu ích theo đó thì dữ liệu sẽ luôn tải theo nhóm ban đầu còn khi nào: WhenVisible
+         * thì nó sẽ dùng giá trị đó luôn mà không phải gọi lại; nó khác với WhenVisible là optional chỉ gọi api khi nó hiển thị
+         * còn: defer sẽ luôn gọi từ đầu.
+         */
+        Inertia::share('testDef', inertia()->defer(fn() => $this->pageApi->pageRandom(6)));
+
+        /**
+         * Inertia info:
+         * vendor/inertiajs/inertia-laravel/src/Inertia.php
+         * vendor/inertiajs/inertia-laravel/src/ResponseFactory.php
+         */
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'videos' => inertia()->optional(function () { // load sau(async)
+            'videos' => inertia()->optional(function () { // load sau: sẽ gọi khi phần tử được hiển thị trong khung nhìn(async)
                 return Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
                     $query->where('type', 'video');
                 }])->get();
             }),
             'banner' => $banner,
-            'timeLine' => inertia()->optional(fn() => $this->pageApi->pageFilterTimeline('timeline')), // load sau(async)
             'swipeList' => inertia()->defer(function () { // swipeList and testDef will be loaded in one api group
                 return $this->pageApi->pageRandom(6);
-            }),
-            'testDef' => inertia()->defer(function () {
-                return $this->pageApi->pageRandom(6);
-            }),
+            }, 'async'),
         ]);
     }
 
@@ -179,4 +197,20 @@ class HomeController extends Controller
             'pages' => $this->pageApi->pageByTag($value)
         ]);
     }
+
+    /**
+     * layouts: [
+     * 'com-1' => data,
+     * 'com-2' => data,
+     * 'com-3' => data,
+     * ]
+     * server:
+     * nếu dùng optional: Inertia::share('com-1', inertia()->optional(fn() => data)); để đăng ký.
+     * 
+     * client:
+     * const key = 'com-1';
+     * const { props} = usePage();
+     * <WhenVisible data="com-1" fallback={() => <ListSke></ListSke>}>
+     *      {props[key] && <DupVideos items={props[key]}></DupVideos>}
+     */
 }

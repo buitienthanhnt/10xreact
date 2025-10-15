@@ -24,9 +24,6 @@ export default function Welcome({ auth, laravelVersion, phpVersion, videos, bann
                     <div className="space-y-2 p-6 lg:p-8"> {/* max-w-7xl mx-auto  p-6 lg:p-8  */}
                         <HomeTime></HomeTime>
                         <TopPage></TopPage>
-                        <WhenVisible data="videos" fallback={() => <ListSke></ListSke>}>
-                            <DupVideos items={videos}></DupVideos>
-                        </WhenVisible>
                         <div className='grid grid-cols-3 gap-1'>
                             <div className='col-span-3 md:col-span-2'>
                                 <TopComment></TopComment>
@@ -42,12 +39,14 @@ export default function Welcome({ auth, laravelVersion, phpVersion, videos, bann
                         <GoldChart></GoldChart>
                         <SuggetVertical pageId={banner.id} title={'Giới thiệu'}></SuggetVertical>
                         <CenterCategory></CenterCategory>
-                        <WhenVisible data={['timeLine']} fallback={() => <div>Loading...</div>}>
+                        {/* Dùng WhenVisible thì data sẽ được gọi khi đối tượng được hiển thị  */}
+                        <SwipeToSlide></SwipeToSlide>
+                        <VietLotChart></VietLotChart>
+                        <WhenVisible data={['timeLine']} fallback={() => <ListSke></ListSke>}>
                             <TimeList items={timeLine}></TimeList>
                         </WhenVisible>
                         <TestDef></TestDef>
-                        <SwipeToSlide></SwipeToSlide>
-                        <VietLotChart></VietLotChart>
+                        <HomeVideos></HomeVideos>
                     </div>
                 </div>
                 <HomeStyle></HomeStyle>
@@ -159,7 +158,6 @@ function SwipeToSlide() {
                 </Slider>
             </div>}
         </Deferred>
-
     );
 }
 
@@ -176,7 +174,6 @@ function SliderItem({ item }) {
     )
 }
 
-
 function TestDef() {
     const { props: { testDef } } = usePage();
 
@@ -192,5 +189,27 @@ function TestDef() {
                 )}
             </ul>}
         </Deferred>
+    )
+}
+
+function HomeVideos(params) {
+    const key = 'videos';
+    const { props } = usePage();
+
+    return (
+        <WhenVisible data={key} fallback={() => <ListSke></ListSke>}>
+            {props[key] && <DupVideos items={props[key]}></DupVideos>}
+
+            <Deferred data="swipeList" fallback={() => <ListSke></ListSke>}>
+                {props.swipeList && <div className="slider-container bg-white p-2 md:pb-8 rounded-lg space-y-2 shadow-xl">
+                    <p className='font-semibold text-2xl text-blue-700 flex bg-white'>
+                        Danh sách ngẫu nhiên:
+                    </p>
+                    {props.swipeList.map((i, index) => {
+                        return <p key={index}>{i.title}</p>
+                    })}
+                </div>}
+            </Deferred>
+        </WhenVisible>
     )
 }

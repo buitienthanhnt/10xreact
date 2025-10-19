@@ -14,6 +14,7 @@ interface CommentInterface{
 	const TARGET_ID = 'target_id'; // example for page_id
 
 	const FILLED_FILEDS = [self::TYPE, self::USER_ID, self::CONTENT, self::PARENT_ID, self::TARGET_ID];
-
 	const HIDDEN_FIELDS = [self::USER_ID, self::ACTIVE, self::TYPE];
+
+	const MODEL_TYPE = 'comment';
 }

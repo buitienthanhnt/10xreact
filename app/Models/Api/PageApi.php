@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\callback;
+
 class PageApi
 {
 	/**
@@ -67,7 +69,7 @@ class PageApi
 	 * @var int $limit
 	 * @return Illuminate\Pagination\LengthAwarePaginator
 	 */
-	function pagePaginate($limit = 12)
+	public function pagePaginate($limit = 12)
 	{
 		/**
 		 * "page-list.{limit}.{page}.{order}.{sort}"
@@ -81,7 +83,10 @@ class PageApi
 		 * cache_callback
 		 */
 		return Cache::remember($cache_key, 1 * 60 * 60, function () use ($limit) {
-			return $this->page->paginate($limit);
+			return $this->page
+						->with('source')
+						->withCount(['comments'])
+						->paginate($limit);
 		});
 	}
 
@@ -137,7 +142,10 @@ class PageApi
 			 * cache_callback
 			 */
 			return Cache::remember($cache_key, 1 * 60 * 60, function () use ($allPages, $limit) {
-				return Page::whereIn(PageInterface::ID, $allPages->toArray())->paginate($limit);
+				return Page::whereIn(PageInterface::ID, $allPages->toArray())
+							->with('source')
+							->withCount(['comments'])
+							->paginate($limit);
 			});
 		}
 		return $this->pagePaginate($limit);
@@ -239,7 +247,11 @@ class PageApi
 	protected function pageFilterType()
 	{
 		$filters = $this->request->all();
-		$types = PageContent::all([PageContentInterface::TYPE])->unique(PageContentInterface::TYPE)->map(function ($item) use ($filters) {
+		/**
+		 * select(c1, c2, c3)->distinct(): lấy duy nhất không trùng lặp.
+		 * not use: ->unique(c1) because it not work.
+		 */
+		$types = PageContent::select(PageContentInterface::TYPE)->distinct()->get()->map(function ($item) use ($filters) {
 			return [
 				'value' => $item->{PageContentInterface::TYPE},
 				'label' => __("attr.type.$item->type"),
@@ -260,6 +272,11 @@ class PageApi
 	 */
 	protected function pageFilterCategories()
 	{
+		/**
+		 * get flat category tree for select filter by categories.
+		 * @var array $flatCategoryTree
+		 */
+		$flatCategoryTree = $this->cacheHelper->saveAndReturn(CacheEnum::FlatCategoryTree->value, 60*15, callback: fn() => Category::getCategoryTree(prefix: ''));
 		return [
 			'label' => 'categories',
 			'type' => CategoryInterface::CATEGORY_FILTER_KEY,
@@ -268,7 +285,7 @@ class PageApi
 					...$category,
 					'selected' => $category['value'] == $this->request->get(CategoryInterface::CATEGORY_FILTER_KEY),
 				];
-			}, Category::getCategoryTree(prefix: ''))
+			}, $flatCategoryTree)
 		];
 	}
 
@@ -279,11 +296,12 @@ class PageApi
 	{
 		$filters = $this->request->all();
 		/**
-		 * @var array $realWriters
+		 * @var \Illuminate\Database\Eloquent\Collection|static[] $activeWriter
 		 * select unique(distinct: WRITER id)  
 		 * vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php
 		 */
-		$types = Writer::whereHas('pages', )->get()->map(function ($item) use ($filters) {
+		$activeWriter = $this->cacheHelper->saveAndReturn('activeWriter', 60*20,callback: fn() => Writer::select(PageContentInterface::ID, WriterInterface::NAME)->whereHas('pages', callback: fn($query) => $query->select('id'))->get());
+		$types = $activeWriter->map(function ($item) use ($filters) {
 			return [
 				'value' => $item->{PageContentInterface::ID},
 				'label' => $item->{WriterInterface::NAME},
@@ -365,6 +383,7 @@ class PageApi
 				->with('tags')
 				->with('categories')
 				->with('writer')
+				->with('source')
 				->get()
 				->first();
 		});
@@ -390,7 +409,13 @@ class PageApi
 	 */
 	public function getRandom(int $limit = 6, array $excludes = [])
 	{
-		return $this->page->all()->random($limit);
+		/**
+		 * inRandomOrder: get random page(vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php)
+		 * take(6): get 6 items 
+		 */
+		return $this->page->inRandomOrder()->take(6)->get();
+		// return $this->page->fromQuery("SELECT * FROM pages ORDER BY RAND() LIMIT 6");
+		// return $this->page->all()->random($limit);
 	}
 
 	/**
@@ -531,11 +556,7 @@ class PageApi
 		 * get page has much 
 		 * comments relationship with condition max appear
 		 */
-		$page = $this->page::with('writer')->withCount([
-			'comments' => function ($query) {
-				$query->where('active', true);
-			}
-		])->latest('comments_count')->first();
+		$page = $this->page::with('writer')->with('source')->withCount('comments')->latest('comments_count')->first();
 		return $page;
 	}
 }

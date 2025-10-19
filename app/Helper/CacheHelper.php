@@ -20,6 +20,9 @@ final class CacheHelper
 		return Cache::remember($key, $ttl, $callback);
 	}
 
+	/**
+	 * 
+	 */
 	public function clear(string $key) {
 		return Cache::forget($key);
 	}

@@ -7,7 +7,7 @@ import { BreadCategory, PageGrid, SuggetVertical } from "@/Components/Custom";
 import usePageRandom from "@/hook/usePageRandom";
 import { randomString } from "@/Helper/StringHelper";
 
-export default function Detail({ page: { title, desciption, page_contents, tags, categories, id, writer } }) {
+export default function Detail({ page: { title, desciption, page_contents, tags, categories, id, writer, source } }) {
 
     return (
         <SingleLayout>
@@ -18,7 +18,7 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
                 <PageInfo title={title} desciption={desciption}></PageInfo>
                 <PageWriter writer={writer}></PageWriter>
                 <PageContent pageContents={page_contents}></PageContent>
-                <Info info={{}} pageId={id}></Info>
+                <Info info={source} pageId={id}></Info>
                 <Tags tags={tags}></Tags>
                 {/* <InpageCategory categories={categories}></InpageCategory> */}
                 <CommentList></CommentList>

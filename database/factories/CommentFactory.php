@@ -23,7 +23,7 @@ class CommentFactory extends Factory
             CommentInterface::CONTENT => $this->faker->paragraphs(14),
             CommentInterface::PARENT_ID => null,
             CommentInterface::TARGET_ID => 1,
-            CommentInterface::USER_ID => 1,
+            CommentInterface::USER_ID => 0,
         ];
     }
 }

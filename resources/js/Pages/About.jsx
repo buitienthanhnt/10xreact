@@ -35,7 +35,6 @@ export default function About({ pages }) {
 							<button className="bg-blue-gray-400 rounded-md p-2" onClick={() => filter({ cat: 9 })}>thời sự</button>
 							<button className="bg-blue-gray-400 rounded-md p-2" onClick={() => filter({ cat: 10 })}>trong nước</button>
 							<button className="bg-red-400 rounded-md p-2" onClick={clear}>clear</button>
-							<button className="bg-green-600 rounded-md p-2 text-white" onClick={clear}>save</button>
 							<button className="bg-purple-400 rounded-md p-2" onClick={() => filter({ cat: 11 })}>xã hội</button>
 							<button className="bg-orange-400 rounded-md p-2" onClick={() => filter({ cat: 12 })}>quốc tế</button>
 						</div>

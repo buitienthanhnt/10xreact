@@ -14,11 +14,13 @@ use App\Models\Types\CommentInterface;
 use App\Models\Types\PageContentInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\TagInterface;
+use App\Models\Types\ViewSourceInterface;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Cache;
 
@@ -80,7 +82,7 @@ class Page extends Model implements PageInterface
      */
     protected $hidden = [self::CREATED_AT, self::DELETED_AT,];
 
-    protected $appends = ['info']; // Add the custom attribute here
+    // protected $appends = ['info']; // Add the custom attribute here
 
     protected static function booted(): void
     {
@@ -100,6 +102,11 @@ class Page extends Model implements PageInterface
              * delete links of tags
              */
             $page->tags()->delete();
+
+            /**
+             * delete source info of the page.
+             */
+            $page->source()->delete();
         });
 
         /**
@@ -175,6 +182,9 @@ class Page extends Model implements PageInterface
         return $this->belongsToMany(Category::class, 'page_categories',);
     }
 
+    /**
+     * return category list of the page
+     */
     public function category(): Attribute
     {
         return Attribute::make(
@@ -215,19 +225,27 @@ class Page extends Model implements PageInterface
 
     /**
      * return page info.
-     * @return array|null
+     * @/return array|null
      */
-    public function getInfoAttribute()
-    {
-        $key = 'page:' . $this->{self::ID};
-        return json_decode(RedisHelper::getValue($key) ?: '', true);
-    }
+    // public function getInfoAttribute()
+    // {
+    //     $key = 'page:' . $this->{self::ID};
+    //     return json_decode(RedisHelper::getValue($key) ?: '', true);
+    // }
 
     /**
      * return list comments of the page.
      *  @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments() {
-        return $this->hasMany(Comment::class, CommentInterface::TARGET_ID, PageInterface::ID)->where(CommentInterface::TYPE, 'page');    
+        return $this->hasMany(Comment::class, CommentInterface::TARGET_ID, PageInterface::ID)->where(CommentInterface::TYPE, 'page')->where(CommentInterface::ACTIVE, true);    
+    }
+
+    /**
+     * get page view source info
+     *  @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function source() : HasOne {
+        return $this->hasOne(ViewSource::class, ViewSourceInterface::TARGET_ID, self::ID,)->where(ViewSourceInterface::TYPE, self::MODEL_TYPE);
     }
 }

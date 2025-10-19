@@ -35,11 +35,11 @@ final class CategoryApi
 		 * Illuminate\Database\Eloquent\Builder ->
 		 * Illuminate\Database\Eloquent\Concerns\QueriesRelationships -> whereHas
 		 */
-		// return $this->category::has('pages')->with('pages', fn($query) => $query->take(4))->get();
-		return $this->category::has('pages',) // has pages not null
-			->with('pages',)
+		// return $this->category::has('pages')->with('pages', fn($query) => $query->take(4))->get(); // not random page
+		return $this->category::has('pages', callback: function($query) {$query->select(['id']);}) // has pages not null(the optimate of query.)
+			->inRandomOrder()
+			->take(4)
 			->get()
-			->random(4)
 			->map(
 				function ($category) {
 					/**
@@ -50,5 +50,12 @@ final class CategoryApi
 					return $category;
 				}
 			);
+
+		// return $this->category::has('pages',)->with('pages',)->get()->map( // the query not optimate than top.
+			// 	function ($category) {
+			// 		$category->setRelation('pages', $category->pages()->latest('id')->take(6)->get());
+			// 		return $category;
+			// 	}
+		// );
 	}
 }

@@ -14,7 +14,7 @@ return [
      |
      */
 
-    'enabled' => env('DEBUGBAR_ENABLED', null),
+    'enabled' =>  false,                                        // env('DEBUGBAR_ENABLED', null),
     'hide_empty_tabs' => env('DEBUGBAR_HIDE_EMPTY_TABS', true), // Hide tabs until they have content
     'except' => [
         'telescope*',
@@ -162,7 +162,7 @@ return [
      */
 
     'collectors' => [
-        'phpinfo'         => env('DEBUGBAR_COLLECTORS_PHPINFO', false),         // Php version
+        'phpinfo'         => env('DEBUGBAR_COLLECTORS_PHPINFO', true),         // Php version
         'messages'        => env('DEBUGBAR_COLLECTORS_MESSAGES', true),         // Messages
         'time'            => env('DEBUGBAR_COLLECTORS_TIME', true),             // Time Datalogger
         'memory'          => env('DEBUGBAR_COLLECTORS_MEMORY', true),           // Memory usage
@@ -170,10 +170,10 @@ return [
         'log'             => env('DEBUGBAR_COLLECTORS_LOG', true),              // Logs from Monolog (merged in messages if enabled)
         'db'              => env('DEBUGBAR_COLLECTORS_DB', true),               // Show database (PDO) queries and bindings
         'views'           => env('DEBUGBAR_COLLECTORS_VIEWS', true),            // Views with their data
-        'route'           => env('DEBUGBAR_COLLECTORS_ROUTE', false),           // Current route information
+        'route'           => env('DEBUGBAR_COLLECTORS_ROUTE', true),           // Current route information
         'auth'            => env('DEBUGBAR_COLLECTORS_AUTH', false),            // Display Laravel authentication status
         'gate'            => env('DEBUGBAR_COLLECTORS_GATE', true),             // Display Laravel Gate checks
-        'session'         => env('DEBUGBAR_COLLECTORS_SESSION', false),         // Display session data
+        'session'         => env('DEBUGBAR_COLLECTORS_SESSION', true),         // Display session data
         'symfony_request' => env('DEBUGBAR_COLLECTORS_SYMFONY_REQUEST', true),  // Only one can be enabled..
         'mail'            => env('DEBUGBAR_COLLECTORS_MAIL', true),             // Catch mail messages
         'laravel'         => env('DEBUGBAR_COLLECTORS_LARAVEL', true),          // Laravel version and environment
@@ -200,7 +200,7 @@ return [
 
     'options' => [
         'time' => [
-            'memory_usage' => env('DEBUGBAR_OPTIONS_TIME_MEMORY_USAGE', false), // Calculated by subtracting memory start and end, it may be inaccurate
+            'memory_usage' => env('DEBUGBAR_OPTIONS_TIME_MEMORY_USAGE', true), // Calculated by subtracting memory start and end, it may be inaccurate
         ],
         'messages' => [
             'trace' => env('DEBUGBAR_OPTIONS_MESSAGES_TRACE', true),                  // Trace the origin of the debug message
@@ -225,7 +225,7 @@ return [
             ],
             'backtrace'         => env('DEBUGBAR_OPTIONS_DB_BACKTRACE', true),   // Use a backtrace to find the origin of the query in your files.
             'backtrace_exclude_paths' => [],   // Paths to exclude from backtrace. (in addition to defaults)
-            'timeline'          => env('DEBUGBAR_OPTIONS_DB_TIMELINE', false),  // Add the queries to the timeline
+            'timeline'          => env('DEBUGBAR_OPTIONS_DB_TIMELINE', true),  // Add the queries to the timeline
             'duration_background'  => env('DEBUGBAR_OPTIONS_DB_DURATION_BACKGROUND', true),   // Show shaded background on each query relative to how long it took to execute.
             'explain' => [                 // Show EXPLAIN output on queries
                 'enabled' => env('DEBUGBAR_OPTIONS_DB_EXPLAIN_ENABLED', false),

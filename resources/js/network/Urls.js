@@ -18,7 +18,8 @@ const Urls = {
 	},
 	comment: {
 		topPage: '/api/top-comment',
-	}
+	},
+	addSource: '/add-source',
 };
 
 export default Urls;

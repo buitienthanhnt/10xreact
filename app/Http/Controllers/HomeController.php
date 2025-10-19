@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ViewSourceEnum;
 use App\Events\ViewCount;
 use App\Models\Api\PageApi;
+use App\Models\Api\ViewSourceApi;
 use App\Models\Api\WriterApi;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Types\CategoryInterface;
 use App\Models\Types\PageInterface;
+use App\Models\Types\ViewSourceInterface;
+use Exception;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,15 +25,18 @@ class HomeController extends Controller
 
     protected $pageApi;
     protected $writerApi;
+    protected $viewSourceApi;
 
     public function __construct(
         Request $request,
         PageApi $pageApi,
         WriterApi $writerApi,
+        ViewSourceApi $viewSourceApi,
     ) {
         $this->request = $request;
         $this->pageApi = $pageApi;
         $this->writerApi = $writerApi;
+        $this->viewSourceApi = $viewSourceApi;
     }
 
     public function home()
@@ -102,10 +109,8 @@ class HomeController extends Controller
      */
     public function list(Request $request)
     {
-        $page = $this->pageApi->pageFilterPaginate(6);
-        // $demoRandom = $this->pageApi->pageRandom();
         return Inertia::render('Screen/PageScreen/List', [
-            'paginate' => (!is_array($page) ? $page->toArray() : []),
+            'paginate' => $this->pageApi->pageFilterPaginate(6) ?: [],
             'filters' => $this->pageApi->pageFilters(),
         ]);
     }
@@ -129,7 +134,7 @@ class HomeController extends Controller
     public function writerDetail(int $id)
     {
         $writer = $this->writerApi->getById($id);
-        $pages = $writer->pages()->paginate(6);
+        $pages = $writer->pages()->with('source')->withCount('comments')->paginate(6);
         return Inertia::render('Screen/Writer/WriterDetail', [
             'writer' => $writer,
             'pages' => $pages
@@ -170,6 +175,9 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * test for register url with security, url with time live
+     */
     function Signature(Request $request): void
     {
         /**
@@ -190,12 +198,32 @@ class HomeController extends Controller
         // ]);
     }
 
+    /**
+     * function for render page list of tag.
+     */
     public function tag($value, Request $request)
     {
         return Inertia::render('Screen/PageScreen/PageByTag', [
             'tag' => $value,
             'pages' => $this->pageApi->pageByTag($value)
         ]);
+    }
+
+    /**
+     * api for add view source info.
+     */
+    public function addSource(Request $request)
+    {   
+        $request->validate([
+            ViewSourceInterface::TARGET_ID => ['required', 'integer'],
+        ]);
+
+        return $this->viewSourceApi->addSourceAction(
+            target_id: $request->get(ViewSourceInterface::TARGET_ID),
+            action_type: $request->get(ViewSourceEnum::ACTION_TYPE->value, ViewSourceInterface::TYPE_LIKE),
+            action: $request->get(ViewSourceEnum::ACTION->value, ViewSourceInterface::ACTION_ADD),
+            type: $request->get(ViewSourceInterface::TYPE, PageInterface::MODEL_TYPE),
+        );
     }
 
     /**

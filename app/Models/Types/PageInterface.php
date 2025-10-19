@@ -53,4 +53,6 @@ interface PageInterface extends TimestampInterface
         'edit' => 'edit/{id}',
         'update' => 'update/{id}',
     ];
+
+    const MODEL_TYPE = 'page';
 }

@@ -3,7 +3,7 @@ import PrimaryButton from "../PrimaryButton";
 import InputError from "../InputError";
 import { Transition } from "@headlessui/react";
 import { Button, Dialog, DialogBody, DialogFooter, DialogHeader, Textarea } from "@material-tailwind/react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Urls from "@/network/Urls";
 import LoginForm from "../Custom/LoginForm";
 
@@ -25,20 +25,21 @@ const CommentForm = (params) => {
 
 	const submit = useCallback((e) => {
 		e.preventDefault();
+		/**
+		 * controller auto detech user context of the request. 
+		 */
 		axios.post(Urls.addComment, {
 			...data, ...{
 				name: user?.name,
 				email: user?.email,
 				user_id: user?.id,
 			}
-		})
-			.then(function (response) {
-				setAddSuccess(true);
-				reset();
-			})
-			.catch(function (error) {
-				console.log('?????', error.response.data.message);
-			});
+		}).then(function (response) {
+			setAddSuccess(true);
+			reset();
+		}).catch(function (error) {
+			console.log('?????', error.response.data.message);
+		});
 	}, [reset, data, user?.name, user?.id, user?.email]);
 
 	useEffect(() => {

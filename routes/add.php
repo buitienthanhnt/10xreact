@@ -7,8 +7,6 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/home', [HomeController::class, 'home']);
-
 Route::get('/dashboard', function () {
 	return Inertia::render('Dashboard');
 })->name('dashboard');
@@ -36,3 +34,5 @@ Route::prefix('comment')->group(function () : void {
 	Route::post('add', [CommentController::class, 'store']);
 
 });
+
+Route::post('add-source', [\App\Http\Controllers\HomeController::class, 'addSource']);

@@ -7,7 +7,6 @@ import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import SwiperImage from "@/Components/Custom/SwiperImage";
 
 const List = ({ paginate: { current_page, last_page, data, links, }, filters }) => {
-    if (!data) { return null; }
 
     return (
         <>
@@ -24,7 +23,7 @@ const List = ({ paginate: { current_page, last_page, data, links, }, filters }) 
                         return <ListItem key={index} item={item}></ListItem>
                     })}
                 </div>}
-                <Paginate pageSize={last_page} currentPage={current_page} links={links} url={window.location.href}></Paginate>
+                {current_page && <Paginate pageSize={last_page} currentPage={current_page} links={links} url={window.location.href}></Paginate>}
                 {/* <Banner layout={''} page={randoms[2]}></Banner> */}
                 <RandomHorizon></RandomHorizon>
                 <CenterCategory></CenterCategory>

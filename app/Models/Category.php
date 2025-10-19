@@ -10,12 +10,14 @@ use App\Models\ShareAction\FormField;
 use App\Models\ShareAction\ImageManualAttr;
 use App\Models\Types\CategoryInterface;
 use App\Models\Types\CommentInterface;
+use App\Models\Types\ViewSourceInterface;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
@@ -105,12 +107,20 @@ class Category extends Model implements CategoryInterface
      */
     public static function getCategoryTree(int $parentId = 0, string $prefix = '__', array &$allCategories = []): array
     {
-        foreach (Category::where(self::PARENT, '=', $parentId)->where(CategoryInterface::ACTIVE, '=', true)->get() as $value) {
+        /**
+         * ->where(CategoryInterface::ACTIVE, '=', true) using adminhtml env not working with activeScope global. 
+         */
+        foreach (
+            Category::select(CategoryInterface::ID, CategoryInterface::PARENT, CategoryInterface::NAME)
+                ->where(self::PARENT, '=', $parentId)
+                ->where(CategoryInterface::ACTIVE, '=', true)
+                ->get() as $value
+        ) {
             $data['label'] = ($prefix === '__' ? '' : $prefix) . $value->{CategoryInterface::NAME};
             $data['value'] = $value->{CategoryInterface::ID};
             $data['parent'] = $value->{CategoryInterface::PARENT};
             $allCategories[] = $data;
-            if (Category::where(self::PARENT, '=', $value->{CategoryInterface::ID})->count()) {
+            if (Category::where(self::PARENT, '=', $value->{CategoryInterface::ID})->where(CategoryInterface::ACTIVE, '=', true)->count()) {
                 self::getCategoryTree($value->{CategoryInterface::ID}, allCategories: $allCategories, prefix: $prefix . $prefix);
             }
         }
@@ -140,11 +150,20 @@ class Category extends Model implements CategoryInterface
     /**
      * return comment of category
      */
-    public function comments() : HasMany {
+    public function comments(): HasMany
+    {
         /**
          * target-class, khóa phụ của target-class, khóa chính của class hiện tại.
          */
         return $this->hasMany(Comment::class, CommentInterface::TARGET_ID, self::ID)->where(CommentInterface::TYPE, 'category');
+    }
+
+    /**
+     * return view source info of the category.
+     */
+    public function source(): HasOne
+    {
+        return $this->hasOne(ViewSource::class, ViewSourceInterface::TARGET_ID, self::ID)->where(ViewSourceInterface::TYPE, self::MODEL_TYPE);
     }
 }
 

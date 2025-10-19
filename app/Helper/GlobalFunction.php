@@ -35,6 +35,19 @@ if (!function_exists('isApiEnv')) {
 	}
 }
 
+/**
+ * define global function for check api environment
+ */
+if (!function_exists('isTestEnv')) {
+	function isTestEnv(): bool
+	{
+		if (strpos(request()->path(), 'test') === 0) {
+			return true;
+		}
+		return false;
+	}
+}
+
 if (!function_exists('urlToStoragePath')) {
 	function urlToStoragePath($url): string
 	{

@@ -1,6 +1,6 @@
-import { Typography } from "@material-tailwind/react"
 import { ImagePage } from "../Custom"
 import { Link } from "@inertiajs/react"
+import { ListItemInfo } from "../Custom/ListItem";
 
 const PageSmList = ({ items, title }) => {
 	if (!items) {
@@ -32,7 +32,7 @@ const PageSmItem = ({ item }) => {
 					<p className="font-bold text-black">{item?.title}</p>
 					<p dangerouslySetInnerHTML={{ __html: item?.desciption }} className="line-clamp-2 text-gray-700"></p>
 				</div>
-				<Typography className="flex justify-end items-end text-orange-700">{item.updated_at.slice(0, 10)}</Typography>
+				<ListItemInfo source={item?.source} updated_at={item.updated_at} comments_count={item.comments_count} className={'space-y-1'}></ListItemInfo>
 			</div>
 		</Link>
 	)

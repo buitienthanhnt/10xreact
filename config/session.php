@@ -15,10 +15,11 @@ return [
     |
     | Supported: "file", "cookie", "database", "apc",
     |            "memcached", "redis", "dynamodb", "array"
+    | use database type need more time file because it will query sid from database when boot SessionStart. 
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'database'),
+    'driver' => env('SESSION_DRIVER', 'file'), // file: laravel-8; database: laravel-10
 
     /*
     |--------------------------------------------------------------------------

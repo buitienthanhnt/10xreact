@@ -11,7 +11,7 @@ final class StringHelper
 	 * @param integer $low viết thường 
 	 * @return string
 	 */
-	public static function vn_to_str(string $str, bool $low = false)
+	public static function vn_to_str(string $str, bool $low = false, $remove_char = [])
 	{
 
 		$unicode = array(
@@ -50,9 +50,9 @@ final class StringHelper
 			$str = preg_replace("/($uni)/i", $nonUnicode, $str);
 		}
 
-		$remove_char = ["?" => ""];
-		if ($remove_char) {
-			foreach ($remove_char as $key => $value) {
+		$remove_chars = array_merge(["?" => "",], $remove_char);
+		if ($remove_chars) {
+			foreach ($remove_chars as $key => $value) {
 				$str = str_replace($key, $value, $str);
 			}
 		}

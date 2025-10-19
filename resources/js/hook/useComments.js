@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react"
 
 // https://tanstack.com/query/v4/docs/framework/react/reference/useInfiniteQuery
 // https://tanstack.com/query/latest/docs/framework/react/reference/infiniteQueryOptions
-const useListComment = ({ type, targetId, enabled, parent_id}) => {
+const useListComment = ({ type, targetId, enabled, parent_id, }) => {
 	const {
 		data,
 		error,
@@ -17,7 +17,7 @@ const useListComment = ({ type, targetId, enabled, parent_id}) => {
 		queryKey: ['comment', type, targetId, parent_id],
 		queryFn: ({ pageParam = 1 }) => getCommentList(targetId, parent_id, pageParam),
 		initialPageParam: 1,
-		getNextPageParam: (lastPage, pages, ) => {
+		getNextPageParam: (lastPage, pages,) => {
 			if (lastPage.current_page < lastPage.last_page) {
 				return lastPage.current_page + 1
 			}
@@ -38,15 +38,16 @@ const useListComment = ({ type, targetId, enabled, parent_id}) => {
 	}
 }
 
-const commentInfoKey = 'commentInfo';
-const useCommentInfo = (comment)=>{
+const commentInfoKey = 'comment-info';
+
+const useCommentInfo = (comment) => {
 	const [key, setKey] = useState('');
 
-	const added = useMemo(()=>{
-		const commentLike = localStorage.getItem(commentInfoKey+'_like')?.split("|") || [];
-		const commentHeart = localStorage.getItem(commentInfoKey+'_heart')?.split("|") || [];
-		const commentfire = localStorage.getItem(commentInfoKey+'_fire')?.split("|") || [];
-		const commentStar = localStorage.getItem(commentInfoKey+'_star')?.split("|") || [];
+	const added = useMemo(() => {
+		const commentLike = localStorage.getItem(commentInfoKey + '-like')?.split("|") || [];
+		const commentHeart = localStorage.getItem(commentInfoKey + '-heart')?.split("|") || [];
+		const commentfire = localStorage.getItem(commentInfoKey + '-fire')?.split("|") || [];
+		const commentStar = localStorage.getItem(commentInfoKey + '-star')?.split("|") || [];
 		return {
 			like: commentLike,
 			heart: commentHeart,
@@ -55,14 +56,26 @@ const useCommentInfo = (comment)=>{
 		}
 	}, [key])
 
-	const onAdd = useCallback((type)=>{
+	const onAdd = useCallback((type) => {
 		const isAdded = added[type].includes(comment.id.toString());
-		if (isAdded) {
-			localStorage.setItem(commentInfoKey+'_'+type, added[type].filter(i => i!== comment.id.toString()).join('|'));
-		}else{
-			localStorage.setItem(commentInfoKey+'_'+type, [comment.id.toString(), ...added[type]].join('|'));
-		}
-		setKey(type+(isAdded ? '_add_' : '_remove_')+comment.id.toString());
+
+		axios.post('/add-source', {
+			target_id: comment.id,
+			action: !isAdded ? 'add' : 'sub',
+			action_type: type,
+			type: 'comment',
+		}).then(
+			function ({ data }) {
+				if (isAdded) {
+					localStorage.setItem(commentInfoKey + '-' + type, added[type].filter(i => i !== comment.id.toString()).join('|'));
+				} else {
+					localStorage.setItem(commentInfoKey + '-' + type, [comment.id.toString(), ...added[type]].join('|'));
+				}
+				setKey(type + (isAdded ? '_add_' : '_remove_') + comment.id.toString());
+			}
+		).catch(function (error) {
+			console.log('Error:=============>', error);
+		})
 	}, [added])
 
 	return {
@@ -71,13 +84,13 @@ const useCommentInfo = (comment)=>{
 	}
 }
 
-const useTopComment = ()=>{
+const useTopComment = () => {
 	const query = useQuery({
 		queryKey: ['top-comment'],
 		queryFn: getTopComment,
 	});
-	
-	return {...query};
+
+	return { ...query };
 }
 
 export { useListComment, useCommentInfo, useTopComment }

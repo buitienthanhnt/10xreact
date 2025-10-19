@@ -16,15 +16,10 @@ class SortScope implements Scope
     public function apply(Builder $builder, Model $model): void
     {
         /**
-         * get all attributes of model table
-         * @var array $modelAttributes
-         */
-        $modelAttributes = Schema::getColumnListing($model->getTable());
-        /**
          * get orderBy attribute: in_array: $modelAttributes
          * exp: [id, name, title, created_at, updated_at, ...]
          */
-        $orderBy = request()->query('order', 'id'); // attribute
+        $orderBy = request()->query('order'); // attribute
         /**
          * get sortBy value: asc|desc
          */
@@ -34,8 +29,16 @@ class SortScope implements Scope
          * check if $orderBy attribute in list field of model
          * check if $sortBy value === asc || desc
          */
-        if ($orderBy && in_array($orderBy, $modelAttributes) && in_array($sortBy, ['ASC', 'DESC'])) {
-            $builder->orderBy($orderBy, $sortBy);
+        if ($orderBy && in_array($sortBy, ['ASC', 'DESC'])) {
+            /**
+             * get all attributes of model table
+             * hàm tính này mất khá nhiều thời gian cho nên hạn chế gọi nhất có thể.
+             * @var array $modelAttributes
+             */
+            $modelAttributes = Schema::getColumnListing($model->getTable());
+            if (in_array($orderBy, $modelAttributes)) {
+                $builder->orderBy($orderBy, $sortBy);
+            }
         }
     }
 }

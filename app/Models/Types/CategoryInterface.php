@@ -38,4 +38,6 @@ interface CategoryInterface extends RouteInterface
 	const PREFIX = 'category';
 	const ROUTE_PREFIX = ADMIN_PREFIX . '/' . self::PREFIX;
 	const CATEGORY_FILTER_KEY = 'cat';
+
+	const MODEL_TYPE = 'category';
 }

@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Enums\ViewSourceEnum;
 use App\Events\ViewCount;
+use App\Http\Controllers\ShareAction\LoadContructLayout;
+use App\Models\Api\CategoryApi;
 use App\Models\Api\PageApi;
 use App\Models\Api\ViewSourceApi;
 use App\Models\Api\WriterApi;
 use App\Models\Category;
+use App\Models\Design;
 use App\Models\Page;
 use App\Models\Types\CategoryInterface;
+use App\Models\Types\DesignInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\ViewSourceInterface;
 use Exception;
@@ -21,34 +25,49 @@ use Inertia\Response;
 
 class HomeController extends Controller
 {
+    use LoadContructLayout;
+
     protected $request;
 
     protected $pageApi;
     protected $writerApi;
     protected $viewSourceApi;
+    protected $categoryApi;
+
+    protected $design;
 
     public function __construct(
         Request $request,
         PageApi $pageApi,
         WriterApi $writerApi,
         ViewSourceApi $viewSourceApi,
+        CategoryApi $categoryApi,
+        Design $design,
     ) {
         $this->request = $request;
         $this->pageApi = $pageApi;
         $this->writerApi = $writerApi;
         $this->viewSourceApi = $viewSourceApi;
+        $this->categoryApi = $categoryApi;
+        $this->design = $design;
     }
 
     public function home()
     {
-        $banner = Page::latest()->first();
+        // $banner = Page::latest()->first();
+        $designConstruct = $this->design->select(DesignInterface::VALUE, DesignInterface::NAME)->where(DesignInterface::TYPE, 'home-page')->get();
+        /**
+         * load for layout construct page.
+         */
+        $this->loadLayout($designConstruct);
+        
         /**
          * hàm share sẽ lưu trữ các giá trị vào các tham số cho hàm render.
          * các tính năng như bất đồng bộ(optional), gom nhóm(defer).
          * optional: tải sau(bất đồng bộ dùng với: <WhenVisible> (phải dùng để thành phần mới gọi dữ liệu api bất đồng bộ)) 
          *           sẽ gọi khi phần tử được hiển thị trong khung nhìn(async)
          */
-        Inertia::share('timeLine', inertia()->optional(fn() => $this->pageApi->pageFilterTimeline('timeline')));
+        // Inertia::share('timeLine', inertia()->optional(fn() => $this->pageApi->pageFilterTimeline('timeline')));
 
         /**
          * defer: gom nhóm để tải dữ liệu sau(không tải cùng với hàm: render chính)
@@ -57,7 +76,7 @@ class HomeController extends Controller
          * thì nó sẽ dùng giá trị đó luôn mà không phải gọi lại; nó khác với WhenVisible là optional chỉ gọi api khi nó hiển thị
          * còn: defer sẽ luôn gọi từ đầu.
          */
-        Inertia::share('testDef', inertia()->defer(fn() => $this->pageApi->pageRandom(6)));
+        // Inertia::share('testDef', inertia()->defer(fn() => $this->pageApi->pageRandom(6)));
 
         /**
          * Inertia info:
@@ -69,16 +88,17 @@ class HomeController extends Controller
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'videos' => inertia()->optional(function () { // load sau: sẽ gọi khi phần tử được hiển thị trong khung nhìn(async)
-                return Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
-                    $query->where('type', 'video');
-                }])->get();
-            }),
-            'banner' => $banner,
-            'swipeList' => inertia()->defer(function () { // swipeList and testDef will be loaded in one api group
-                return $this->pageApi->pageRandom(6);
-            }, 'async'),
-        ]);
+            'components' => $designConstruct,
+            // 'videos' => inertia()->optional(function () { // load sau: sẽ gọi khi phần tử được hiển thị trong khung nhìn(async)
+            //     return Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
+            //         $query->where('type', 'video');
+            //     }])->get();
+            // }),
+            // 'banner' => $banner,
+            // 'swipeList' => inertia()->defer(function () { // swipeList and testDef will be loaded in one api group
+            //     return $this->pageApi->pageRandom(6);
+            // }, 'async'),
+        ])->withViewData(['meta' =>  "adoc global app design by thant"]);
     }
 
     /**
@@ -101,6 +121,7 @@ class HomeController extends Controller
          */
         return Inertia::render('Screen/PageScreen/Detail', [
             'page' => $pageDetail,
+            'poll' => '22222',
         ]);
     }
 

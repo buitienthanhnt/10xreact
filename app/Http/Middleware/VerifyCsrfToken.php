@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'add-source',
-        'test/*'
+        'test/*',
+        '/adminhtml/design/home-setup',
     ];
 }

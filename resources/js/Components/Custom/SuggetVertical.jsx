@@ -1,15 +1,16 @@
 import { usePageSugget } from "@/hook/usePageSugget";
 import { PageSmList } from "../PageComponent";
 
-const SuggetVertical = ({pageId, title})=>{
-	const {pages, isLoading} = usePageSugget(pageId);
+const SuggetVertical = ({data, title})=>{
+	// const {pages, isLoading} = usePageSugget(pageId);
+	// if (isLoading || !pages) {return;}
 
-	if (isLoading || !pages) {
-		return;
+	if (!data) {
+		return null;
 	}
 
 	return(
-		<PageSmList items={pages} title={title}></PageSmList>
+		<PageSmList items={data} title={title}></PageSmList>
 	)
 }
 

@@ -7,22 +7,21 @@ import {
 	TimelineBody,
 	Typography,
 } from "@material-tailwind/react";
-import { HomeIcon, BellIcon, CurrencyDollarIcon } from "@heroicons/react/24/solid";
-import { Link } from "@inertiajs/react";
+import { BellIcon } from "@heroicons/react/24/solid";
+import { Link, usePage, WhenVisible } from "@inertiajs/react";
 import { stringConvert } from "@/Helper/DateTime";
+import { Loading } from "../Skeleton";
 
 
-const TimeList = ({ items }) => {
-	if (!items) {
-		return null;
-	}
+const TimeList = ({ name, data }) => {
+
 	return (
 		<div className="bg-white p-4 space-y-4 shadow-lg">
 			<p className="font-semibold text-black text-2xl">Sắp diễn ra:</p>
 			<div className="grid grid-cols-3 gap-2">
 				<div className="col-span-3 md:col-span-2">
 					<Timeline>
-						{items.map((item, index) => <DupListItem item={item} key={index} isComplete={index === items.length - 1}></DupListItem>)}
+						{data.map((item, index) => <DupListItem item={item} key={index} isComplete={index === data.length - 1}></DupListItem>)}
 					</Timeline>
 				</div>
 				<div className="col-span-1 bg-blue-gray-100 invisible md:visible rounded-md flex justify-center p-1">

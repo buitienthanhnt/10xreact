@@ -1,6 +1,11 @@
 import { PageSmItem } from "@/Components/PageComponent";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 import { InfiniteScroll, router } from "@inertiajs/react";
+/**
+ * Thành phần này sử dụng trình quan sát giao nhau để phát hiện khi người dùng cuộn gần cuối nội dung và tự động kích hoạt yêu cầu tải trang tiếp theo.
+ *  Dữ liệu mới được hợp nhất với nội dung hiện có thay vì thay thế nó.
+ *  https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API 
+ */
 
 export default function About({ pages }) {
 
@@ -24,7 +29,7 @@ export default function About({ pages }) {
 				<p className="font-extrabold text-2xl text-blue-500 bg-white rounded-md p-2">Danh sách bài viết tập trung:</p>
 				<div className="grid grid-cols-5 gap-2">
 					<div className="bg-white rounded-md p-2 col-span-3">
-						<InfiniteScroll data="pages" className="space-y-1" >
+						<InfiniteScroll data="pages" className="space-y-1">
 							{pages.data.map(page => (
 								<PageSmItem key={page.id} item={page}></PageSmItem>
 							))}

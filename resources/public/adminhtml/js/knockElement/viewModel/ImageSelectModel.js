@@ -6,7 +6,6 @@ define([
 	'use strict';
 
 	function ImageSelectModel(params) {
-		console.log();
 		let self = this;
 		self.chooseBtnId = `lfm-${params.attr.key}`;
 		self.attr = { ...params.attr, id: `id-${params.attr.key}` };

@@ -1,19 +1,19 @@
 import usePageRandom from "@/hook/usePageRandom";
 import React, { useMemo } from "react";
 import ImagePage from "./ImagePage";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
-export const HomeDemo = () => {
-	const { pages, isLoading, isError } = usePageRandom();
-
-	if (isLoading || isError || !pages) {
+export const HomeDemo = ({ data }) => {
+	// const { pages, isLoading, isError } = usePageRandom();
+	// if (isLoading || isError || !pages) {return null;}
+	if (!data) {
 		return null;
 	}
 
 	return (
 		<div className="mt-8">
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-4">
-				{pages.slice(0, 4).map((items, index) => {
+				{data.slice(0, 4).map((items, index) => {
 					return (
 						<Link key={`rand-${index}`}
 							href={route('detail', { alias: items.alias })}
@@ -88,11 +88,12 @@ export function HomeTime(params) {
 	)
 }
 
-export function PageInfo({ laravelVersion, phpVersion }) {
+export function PageInfo() {
+	const { props: { laravelVersion, phpVersion } } = usePage();
+
 	return (
 		<div className="flex justify-center mt-16 px-6 sm:items-center sm:justify-between bg-white p-2 rounded-md">
 			<div className="text-center text-sm sm:text-start">&nbsp;</div>
-
 			<div className="text-center text-sm dark:text-gray-400 sm:text-end sm:ms-0 font-bold text-black">
 				Laravel v{laravelVersion} (PHP v{phpVersion})
 			</div>

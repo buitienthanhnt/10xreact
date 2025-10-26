@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        {{-- custom value by thant: server: ->withViewData(['meta' => $event->meta] || $page['props']['meta'] --}}
+        <meta name="description" content="{{ $meta ?? '' }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

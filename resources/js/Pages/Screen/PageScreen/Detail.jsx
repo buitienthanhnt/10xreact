@@ -1,11 +1,10 @@
-import { Head, Link, WhenVisible } from "@inertiajs/react";
+import { Head, Link, WhenVisible, usePage, usePoll } from "@inertiajs/react";
 import RelatedPage from "@/Components/Custom/RelatedPage";
 import { ImageType, TextEditorType, TextType, VideoType, TextAreaType, Timeline, CarouselImage } from "@/Components/PageContent";
 import { InpageCategory, Tags, Info, Propose, CommentForm, CommentList } from "@/Components/PageComponent";
 import SingleLayout from "@/Layouts/BuildLayout/SingleLayout";
 import { BreadCategory, PageGrid, SuggetVertical } from "@/Components/Custom";
 import usePageRandom from "@/hook/usePageRandom";
-import { randomString } from "@/Helper/StringHelper";
 
 export default function Detail({ page: { title, desciption, page_contents, tags, categories, id, writer, source } }) {
 
@@ -14,6 +13,7 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
             <Head title="chi tiết">
             </Head>
             <div className="grid gap-y-1">
+                <FetchOnlineData></FetchOnlineData>
                 <BreadCategory categories={categories}></BreadCategory>
                 <PageInfo title={title} desciption={desciption}></PageInfo>
                 <PageWriter writer={writer}></PageWriter>
@@ -128,5 +128,35 @@ const PageLinks = () => {
                 </div>
             </div>
         </WhenVisible>
+    )
+}
+
+const FetchOnlineData = () => {
+    const {props: {poll}} = usePage();
+    // usePoll(2000, {
+    //     onStart() {
+    //         console.log('Polling request started')
+    //     },
+    //     onFinish() {
+    //         console.log('Polling request finished')
+    //     }
+    // })
+
+    /**
+     * https://inertiajs.com/polling
+     * usePoll: tính năng tự động lấy data mới của requeat hiện tại theo khoảng thời gian:
+     * cái này khá hay trong việc xây dựng tính năng chat trực tuyến.
+     * Qua đó, khi data trên server thay đổi thì nó sẽ được cập nhập mới theo luôn.
+     */
+    const { start, stop } = usePoll(4000, {}, {
+        autoStart: false,
+    })
+
+    return (
+        <div className="flex gap-2 bg-white p-2">
+            <p>poll data: {poll}</p>
+            <button onClick={start} className="btn rounded-md bg-blue-gray-300 p-2">Start polling</button>
+            <button onClick={stop} className="btn rounded-md bg-red-300 p-2">Stop polling</button>
+        </div>
     )
 }

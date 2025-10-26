@@ -75,7 +75,13 @@ class PageApi
 		 * "page-list.{limit}.{page}.{order}.{sort}"
 		 * "page-list.12.1.id.asc"
 		 */
-		$cache_key = "page-list.$limit." . $this->request->get('page', 1) . "." . $this->request->get('order', 'id') . "." . $this->request->get('sort', 'asc');
+		$cache_key = implode('.', [
+			"page-list",
+			$limit,
+			$this->request->get('page', 1),
+			$this->request->get('order', 'id'),
+			$this->request->get('sort', ""),
+		]);
 
 		/**
 		 * cache_key
@@ -84,9 +90,9 @@ class PageApi
 		 */
 		return Cache::remember($cache_key, 1 * 60 * 60, function () use ($limit) {
 			return $this->page
-						->with('source')
-						->withCount(['comments'])
-						->paginate($limit);
+				->with('source')
+				->withCount(['comments'])
+				->paginate($limit);
 		});
 	}
 
@@ -102,7 +108,13 @@ class PageApi
 		 */
 		$allPages = collect();
 		$hasFilter = false;
-		$cache_key = "page-list.$limit." . $this->request->get('page', 1) . "." . $this->request->get('order', 'id') . "." . $this->request->get('sort', 'asc');
+		$cache_key = implode(".", [
+			"page-list",
+			$limit,
+			$this->request->get('page', 1),
+			$this->request->get('order', 'id'),
+			$this->request->get('sort', 'asc'),
+		]);
 
 		/**
 		 * filter pages by categories.
@@ -143,9 +155,9 @@ class PageApi
 			 */
 			return Cache::remember($cache_key, 1 * 60 * 60, function () use ($allPages, $limit) {
 				return Page::whereIn(PageInterface::ID, $allPages->toArray())
-							->with('source')
-							->withCount(['comments'])
-							->paginate($limit);
+					->with('source')
+					->withCount(['comments'])
+					->paginate($limit);
 			});
 		}
 		return $this->pagePaginate($limit);
@@ -276,7 +288,7 @@ class PageApi
 		 * get flat category tree for select filter by categories.
 		 * @var array $flatCategoryTree
 		 */
-		$flatCategoryTree = $this->cacheHelper->saveAndReturn(CacheEnum::FlatCategoryTree->value, 60*15, callback: fn() => Category::getCategoryTree(prefix: ''));
+		$flatCategoryTree = $this->cacheHelper->saveAndReturn(CacheEnum::FlatCategoryTree->value, 60 * 15, callback: fn() => Category::getCategoryTree(prefix: ''));
 		return [
 			'label' => 'categories',
 			'type' => CategoryInterface::CATEGORY_FILTER_KEY,
@@ -300,7 +312,7 @@ class PageApi
 		 * select unique(distinct: WRITER id)  
 		 * vendor/laravel/framework/src/Illuminate/Database/Eloquent/Concerns/QueriesRelationships.php
 		 */
-		$activeWriter = $this->cacheHelper->saveAndReturn('activeWriter', 60*20,callback: fn() => Writer::select(PageContentInterface::ID, WriterInterface::NAME)->whereHas('pages', callback: fn($query) => $query->select('id'))->get());
+		$activeWriter = $this->cacheHelper->saveAndReturn('activeWriter', 60 * 20, callback: fn() => Writer::select(PageContentInterface::ID, WriterInterface::NAME)->whereHas('pages', callback: fn($query) => $query->select('id'))->get());
 		$types = $activeWriter->map(function ($item) use ($filters) {
 			return [
 				'value' => $item->{PageContentInterface::ID},
@@ -558,5 +570,12 @@ class PageApi
 		 */
 		$page = $this->page::with('writer')->with('source')->withCount('comments')->latest('comments_count')->first();
 		return $page;
+	}
+
+	/**
+	 * 
+	 */
+	public function lastestList(int $limit = 6) {
+		return $this->page->latest(PageInterface::ID)->limit($limit)->get();
 	}
 }

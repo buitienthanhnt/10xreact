@@ -1,27 +1,29 @@
 import React from "react";
 import ImagePage from "./ImagePage";
-import { useTopComment } from "@/hook/useComments";
 import { Info } from "../PageComponent";
-import { Link } from "@inertiajs/react";
+import { Link, usePage, WhenVisible } from "@inertiajs/react";
+import { Loading } from "../Skeleton";
 
 // color of tailwin css.
 // https://www.material-tailwind.com/docs/react/colors
-const TopComment = () => {
-	const { data, isError, isFetched, isFetching, isLoading, isRefetching, isPending, error } = useTopComment();
-
-	if (isFetching || isLoading || !data) {
-		return null;
-	}
+const TopComment = ({ name, data }) => {
+	// const { data, isError, isFetched, isFetching, isLoading, isRefetching, isPending, error } = useTopComment();
+	// if (isFetching || isLoading || !data) {return null;}
 
 	return (
-		<div className="bg-white p-1 rounded-md grid gap-y-2">
-			<WriterInfo writer={data.writer}></WriterInfo>
-			<Link className="p-1 space-y-1" href={route('detail', { alias: data.alias })}>
-				<p className="font-semibold text-xl text-black">{data.title}</p>
-				<p className="italic text-base font-semibold text-gray-800">{data.desciption}</p>
-				<ImagePage source={data.image_path} className={'w-full h-96 md:h-[450px] object-center rounded-lg'}></ImagePage>
-			</Link>
-			<Info pageId={data.id} comments_count={data.comments_count} info={data.source} className={'py-2'}></Info>
+		<div className='grid grid-cols-3 gap-1'>
+			<div className='col-span-3 md:col-span-2 bg-white p-1 rounded-md grid gap-y-2'>
+				<WriterInfo writer={data.writer}></WriterInfo>
+				<Link className="p-1 space-y-1" href={route('detail', { alias: data.alias })}>
+					<p className="font-semibold text-xl text-black">{data.title}</p>
+					<p className="italic text-base font-semibold text-gray-800">{data.desciption}</p>
+					<ImagePage source={data.image_path} className={'w-full h-96 md:h-[450px] object-center rounded-lg'}></ImagePage>
+				</Link>
+				<Info pageId={data.id} comments_count={data.comments_count} info={data.source} className={'py-2'}></Info>
+			</div>
+			<div className='col-span-0 md:col-span-1 bg-blue-gray-100 justify-center flex p-1 rounded-md'>
+				<span className='text-black font-bold text-xl'>Quảng cáo!</span>
+			</div>
 		</div>
 	)
 }

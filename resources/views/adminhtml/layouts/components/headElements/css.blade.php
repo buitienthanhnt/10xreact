@@ -8,7 +8,7 @@
 <link href="/source/adminhtml/css/googleapis-icon.css" rel="stylesheet" />
 {{-- xem base style: https://bootstrapemail.com/docs/text-size --}}
 <link id="pagestyle" href="/source/adminhtml/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
-{{-- insert bootstrap  --}}
+{{-- insert bootstrap: v4.1.3  --}}
 <link href="/source/adminhtml/css/bootstrap.min.css" rel="stylesheet" />
 {{-- insert select2 css source --}}
 <link href="/source/adminhtml/css/select2.min.css" rel="stylesheet" />

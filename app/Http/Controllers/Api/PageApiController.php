@@ -50,7 +50,7 @@ final class PageApiController extends Controller
 		$page = $this->pageApi->pageByIds([$id])->first();
 		$categories = $page->categories->pluck(CategoryInterface::ID)->toArray();
 		$pageIds = PageCategory::whereIn(PageCategoriesInterface::CATEGORY_ID, $categories)
-			->whereNotIn(PageCategoriesInterface::PAGE_ID, [$id])
+			->whereNotIn(PageCategoriesInterface::PAGE_ID, [$id]) // exclude input showed id
 			->latest(PageCategoriesInterface::PAGE_ID)
 			->limit(6)
 			->get(PageCategoriesInterface::PAGE_ID)

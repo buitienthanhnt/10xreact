@@ -12,6 +12,7 @@ const Urls = {
 	pages: {
 		pageSugget: '/api/page-sugget/%s',
 		topPage: '/api/top-page',
+		detail: '/%s.html',
 	},
 	category: {
 		centerCategory: '/api/center-categories',

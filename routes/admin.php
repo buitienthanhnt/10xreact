@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminHtml\CategoryController;
 use App\Http\Controllers\AdminHtml\DashboardController;
+use App\Http\Controllers\AdminHtml\DesignController;
 use App\Http\Controllers\AdminHtml\PageController;
 use App\Http\Controllers\AdminHtml\WriterController;
 use App\Livewire\Counter;
@@ -101,6 +102,23 @@ if (isAdminEnv()) {
             Route::post(CategoryInterface::ROUTE_ACTION['update'], [CategoryController::class, 'UpdateAction']);
 
             Route::delete(CategoryInterface::ROUTE_ACTION['delete'], [CategoryController::class, 'deleteAction']);
+        });
+
+        Route::prefix('design')->group(function (): void {
+            Route::get('/', [DesignController::class, 'home'])->setBindingFields([
+                'route_name' => 'design manage',
+                'route_icon' => 'dataset_linked', // https://fonts.google.com/icons => [Icon name]
+                'show' => true,
+                // 'permission' => AdminPermission::ACTION_LIST
+            ]);
+
+            Route::get('/page-setup', [DesignController::class, 'pageSetup']);
+
+            Route::post('/page-setup', [DesignController::class, 'pageStore']);
+
+            Route::get('/home-setup', [DesignController::class, 'pageSetup']);
+
+            Route::post('/home-setup', [DesignController::class, 'pageStore']);
         });
 
         Route::prefix('test')->group(function (): void {

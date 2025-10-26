@@ -2,23 +2,25 @@ import React, { useState } from "react";
 import ImagePage from "./ImagePage";
 import { PlayCircleIcon } from "@heroicons/react/24/solid";
 import YouTube from "react-youtube";
-import { Link } from "@inertiajs/react";
+import { Link, } from "@inertiajs/react";
 
-const DupVideos = ({ items }) => {
+const DupVideos = ({ name, data }) => {
 	// http://img.youtube.com/vi/XSBQJ3bVJ0U/maxresdefault.jpg
 	// aspect-[7/9]: tỷ lệ kích thước chiều cao và chiều ngang của thành phần.
 	// absolute center: absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-	if (!items) {
-		return null;
-	}
+
 	return (
-		<div>
-			<Link className="font-semibold text-2xl text-blue-700 lg:p-2 flex bg-white" href="/list" data={{type: 'video'}}>Video đề Xuất:</Link>
+		<div className="bg-white rounded-md">
+			<Link className="font-semibold text-2xl text-blue-700 lg:p-2 flex " href="/list" data={{ type: 'video' }}>Video đề Xuất:</Link>
 			<div className="p-1 bg-white grid grid-cols-2 gap-4 rounded-md">
-				{items.map((item, index) => <VideoBanner item={item} key={`video-${index}`}></VideoBanner>)}
+				{data.map((item, index) => <VideoBanner item={item} key={`video-${index}`}></VideoBanner>)}
 			</div>
 		</div>
 	)
+}
+
+const RenderVideo = ({ data, name }) => {
+
 }
 
 const VideoBanner = ({ item: { id, page_contents, title, alias } }) => {

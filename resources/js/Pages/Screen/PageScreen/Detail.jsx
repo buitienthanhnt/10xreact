@@ -13,7 +13,6 @@ export default function Detail({ page: { title, desciption, page_contents, tags,
             <Head title="chi tiết">
             </Head>
             <div className="grid gap-y-1">
-                <FetchOnlineData></FetchOnlineData>
                 <BreadCategory categories={categories}></BreadCategory>
                 <PageInfo title={title} desciption={desciption}></PageInfo>
                 <PageWriter writer={writer}></PageWriter>
@@ -121,7 +120,7 @@ const PageLinks = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-1 rounded-md">
                 <div className="col-span-1 lg:col-span-4 bg-white rounded-md">
                     <p className="font-bold text-xl bg-white p-2 rounded-md">Danh sách gợi ý!</p>
-                    <PageGrid items={pages}></PageGrid>
+                    <PageGrid data={pages}></PageGrid>
                 </div>
                 <div className="invisible md:visible lg:col-span-1 rounded-md justify-center flex bg-white">
                     <span className="font-extrabold">Marketing banner!</span>

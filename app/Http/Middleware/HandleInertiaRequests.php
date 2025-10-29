@@ -56,6 +56,7 @@ class HandleInertiaRequests extends Middleware
             ['name' => 'account', 'icon' => '', 'url' => '/account'],
             ['name' => 'Docs', 'icon' => '', 'url' => '/docs'],
             ['name' => 'About Us', 'icon' => '', 'url' => '/about'],
+            ['name' => 'search', 'icon' => '', 'url' => '/search'],
         ];
 
         /**

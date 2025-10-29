@@ -17,9 +17,15 @@ trait LoadContructLayout
 	 */
 	public function loadLayout($components = []): void
 	{
+		$sharedData = Inertia::getShared("components");
+		// dd($sharedData);
+
+		Inertia::merge([
+			'demo' => 123123
+		])->append('demo');
+
 		if (is_array($components)) {
-			foreach ($components as $component) {
-			}
+			foreach ($components as $component) {}
 			return;
 		}
 		/**

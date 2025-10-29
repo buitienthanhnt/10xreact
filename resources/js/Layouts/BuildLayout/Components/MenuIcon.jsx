@@ -1,6 +1,6 @@
-import { ArrowPathIcon, CommandLineIcon, RectangleStackIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { ArrowPathIcon, CommandLineIcon, MagnifyingGlassIcon, RectangleStackIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 
-const MenuIcon = ({name, color}) => {
+const MenuIcon = ({ name, color }) => {
     switch (name) {
         case 'page':
             return <RectangleStackIcon className="h-5 w-5" color={color} ></RectangleStackIcon>;
@@ -8,6 +8,8 @@ const MenuIcon = ({name, color}) => {
             return <UserCircleIcon className="h-5 w-5" color={color}></UserCircleIcon>;
         case 'Docs':
             return <CommandLineIcon className="h-5 w-5" color={color}></CommandLineIcon>;
+        case 'search':
+            return <MagnifyingGlassIcon className="h-5 w-5" color={color}></MagnifyingGlassIcon>;
         default:
             return <ArrowPathIcon className="h-5 w-5" color={color}></ArrowPathIcon>;
     }

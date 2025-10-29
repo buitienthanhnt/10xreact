@@ -27,6 +27,10 @@ Route::get('account', [HomeController::class, 'account'])->name('account');
 
 Route::get('docs', [HomeController::class, 'docs'])->name('docs');
 
+Route::inertia('/langs', 'Screen/CategoryScreen/Language');
+
+Route::post('/lang-setup', [HomeController::class, 'langSetup']);
+
 Route::get('writer/{id}', [HomeController::class, 'writerDetail'])->name('writerDetail');
 
 Route::prefix('comment')->group(function () : void {
@@ -36,3 +40,5 @@ Route::prefix('comment')->group(function () : void {
 });
 
 Route::post('add-source', [\App\Http\Controllers\HomeController::class, 'addSource']);
+
+Route::get('search', [\App\Http\Controllers\TestController::class, 'remenberState'])->name('search');

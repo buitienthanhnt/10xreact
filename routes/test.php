@@ -83,5 +83,19 @@ if (isTestEnv()) {
 		});
 
 		Route::get('get-view-source/{page_id}', [\App\Http\Controllers\TestController::class, 'getViewSource']);
+
+		Route::inertia("/", 'Screen/TestScreen/Test');
+		/**
+		 * test merge props inertiaJs
+		 */
+		Route::get('merge-prop', [\App\Http\Controllers\TestController::class, 'mergeProp']);
+
+		Route::post('post-merge', [\App\Http\Controllers\TestController::class, 'postMerge']);
+
+		Route::get('partial-reloads', [\App\Http\Controllers\TestController::class, 'partialReloads']);
+
+		Route::get('remenber-search', [\App\Http\Controllers\TestController::class, 'remenberState']);
+
+		Route::post('remenber-post', [\App\Http\Controllers\TestController::class, 'remenberPost']);
 	});
 }

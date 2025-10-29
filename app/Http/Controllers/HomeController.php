@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\ViewSourceEnum;
 use App\Events\ViewCount;
+use App\Helper\ImageHelper;
 use App\Http\Controllers\ShareAction\LoadContructLayout;
 use App\Models\Api\CategoryApi;
 use App\Models\Api\PageApi;
@@ -16,7 +17,6 @@ use App\Models\Types\CategoryInterface;
 use App\Models\Types\DesignInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\ViewSourceInterface;
-use Exception;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +26,7 @@ use Inertia\Response;
 class HomeController extends Controller
 {
     use LoadContructLayout;
+    use ImageHelper;
 
     protected $request;
 
@@ -56,6 +57,7 @@ class HomeController extends Controller
     {
         // $banner = Page::latest()->first();
         $designConstruct = $this->design->select(DesignInterface::VALUE, DesignInterface::NAME)->where(DesignInterface::TYPE, 'home-page')->get();
+        Inertia::share( 'components', $designConstruct,);
         /**
          * load for layout construct page.
          */
@@ -88,7 +90,7 @@ class HomeController extends Controller
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'components' => $designConstruct,
+            'demo' => [],
             // 'videos' => inertia()->optional(function () { // load sau: sẽ gọi khi phần tử được hiển thị trong khung nhìn(async)
             //     return Page::whereRelation('pageContents', 'type', 'video')->latest('created_at')->distinct('id')->limit(2)->with(['pageContents' => function ($query) {
             //         $query->where('type', 'video');
@@ -245,6 +247,17 @@ class HomeController extends Controller
             action: $request->get(ViewSourceEnum::ACTION->value, ViewSourceInterface::ACTION_ADD),
             type: $request->get(ViewSourceInterface::TYPE, PageInterface::MODEL_TYPE),
         );
+    }
+
+    function langSetup(Request $request) {
+        // sleep(2);
+        // dd($request->all());
+        // return to_route('home');
+        // $this->uploadImages($request->file('avatar'), 'demoUpfile');
+        $fileName = time().'.'.$request->file->extension();  
+        $request->file->move(public_path('uploads'), $fileName);
+
+        return redirect()->back();
     }
 
     /**

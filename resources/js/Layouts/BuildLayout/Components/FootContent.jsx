@@ -1,4 +1,4 @@
-import { WhenVisible } from "@inertiajs/react";
+import { Link, WhenVisible } from "@inertiajs/react";
 import { Typography, Button, Input } from "@material-tailwind/react";
 
 const LINKS = ["About Us", "Careers", "Press", "Blog", "Pricing"];
@@ -8,7 +8,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 export function FootContent() {
   return (
     // <WhenVisible data={'foot_page'}>
-      <footer className="mt-10 px-4 pt-20 bg-white">
+      <footer className="mt-10 px-4 pt-20 bg-white ">
         <div className="container mx-auto">
           <div className="flex flex-wrap items-end justify-center gap-8 md:justify-between">
             <div className="text-center md:text-left">
@@ -75,6 +75,24 @@ export function FootContent() {
                   </Typography>
                 </li>
               ))}
+               <li>
+                  <Typography
+                    as="a"
+                    href="/langs"
+                    className={`py-1 font-normal !text-gray-700 transition-colors hover:!text-gray-900 px-2`}
+                  >
+                    {'Language'}
+                  </Typography>
+                </li>
+
+                <li>
+                  <Link
+                    href="/test"
+                    className={`py-1 font-normal !text-gray-700 transition-colors hover:!text-red-900 px-2`}
+                  >
+                    {'Test screen'}
+                  </Link>
+                </li>
             </ul>
           </div>
         </div>

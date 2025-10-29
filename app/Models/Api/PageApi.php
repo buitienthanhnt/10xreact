@@ -14,6 +14,7 @@ use App\Models\Types\PageInterface;
 use App\Models\Types\TagInterface;
 use App\Models\Types\WriterInterface;
 use App\Models\Writer;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -577,5 +578,13 @@ class PageApi
 	 */
 	public function lastestList(int $limit = 6) {
 		return $this->page->latest(PageInterface::ID)->limit($limit)->get();
+	}
+
+	/**
+	 * @param string $query
+	 * @return LengthAwarePaginator
+	 */
+	public function search(string $query) {
+		return $this->page->where(PageInterface::TITLE, 'like', "%$query%")->paginate(6);
 	}
 }

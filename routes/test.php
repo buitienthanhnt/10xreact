@@ -97,5 +97,7 @@ if (isTestEnv()) {
 		Route::get('remenber-search', [\App\Http\Controllers\TestController::class, 'remenberState']);
 
 		Route::post('remenber-post', [\App\Http\Controllers\TestController::class, 'remenberPost']);
+
+		Route::get('timeline', [\App\Http\Controllers\TestController::class, 'timeline']);
 	});
 }

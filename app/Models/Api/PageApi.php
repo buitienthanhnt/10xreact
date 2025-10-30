@@ -536,8 +536,44 @@ class PageApi
 	 * @param string $type
 	 * @param int $limit
 	 */
-	public function pageFilterTimeline(string $type, int $limit = 6)
+	public function pageFilterTimeline(string $type = 'timeline', int $limit = 6)
 	{
+
+		// https://viblo.asia/p/su-dung-order-by-relation-column-trong-laravel-E375z9yRlGW
+		// return (Page::fromQuery("SELECT DISTINCT pages.id, JSON_EXTRACT(page_contents.`value`, '$.timeValue') AS timeValue 
+		// from pages LEFT JOIN page_contents ON pages.id = page_contents.page_id 
+		// WHERE page_contents.`type`='timeline' AND DATE_FORMAT(JSON_EXTRACT(page_contents.`value`, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()
+		// ORDER BY timeValue
+		// LIMIT 6")->toQuery()->get()->toArray());
+		// ->with(['pageContents' => function ($query) use ($type) {
+		// 	$query->where(PageContentInterface::TYPE, $type)
+		// 		->whereRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()");
+		// }])->get()->toArray());
+
+		/**
+		 * Tìm kiếm danh sách bài viết có giá trị timeValue, và timeValue lớn hơn hiện tại
+		 * Sau đó sắp xếp danh sách bài viết theo giá trị tăng dần của: timeValue
+		 */
+		$listPageIds = array_column(DB::select(
+			"SELECT DISTINCT pages.id, JSON_EXTRACT(page_contents.`value`, '$.timeValue') AS timeValue 
+		from pages LEFT JOIN page_contents ON pages.id = page_contents.page_id 
+		WHERE page_contents.`type`='timeline' AND DATE_FORMAT(JSON_EXTRACT(page_contents.`value`, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()
+		ORDER BY timeValue ASC
+		LIMIT $limit"
+		), 'id');
+
+		/**
+		 * select pages in the search list and sort by raw  FIND_IN_SET for not auto sort by id integer
+		 * Cái khó là cần sắp xếp danh sách tìm kiếm theo thứ tự id không trật tự mặc định.
+		 * Dùng FIND_IN_SET để sắp xếp theo tham số truyền vào mà không bị tự động theo id tăng dần. 
+		 */
+		return $this->page::whereIn('id', $listPageIds)
+			->orderByRaw("FIND_IN_SET(id, ?)", [implode(',', $listPageIds)])
+			->with(['pageContents' => function ($query) use ($type) {
+				$query->where(PageContentInterface::TYPE, $type)
+					->whereRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()");
+			}])->get();
+
 		// filter by timevalue timeline.
 		// SELECT * FROM page_contents where `type` = 'timeline' AND DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d') > NOW() LIMIT 100
 		// // $contents = DB::table(PageContentInterface::TABLE_NAME)->raw("where `type` = 'timeline' AND DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d') > NOW() LIMIT 100")->select('*')->get();
@@ -574,9 +610,10 @@ class PageApi
 	}
 
 	/**
-	 * 
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
-	public function lastestList(int $limit = 6) {
+	public function lastestList(int $limit = 6)
+	{
 		return $this->page->latest(PageInterface::ID)->limit($limit)->get();
 	}
 
@@ -584,7 +621,8 @@ class PageApi
 	 * @param string $query
 	 * @return LengthAwarePaginator
 	 */
-	public function search(string $query) {
+	public function search(string $query)
+	{
 		return $this->page->where(PageInterface::TITLE, 'like', "%$query%")->paginate(6);
 	}
 }

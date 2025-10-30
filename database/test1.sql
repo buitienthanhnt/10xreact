@@ -20,3 +20,30 @@ select distinct `type` from `page_contents` where `page_contents`.`deleted_at` i
 select * from `writers` where exists (select * from `pages` where `writers`.`id` = `pages`.`writer` and `active` = 1 and `pages`.`deleted_at` is null) and `active` = 1 and `writers`.`deleted_at` is null
 
 select `id`, `name` from `writers` where exists (select `id` from `pages` where `writers`.`id` = `pages`.`writer` and `active` = 1 and `pages`.`deleted_at` is null) and `active` = 1 and `writers`.`deleted_at` is null
+
+SELECT type, JSON_EXTRACT(value, '$.timeValue') AS timeValue  FROM page_contents where type='timeline' ORDER BY timeValue ASC LIMIT 6
+
+SELECT
+  'type',
+  'key',
+  JSON_EXTRACT(VALUE, '$.timeValue') AS timeValue
+FROM
+  `page_contents`
+WHERE `type` = 'timeline'
+  AND DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()
+  AND `page_contents`.`deleted_at` IS NULL
+  ORDER BY timeValue ASC
+
+
+  select distinct * from `pages` 
+  where exists (select * from `page_contents` where `pages`.`id` = `page_contents`.`page_id` and `type` = ? and `page_contents`.`deleted_at` is null) 
+  and exists (select * from `page_contents` where `pages`.`id` = `page_contents`.`page_id` and `type` = ? 
+  and DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW() 
+  and `page_contents`.`deleted_at` is null) 
+  and `active` = ? and `pages`.`deleted_at` is null
+
+  SELECT DISTINCT pages.id, JSON_EXTRACT(page_contents.`value`, '$.timeValue') AS timeValue 
+  from pages LEFT JOIN page_contents ON pages.id = page_contents.page_id 
+  WHERE page_contents.`type`='timeline' AND DATE_FORMAT(JSON_EXTRACT(page_contents.`value`, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()
+  ORDER BY timeValue
+  LIMIT 6

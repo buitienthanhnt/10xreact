@@ -144,4 +144,8 @@ class TestController extends Controller
         // dd($request->all());
         return back();
     }
+
+    public function timeline() {
+        return $this->pageApi->pageFilterTimeline('timeline');
+    }
 }

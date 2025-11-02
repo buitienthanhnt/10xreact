@@ -59,9 +59,13 @@ export function TopContent({ }) {
                 </ul>
                 <div className="hidden items-center gap-2 lg:flex">
                     {user ? // https://inertiajs.com/links
-                        <Link href={route('logout')} method="POST" as="button">
-                            <Button variant="text">Log out</Button>
-                        </Link> :
+                        <>
+                            <Link href={route('logout')} method="POST" as="button">
+                                <Button variant="text">Log out</Button>
+                            </Link>
+                            <Link href={route('dashboard')} as="button">
+                                <Button variant="text">Dashboard</Button>
+                            </Link></> :
                         <>
                             <Link href={route('login')}>
                                 <Button variant="text">Log in</Button>
@@ -94,9 +98,13 @@ export function TopContent({ }) {
                     </ul>
                     <div className="mt-6 mb-4 flex items-center gap-2">
                         {user ?
-                            <Link href={route('logout')} method="post" as="button">
-                                <Button variant="text">Log out</Button>
-                            </Link> :
+                            <>
+                                <Link href={route('logout')} method="post" as="button">
+                                    <Button variant="text">Log out</Button>
+                                </Link>
+                                <Link href={route('dashboard')} as="button">
+                                    <Button>Dashboard</Button>
+                                </Link></> :
                             <>
                                 <Link href={route('login')}>
                                     <Button variant="text">Log in</Button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ViewSourceEnum;
+use App\Http\Resources\PaginateData;
 use App\Models\Page;
 use App\Models\Types\PageInterface;
 use App\Models\Types\ViewSourceInterface;
@@ -147,5 +148,12 @@ class TestController extends Controller
 
     public function timeline() {
         return $this->pageApi->pageFilterTimeline('timeline');
+    }
+
+    /**
+     * 
+     */
+    function paginate() {
+       return (new PaginateData($this->pageApi->pagePaginate(6))); 
     }
 }

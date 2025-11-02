@@ -107,9 +107,11 @@ export default function Info({ pageId, info, comments_count, className }) {
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
 				</button>
 			</div>}
-			<div className="justify-between flex items-center">
-				<Rating value={4} readonly />
-				<div className="justify-end flex gap-3">
+			<div className="grid md:grid-cols-2">
+				<div className="col-span-1">
+					<Rating value={4} readonly />
+				</div>
+				<div className="justify-end flex gap-3 col-span-1">
 					{typeInfo.map(function (type, index) {
 						return (
 							<div className="bg-orange-200 p-1 px-2 rounded-full flex space-x-2 hover:scale-125 hover:bg-cyan-200"

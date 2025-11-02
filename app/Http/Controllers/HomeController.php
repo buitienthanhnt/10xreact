@@ -6,6 +6,7 @@ use App\Enums\ViewSourceEnum;
 use App\Events\ViewCount;
 use App\Helper\ImageHelper;
 use App\Http\Controllers\ShareAction\LoadContructLayout;
+use App\Http\Resources\PaginateData;
 use App\Models\Api\CategoryApi;
 use App\Models\Api\PageApi;
 use App\Models\Api\ViewSourceApi;
@@ -57,12 +58,12 @@ class HomeController extends Controller
     {
         // $banner = Page::latest()->first();
         $designConstruct = $this->design->select(DesignInterface::VALUE, DesignInterface::NAME)->where(DesignInterface::TYPE, 'home-page')->get();
-        Inertia::share( 'components', $designConstruct,);
+        Inertia::share('components', $designConstruct,);
         /**
          * load for layout construct page.
          */
         $this->loadLayout($designConstruct);
-        
+
         /**
          * hàm share sẽ lưu trữ các giá trị vào các tham số cho hàm render.
          * các tính năng như bất đồng bộ(optional), gom nhóm(defer).
@@ -133,7 +134,10 @@ class HomeController extends Controller
     public function list(Request $request)
     {
         return Inertia::render('Screen/PageScreen/List', [
-            'paginate' => $this->pageApi->pageFilterPaginate(6) ?: [],
+            'paginate' => function () {
+                $pages = $this->pageApi->pageFilterPaginate(6);
+                return $pages ? new PaginateData($pages) : [];
+            },
             'filters' => $this->pageApi->pageFilters(),
         ]);
     }
@@ -160,7 +164,7 @@ class HomeController extends Controller
         $pages = $writer->pages()->with('source')->withCount('comments')->paginate(6);
         return Inertia::render('Screen/Writer/WriterDetail', [
             'writer' => $writer,
-            'pages' => $pages
+            'pages' => $pages ? new PaginateData($pages) : [],
         ]);
     }
 
@@ -184,7 +188,7 @@ class HomeController extends Controller
 
         return Inertia::render('Screen/PageScreen/PagesByCategory', [
             "category" => $categoryByAlias,
-            'pages' => $categoryByAlias->pages()->paginate(6)
+            'pages' => new PaginateData($categoryByAlias->pages()->paginate(6))
         ]);
     }
 
@@ -236,7 +240,7 @@ class HomeController extends Controller
      * api for add view source info.
      */
     public function addSource(Request $request)
-    {   
+    {
         $request->validate([
             ViewSourceInterface::TARGET_ID => ['required', 'integer'],
         ]);
@@ -249,12 +253,13 @@ class HomeController extends Controller
         );
     }
 
-    function langSetup(Request $request) {
+    function langSetup(Request $request)
+    {
         // sleep(2);
         // dd($request->all());
         // return to_route('home');
         // $this->uploadImages($request->file('avatar'), 'demoUpfile');
-        $fileName = time().'.'.$request->file->extension();  
+        $fileName = time() . '.' . $request->file->extension();
         $request->file->move(public_path('uploads'), $fileName);
 
         return redirect()->back();

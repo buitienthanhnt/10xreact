@@ -8,18 +8,14 @@ use App\Models\Category;
 use App\Models\Page;
 use App\Models\PageContent;
 use App\Models\Types\CategoryInterface;
-use App\Models\Types\CommentInterface;
 use App\Models\Types\PageContentInterface;
 use App\Models\Types\PageInterface;
 use App\Models\Types\TagInterface;
 use App\Models\Types\WriterInterface;
 use App\Models\Writer;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-
-use function PHPUnit\Framework\callback;
 
 class PageApi
 {
@@ -68,7 +64,7 @@ class PageApi
 	/**
 	 * default paginate.
 	 * @var int $limit
-	 * @return Illuminate\Pagination\LengthAwarePaginator
+	 * @return \Illuminate\Pagination\LengthAwarePaginator
 	 */
 	public function pagePaginate($limit = 12)
 	{

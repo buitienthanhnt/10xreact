@@ -538,6 +538,42 @@ class PageApi
 	 */
 	public function pageFilterTimeline(string $type = 'timeline', int $limit = 6)
 	{
+		/**
+		 * Cách này là tối ưu nhất cho việc lọc, sắp xếp cho các bài viết có kiểu: timeline
+		 * Cách số 2 thì phải qua 2 câu truy vấn, không tối ưu bằng chỉ 1 câu truy vấn như cách 1
+		 * Cách số 3 Hiện đang bị lỗi về cách sắp xếp theo giá trị timeValue của content.
+		 * 
+		 * ---> Lưu ý lỗi groupBy với chế dộ: ONLY_FULL_GROUP_BY trong Mysql 5.8.* trở lên(theo đó nó sẽ chỉ cho nhóm các tham số được tổng hợp như:
+		 * Chế độ của MySQL ONLY_FULL_GROUP_BYyêu cầu bất kỳ cột nào được chọn trong câu SELECT lệnh mà không phải là một phần của GROUP BY mệnh đề 
+		 * phải là một hàm tổng hợp (ví dụ: SUM(), COUNT(), MAX(), MIN(), AVG()) hoặc phụ thuộc về mặt chức năng vào GROUP BY các cột 
+		 * (nghĩa là giá trị của nó được xác định duy nhất bởi GROUP BYcác cột). 
+		 * Khi bạn chọn các cột không đáp ứng các tiêu chí này, MySQL sẽ báo lỗi.
+		 * Sửa bằng cách tắt chế độ: "strict" trong: "config database" <---
+		 */
+		return $this->page->join(
+			"page_contents", 		// table
+			"pages.id",      		// khóa chính bảng 1
+			"=",			 		// phương thức so sánh
+			"page_contents.page_id" // khóa phụ bảng 2
+		)->selectRaw("DISTINCT pages.*, JSON_EXTRACT(page_contents.`value`, '$.timeValue') AS timeValue")
+			->where("page_contents.type", "=", $type)
+			->whereRaw("DATE_FORMAT(JSON_EXTRACT(page_contents.`value`, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()")
+			->orderBy('timeValue', 'ASC')
+			->limit($limit)
+			->groupBy('page_contents.page_id')
+			->with(['pageContents' => function ($query) use ($type) {
+				$query->where(PageContentInterface::TYPE, $type)
+					->whereRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()")
+					->orderByRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') ASC"); // sắp xếp thứ tự tăng dần luôn.
+			}])
+			->get()
+			->sortBy(function ($page) {
+				/**
+				 * Sắp xếp lại danh sách bài viết theo: timeValue vì trong quá trình truy vấn khi nhóm có thể bị lỗi 
+				 * không sắp xếp đúng theo giá trị timeValue trường hợp 2 giá trị chung 1 bài viết.
+				 */
+				return json_decode($page['pageContents'][0]['value'], true)['timeValue'];
+			})->values();
 
 		// https://viblo.asia/p/su-dung-order-by-relation-column-trong-laravel-E375z9yRlGW
 		// return (Page::fromQuery("SELECT DISTINCT pages.id, JSON_EXTRACT(page_contents.`value`, '$.timeValue') AS timeValue 
@@ -551,6 +587,7 @@ class PageApi
 		// }])->get()->toArray());
 
 		/**
+		 * C2:
 		 * Tìm kiếm danh sách bài viết có giá trị timeValue, và timeValue lớn hơn hiện tại
 		 * Sau đó sắp xếp danh sách bài viết theo giá trị tăng dần của: timeValue
 		 */
@@ -558,6 +595,7 @@ class PageApi
 			"SELECT DISTINCT pages.id, JSON_EXTRACT(page_contents.`value`, '$.timeValue') AS timeValue 
 		from pages LEFT JOIN page_contents ON pages.id = page_contents.page_id 
 		WHERE page_contents.`type`='timeline' AND DATE_FORMAT(JSON_EXTRACT(page_contents.`value`, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()
+		GROUP BY page_id
 		ORDER BY timeValue ASC
 		LIMIT $limit"
 		), 'id');
@@ -574,6 +612,7 @@ class PageApi
 					->whereRaw("DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d %h:%i:%s') > NOW()");
 			}])->get();
 
+		// C3: Lỗi không triệt để giá trị trùng lặp với page_id.
 		// filter by timevalue timeline.
 		// SELECT * FROM page_contents where `type` = 'timeline' AND DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d') > NOW() LIMIT 100
 		// // $contents = DB::table(PageContentInterface::TABLE_NAME)->raw("where `type` = 'timeline' AND DATE_FORMAT(JSON_EXTRACT(value, '$.timeValue'), '%Y-%m-%d') > NOW() LIMIT 100")->select('*')->get();
